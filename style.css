@@ -5,4 +5,7 @@
 
 p {
   text-align: center;
+  
+body {
+  display: block;
 }
