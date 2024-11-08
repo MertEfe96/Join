@@ -104,3 +104,7 @@ header {
   font-size: 22px;
   font-weight: 600;
 }
+
+.grow {
+  flex: 1;
+}
