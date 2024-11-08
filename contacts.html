@@ -6,8 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+    <script src="./templates/contacts_template.js"></script>
   </head>
-  <body>
+  <body onload="onload()">
     <nav class="navBar">
       <div class="widthFull">
         <img class="LogoNavImg" src="./assets/img/LogoNav.svg" />
@@ -43,5 +44,7 @@
         <a class="menuLink" href="./legal_notice.html">Legal notice</a>
       </div>
     </nav>
+
+    <div class="contactList" id="contactList"></div>
   </body>
 </html>
