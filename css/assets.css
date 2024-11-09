@@ -113,3 +113,19 @@ header {
 .addPersonIcon {
   height: 30px;
 }
+
+.delteEditIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.bgContactFocus {
+  background: rgb(42, 54, 71);
+  color: white;
+  display: flex;
+  gap: 35px;
+  border-radius: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  cursor: pointer;
+}

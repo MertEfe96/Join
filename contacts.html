@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="./css/site_style/contacts.css" />
   <script src="./templates/contacts_template.js"></script>
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -64,16 +65,47 @@
           <div class="firstLetterName">
             A
           </div>
-          <input type="checkbox" id="toggleContactCard" style="display: none;">
-          <label for="toggleContactCard">
-            <div class="contactCardSmall">
-              <div class="contactInitialsSmall">AM</div>
-              <div class="contactInfoSmall">
-                <div class="contactName">Anton Mayer</div>
-                <div class="contactMail">anton@gmail.com</div>
+          <div class="contactCardSmall" id="contactCardSmall" onclick="openContact()">
+            <div class="contactInitialsSmall">AM</div>
+            <div class="contactInfoSmall">
+              <div class="contactName">Anton Mayer</div>
+              <div class="contactMail">anton@gmail.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contactContainer">
+        <div class="contactHeadlineContainer">
+          <div class="ContactHeadline">Contacts</div>
+          <div class="contactsBlueLine"></div>
+          <div>Better with a team</div>
+        </div>
+        <div style="display: none;" id="contactMainContainer" class="contactMainContainer">
+          <div class="contactInicialsContainer">
+            <div class="contactInitialsSmall contactInicialLarge">AM</div>
+            <div>
+              <div class="contactMainName">Anton Mayer</div>
+              <div class="editDeleteContainer">
+                <div class="editDeleteSubContainer">
+                  <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit">
+                  Edit
+                </div>
+                <div class="editDeleteSubContainer">
+                  <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete">
+                  Delete
+                </div>
               </div>
             </div>
-          </label>
+          </div>
+          <div class="contactInfo">Contact Information</div>
+          <div class="contactEmailPhoneContainer">
+            <div class="contactEmailPhone">Email</div>
+            <div class="contactMail">anton@gmail.com</div>
+          </div>
+          <div class="contactEmailPhoneContainer">
+            <div class="contactEmailPhone">Email</div>
+            <div>+49 1111 111 11 1</div>
+          </div>
         </div>
       </div>
     </div>
