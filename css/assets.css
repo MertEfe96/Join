@@ -109,3 +109,7 @@ header {
 .grow {
   flex: 1;
 }
+
+.addPersonIcon {
+  height: 30px;
+}

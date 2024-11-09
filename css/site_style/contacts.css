@@ -37,12 +37,59 @@
   }
 }
 
+.addPersonButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgb(42,54,71);
+  width: 352px;
+  padding: 12px;
+  border-style: none;
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 24px;
+  margin-left: 14px;
+  transition: 0.1s;
+  font-family: Inter;
+}
+
+.addPersonButton:hover {
+  background-color: rgba(41, 171, 226, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.letterCardContainer {
+  margin-left: 14px;
+  width: 352px;
+}
+
 .contactCardSmall {
   display: flex;
   gap: 35px;
-  align-items: center;
-  height: 78px;
-  width: 352px;
+  border-radius: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.firstLetterName {
+  padding: 24px 40px;
+  font-size: 20px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+  margin-bottom: 8px;
+}
+
+.contactCardSmall:hover {
+  background: linear-gradient(to top, #ededed, #f8f8f8);
+  cursor: pointer;
+}
+
+#toggleContactCard:checked + label .contactCardSmall {
+  background: rgb(42, 54, 71);
+  color: white;
 }
 
 .contactInitialsSmall {
@@ -56,7 +103,13 @@
   justify-content: center;
   border-radius: 22px;
   color: #ffffff;
-  border: solid 2px black;
+  border: 2px solid white;
+}
+
+.contactInfoSmall {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .contactName {
