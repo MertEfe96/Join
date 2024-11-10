@@ -143,21 +143,21 @@
 
 .contactsBlueLine {
   height: 59px;
-  border: 3px solid #29ABE2
+  border: 3px solid #29ABE2;
 }
 
 .contactMainContainer {
   display: flex;
   flex-direction: column;
   gap: 21px;
-  opacity: 0;
+  opacity: 33%;
   transform: translateX(100%);
   transition: opacity 0.1s ease, transform 0.1s ease;
 }
 
 .contactMainContainer.show {
   display: flex;
-  opacity: 1;
+  opacity: 100%;
   transform: translateX(0);
 }
 
@@ -195,6 +195,16 @@
   gap: 10px;
 }
 
+.editDeleteSubContainer:hover {
+  color: #29ABE2;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.editDeleteSubContainer:hover img {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
+}
+
 .contactInfo {
   font-size: 20px;
   padding-top: 21.5px;
@@ -209,4 +219,163 @@
 
 .contactEmailPhone {
   font-weight: 700;
+}
+
+.editIconContainer {
+  display: flex;
+  justify-content: center;
+  width: 33px;
+}
+
+.deleteIconContainer {
+  display: flex;
+  justify-content: center;
+  width: 52px;
+}
+
+/*Contact overlay edit*/
+.contactOverlayEditMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.33);
+}
+
+.contactOverlayEdit {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  background-color: white;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
+  opacity: 33%;
+  transform: translateX(100%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.contactOverlayEdit.show {
+  transform: translateX(0);
+  opacity: 100%;
+}
+
+.contactOverlayLeftSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(42, 54, 71);
+  width: fit-content;
+  padding-left: 56px;
+  padding-right: 56px;
+  height: 100%;
+  color: white;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  font-size: 61px;
+  font-weight: 700;
+  position: relative;
+}
+
+.lineLogoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
+  position: absolute;
+  top: 153px;
+  left: 56px;
+}
+
+.overlayLine {
+  border: 3px solid #29ABE2;
+  width: 90px;
+}
+
+.contactOverlayRightSection {
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  gap: 72px;
+  margin-right: 56px;
+  position: relative;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 137px;
+  left: 742px;
+  gap: 32px;
+}
+
+.inputSubContainer {
+  display: flex;
+  align-items: center;
+  width: 422px;
+  position: relative;
+}
+
+.inputContainer input {
+  border-radius: 10px;
+  border: 1px solid rgb(191, 191, 191);
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-size: 20px;
+  padding: 13px 21px;
+  padding-right: 45px;
+  width: 380px;
+}
+
+.inputContainer input:focus {
+  border: 1px solid #29ABE2;
+}
+
+.editOverlayButtonContainer {
+  display: flex;
+  gap: 25px;
+  padding-top: 18px;
+}
+
+.inputContainer button {
+  height: 55px;
+  width: 113px;
+  border-radius: 8px;
+  font-size: 21px;
+  font-family: Inter;
+  cursor: pointer;
+}
+
+.overlayDeleteButton {
+  border: 1px solid #2A3647;
+  background-color: white;
+  color: #2A3647;
+  transition: 0.1s;
+}
+
+.overlayDeleteButton:hover {
+  color: #29ABE2;
+  border: 2px solid #29ABE2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.overlaySaveButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background-color: #2A3647;
+  color: white;
+  font-weight: 700;
+  transition: 0.1s;
+}
+
+.overlaySaveButton:hover {
+  background-color: #29ABE2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

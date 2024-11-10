@@ -80,19 +80,20 @@
           <div class="contactsBlueLine"></div>
           <div>Better with a team</div>
         </div>
+        <!--contact render container start-->
         <div style="display: none;" id="contactMainContainer" class="contactMainContainer">
           <div class="contactInicialsContainer">
             <div class="contactInitialsSmall contactInicialLarge">AM</div>
             <div>
               <div class="contactMainName">Anton Mayer</div>
               <div class="editDeleteContainer">
-                <div class="editDeleteSubContainer">
+                <div class="editDeleteSubContainer" onclick="editContact()">
                   <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit">
-                  Edit
+                  <div class="editIconContainer">Edit</div>
                 </div>
                 <div class="editDeleteSubContainer">
                   <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete">
-                  Delete
+                  <div class="deleteIconContainer">Delete</div>
                 </div>
               </div>
             </div>
@@ -103,11 +104,50 @@
             <div class="contactMail">anton@gmail.com</div>
           </div>
           <div class="contactEmailPhoneContainer">
-            <div class="contactEmailPhone">Email</div>
+            <div class="contactEmailPhone">Phone</div>
             <div>+49 1111 111 11 1</div>
           </div>
         </div>
+        <!--contact render container end-->
       </div>
+      <!--contact overlay edit start-->
+      <div class="contactOverlayEditMain" style="display: none;" id="contactOverlayEditMain" onclick="closeContactEdit()">
+        <div class="contactOverlayEdit" id="contactOverlayEdit" onclick="event.stopPropagation()">
+          <div class="contactOverlayLeftSection">
+            Edit contact
+            <div class="lineLogoContainer">
+              <img class="overlayLogo" src="assets/icons/Capa 2.png" alt="Join Logo">
+              <div class="overlayLine"></div>
+            </div>
+          </div>
+          <div class="contactOverlayRightSection">
+            <img class="contactCloseIcon" src="assets/icons/close.png" alt="Close" onclick="closeContactEdit()">
+            <div class="contactInitialsSmall contactInicialLarge marginTopContact">AM</div>
+            <div class="inputContainer">
+              <div class="inputSubContainer">
+                <input type="text" value="Anton Mayer">
+                <img class="contactInputIcon" src="assets/icons/person.png" alt="Person">
+              </div>
+              <div class="inputSubContainer">
+                <input type="text" value="anton@gmail.com">
+                <img class="contactInputIcon" src="assets/icons/mail.png" alt="Mail">
+              </div>
+              <div class="inputSubContainer">
+                <input type="text" value="+49 1111 111 11 1">
+                <img class="contactInputIcon" src="assets/icons/call.png" alt="Call">
+              </div>
+              <div class="editOverlayButtonContainer">
+                <button class="overlayDeleteButton">Delete</button>
+                <button class="overlaySaveButton">
+                  Save
+                  <img class="contactCheckIcon" src="assets/icons/check.png" alt="Check">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--contact overlay edit end-->
     </div>
   </div>
 </body>

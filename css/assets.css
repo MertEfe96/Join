@@ -129,3 +129,39 @@ header {
   padding-bottom: 16px;
   cursor: pointer;
 }
+
+.overlayLogo {
+  width: 53.93px;
+  height: 66.48px;
+}
+
+.marginTopContact {
+  margin-top: 74px;
+}
+
+.contactCheckIcon {
+  width: 15.49px;
+  height: 11.22px;
+}
+
+.contactCloseIcon {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  right: 0;
+  top: 48px;
+  border-radius: 99px;
+  padding: 4px;
+  transition: 0.1s;
+}
+
+.contactCloseIcon:hover {
+  background-color: rgb(239, 239, 239);
+  cursor: pointer;
+}
+
+.contactInputIcon {
+  position: absolute;
+  height: 24px;
+  right: 21px;
+}
