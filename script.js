@@ -23,20 +23,26 @@ function openContact() {
  */
 function editContact() {
   const overlayMain = document.getElementById('contactOverlayEditMain');
+  const overlayEdit = document.querySelector('.contactOverlayEdit');
+  
   overlayMain.style.display = 'flex';
-
-  const overlayEdit = document.getElementById('contactOverlayEdit');
+  setTimeout(() => overlayMain.classList.add('show'), 10);
   setTimeout(() => overlayEdit.classList.add('show'), 10);
 }
 
 /**
- * Function closes edit-overlay-window
+ * Function closes overlay-window
  */
 function closeContactEdit() {
-  const overlayEdit = document.getElementById('contactOverlayEdit');
-  
+  const overlayEdit = document.querySelector('.contactOverlayEdit');
+  const overlayMain = document.getElementById('contactOverlayEditMain');
+
   overlayEdit.classList.remove('show');
   setTimeout(() => {
-    document.getElementById('contactOverlayEditMain').style.display = 'none';
-  }, 200);
+    overlayMain.classList.remove('show');
+    
+    setTimeout(() => {
+      overlayMain.style.display = 'none';
+    }, 100);
+  }, 100);
 }
