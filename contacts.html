@@ -111,7 +111,7 @@
             A
           </div>
           <input type="checkbox" id="toggleContactCard" style="display: none;">
-          <label for="toggleContactCard">
+          <label for="toggleContactCard" id="labelContactCard">
             <div class="contactCardSmall" id="contactCardSmall" onclick="openContact()">
               <div class="contactInitialsSmall">AM</div>
               <div class="contactInfoSmall">
@@ -140,7 +140,7 @@
                   <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit">
                   <div class="editIconContainer">Edit</div>
                 </div>
-                <div class="editDeleteSubContainer">
+                <div class="editDeleteSubContainer" onclick="closeContact()">
                   <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete">
                   <div class="deleteIconContainer">Delete</div>
                 </div>

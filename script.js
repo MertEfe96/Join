@@ -88,3 +88,11 @@ function emptyInputAddContact() {
   document.getElementById('addContactInputMail').value = '';
   document.getElementById('addContactInputPhone').value = '';
 }
+
+/**
+ * function closes/deletes contact-details and contact-card
+ */
+function closeContact() {
+  document.getElementById('contactMainContainer').style.display = 'none';
+  document.getElementById('labelContactCard').style.display = 'none';
+}
