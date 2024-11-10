@@ -120,6 +120,11 @@
   color: rgba(0, 124, 238, 1);
 }
 
+#toggleContactCard:checked + label .contactCardSmall {
+  background: rgb(42, 54, 71);
+  color: white;
+}
+
 /*Content right-section*/
 .contactContainer {
   margin: 110px 64px;
@@ -244,7 +249,6 @@
   right: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.33);
-  overflow-x: hidden;
   opacity: 0;
   transition: opacity 0.2s ease;
 }

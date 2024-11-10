@@ -66,13 +66,16 @@
           <div class="firstLetterName">
             A
           </div>
-          <div class="contactCardSmall" id="contactCardSmall" onclick="openContact()">
-            <div class="contactInitialsSmall">AM</div>
-            <div class="contactInfoSmall">
-              <div class="contactName">Anton Mayer</div>
-              <div class="contactMail">anton@gmail.com</div>
+          <input type="checkbox" id="toggleContactCard" style="display: none;">
+          <label for="toggleContactCard">
+            <div class="contactCardSmall" id="contactCardSmall" onclick="openContact()">
+              <div class="contactInitialsSmall">AM</div>
+              <div class="contactInfoSmall">
+                <div class="contactName">Anton Mayer</div>
+                <div class="contactMail">anton@gmail.com</div>
+              </div>
             </div>
-          </div>
+          </label>
         </div>
         <!--contact list end-->
       </div>
@@ -113,7 +116,8 @@
         <!--contact render container end-->
       </div>
       <!--contact overlay edit start-->
-      <div class="contactOverlayEditMain" style="display: none;" id="contactOverlayEditMain" onclick="closeContactEdit()">
+      <div class="contactOverlayEditMain" style="display: none;" id="contactOverlayEditMain"
+        onclick="closeContactEdit()">
         <div class="contactOverlayEdit" id="contactOverlayEdit" onclick="event.stopPropagation()">
           <div class="contactOverlayLeftSection">
             Edit contact

@@ -11,11 +11,15 @@ async function test() {
  */
 function openContact() {
   const contactMainContainer = document.getElementById('contactMainContainer');
-  contactMainContainer.style.display = 'flex';
-  setTimeout(() => contactMainContainer.classList.add('show'), 10);
-  
-  document.getElementById('contactCardSmall').classList.add('bgContactFocus');
-  document.getElementById('contactCardSmall').classList.remove('contactCardSmall');
+  const toggleCheckBox = document.getElementById('toggleContactCard');
+
+  if (toggleCheckBox.checked) {
+    contactMainContainer.style.display = 'none';
+    contactMainContainer.classList.remove('show');
+  } else {
+    contactMainContainer.style.display = 'flex';
+    setTimeout(() => contactMainContainer.classList.add('show'), 10);
+  }
 }
 
 /**
