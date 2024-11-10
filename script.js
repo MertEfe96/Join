@@ -27,8 +27,8 @@ function openContact() {
  */
 function editContact() {
   const overlayMain = document.getElementById('contactOverlayEditMain');
-  const overlayEdit = document.querySelector('.contactOverlayEdit');
-  
+  const overlayEdit = document.getElementById('contactOverlayEdit');
+
   overlayMain.style.display = 'flex';
   setTimeout(() => overlayMain.classList.add('show'), 10);
   setTimeout(() => overlayEdit.classList.add('show'), 10);
@@ -38,15 +38,53 @@ function editContact() {
  * Function closes overlay-window
  */
 function closeContactEdit() {
-  const overlayEdit = document.querySelector('.contactOverlayEdit');
+  const overlayEdit = document.getElementById('contactOverlayEdit');
   const overlayMain = document.getElementById('contactOverlayEditMain');
 
   overlayEdit.classList.remove('show');
   setTimeout(() => {
     overlayMain.classList.remove('show');
-    
+
     setTimeout(() => {
       overlayMain.style.display = 'none';
     }, 100);
   }, 100);
+}
+
+/**
+ * function opens add-contact-form
+ */
+function addContact() {
+  const addContactMain = document.getElementById('addContactMain');
+  const addContact = document.getElementById('addContact');
+
+  addContactMain.style.display = 'flex';
+  setTimeout(() => addContactMain.classList.add('show'), 10);
+  setTimeout(() => addContact.classList.add('show'), 10);
+}
+
+/**
+ * function closes add-contact-form
+ */
+function closeAddContact() {
+  const addContactMain = document.getElementById('addContactMain');
+  const addContact = document.getElementById('addContact');
+
+  addContact.classList.remove('show');
+  setTimeout(() => {
+    addContactMain.classList.remove('show');
+    setTimeout(() => {
+      addContactMain.style.display = 'none';
+    }, 100);
+  }, 100);
+  emptyInputAddContact();
+}
+
+/**
+ * function empties input-value from add-contact-form
+ */
+function emptyInputAddContact() {
+  document.getElementById('addContactInputName').value = '';
+  document.getElementById('addContactInputMail').value = '';
+  document.getElementById('addContactInputPhone').value = '';
 }

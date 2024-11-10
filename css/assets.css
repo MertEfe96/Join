@@ -154,3 +154,31 @@ header {
   height: 24px;
   right: 21px;
 }
+
+.paddingLogoOverlay {
+  padding-top: 154px;
+}
+
+.addContactPersonIcon {
+  height: 42.67px;
+  width: 42.67px;
+}
+
+.personIconBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(218, 218, 218);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 2px 1.5px rgba(0, 0, 0, 0.073);
+  border-radius: 99px;
+  height: 120px;
+  width: 120px;
+  margin-top: 204px;
+  margin-right: 70.36px;
+}
+
+.addContactCancelIcon {
+  height: 24px;
+  width: 24px;
+}

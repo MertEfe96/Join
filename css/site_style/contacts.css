@@ -251,6 +251,8 @@
   background-color: rgba(0, 0, 0, 0.33);
   opacity: 0;
   transition: opacity 0.2s ease;
+  overflow-x: hidden;
+  z-index: 999;
 }
 
 .contactOverlayEditMain.show {
@@ -352,20 +354,17 @@
   padding-top: 18px;
 }
 
-.inputContainer button {
+.overlayDeleteButton {
+  border: 1px solid #2A3647;
+  background-color: white;
+  color: #2A3647;
+  transition: 0.1s;
   height: 55px;
   width: 113px;
   border-radius: 8px;
   font-size: 21px;
   font-family: Inter;
   cursor: pointer;
-}
-
-.overlayDeleteButton {
-  border: 1px solid #2A3647;
-  background-color: white;
-  color: #2A3647;
-  transition: 0.1s;
 }
 
 .overlayDeleteButton:hover {
@@ -384,9 +383,64 @@
   color: white;
   font-weight: 700;
   transition: 0.1s;
+  height: 55px;
+  width: 113px;
+  border-radius: 8px;
+  font-size: 21px;
+  font-family: Inter;
+  cursor: pointer;
 }
 
 .overlaySaveButton:hover {
   background-color: #29ABE2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/*add Contact*/
+.addContactLeftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: rgb(42, 54, 71);
+  height: 100%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding-left: 60.5px;
+  padding-right: 60.5px;
+  color: white;
+}
+
+.addContactHeadline {
+  font-size: 61px;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.addContactSubHeadline {
+  font-size: 27px;
+  padding-bottom: 16px;
+}
+
+.addContactRightSection {
+  display: flex;
+  margin-right: 56px;
+  position: relative;
+}
+
+.addContactCancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 126px;
+  height: 56px;
+}
+
+.addContactCancelButton:hover img{
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
+}
+
+.createContactButtonOverlay {
+  width: 214px;
+  height: 56px;
 }
