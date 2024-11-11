@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/site_style/contacts.css" />
     <script src="./templates/contacts_template.js"></script>
     <script src="script.js"></script>
+    <script src="./JavaScript/contacts.js"></script>
   </head>
 
   <body onload="pullContacts()">
@@ -148,27 +149,7 @@
           </div>
           <!--add Contact end-->
           <!--contact list start-->
-          <div class="contactsList" id="contactsList">
-            <div class="letterCardContainer">
-              <div class="firstLetterName">A</div>
-              <input
-                type="checkbox"
-                id="toggleContactCard"
-                style="display: none" />
-              <label for="toggleContactCard" id="labelContactCard">
-                <div
-                  class="contactCardSmall"
-                  id="contactCardSmall"
-                  onclick="openContact()">
-                  <div class="contactInitialsSmall">AM</div>
-                  <div class="contactInfoSmall">
-                    <div class="contactName">Anton Mayer</div>
-                    <div class="contactMail">anton@gmail.com</div>
-                  </div>
-                </div>
-              </label>
-            </div>
-          </div>
+          <div class="contactsList" id="contactsList"></div>
           <!--contact list end-->
         </div>
         <div class="contactContainer">
@@ -181,39 +162,7 @@
           <div
             style="display: none"
             id="contactMainContainer"
-            class="contactMainContainer">
-            <div class="contactInicialsContainer">
-              <div class="contactInitialsSmall contactInicialLarge">AM</div>
-              <div>
-                <div class="contactMainName">Anton Mayer</div>
-                <div class="editDeleteContainer">
-                  <div class="editDeleteSubContainer" onclick="editContact()">
-                    <img
-                      class="delteEditIcon"
-                      src="assets/icons/edit.png"
-                      alt="Edit" />
-                    <div class="editIconContainer">Edit</div>
-                  </div>
-                  <div class="editDeleteSubContainer" onclick="closeContact()">
-                    <img
-                      class="delteEditIcon"
-                      src="assets/icons/delete.png"
-                      alt="Delete" />
-                    <div class="deleteIconContainer">Delete</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contactInfo">Contact Information</div>
-            <div class="contactEmailPhoneContainer">
-              <div class="contactEmailPhone">Email</div>
-              <div class="contactMail">anton@gmail.com</div>
-            </div>
-            <div class="contactEmailPhoneContainer">
-              <div class="contactEmailPhone">Phone</div>
-              <div>+49 1111 111 11 1</div>
-            </div>
-          </div>
+            class="contactMainContainer"></div>
           <!--contact render container end-->
         </div>
         <!--contact overlay edit start-->
@@ -236,50 +185,9 @@
                 <div class="overlayLine"></div>
               </div>
             </div>
-            <div class="contactOverlayRightSection">
-              <img
-                class="contactCloseIcon"
-                src="assets/icons/close.png"
-                alt="Close"
-                onclick="closeContactEdit()" />
-              <div
-                class="contactInitialsSmall contactInicialLarge marginTopContact">
-                AM
-              </div>
-              <div class="inputContainer">
-                <div class="inputSubContainer">
-                  <input type="text" value="Anton Mayer" />
-                  <img
-                    class="contactInputIcon"
-                    src="assets/icons/person.png"
-                    alt="Person" />
-                </div>
-                <div class="inputSubContainer">
-                  <input type="text" value="anton@gmail.com" />
-                  <img
-                    class="contactInputIcon"
-                    src="assets/icons/mail.png"
-                    alt="Mail" />
-                </div>
-                <div class="inputSubContainer">
-                  <input type="text" value="+49 1111 111 11 1" />
-                  <img
-                    class="contactInputIcon"
-                    src="assets/icons/call.png"
-                    alt="Call" />
-                </div>
-                <div class="editOverlayButtonContainer">
-                  <button class="overlayDeleteButton">Delete</button>
-                  <button class="overlaySaveButton">
-                    Save
-                    <img
-                      class="contactCheckIcon"
-                      src="assets/icons/check.png"
-                      alt="Check" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div
+              class="contactOverlayRightSection"
+              id="contactOverlayRightSection"></div>
           </div>
         </div>
         <!--contact overlay edit end-->

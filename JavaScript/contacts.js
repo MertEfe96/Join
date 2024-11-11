@@ -1,15 +1,9 @@
-const BASE_URL =
-  "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
-
-let contactsArray = [];
-
 /**
  * Function opens contact-details after a contact has been clicked at the cantact-list
  */
 function openContact(key, name, mail, number) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
-
   contactMainContainer.style.display = "flex";
   contactMainContainer.innerHTML = renderContactLargeTemplate(
     key,
@@ -21,15 +15,43 @@ function openContact(key, name, mail, number) {
 }
 
 /**
+ * function closes/deletes contact-details and contact-card
+ */
+function closeContact() {
+  document.getElementById("contactMainContainer").style.display = "none";
+  document.getElementById("labelContactCard").style.display = "none";
+}
+
+/**
  * Function opens overlay-window to edit a contact
  */
-function editContact() {
+async function openEditContact(key) {
   const overlayMain = document.getElementById("contactOverlayEditMain");
   const overlayEdit = document.getElementById("contactOverlayEdit");
-
+  const overlayEditRight = document.getElementById(
+    "contactOverlayRightSection"
+  );
+  let contact = await pullSingleContact(key);
+  overlayEditRight.innerHTML = renderEditContactTemplate(contact, key);
   overlayMain.style.display = "flex";
   setTimeout(() => overlayMain.classList.add("show"), 10);
   setTimeout(() => overlayEdit.classList.add("show"), 10);
+}
+
+async function editContact(key) {
+  let name = document.getElementById("inputEditName").value;
+  let mail = document.getElementById("inputEditMail").value;
+  let phone = document.getElementById("inputEditNumber").value;
+  data = {name: name, email: mail, number: phone};
+  let response = await fetch(BASE_URL + "contacts/" + key + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  pullContacts();
+  closeContactEdit();
 }
 
 /**
@@ -38,11 +60,9 @@ function editContact() {
 function closeContactEdit() {
   const overlayEdit = document.getElementById("contactOverlayEdit");
   const overlayMain = document.getElementById("contactOverlayEditMain");
-
   overlayEdit.classList.remove("show");
   setTimeout(() => {
     overlayMain.classList.remove("show");
-
     setTimeout(() => {
       overlayMain.style.display = "none";
     }, 100);
@@ -55,7 +75,6 @@ function closeContactEdit() {
 function addContact() {
   const addContactMain = document.getElementById("addContactMain");
   const addContact = document.getElementById("addContact");
-
   addContactMain.style.display = "flex";
   setTimeout(() => addContactMain.classList.add("show"), 10);
   setTimeout(() => addContact.classList.add("show"), 10);
@@ -67,7 +86,6 @@ function addContact() {
 function closeAddContact() {
   const addContactMain = document.getElementById("addContactMain");
   const addContact = document.getElementById("addContact");
-
   addContact.classList.remove("show");
   setTimeout(() => {
     addContactMain.classList.remove("show");
@@ -88,13 +106,8 @@ function emptyInputAddContact() {
 }
 
 /**
- * function closes/deletes contact-details and contact-card
+ * function saves the contact in the API
  */
-function closeContact() {
-  document.getElementById("contactMainContainer").style.display = "none";
-  document.getElementById("labelContactCard").style.display = "none";
-}
-
 async function saveContact(path = "", data = "") {
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
@@ -111,19 +124,21 @@ async function saveContact(path = "", data = "") {
   closeAddContact();
 }
 
+/**
+ * function fetches the contacts saved in the API
+ */
 async function pullContacts() {
   let response = await fetch(BASE_URL + ".json");
-  let data = await response.json(); // Beinhaltet das gesamte Objekt aus der Datenbank
-  let contacts = data.contacts; // Zugriff auf das 'contacts' Objekt
+  let data = await response.json();
+  let contacts = data.contacts;
   let contactsList = document.getElementById("contactsList");
-  contactsList.innerHTML = ""; // Lösche vorherige Inhalte
-
-  // Überprüfe, ob Kontakte geladen wurden und iteriere durch sie
+  contactsList.innerHTML = "";
+  // check if contacts get fetched and iterate throught them
   if (contacts) {
     let i = 0;
     for (let key in contacts) {
       let contact = contacts[key];
-      // Erstelle für jeden Kontakt ein neues div und füge es dem contactsList hinzu
+      // create a new div for ever contact and render it into the list
       let contactDiv = document.createElement("div");
       contactDiv.innerHTML = renderContactsSmallTemplate(key, contact, i);
       contactsList.appendChild(contactDiv);
@@ -131,21 +146,35 @@ async function pullContacts() {
       i++;
     }
   }
-  console.log("Kontakte geladen: ", contacts);
 }
 
-function setIcon(i, contact) {
-  let str = contact.name;
-  let matches = str.match(/\b(\w)/g); // ['J','S','O','N']
-  let acronym = matches.join(""); // JSON
-  let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
-  iconDiv.innerHTML = acronym;
+async function pullSingleContact(key) {
+  let response = await fetch(BASE_URL + "contacts/" + key + "/.json");
+  let responseToJson = await response.json();
+  return responseToJson;
 }
 
+/**
+ * function deletes the contacts saved in the API
+ */
 async function deleteContact(key) {
   let response = await fetch(BASE_URL + "contacts/" + key + "/.json", {
     method: "DELETE",
   });
   pullContacts();
   closeContact();
+}
+
+/**
+ * function creates the icon for the contact by taking the
+ * first letter of every part of its name
+ */
+function setIcon(i, contact) {
+  const initials = contact.name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+  let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
+  iconDiv.innerHTML = initials;
 }

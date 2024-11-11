@@ -5,7 +5,6 @@ function renderContactsSmallTemplate(key, contact, i) {
     .map((word) => word[0])
     .join("")
     .toUpperCase();
-
   return `
 <div class="contactCardSmall" id="${key}" onclick="openContact('${key}', '${contact.name}', '${contact.email}', '${contact.number}')">
   <div class="contactInitialsSmall" id="contactInitialsSmall${i}">${initials}</div>
@@ -16,7 +15,7 @@ function renderContactsSmallTemplate(key, contact, i) {
 </div>
   `;
 }
-// ${key}, ${contact.name}, ${contact.email}, ${contact.number}
+
 function renderContactLargeTemplate(key, name, mail, number) {
   const initials = name
     .split(" ")
@@ -25,52 +24,20 @@ function renderContactLargeTemplate(key, name, mail, number) {
     .toUpperCase();
   return `
 <div class="contactInicialsContainer">
-              <div class="contactInitialsSmall contactInicialLarge">${initials}</div>
-              <div>
-                <div class="contactMainName">${name}</div>
-                <div class="editDeleteContainer">
-                  <div class="editDeleteSubContainer" onclick="editContact(${key})">
-                    <img
-                      class="delteEditIcon"
-                      src="assets/icons/edit.png"
-                      alt="Edit" />
-                    <div class="editIconContainer">Edit</div>
-                  </div>
-                  <div class="editDeleteSubContainer" onclick="deleteContact('${key}')">
-                    <img
-                      class="delteEditIcon"
-                      src="assets/icons/delete.png"
-                      alt="Delete" />
-                    <div class="deleteIconContainer">Delete</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="contactInfo">Contact Information</div>
-            <div class="contactEmailPhoneContainer">
-              <div class="contactEmailPhone">Email</div>
-              <div class="contactMail">${mail}</div>
-            </div>
-            <div class="contactEmailPhoneContainer">
-              <div class="contactEmailPhone">Phone</div>
-              <div>${number}</div>
-            </div>
-  `;
-}
-{
-  /* <div class="contactInitialsSmall contactInicialLarge" id="contactInitialsLarge${i}>AM</div>
-<div>
-  <div class=" contactMainName">${name}</div>
-<div class="editDeleteContainer">
-  <div class="editDeleteSubContainer" onclick="editContact(${key})">
-    <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit" />
-    <div class="editIconContainer">Edit</div>
+  <div class="contactInitialsSmall contactInicialLarge">${initials}</div>
+  <div>
+    <div class="contactMainName">${name}</div>
+    <div class="editDeleteContainer">
+      <div class="editDeleteSubContainer" onclick="openEditContact('${key}')">
+        <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit" />
+        <div class="editIconContainer">Edit</div>
+      </div>
+      <div class="editDeleteSubContainer" onclick="deleteContact('${key}')">
+        <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete" />
+        <div class="deleteIconContainer">Delete</div>
+      </div>
+    </div>
   </div>
-  <div class="editDeleteSubContainer" onclick="closeContact(${key})">
-    <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete" />
-    <div class="deleteIconContainer">Delete</div>
-  </div>
-</div>
 </div>
 <div class="contactInfo">Contact Information</div>
 <div class="contactEmailPhoneContainer">
@@ -80,5 +47,39 @@ function renderContactLargeTemplate(key, name, mail, number) {
 <div class="contactEmailPhoneContainer">
   <div class="contactEmailPhone">Phone</div>
   <div>${number}</div>
-</div> */
+</div>
+`;
+}
+
+function renderEditContactTemplate(contact, key) {
+  const initials = contact.name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+  return `<img class="contactCloseIcon" src="assets/icons/close.png" alt="Close" onclick="closeContactEdit()" />
+<div class="contactInitialsSmall contactInicialLarge marginTopContact">
+${initials}
+</div>
+<div class="inputContainer">
+  <div class="inputSubContainer">
+    <input id="inputEditName" type="text" value="${contact.name}" />
+    <img class="contactInputIcon" src="assets/icons/person.png" alt="Person" />
+  </div>
+  <div class="inputSubContainer">
+    <input id="inputEditMail" type="text" value="${contact.email}" />
+    <img class="contactInputIcon" src="assets/icons/mail.png" alt="Mail" />
+  </div>
+  <div class="inputSubContainer">
+    <input id="inputEditNumber" type="text" value="${contact.number}" />
+    <img class="contactInputIcon" src="assets/icons/call.png" alt="Call" />
+  </div>
+  <div class="editOverlayButtonContainer">
+    <button class="overlayDeleteButton" onclick="deleteContact('${key}')">Delete</button>
+    <button class="overlaySaveButton" onclick="editContact('${key}')">
+      Save
+      <img class="contactCheckIcon" src="assets/icons/check.png" alt="Check" />
+    </button>
+  </div>
+</div>`;
 }
