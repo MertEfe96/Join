@@ -12,7 +12,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="pullContact()">
+  <body onload="pullContacts()">
     <div class="filler"></div>
     <nav class="navBar">
       <div class="widthFull">
@@ -55,7 +55,7 @@
         <div class="userIcon">ME</div>
       </header>
       <div class="content">
-        <div class="contactsList" id="contactsList">
+        <div class="contactsList">
           <button class="addPersonButton" onclick="addContact()">
             Add new contact
             <img
@@ -148,24 +148,26 @@
           </div>
           <!--add Contact end-->
           <!--contact list start-->
-          <div class="letterCardContainer">
-            <div class="firstLetterName">A</div>
-            <input
-              type="checkbox"
-              id="toggleContactCard"
-              style="display: none" />
-            <label for="toggleContactCard" id="labelContactCard">
-              <div
-                class="contactCardSmall"
-                id="contactCardSmall"
-                onclick="openContact()">
-                <div class="contactInitialsSmall">AM</div>
-                <div class="contactInfoSmall">
-                  <div class="contactName">Anton Mayer</div>
-                  <div class="contactMail">anton@gmail.com</div>
+          <div class="contactsList" id="contactsList">
+            <div class="letterCardContainer">
+              <div class="firstLetterName">A</div>
+              <input
+                type="checkbox"
+                id="toggleContactCard"
+                style="display: none" />
+              <label for="toggleContactCard" id="labelContactCard">
+                <div
+                  class="contactCardSmall"
+                  id="contactCardSmall"
+                  onclick="openContact()">
+                  <div class="contactInitialsSmall">AM</div>
+                  <div class="contactInfoSmall">
+                    <div class="contactName">Anton Mayer</div>
+                    <div class="contactMail">anton@gmail.com</div>
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            </div>
           </div>
           <!--contact list end-->
         </div>

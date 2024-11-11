@@ -108,7 +108,7 @@ async function saveContact(path = "", data = "") {
   });
 }
 
-async function pullContact() {
+async function pullContacts() {
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json(); // Beinhaltet das gesamte Objekt aus der Datenbank
   let contacts = data.contacts; // Zugriff auf das 'contacts' Objekt
@@ -121,7 +121,7 @@ async function pullContact() {
       let contact = contacts[key];
       // Erstelle für jeden Kontakt ein neues div und füge es dem contactsList hinzu
       let contactDiv = document.createElement("div");
-      contactDiv.innerHTML = `<b id="${key}">Name</b>: ${contact.name} <br> <b>Email</b>: ${contact.email} <br> <b>Nummer</b>: ${contact.number} <br> <br> <br>`;
+      contactDiv.innerHTML = renderContactsSmallTemplate(key, contact);
       contactsList.appendChild(contactDiv);
       console.log(key);
     }
