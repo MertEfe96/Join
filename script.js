@@ -108,8 +108,8 @@ async function saveContact(path = "", data = "") {
   let phone = document.getElementById("addContactInputPhone").value;
   data = {name: name, email: mail, number: phone};
   path = name.toLowerCase();
-  let response = await fetch(BASE_URL + "contacts/.json", {
-    method: "POST",
+  let response = await fetch(BASE_URL + "contacts/" + path + "/.json", {
+    method: "PUT",
     header: {
       "Content-Type": "application/json",
     },
