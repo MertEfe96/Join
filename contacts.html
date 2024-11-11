@@ -12,7 +12,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body onload="pullContact()">
     <div class="filler"></div>
     <nav class="navBar">
       <div class="widthFull">
@@ -55,7 +55,7 @@
         <div class="userIcon">ME</div>
       </header>
       <div class="content">
-        <div class="contactsList">
+        <div class="contactsList" id="contactsList">
           <button class="addPersonButton" onclick="addContact()">
             Add new contact
             <img

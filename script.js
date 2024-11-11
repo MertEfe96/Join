@@ -1,13 +1,7 @@
-// const BASE_URL =
-//   "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+  "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// async function test() {
-//   let URL =
-//     "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
-//   let response = await fetch(URL + ".json");
-//   let responseToJson = await response.json();
-//   console.log(responseToJson);
-// }
+let contactsArray = [];
 
 /**
  * Function opens contact-details after a contact has been clicked at the cantact-list
@@ -101,18 +95,36 @@ function closeContact() {
 }
 
 async function saveContact(path = "", data = "") {
-  const BASE_URL =
-    "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
   data = {name: name, email: mail, number: phone};
-  path = name.toLowerCase();
-  let response = await fetch(BASE_URL + "contacts/" + path + "/.json", {
-    method: "PUT",
+  let response = await fetch(BASE_URL + "contacts/.json", {
+    method: "POST",
     header: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
+}
+
+async function pullContact() {
+  let response = await fetch(BASE_URL + ".json");
+  let data = await response.json(); // Beinhaltet das gesamte Objekt aus der Datenbank
+  let contacts = data.contacts; // Zugriff auf das 'contacts' Objekt
+  let contactsList = document.getElementById("contactsList");
+  contactsList.innerHTML = ""; // Lösche vorherige Inhalte
+
+  // Überprüfe, ob Kontakte geladen wurden und iteriere durch sie
+  if (contacts) {
+    for (let key in contacts) {
+      let contact = contacts[key];
+      // Erstelle für jeden Kontakt ein neues div und füge es dem contactsList hinzu
+      let contactDiv = document.createElement("div");
+      contactDiv.innerHTML = `<b id="${key}">Name</b>: ${contact.name} <br> <b>Email</b>: ${contact.email} <br> <b>Nummer</b>: ${contact.number} <br> <br> <br>`;
+      contactsList.appendChild(contactDiv);
+      console.log(key);
+    }
+  }
+  console.log("Kontakte geladen: ", contacts);
 }
