@@ -6,17 +6,18 @@ let contactsArray = [];
 /**
  * Function opens contact-details after a contact has been clicked at the cantact-list
  */
-function openContact() {
+function openContact(key, name, mail, number) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
 
-  if (toggleCheckBox.checked) {
-    contactMainContainer.style.display = "none";
-    contactMainContainer.classList.remove("show");
-  } else {
-    contactMainContainer.style.display = "flex";
-    setTimeout(() => contactMainContainer.classList.add("show"), 10);
-  }
+  contactMainContainer.style.display = "flex";
+  contactMainContainer.innerHTML = renderContactLargeTemplate(
+    key,
+    name,
+    mail,
+    number
+  );
+  setTimeout(() => contactMainContainer.classList.add("show"), 10);
 }
 
 /**
@@ -117,14 +118,30 @@ async function pullContacts() {
 
   // Überprüfe, ob Kontakte geladen wurden und iteriere durch sie
   if (contacts) {
+    let i = 0;
     for (let key in contacts) {
       let contact = contacts[key];
       // Erstelle für jeden Kontakt ein neues div und füge es dem contactsList hinzu
       let contactDiv = document.createElement("div");
-      contactDiv.innerHTML = renderContactsSmallTemplate(key, contact);
+      contactDiv.innerHTML = renderContactsSmallTemplate(key, contact, i);
       contactsList.appendChild(contactDiv);
-      console.log(key);
+      setIcon(i, contact);
+      i++;
     }
   }
   console.log("Kontakte geladen: ", contacts);
+}
+
+function setIcon(i, contact) {
+  let str = contact.name;
+  let matches = str.match(/\b(\w)/g); // ['J','S','O','N']
+  let acronym = matches.join(""); // JSON
+  let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
+  iconDiv.innerHTML = acronym;
+}
+
+async function deleteContact(key) {
+  let response = await fetch(BASE_URL + "contacts/" + key + "/.json", {
+    method: "DELETE",
+  });
 }
