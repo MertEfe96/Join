@@ -1,5 +1,11 @@
 /**
- * Function opens contact-details after a contact has been clicked at the cantact-list
+ * This function opens contact-details after
+ * a contact has been clicked at the cantact-list
+ *
+ * @param {*} key the key is the ID of the contact in the API
+ * @param {*} name the name of the contact
+ * @param {*} mail the E-Mail adress of the contact
+ * @param {*} number the phone number of the contact
  */
 function openContact(key, name, mail, number) {
   const contactMainContainer = document.getElementById("contactMainContainer");
@@ -15,12 +21,14 @@ function openContact(key, name, mail, number) {
 }
 
 /**
- * function closes/deletes contact-details and contact-card
+ * This function closes contact-details and contact-card
  */
 function closeContact() {
   let contactMainContainer = document.getElementById("contactMainContainer");
   let labelContactCard = document.getElementById("labelContactCard");
-  let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
+  let contactOverlayEditMain = document.getElementById(
+    "contactOverlayEditMain"
+  );
 
   if (contactMainContainer) {
     contactMainContainer.style.display = "none";
@@ -34,7 +42,9 @@ function closeContact() {
 }
 
 /**
- * Function opens overlay-window to edit a contact
+ * This function opens the overlay-window to edit a contact
+ *
+ * @param {*} key the key is the ID of the contact in the API
  */
 async function openEditContact(key) {
   const overlayMain = document.getElementById("contactOverlayEditMain");
@@ -49,6 +59,11 @@ async function openEditContact(key) {
   setTimeout(() => overlayEdit.classList.add("show"), 10);
 }
 
+/**
+ * THis function is used to edid a contact and save the changes in the API
+ *
+ * @param {*} key the key is the ID of the contact in the API
+ */
 async function editContact(key) {
   let name = document.getElementById("inputEditName").value;
   let mail = document.getElementById("inputEditMail").value;
@@ -66,7 +81,7 @@ async function editContact(key) {
 }
 
 /**
- * Function closes overlay-window
+ * This function closes overlay-window
  */
 function closeContactEdit() {
   const overlayEdit = document.getElementById("contactOverlayEdit");
@@ -81,7 +96,7 @@ function closeContactEdit() {
 }
 
 /**
- * function opens add-contact-form
+ * This function opens add-contact-form
  */
 function addContact() {
   const addContactMain = document.getElementById("addContactMain");
@@ -92,7 +107,7 @@ function addContact() {
 }
 
 /**
- * function closes add-contact-form
+ * This function closes add-contact-form
  */
 function closeAddContact() {
   const addContactMain = document.getElementById("addContactMain");
@@ -108,7 +123,7 @@ function closeAddContact() {
 }
 
 /**
- * function empties input-value from add-contact-form
+ * THis function empties input-value from add-contact-form
  */
 function emptyInputAddContact() {
   document.getElementById("addContactInputName").value = "";
@@ -117,9 +132,9 @@ function emptyInputAddContact() {
 }
 
 /**
- * function saves the contact in the API
+ * This function saves the contact in the API
  */
-async function saveContact(path = "", data = "") {
+async function saveContact(data = "") {
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
@@ -136,7 +151,7 @@ async function saveContact(path = "", data = "") {
 }
 
 /**
- * function fetches the contacts saved in the API
+ * This function fetches the contacts saved in the API
  */
 async function pullContacts() {
   let response = await fetch(BASE_URL + ".json");
@@ -149,7 +164,10 @@ async function pullContacts() {
 }
 
 /**
- * function sorts contacts and calls associated functions
+ * This function sorts and renders contacts and calls associated functions
+ *
+ * @param {*} contacts this is the whole contacs list saved in the API,
+ *                      given by the pullContacts() funtion
  */
 function renderGroupedContacts(contacts) {
   let contactsList = document.getElementById("contactsList");
@@ -168,7 +186,11 @@ function renderGroupedContacts(contacts) {
 }
 
 /**
- * function sorts contacts after name
+ * This function sorts the contacts by name
+ *
+ * @param {*} contacts this is the whole contacs list saved in the API,
+ *                      given by the pullContacts() funtion
+ * @returns an array of arrays with the soreted names
  */
 function sortContacts(contacts) {
   return Object.entries(contacts).sort((a, b) =>
@@ -177,7 +199,12 @@ function sortContacts(contacts) {
 }
 
 /**
- * function creates header for first-letter
+ * This function is used to create the headline for each new first letter
+ * in the contact list
+ *
+ * @param {*} letter is the list letter of a name in the contact list
+ * @param {*} container is the div with the ID="contactsList", used to show
+ *                      all the contacts
  */
 function renderLetterHeader(letter, container) {
   const parentDiv = document.createElement("div");
@@ -197,6 +224,14 @@ function renderLetterHeader(letter, container) {
 
 /**
  * function creates contact-card for each contact
+ *
+ * @param {*} inedx the index of the for-loop in the renderGroupedContacts()
+ *              function. Used to get the correct div in which the icon it to be displayed
+ * @param {*} contact this is the object given in the renderGroupedContacts()
+ *              function wich houses the contact information
+ * @param {*} container is the div with the ID="contactsList", used to show
+ *                      all the contacts
+ * @param {*} key the key is the ID of the contact in the API
  */
 function renderContactCard(key, contact, index, container) {
   const contactDiv = document.createElement("div");
@@ -205,6 +240,13 @@ function renderContactCard(key, contact, index, container) {
   setIcon(index, contact);
 }
 
+/**
+ * This function is used to get the contact info from the API to be used
+ * in the openEditContact() funtion
+ *
+ * @param {*} key the key is the ID of the contact in the API
+ * @returns the contact info of the fetched contact
+ */
 async function pullSingleContact(key) {
   let response = await fetch(BASE_URL + "contacts/" + key + "/.json");
   let responseToJson = await response.json();
@@ -212,7 +254,9 @@ async function pullSingleContact(key) {
 }
 
 /**
- * function deletes the contacts saved in the API
+ * This function is used to delete a contact from the API
+ *
+ * @param {*} key the key is the ID of the contact in the API
  */
 async function deleteContact(key) {
   let response = await fetch(BASE_URL + "contacts/" + key + "/.json", {
@@ -223,8 +267,13 @@ async function deleteContact(key) {
 }
 
 /**
- * function creates the icon for the contact by taking the
- * first letter of every part of its name
+ * This function uses the first to letters of the contacts name to create
+ * the Icon displayed in the contact list
+ *
+ * @param {*} i i is the index of the for-loop in the renderGroupedContacts()
+ *              function. Used to get the correct div in which the icon it to be displayed
+ * @param {*} contact this is the object given in the renderGroupedContacts()
+ *              function wich houses the contact information
  */
 function setIcon(i, contact) {
   const initials = contact.name
