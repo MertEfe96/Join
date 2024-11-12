@@ -18,8 +18,15 @@ function openContact(key, name, mail, number) {
  * function closes/deletes contact-details and contact-card
  */
 function closeContact() {
-  document.getElementById("contactMainContainer").style.display = "none";
-  document.getElementById("labelContactCard").style.display = "none";
+  let contactMainContainer = document.getElementById("contactMainContainer");
+  let labelContactCard = document.getElementById("labelContactCard");
+
+  if (contactMainContainer) {
+    contactMainContainer.style.display = "none";
+  }
+  if (labelContactCard) {
+    labelContactCard.style.display = "none";
+  }
 }
 
 /**
