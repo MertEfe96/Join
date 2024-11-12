@@ -13,6 +13,27 @@
   align-items: center;
 }
 
+.contactLetterHeader {
+  font-size: 20px;
+  width: 352px;
+  padding-top: 16px;
+  padding-bottom: 32px;
+  margin-left: 28px;
+  position: relative;
+}
+
+.contactLine {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(220, 220, 220);
+  position: absolute;
+  bottom: 8px;
+}
+
+.contactLetter {
+  padding-left: 40px;
+}
+
 .contactsList {
   --sb-track-color: #ffffff;
   --sb-thumb-color: #a8a8a8;

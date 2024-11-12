@@ -142,21 +142,67 @@ async function pullContacts() {
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
   let contacts = data.contacts;
+
+  if (contacts) {
+    renderGroupedContacts(contacts);
+  }
+}
+
+/**
+ * function sorts contacts and calls associated functions
+ */
+function renderGroupedContacts(contacts) {
   let contactsList = document.getElementById("contactsList");
   contactsList.innerHTML = "";
-  // check if contacts get fetched and iterate throught them
-  if (contacts) {
-    let i = 0;
-    for (let key in contacts) {
-      let contact = contacts[key];
-      // create a new div for ever contact and render it into the list
-      let contactDiv = document.createElement("div");
-      contactDiv.innerHTML = renderContactsSmallTemplate(key, contact, i);
-      contactsList.appendChild(contactDiv);
-      setIcon(i, contact);
-      i++;
+  const sortedContacts = sortContacts(contacts);
+  let currentLetter = "";
+  sortedContacts.forEach(([key, contact], index) => {
+    const firstLetter = contact.name[0].toUpperCase();
+
+    if (firstLetter !== currentLetter) {
+      currentLetter = firstLetter;
+      renderLetterHeader(currentLetter, contactsList);
     }
-  }
+    renderContactCard(key, contact, index, contactsList);
+  });
+}
+
+/**
+ * function sorts contacts after name
+ */
+function sortContacts(contacts) {
+  return Object.entries(contacts).sort((a, b) =>
+    a[1].name.localeCompare(b[1].name)
+  );
+}
+
+/**
+ * function creates header for first-letter
+ */
+function renderLetterHeader(letter, container) {
+  const parentDiv = document.createElement("div");
+  parentDiv.className = "contactLetterHeader";
+
+  const childDiv = document.createElement("div");
+  childDiv.className = "contactLetter";
+  childDiv.innerText = letter;
+
+  const lineDiv = document.createElement("div");
+  lineDiv.className = "contactLine";
+
+  parentDiv.appendChild(lineDiv);
+  parentDiv.appendChild(childDiv);
+  container.appendChild(parentDiv);
+}
+
+/**
+ * function creates contact-card for each contact
+ */
+function renderContactCard(key, contact, index, container) {
+  const contactDiv = document.createElement("div");
+  contactDiv.innerHTML = renderContactsSmallTemplate(key, contact, index);
+  container.appendChild(contactDiv);
+  setIcon(index, contact);
 }
 
 async function pullSingleContact(key) {
