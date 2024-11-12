@@ -4,7 +4,6 @@
 
 .contactsList {
   display: flex;
-  width: 456px;
   min-width: 456px;
   background-color: #fff;
   height: calc(100vh - 96px);
@@ -77,6 +76,8 @@
   border-radius: 10px;
   padding-top: 16px;
   padding-bottom: 16px;
+  width: 352px;
+  margin-left: 28px;
 }
 
 .contactCardSmall:hover {
