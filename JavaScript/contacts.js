@@ -20,12 +20,16 @@ function openContact(key, name, mail, number) {
 function closeContact() {
   let contactMainContainer = document.getElementById("contactMainContainer");
   let labelContactCard = document.getElementById("labelContactCard");
+  let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
 
   if (contactMainContainer) {
     contactMainContainer.style.display = "none";
   }
   if (labelContactCard) {
     labelContactCard.style.display = "none";
+  }
+  if (contactOverlayEditMain) {
+    contactOverlayEditMain.style.display = "none";
   }
 }
 
