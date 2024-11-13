@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/assets.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bgLogin">
+      <div class="imgDiv">
+        <img class="LogoNavImg" src="./assets/img/Capa 1.svg" />
+      </div>
+      <div class="loginField">
+        <div class="loginBox">
+          <h1 class="loginHeadline">Log in</h1>
+          <form onsubmit="return false;">
+            <div class="inputWrapper">
+              <input
+                id="emailLogin"
+                class="inputLogin"
+                type="text"
+                name="email"
+                autocomplete="email"
+                placeholder="Email"
+                required />
+              <img
+                src="./assets/icons/mail.svg"
+                alt="email icon"
+                class="iconLogin" />
+            </div>
+            <div class="input-wrapper">
+              <input
+                id="passwordLogin"
+                class="inputLogin"
+                type="password"
+                name="password"
+                autocomplete="password"
+                placeholder="Password"
+                required />
+              <img
+                src="./assets/icons/lock.svg"
+                alt="lock icon"
+                class="iconLogin" />
+              <div id="alertInfoLogin" class="input-alert"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="filler"></div>
+    </div>
+  </body>
+</html>
