@@ -1,3 +1,12 @@
+let userColorsArray = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
+
+
+function AddColorToUser() {
+  let randomNumber = Math.floor(Math.random() * 15);
+  let userColor = userColorsArray[randomNumber];
+  return userColor;
+}
+
 /**
  * This function opens contact-details after
  * a contact has been clicked at the cantact-list
@@ -7,7 +16,7 @@
  * @param {*} mail the E-Mail adress of the contact
  * @param {*} number the phone number of the contact
  */
-function openContact(key, name, mail, number) {
+function openContact(key, name, mail, number,color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
   contactMainContainer.style.display = "flex";
@@ -15,7 +24,8 @@ function openContact(key, name, mail, number) {
     key,
     name,
     mail,
-    number
+    number,
+    color
   );
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
 }
@@ -138,10 +148,11 @@ async function saveContact(data = "") {
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
-  data = {name: name, email: mail, number: phone};
+  let userColor = AddColorToUser();
+  data = {name: name, email: mail, number: phone,color: userColor};
   let response = await fetch(BASE_URL + "contacts/.json", {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
@@ -284,3 +295,8 @@ function setIcon(i, contact) {
   let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
   iconDiv.innerHTML = initials;
 }
+
+
+
+
+

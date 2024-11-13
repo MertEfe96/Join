@@ -6,8 +6,8 @@ function renderContactsSmallTemplate(key, contact, i) {
     .join("")
     .toUpperCase();
   return `
-<div class="contactCardSmall" id="${key}" onclick="openContact('${key}', '${contact.name}', '${contact.email}', '${contact.number}')">
-  <div class="contactInitialsSmall" id="contactInitialsSmall${i}">${initials}</div>
+<div class="contactCardSmall" id="${key}" onclick="openContact('${key}', '${contact.name}', '${contact.email}', '${contact.number}','${contact.color}')">
+  <div class="contactInitialsSmall" id="contactInitialsSmall${i}" style="background-color: ${contact.color}";>${initials}</div>
   <div class="contactInfoSmall">
     <div class="contactName">${contact.name}</div>
     <div class="contactMail">${contact.email}</div>
@@ -16,7 +16,7 @@ function renderContactsSmallTemplate(key, contact, i) {
   `;
 }
 
-function renderContactLargeTemplate(key, name, mail, number) {
+function renderContactLargeTemplate(key, name, mail, number,color) {
   const initials = name
     .split(" ")
     .map((word) => word[0])
@@ -24,7 +24,7 @@ function renderContactLargeTemplate(key, name, mail, number) {
     .toUpperCase();
   return `
 <div class="contactInicialsContainer">
-  <div class="contactInitialsSmall contactInicialLarge">${initials}</div>
+  <div class="contactInitialsSmall contactInicialLarge" style="background-color: ${color};">${initials}</div>
   <div>
     <div class="contactMainName">${name}</div>
     <div class="editDeleteContainer">
