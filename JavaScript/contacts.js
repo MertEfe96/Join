@@ -1,5 +1,20 @@
-let userColorsArray = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
-
+let userColorsArray = [
+  "#FF7A00",
+  "#FF5EB3",
+  "#6E52FF",
+  "#9327FF",
+  "#00BEE8",
+  "#1FD7C1",
+  "#FF745E",
+  "#FFA35E",
+  "#FC71FF",
+  "#FFC701",
+  "#0038FF",
+  "#C3FF2B",
+  "#FFE62B",
+  "#FF4646",
+  "#FFBB2B",
+];
 
 function AddColorToUser() {
   let randomNumber = Math.floor(Math.random() * 15);
@@ -16,7 +31,7 @@ function AddColorToUser() {
  * @param {*} mail the E-Mail adress of the contact
  * @param {*} number the phone number of the contact
  */
-function openContact(key, name, mail, number,color) {
+function openContact(key, name, mail, number, color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
   contactMainContainer.style.display = "flex";
@@ -74,7 +89,7 @@ async function openEditContact(key) {
  *
  * @param {*} key the key is the ID of the contact in the API
  */
-async function editContact(key) {
+async function editContact(key, color) {
   let name = document.getElementById("inputEditName").value;
   let mail = document.getElementById("inputEditMail").value;
   let phone = document.getElementById("inputEditNumber").value;
@@ -87,6 +102,7 @@ async function editContact(key) {
     body: JSON.stringify(data),
   });
   pullContacts();
+  openContact(key, name, mail, phone, color);
   closeContactEdit();
 }
 
@@ -149,7 +165,7 @@ async function saveContact(data = "") {
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
   let userColor = AddColorToUser();
-  data = {name: name, email: mail, number: phone,color: userColor};
+  data = {name: name, email: mail, number: phone, color: userColor};
   let response = await fetch(BASE_URL + "contacts/.json", {
     method: "POST",
     headers: {
@@ -185,6 +201,8 @@ function renderGroupedContacts(contacts) {
   contactsList.innerHTML = "";
   const sortedContacts = sortContacts(contacts);
   let currentLetter = "";
+  console.log(sortedContacts);
+
   sortedContacts.forEach(([key, contact], index) => {
     const firstLetter = contact.name[0].toUpperCase();
 
@@ -295,8 +313,3 @@ function setIcon(i, contact) {
   let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
   iconDiv.innerHTML = initials;
 }
-
-
-
-
-

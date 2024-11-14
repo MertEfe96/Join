@@ -16,7 +16,7 @@ function renderContactsSmallTemplate(key, contact, i) {
   `;
 }
 
-function renderContactLargeTemplate(key, name, mail, number,color) {
+function renderContactLargeTemplate(key, name, mail, number, color) {
   const initials = name
     .split(" ")
     .map((word) => word[0])
@@ -28,7 +28,7 @@ function renderContactLargeTemplate(key, name, mail, number,color) {
   <div>
     <div class="contactMainName">${name}</div>
     <div class="editDeleteContainer">
-      <div class="editDeleteSubContainer" onclick="openEditContact('${key}')">
+      <div class="editDeleteSubContainer" onclick="openEditContact('${key}', '${color}')">
         <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit" />
         <div class="editIconContainer">Edit</div>
       </div>

@@ -51,6 +51,19 @@ body {
   font-weight: 700;
 }
 
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-direction: column;
+}
+
+.inputLogin::placeholder {
+  margin-left: 16px;
+  color: rgba(209, 209, 209, 1);
+}
+
 .rememberDiv {
   display: flex;
   gap: 8px;
@@ -68,8 +81,11 @@ body {
   position: relative;
   align-items: center;
   width: 422px;
+  align-items: center;
 }
 
 .iconLogin {
   margin-left: -40px;
+  height: 24px;
+  width: 24px;
 }
