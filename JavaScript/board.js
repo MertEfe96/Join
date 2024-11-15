@@ -48,7 +48,7 @@ async function saveTask(status = "", data = "") {
     Category: category,
     Status: status,
   };
-  let response = await fetch(BASE_URL + "contacts/.json", {
+  let response = await fetch(BASE_URL + "tasks/.json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,6 +56,7 @@ async function saveTask(status = "", data = "") {
     body: JSON.stringify(data),
   });
   pullTasks();
+  closeAddTask();
 }
 
 /**
@@ -65,21 +66,25 @@ async function pullTasks() {
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
   let tasks = data.tasks;
-
   if (tasks) {
     renderGroupedTasks(tasks);
   }
 }
 
 /**
- * This function sorts and renders tasks and calls associated functions
+ * This function renders tasks and calls associated functions
  *
  * @param {*} tasks this is the whole tasklist saved in the API,
- *                      given by the pullContacts() funtion
+ *                      given by the pullTasks() funtion
  */
 function renderGroupedTasks(tasks) {
   let taskList = document.getElementById("ToDoCard");
   taskList.innerHTML = "";
 
-  Object.forEach(([key, task], index) => {});
+  Object.entries(tasks).forEach(([key, taskdetails]) => {
+    // wenn man Object.entries(tasks) aufruft, erhält man ein alle tasks beinhaltenden Array von Arrays mit zwei einrtägen[key,{Title:"..",Description:"..",...}]
+    let taskDiv = document.createElement("div");
+    taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
+    taskList.appendChild(taskDiv);
+  });
 }

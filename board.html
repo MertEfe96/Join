@@ -11,8 +11,9 @@
     <script src="JavaScript/board.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
+
   </head>
-  <body>
+  <body onload="pullTasks()">
     <div class="filler"></div>
     <nav class="navBar">
       <div class="widthFull">
@@ -99,7 +100,7 @@
                 </div>
                 <div class="inputSubContainer">
                     <label for="category">Select task category:</label>
-                    <select name="category" id="category">
+                    <select name="category" id="addTaskInputCategory">
                       <option value="userStory">Technical Task</option>
                       <option value="TechnicalTask">User Story</option>
                     </select>

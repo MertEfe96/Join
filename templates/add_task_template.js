@@ -23,26 +23,18 @@ function templateAddTask(status) {
                 </div>
                 <div class="inputSubContainer">
                   Description
-                  <input
+                  <textarea
                     id="addTaskInputDescription"
                     type="text"
                     placeholder="Enter a Description"
-                  />
+                  ></textarea>
                 </div>
                 <div class="inputSubContainer">
                     <label for="category">Select task category:</label>
-                    <select name="category" id="category">
+                    <select name="category" id="addTaskInputCategory">
                       <option value="userStory">Technical Task</option>
                       <option value="TechnicalTask">User Story</option>
                     </select>
-                </div>
-                <div class="inputSubContainer">
-                  Status
-                  <input
-                    id="addTaskInputSatus"
-                    type="text"
-                    placeholder="Choose Status"
-                  />
                 </div>
                 <div class="editOverlayButtonContainer">
                   <button
@@ -102,18 +94,10 @@ function templateAddTaskNav() {
                 </div>
                 <div class="inputSubContainer">
                     <label for="category">Select task category:</label>
-                    <select name="category" id="category">
+                    <select name="category" id="addTaskInputCategory">
                       <option value="userStory">Technical Task</option>
                       <option value="TechnicalTask">User Story</option>
                     </select>
-                </div>
-                <div class="inputSubContainer">
-                  Status
-                  <input
-                    id="addTaskInputSatus"
-                    type="text"
-                    placeholder="Choose Status"
-                  />
                 </div>
                 <div class="editOverlayButtonContainer">
                   <button
