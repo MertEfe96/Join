@@ -49,7 +49,7 @@ function templateAddTask(status) {
                     />
                   </button>
                   <button
-                    onclick="saveTask(${status})"
+                    onclick="saveTask('${status}')"
                     class="overlaySaveButton createContactButtonOverlay"
                   >
                     Create Task

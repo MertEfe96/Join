@@ -146,7 +146,7 @@
       <!--add Task end-->
 
       <div class="headerBoard">
-        <div style="font-size: x-large"><b> Board </b></div>
+        <div style="font-size: 48px"><b> Board </b></div>
         <div>
           <input
             class="findTaskInput"
@@ -161,7 +161,7 @@
 
       <div class="boardContent">
         <div class="statusContainer">
-          <div class="statusHeadline"><b>To Do</b></div>
+          <div class="statusHeadline"><b>To Do</b> <img onclick="addTask()" src="./assets/icons/plusbutton.png" /></div>
           <div class="taskCard" id="ToDoCard">
             <div class="statusCategory" id="ToDoCardCategory">User Story</div>
             <div class="text">Restliche infos, blbablas</div>
@@ -169,7 +169,7 @@
         </div>
 
         <div class="statusContainer">
-          <div class="statusHeadline"><b>In progress</b></div>
+          <div class="statusHeadline"><b>In progress</b><img onclick="addTask('in-progress')" src="./assets/icons/plusbutton.png" /></div>
           <div class="taskCard" id="InProgressCard">
             <div class="statusCategory" id="InProgressCardCategory">
               User Story
@@ -179,7 +179,7 @@
         </div>
 
         <div class="statusContainer">
-          <div class="statusHeadline"><b>Await feedback</b></div>
+          <div class="statusHeadline"><b>Await feedback</b><img onclick="addTask('await-feedback')" src="./assets/icons/plusbutton.png" /></div>
           <div class="taskCard" id="AwaitFeedbackCard">
             <div class="statusCategory" id="AwaitFeedbackCardCategory">
               User Story

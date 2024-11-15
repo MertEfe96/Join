@@ -1,7 +1,7 @@
 /**
  * This function opens add-contact-form
  */
-function addTask(status = "") {
+function addTask(status = "to-do") {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
   addTaskMain.style.display = "flex";
@@ -34,7 +34,7 @@ function closeAddTask() {
 /**
  * This function saves the tasks in the API
  */
-async function saveTask(status = "", data = "") {
+async function saveTask(status = "to-do", data = "") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
   description.replace("<", ".");
