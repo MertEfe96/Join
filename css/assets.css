@@ -2,6 +2,32 @@ body {
   margin: 0;
 }
 
+.noTextDeco {
+  text-decoration: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textGrey {
+  color: rgba(168, 168, 168, 1);
+}
+
+.show {
+  display: flex !important;
+}
+
+.iconSearch {
+  margin-left: -60px;
+  height: 24px;
+  width: 24px;
+  border-left: solid 1px rgba(209, 209, 209, 1);
+  padding-left: 16px;
+}
+
 .navBar {
   background-color: #2a3647;
   display: flex;
@@ -81,6 +107,7 @@ header {
   background-color: #fff;
   height: 96px;
   flex: 1;
+  max-width: calc(100vw - 232px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,8 +133,14 @@ header {
   font-weight: 600;
 }
 
+.userIcon:hover {
+  cursor: pointer;
+}
+
 .grow {
   flex: 1;
+  max-width: calc(100vw - 232px);
+  overflow-y: auto;
 }
 
 .addPersonIcon {
@@ -169,7 +202,7 @@ header {
   justify-content: center;
   align-items: center;
   background-color: rgb(218, 218, 218);
-  border: 3px solid #FFFFFF;
+  border: 3px solid #ffffff;
   box-shadow: 0 0 2px 1.5px rgba(0, 0, 0, 0.073);
   border-radius: 99px;
   height: 120px;

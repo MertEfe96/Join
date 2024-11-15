@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./css/site_style/contacts.css" />
+    <link rel="stylesheet" href="./css/site_style/login_signup.css" />
+    <script src="./templates/login_signnup_template.js"></script>
     <script src="./templates/contacts_template.js"></script>
     <script src="script.js"></script>
     <script src="./JavaScript/contacts.js"></script>
@@ -53,8 +55,13 @@
     <div class="grow">
       <header>
         <div class="headline">Kanban Project Management Tool</div>
-        <div class="userIcon">ME</div>
+        <div onclick="showDropDown()" class="userIcon">ME</div>
       </header>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="./legal_notice.html" class="dropDownLink">Legal Notice</a>
+        <a href="./privacy_policy.html" class="dropDownLink">Privacy Policy</a>
+        <span class="dropDownLink">Log out</span>
+      </div>
       <div class="content">
         <div class="contactsList">
           <button class="addPersonButton" onclick="addContact()">
@@ -62,27 +69,23 @@
             <img
               class="addPersonIcon"
               src="assets/icons/personAdd.png"
-              alt="Add person"
-            />
+              alt="Add person" />
           </button>
           <!--add Contact start-->
           <div
             class="contactOverlayEditMain"
             style="display: none"
             id="addContactMain"
-            onclick="closeAddContact()"
-          >
+            onclick="closeAddContact()">
             <div
               class="contactOverlayEdit"
               id="addContact"
-              onclick="event.stopPropagation()"
-            >
+              onclick="event.stopPropagation()">
               <div class="addContactLeftSection">
                 <img
                   class="overlayLogo paddingLogoOverlay"
                   src="assets/img/Capa 2.png"
-                  alt="Join logo"
-                />
+                  alt="Join logo" />
                 <div class="addContactHeadlineContainer">
                   <div class="addContactHeadline">Add contact</div>
                   <div class="addContactSubHeadline">
@@ -96,14 +99,12 @@
                   class="contactCloseIcon"
                   src="assets/icons/close.png"
                   alt="Close"
-                  onclick="closeAddContact()"
-                />
+                  onclick="closeAddContact()" />
                 <div class="personIconBg">
                   <img
                     class="addContactPersonIcon"
                     src="assets/icons/personWhite.png"
-                    alt="Contact logo"
-                  />
+                    alt="Contact logo" />
                 </div>
                 <div>
                   <div class="inputContainer">
@@ -112,47 +113,40 @@
                       <img
                         class="contactInputIcon"
                         src="assets/icons/person.png"
-                        alt="Person"
-                      />
+                        alt="Person" />
                     </div>
                     <div class="inputSubContainer">
                       <input id="addContactInputMail" type="text" />
                       <img
                         class="contactInputIcon"
                         src="assets/icons/mail.png"
-                        alt="Mail"
-                      />
+                        alt="Mail" />
                     </div>
                     <div class="inputSubContainer">
                       <input id="addContactInputPhone" type="text" />
                       <img
                         class="contactInputIcon"
                         src="assets/icons/call.png"
-                        alt="Call"
-                      />
+                        alt="Call" />
                     </div>
                     <div class="editOverlayButtonContainer">
                       <button
                         onclick="closeAddContact()"
-                        class="overlayDeleteButton addContactCancelButton"
-                      >
+                        class="overlayDeleteButton addContactCancelButton">
                         Cancel
                         <img
                           class="addContactCancelIcon"
                           src="assets/icons/close.png"
-                          alt="Cancel"
-                        />
+                          alt="Cancel" />
                       </button>
                       <button
                         onclick="saveContact()"
-                        class="overlaySaveButton createContactButtonOverlay"
-                      >
+                        class="overlaySaveButton createContactButtonOverlay">
                         Create contact
                         <img
                           class="contactCheckIcon"
                           src="assets/icons/check.png"
-                          alt="Check"
-                        />
+                          alt="Check" />
                       </button>
                     </div>
                   </div>
@@ -175,8 +169,7 @@
           <div
             style="display: none"
             id="contactMainContainer"
-            class="contactMainContainer"
-          ></div>
+            class="contactMainContainer"></div>
           <!--contact render container end-->
         </div>
         <!--contact overlay edit start-->
@@ -184,32 +177,29 @@
           class="contactOverlayEditMain"
           style="display: none"
           id="contactOverlayEditMain"
-          onclick="closeContactEdit()"
-        >
+          onclick="closeContactEdit()">
           <div
             class="contactOverlayEdit"
             id="contactOverlayEdit"
-            onclick="event.stopPropagation()"
-          >
+            onclick="event.stopPropagation()">
             <div class="contactOverlayLeftSection">
               Edit contact
               <div class="lineLogoContainer">
                 <img
                   class="overlayLogo"
                   src="assets/img/Capa 2.png"
-                  alt="Join Logo"
-                />
+                  alt="Join Logo" />
                 <div class="overlayLine"></div>
               </div>
             </div>
             <div
               class="contactOverlayRightSection"
-              id="contactOverlayRightSection"
-            ></div>
+              id="contactOverlayRightSection"></div>
           </div>
         </div>
         <!--contact overlay edit end-->
       </div>
     </div>
+    <div id="loginContent" class="loginContent"></div>
   </body>
 </html>
