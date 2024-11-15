@@ -154,7 +154,8 @@
 
       <div class="headerBoard">
         <div style="font-size: 48px"><b> Board </b></div>
-        <div>
+        <div class="searchBarTasks">
+          <div class="searchBarDiv">
           <input
             class="findTaskInput"
             required
@@ -162,6 +163,10 @@
             placeholder="Find Task"
             id="FindTask"
           />
+          <img
+          src="./assets/icons/search.svg"
+          alt="email icon"
+          class="iconSearch" /></div>
           <button class="AddTaskButton" onclick="addTask()">Add task +</button>
         </div>
       </div>
@@ -205,5 +210,6 @@
       </div>
     </div>
   </div>
+  <div id="loginContent" class="loginContent"></div>
   </body>
 </html>
