@@ -72,19 +72,31 @@ async function pullTasks() {
 }
 
 /**
- * This function renders tasks and calls associated functions
+ * This function renders tasks
  *
  * @param {*} tasks this is the whole tasklist saved in the API,
  *                      given by the pullTasks() funtion
  */
 function renderGroupedTasks(tasks) {
-  let taskList = document.getElementById("ToDoCard");
-  taskList.innerHTML = "";
+  let taskListToDo = document.getElementById("ToDoCard");
+  let taskListInProgress = document.getElementById("InProgressCard");
+  let taskListAwaitFeedback = document.getElementById("AwaitFeedbackCard");
+  taskListToDo.innerHTML = "";
+  taskListInProgress.innerHTML = "";
+  taskListAwaitFeedback.innerHTML = "";
 
   Object.entries(tasks).forEach(([key, taskdetails]) => {
-    // wenn man Object.entries(tasks) aufruft, erhält man ein alle tasks beinhaltenden Array von Arrays mit zwei einrtägen[key,{Title:"..",Description:"..",...}]
+    // wenn man Object.entries(tasks) aufruft, erhält man ein alle tasks beinhaltendes Array von Arrays mit zwei einrtägen[key,{Title:"..",Description:"..",...}]
     let taskDiv = document.createElement("div");
-    taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
-    taskList.appendChild(taskDiv);
+    if (taskdetails.Status === "to-do") {
+      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
+      taskListToDo.appendChild(taskDiv);
+    } else if (taskdetails.Status === "in-progress") {
+      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
+      taskListInProgress.appendChild(taskDiv);
+    } else if (taskdetails.Status === "await-feedback") {
+      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
+      taskListAwaitFeedback.appendChild(taskDiv);
+    }
   });
 }
