@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/site_style/login_singup.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,7 +16,10 @@
       </div>
       <div class="loginField">
         <div class="loginBox">
-          <h1 class="loginHeadline">Log in</h1>
+          <div class="headlineAndBorder">
+            <h1 class="loginHeadline">Log in</h1>
+            <div class="border"></div>
+          </div>
           <form class="loginForm" onsubmit="return false;">
             <div class="inputWrapper">
               <input
@@ -44,12 +48,34 @@
                 src="./assets/icons/lock.svg"
                 alt="lock icon"
                 class="iconLogin" />
-              <div id="alertInfoLogin" class="input-alert"></div>
+            </div>
+            <div class="rememberDiv">
+              <input class="hover" type="checkbox" name="" id="" />
+              <p>Remember me</p>
+            </div>
+            <div class="loginButtonDiv">
+              <button class="hover buttonLogin">Log in</button>
+              <span class="hover buttonGuestLogin">Guest Log in</span>
             </div>
           </form>
         </div>
       </div>
       <div class="filler"></div>
+      <div class="singUpLogin">
+        <span class="singUpLoginSpan">Not a Join user?</span>
+        <button class="hover buttonSingUpLogin">Sign up</button>
+      </div>
     </div>
+    <form action="/action_page.php">
+      <label for="cars">Choose a car:</label>
+      <select name="cars" id="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+      <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
   </body>
 </html>
