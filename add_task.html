@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/site_style/board.css">
+    <script src="./JavaScript/board.js"></script>
+    <script src="./templates/add_task_template.js"></script>
   </head>
-  <body>
+  <body onload="addTaskNav()">
     <div class="filler"></div>
     <nav class="navBar">
       <div class="widthFull">
@@ -45,9 +48,24 @@
         <a class="menuLink" href="./legal_notice.html">Legal notice</a>
       </div>
     </nav>
-    <header>
-      <div class="headline">Kanban Project Management Tool</div>
-      <div class="userIcon">ME</div>
-    </header>
+    <div class="grow">
+      <header>
+        <div class="headline">Kanban Project Management Tool</div>
+        <div class="userIcon">ME</div>
+      </header>
+      <div id="content" class="content">
+        <div
+        class="addTaskDiv"
+        id="addTaskMain"
+        onclick="closeAddTask()"
+      >
+        <div
+          class="addTaskSecDiv"
+          id="addTask"
+          onclick="event.stopPropagation()"
+        >
+        
+      </div>
+    </div>
   </body>
 </html>

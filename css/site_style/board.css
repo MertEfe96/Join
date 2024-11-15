@@ -1,0 +1,133 @@
+.headerBoard {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.AddTaskButton {
+    background-color: rgb(42, 54, 71);
+    color: white;
+    border-radius: 4px;
+}
+
+.findTaskInput {
+    border-radius: 4px;
+}
+
+.boardContent {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin: 32px;
+}
+
+.statusContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.statusHeadline {
+    color: rgb(66, 82, 110);
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    width: 60px;
+}
+
+.boardOverlayMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.33);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    overflow-x: hidden;
+    z-index: 999;
+}
+
+.addTaskDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.33);
+    overflow-x: hidden;
+    z-index: 999;
+}
+
+.boardOverlayMain.show {
+    opacity: 1;
+}
+
+.boardOverlay {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    background-color: white;
+    width: 100%;
+    height: 592px;
+    border-radius: 30px;
+    opacity: 33%;
+    transform: translateX(100%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.addTaskSecDiv {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    background-color: white;
+    width: 100%;
+    height: 592px;
+}
+
+.boardOverlay.show {
+    transform: translateX(0);
+    opacity: 100%;
+}
+
+.addTaskMain {
+    display: flex;
+    margin-right: 56px;
+    position: relative;
+    flex-direction: column;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 137px;
+    left: 742px;
+    gap: 32px;
+}
+
+.inputSubContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 422px;
+    position: relative;
+}
+
+.editOverlayButtonContainer {
+    display: flex;
+    gap: 25px;
+    padding-top: 18px;
+}
+
+.headlineAddTaskWindow {
+    font-size: 24px;
+}

@@ -5,134 +5,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
-    <link rel="stylesheet" href="./css/site_style/contacts.css" />
+    <link rel="stylesheet" href="./css/site_style/board.css" />
     <script src="./templates/board_templates.js"></script>
+    <script src="./templates/add_task_template.js"></script>
     <script src="JavaScript/board.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <style>
-      .headerBoard {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 80px;
-        margin-left: 40px;
-        margin-right: 40px;
-      }
-
-      .AddTaskButton {
-        background-color: rgb(42, 54, 71);
-        color: white;
-        border-radius: 4px;
-      }
-
-      .boardMain {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        background-color: rgb(246, 247, 248);
-      }
-
-      .findTaskInput {
-        border-radius: 4px;
-      }
-
-      .boardContent {
-        display: flex;
-        flex-direction: row;
-        gap: 32px;
-        margin: 32px;
-      }
-
-      .statusContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .statusHeadline {
-        color: rgb(66, 82, 110);
-      }
-
-      .taskCard {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        padding: 24px;
-        background-color: rgb(255, 255, 255);
-        border-radius: 8px;
-        width: 60px;
-      }
-
-      .boardOverlayMain {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.33);
-        opacity: 0;
-        transition: opacity 0.2s ease;
-        overflow-x: hidden;
-        z-index: 999;
-      }
-
-      .boardOverlayMain.show {
-        opacity: 1;
-      }
-
-      .boardOverlay {
-        display: flex;
-        justify-content: space-between;
-        padding: 24px;
-        background-color: white;
-        width: 1212px;
-        height: 592px;
-        border-radius: 30px;
-        opacity: 33%;
-        transform: translateX(100%);
-        transition: opacity 0.2s ease, transform 0.2s ease;
-      }
-
-      .boardOverlay.show {
-        transform: translateX(0);
-        opacity: 100%;
-      }
-
-      .addTaskMain {
-        display: flex;
-        margin-right: 56px;
-        position: relative;
-        flex-direction: column;
-      }
-
-      .inputContainer {
-        display: flex;
-        flex-direction: column;
-        margin-top: 137px;
-        left: 742px;
-        gap: 32px;
-      }
-
-      .inputSubContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 422px;
-        position: relative;
-      }
-
-      .editOverlayButtonContainer {
-        display: flex;
-        gap: 25px;
-        padding-top: 18px;
-      }
-
-      .headlineAddTaskWindow {
-        font-size: 24px;
-      }
-    </style>
   </head>
   <body>
     <div class="filler"></div>
@@ -176,7 +54,7 @@
         <div class="headline">Kanban Project Management Tool</div>
         <div class="userIcon">ME</div>
       </header>
-      <div class="boardmain"></div>
+      <div class="content"></div>
 
       <!--add Task start-->
       <div
@@ -190,7 +68,7 @@
           id="addTask"
           onclick="event.stopPropagation()"
         >
-          <div class="addTaskMain">
+          <!-- <div class="addTaskMain">
             <div class="headlineAddTaskWindow">
               <b>Add Task</b>
               <img
@@ -200,10 +78,10 @@
                 onclick="closeAddTask()"
               />
             </div>
-
             <div>
               <div class="inputContainer">
-                <div class="inputSubContainer">
+                <form action="" onsubmit="return false">
+                  <div class="inputSubContainer">
                   Title
                   <input
                     id="addTaskInputTitle"
@@ -220,21 +98,11 @@
                   />
                 </div>
                 <div class="inputSubContainer">
-                  Category
-                  <form action="/action_page.php">
                     <label for="category">Select task category:</label>
                     <select name="category" id="category">
                       <option value="userStory">Technical Task</option>
                       <option value="TechnicalTask">User Story</option>
                     </select>
-                    <br /><br />
-                    <input
-                      id="addTaskInputCategory"
-                      type="submit"
-                      value="Submit"
-                      placeholder="Enter a Category"
-                    />
-                  </form>
                 </div>
                 <div class="inputSubContainer">
                   Status
@@ -268,9 +136,10 @@
                     />
                   </button>
                 </div>
+                </form>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <!--add Task end-->

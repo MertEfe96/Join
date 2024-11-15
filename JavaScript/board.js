@@ -1,12 +1,19 @@
 /**
  * This function opens add-contact-form
  */
-function addTask() {
+function addTask(status = "") {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
   addTaskMain.style.display = "flex";
   setTimeout(() => addTaskMain.classList.add("show"), 10);
   setTimeout(() => addTask.classList.add("show"), 10);
+  addTask.innerHTML = templateAddTask(status);
+}
+
+function addTaskNav() {
+  const addTaskMain = document.getElementById("addTaskMain");
+  const addTask = document.getElementById("addTask");
+  addTask.innerHTML = templateAddTaskNav();
 }
 
 /**
@@ -22,27 +29,19 @@ function closeAddTask() {
       addTaskMain.style.display = "none";
     }, 100);
   }, 100);
-  emptyInputAddTask();
-}
-
-/**
- * THis function empties input-value from add-contact-form
- */
-function emptyInputAddTask() {
-  document.getElementById("addTaskInputTitle").value = "";
-  document.getElementById("addTaskInputDescription").value = "";
-  document.getElementById("addTaskInputCategory").value = "";
-  document.getElementById("addTaskInputSatus").value = "";
 }
 
 /**
  * This function saves the tasks in the API
  */
-async function saveTask(data = "") {
+async function saveTask(status = "", data = "") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
+  description.replace("<", ".");
   let category = document.getElementById("addTaskInputCategory").value;
-  let status = document.getElementById("addTaskInputSatus").value;
+  if (status == "") {
+    status = "to-do";
+  }
   data = {
     Title: title,
     Description: description,
@@ -73,25 +72,14 @@ async function pullTasks() {
 }
 
 /**
- * This function sorts and renders contacts and calls associated functions
+ * This function sorts and renders tasks and calls associated functions
  *
- * @param {*} tasks this is the whole contacs list saved in the API,
+ * @param {*} tasks this is the whole tasklist saved in the API,
  *                      given by the pullContacts() funtion
  */
 function renderGroupedTasks(tasks) {
-  let contactsList = document.getElementById("contactsList");
-  contactsList.innerHTML = "";
-  const sortedContacts = sortContacts(tasks);
-  let currentLetter = "";
-  console.log(sortedContacts);
+  let taskList = document.getElementById("ToDoCard");
+  taskList.innerHTML = "";
 
-  sortedContacts.forEach(([key, contact], index) => {
-    const firstLetter = contact.name[0].toUpperCase();
-
-    if (firstLetter !== currentLetter) {
-      currentLetter = firstLetter;
-      renderLetterHeader(currentLetter, contactsList);
-    }
-    renderContactCard(key, contact, index, contactsList);
-  });
+  Object.forEach(([key, task], index) => {});
 }
