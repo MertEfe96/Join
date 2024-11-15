@@ -16,6 +16,10 @@ body {
   color: rgba(168, 168, 168, 1);
 }
 
+.show {
+  display: flex !important;
+}
+
 .navBar {
   background-color: #2a3647;
   display: flex;
@@ -118,6 +122,10 @@ header {
   color: #29abe2;
   font-size: 22px;
   font-weight: 600;
+}
+
+.userIcon:hover {
+  cursor: pointer;
 }
 
 .grow {
