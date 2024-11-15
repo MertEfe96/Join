@@ -2,6 +2,20 @@ body {
   margin: 0;
 }
 
+.noTextDeco {
+  text-decoration: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textGrey {
+  color: rgba(168, 168, 168, 1);
+}
+
 .navBar {
   background-color: #2a3647;
   display: flex;
@@ -169,7 +183,7 @@ header {
   justify-content: center;
   align-items: center;
   background-color: rgb(218, 218, 218);
-  border: 3px solid #FFFFFF;
+  border: 3px solid #ffffff;
   box-shadow: 0 0 2px 1.5px rgba(0, 0, 0, 0.073);
   border-radius: 99px;
   height: 120px;

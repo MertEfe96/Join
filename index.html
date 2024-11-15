@@ -6,76 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
-    <link rel="stylesheet" href="./css/site_style/login_singup.css" />
+    <link rel="stylesheet" href="./css/site_style/login_signup.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="bgLogin">
-      <div class="imgDiv">
-        <img class="LogoNavImg" src="./assets/img/Capa 1.svg" />
-      </div>
-      <div class="loginField">
-        <div class="loginBox">
-          <div class="headlineAndBorder">
-            <h1 class="loginHeadline">Log in</h1>
-            <div class="border"></div>
-          </div>
-          <form class="loginForm" onsubmit="return false;">
-            <div class="inputWrapper">
-              <input
-                id="emailLogin"
-                class="inputLogin"
-                type="text"
-                name="email"
-                autocomplete="email"
-                placeholder="Email"
-                required />
-              <img
-                src="./assets/icons/mail.svg"
-                alt="email icon"
-                class="iconLogin" />
-            </div>
-            <div class="inputWrapper">
-              <input
-                id="passwordLogin"
-                class="inputLogin"
-                type="password"
-                name="password"
-                autocomplete="password"
-                placeholder="Password"
-                required />
-              <img
-                src="./assets/icons/lock.svg"
-                alt="lock icon"
-                class="iconLogin" />
-            </div>
-            <div class="rememberDiv">
-              <input class="hover" type="checkbox" name="" id="" />
-              <p>Remember me</p>
-            </div>
-            <div class="loginButtonDiv">
-              <button class="hover buttonLogin">Log in</button>
-              <span class="hover buttonGuestLogin">Guest Log in</span>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="filler"></div>
-      <div class="singUpLogin">
-        <span class="singUpLoginSpan">Not a Join user?</span>
-        <button class="hover buttonSingUpLogin">Sign up</button>
-      </div>
+      <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
+      <div class="loginField" id="loginField"></div>
     </div>
-    <form action="/action_page.php">
-      <label for="cars">Choose a car:</label>
-      <select name="cars" id="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
-      </select>
-      <br /><br />
-      <input type="submit" value="Submit" />
-    </form>
   </body>
 </html>
