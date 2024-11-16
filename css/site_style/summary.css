@@ -1,0 +1,12 @@
+.contentSubContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryBoardContainer {
+  width: 560px;
+  height: 562px;
+  background-color: grey;
+  margin-top: 24px;
+  margin-left: 96px;
+}
