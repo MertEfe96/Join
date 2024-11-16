@@ -15,15 +15,28 @@ function showDropDown() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-window.onclick = function (event) {
-  if (!event.target.matches(".userIcon")) {
-    const dropdowns = document.getElementsByClassName("dropdown-content");
-    let i;
-    for (i = 0; i < dropdowns.length; i++) {
-      let openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains("show")) {
-        openDropdown.classList.remove("show");
+function onClickListAssigneesEventListener() {
+  document
+    .getElementById("assignedAddTaks")
+    .addEventListener("mouseover", function () {
+      listAssignees(0, "edit");
+    });
+
+  document
+    .getElementById("assignedAddTaks")
+    .addEventListener("click", function (event) {
+      event.stopPropagation(); // Verhindert das Schließen der Liste beim Klicken
+    });
+
+  document
+    .getElementById("assignedAddTaks")
+    .addEventListener("click", function (event) {
+      let dropdown = document.getElementById("dropdown-content");
+      if (
+        !dropdown.contains(event.target) &&
+        event.target.id !== "assignedAddTaks"
+      ) {
+        dropdown.style.display = "none";
       }
-    }
-  }
-};
+    });
+}
