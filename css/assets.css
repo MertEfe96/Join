@@ -215,3 +215,8 @@ header {
   height: 24px;
   width: 24px;
 }
+
+.marginSummary {
+  margin-left: 96px;
+  margin-top: 110px;
+}
