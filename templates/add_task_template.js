@@ -67,7 +67,7 @@ function templateAddTask(status) {
     `;
 }
 
-function templateAddTaskNav() {
+function templateAddTaskNav(status) {
   return `
     <div class="addTaskMain">
             <div class="headlineAddTaskWindow">
@@ -112,7 +112,7 @@ function templateAddTaskNav() {
                     />
                   </button>
                   <button
-                    onclick="saveTask()"
+                    onclick="saveTask('${status}')"
                     class="overlaySaveButton createContactButtonOverlay"
                   >
                     Create Task

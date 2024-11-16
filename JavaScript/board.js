@@ -81,13 +81,20 @@ function renderGroupedTasks(tasks) {
   let taskListToDo = document.getElementById("ToDoCard");
   let taskListInProgress = document.getElementById("InProgressCard");
   let taskListAwaitFeedback = document.getElementById("AwaitFeedbackCard");
+  let taskListDone = document.getElementById("DoneCard");
   taskListToDo.innerHTML = "";
   taskListInProgress.innerHTML = "";
   taskListAwaitFeedback.innerHTML = "";
+  taskListDone.innerHTML = "";
 
   Object.entries(tasks).forEach(([key, taskdetails]) => {
     // wenn man Object.entries(tasks) aufruft, erhält man ein alle tasks beinhaltendes Array von Arrays mit zwei einrtägen[key,{Title:"..",Description:"..",...}]
     let taskDiv = document.createElement("div");
+    taskDiv.draggable = true;
+    taskDiv.classList.add("singleTaskCard");
+    taskDiv.ondragstart = function (event) {
+      startDragging(key);
+    };
     if (taskdetails.Status === "to-do") {
       taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
       taskListToDo.appendChild(taskDiv);
@@ -97,6 +104,61 @@ function renderGroupedTasks(tasks) {
     } else if (taskdetails.Status === "await-feedback") {
       taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
       taskListAwaitFeedback.appendChild(taskDiv);
+    } else if (taskdetails.Status === "done") {
+      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
+      taskListDone.appendChild(taskDiv);
     }
   });
+  checkCardEmpty(
+    taskListToDo,
+    taskListInProgress,
+    taskListAwaitFeedback,
+    taskListDone
+  );
+}
+
+let currentDraggedElement;
+function startDragging(key) {
+  currentDraggedElement = key;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+async function moveTo(status) {
+  let response = await fetch(
+    BASE_URL + `tasks/${currentDraggedElement}/Status/.json`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(status),
+    }
+  );
+  pullTasks();
+}
+
+function checkCardEmpty(
+  taskListToDo,
+  taskListInProgress,
+  taskListAwaitFeedback,
+  taskListDone
+) {
+  updateCard(taskListDone, "No tasks done");
+  updateCard(taskListInProgress, "No tasks in progress");
+  updateCard(taskListToDo, "No tasks to do");
+  updateCard(taskListAwaitFeedback, "No tasks awaiting feedback");
+}
+
+function updateCard(taskList, emptyMessage) {
+  if (taskList.children.length === 0) {
+    taskList.classList.add("dragAreaEmpty");
+    taskList.classList.remove("drag-area");
+    taskList.innerHTML = emptyMessage;
+  } else {
+    taskList.classList.remove("dragAreaEmpty");
+    taskList.classList.add("drag-area");
+  }
 }
