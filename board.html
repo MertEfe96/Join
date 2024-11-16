@@ -174,38 +174,22 @@
       <div class="boardContent">
         <div class="statusContainer">
           <div class="statusHeadline"><b>To Do</b> <img onclick="addTask()" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="ToDoCard" ondrop="moveTo('to-do')" ondragleave="removeHighlight('ToDoCard')" ondragover="allowDrop(event); highlight('ToDoCard')">
-            <div class="statusCategory" id="ToDoCardCategory">User Story</div>
-            <div class="text">Restliche infos, blbablas</div>
-          </div>
+          <div class="taskCard drag-area" id="ToDoCard" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
         </div>
 
         <div class="statusContainer">
           <div class="statusHeadline"><b>In progress</b><img onclick="addTask('in-progress')" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="InProgressCard" ondrop="moveTo('in-progress')" ondragleave="removeHighlight('InProgressCard')" ondragover="allowDrop(event); highlight('InProgressCard')">
-            <div class="statusCategory" id="InProgressCardCategory">
-              User Story
-            </div>
-            <div class="text">Restliche infos, blbablas</div>
-          </div>
+          <div class="taskCard drag-area" id="InProgressCard" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)"></div>
         </div>
 
         <div class="statusContainer">
           <div class="statusHeadline"><b>Await feedback</b><img onclick="addTask('await-feedback')" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="AwaitFeedbackCard" ondrop="moveTo('await-feedback')" ondragleave="removeHighlight('AwaitFeedbackCard')" ondragover="allowDrop(event); highlight('AwaitFeedbackCard')">
-            <div class="statusCategory" id="AwaitFeedbackCardCategory">
-              User Story
-            </div>
-            <div class="text">Restliche infos, blbablas</div>
-          </div>
+          <div class="taskCard drag-area" id="AwaitFeedbackCard" ondrop="moveTo('await-feedback')" ondragover="allowDrop(event)"></div>
         </div>
 
         <div class="statusContainer">
           <div class="statusHeadline"><b>Done</b></div>
-          <div class="taskCard drag-area" id="DoneCard" ondrop="moveTo('done')" ondragleave="removeHighlight('DoneCard')" ondragover="allowDrop(event); highlight('DoneCard')">
-            <div class="statusCategory" id="DoneCardCategory">User Story</div>
-            <div class="text">Restliche infos, blbablas</div>
-          </div>
+          <div class="taskCard drag-area" id="DoneCard" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
         </div>
       </div>
     </div>

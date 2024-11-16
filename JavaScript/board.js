@@ -109,6 +109,12 @@ function renderGroupedTasks(tasks) {
       taskListDone.appendChild(taskDiv);
     }
   });
+  checkCardEmpty(
+    taskListToDo,
+    taskListInProgress,
+    taskListAwaitFeedback,
+    taskListDone
+  );
 }
 
 let currentDraggedElement;
@@ -134,10 +140,25 @@ async function moveTo(status) {
   pullTasks();
 }
 
-function highlight(id) {
-  document.getElementById(id).classList.add("drag-area-highlight");
+function checkCardEmpty(
+  taskListToDo,
+  taskListInProgress,
+  taskListAwaitFeedback,
+  taskListDone
+) {
+  updateCard(taskListDone, "No tasks done");
+  updateCard(taskListInProgress, "No tasks in progress");
+  updateCard(taskListToDo, "No tasks to do");
+  updateCard(taskListAwaitFeedback, "No tasks awaiting feedback");
 }
 
-function removeHighlight(id) {
-  document.getElementById(id).classList.remove("drag-area-highlight");
+function updateCard(taskList, emptyMessage) {
+  if (taskList.children.length === 0) {
+    taskList.classList.add("dragAreaEmpty");
+    taskList.classList.remove("drag-area");
+    taskList.innerHTML = emptyMessage;
+  } else {
+    taskList.classList.remove("dragAreaEmpty");
+    taskList.classList.add("drag-area");
+  }
 }
