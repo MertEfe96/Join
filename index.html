@@ -7,12 +7,107 @@
     <link rel="stylesheet" href="./css/assets.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/site_style/login_signup.css" />
+    <link rel="stylesheet" href="./css/site_style/board.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
   </head>
-  <body>
-    <div class="bgLogin">
-      <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
-      <div class="loginField" id="loginField"></div>
+  <body onload="setMinDate()">
+    <div class="boardOverlay dasNervt" id="addTask">
+      <div class="addTaskMain">
+        <div class="headlineAddTaskWindow">
+          <b>Add Task</b>
+          <img
+            class="contactCloseIcon"
+            src="assets/icons/close.png"
+            alt="Close" />
+        </div>
+        <div class="inputContainer">
+          <form action="" onsubmit="return false">
+            <div class="addTaskSplit">
+              <div class="addTaskPortion">
+                <div class="inputSubContainer">
+                  Title*
+                  <input
+                    id="addTaskInputTitle"
+                    type="text"
+                    placeholder="Enter a Title" />
+                </div>
+                <div class="inputSubContainer">
+                  Description
+                  <textarea
+                    name=""
+                    placeholder="Enter a Description"
+                    id="addTaskInputDescription"></textarea>
+                </div>
+                <div class="inputSubContainer">
+                  Assigned to
+                  <label for="assigned" id="assignedAddTaks" class="imgInInput">
+                    <input
+                      type="text"
+                      id="inputAssignContacts"
+                      class=""
+                      placeholder="Select contacts to assign"
+                      oninput="filterContactsShown()" />
+                    <div
+                      style="transform: rotate(180deg)"
+                      id="fakeInputArrow"></div>
+                  </label>
+                  <div id="dropdown-content" class="hide show">
+                    TechnicalTask
+                  </div>
+                </div>
+              </div>
+              <div class="addTaskPortion"></div>
+            </div>
+
+            <div class="inputSubContainer">
+              <label for="category">Category*</label>
+              <select name="category" id="addTaskInputCategory">
+                <option value="" disabled selected hidden>
+                  Select a task category
+                </option>
+                <option value="userStory">Technical Task</option>
+                <option value="TechnicalTask">User Story</option>
+              </select>
+            </div>
+            <div class="inputSubContainer">
+              Due date*
+              <input
+                type="date"
+                name="date"
+                placeholder="dd/mm/yyyy"
+                id="addTaskInputDate" />
+            </div>
+            <div class="editOverlayButtonContainer">
+              <button
+                onclick="closeAddTask()"
+                class="overlayDeleteButton addTaskCancelButton">
+                Cancel
+                <img
+                  class="addContactCancelIcon"
+                  src="assets/icons/close.png"
+                  alt="Cancel" />
+              </button>
+              <button
+                onclick="saveTask()"
+                class="overlaySaveButton createContactButtonOverlay">
+                Create Task
+                <img
+                  class="contactCheckIcon"
+                  src="assets/icons/check.png"
+                  alt="Check" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
+  <script>
+    function setMinDate() {
+      const today = new Date().toISOString().slice(0, 10);
+
+      document.getElementsByName("date")[0].min = today;
+    }
+  </script>
 </html>

@@ -100,3 +100,28 @@ body {
   color: white;
   background-color: rgb(47, 68, 99);
 }
+
+/* test section for dropbox in Assigned to */
+.dasNervt {
+  transform: none !important;
+  opacity: 1;
+}
+
+#fakeInputArrow {
+  background-image: url(./assets/icons/arrow_drop_down.png);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: -20px;
+}
+
+.imgInInput {
+  display: flex;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+/* end of test */
