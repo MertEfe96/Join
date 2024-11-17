@@ -69,64 +69,154 @@ function templateAddTask(status) {
 
 function templateAddTaskNav(status) {
   return `
-    <div class="addTaskMain">
-            <div class="headlineAddTaskWindow">
-              <b>Add Task</b>
-            </div>
-            <div>
-              <div class="inputContainer">
-                <form action="" onsubmit="return false">
-                  <div class="inputSubContainer">
-                  Title
+    <div class="headlineAddTaskWindow">
+          <b>Add Task</b>
+        </div>
+        <div class="inputContainer">
+          <form class="formAddTask" onsubmit="return false">
+            <div class="addTaskSplit">
+              <div class="addTaskPortion">
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Title</p>
+                    <p class="star">*</p>
+                  </div>
                   <input
                     id="addTaskInputTitle"
                     type="text"
-                    placeholder="Enter a Title"
-                  />
+                    class="inputAddTask"
+                    placeholder="Enter a Title" />
                 </div>
-                <div class="inputSubContainer">
-                  Description
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Description</p>
+                  </div>
                   <textarea
-                    id="addTaskInputDescription"
-                    type="text"
+                    name=""
+                    class="inputAddTask"
                     placeholder="Enter a Description"
-                  ></textarea>
+                    id="addTaskInputDescription"></textarea>
                 </div>
-                <div class="inputSubContainer">
-                    <label for="category">Select task category:</label>
-                    <select name="category" id="addTaskInputCategory">
-                      <option value="userStory">User Story</option>
-                      <option value="TechnicalTask">Technical Task</option>
-                    </select>
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Assigned to</p>
+                  </div>
+                  <label for="assigned" id="assignedAddTaks" class="imgInInput">
+                    <input
+                      type="text"
+                      id="inputAssignContacts"
+                      class="inputAddTask"
+                      placeholder="Select contacts to assign"
+                      oninput="filterContactsShown()" />
+                    <div class="" id="fakeInputArrow"></div>
+                  </label>
+                  <div id="dropdownContent" class="dropdownContent hide"></div>
                 </div>
-                <div class="editOverlayButtonContainer">
-                  <button
-                    onclick="closeAddTask()"
-                    class="overlayDeleteButton addTaskCancelButton"
+              </div>
+              <div class="divieder"></div>
+              <div class="addTaskPortion">
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Due date</p>
+                    <p class="star">*</p>
+                  </div>
+                  <input
+                    type="text"
+                    onmouseenter="(this.type='date')"
+                    onblur="(this.type='text')"
+                    name="date"
+                    class="inputAddTask"
+                    placeholder="dd/mm/yyyy"
+                    id="addTaskInputDate" />
+                </div>
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Prio</p>
+                  </div>
+                  <div class="prioDiv">
+                    <div
+                      class="prio"
+                      id="prioUrgentDiv"
+                      onclick="changePrio('prioUrgent')">
+                      <p>Urgent</p>
+                      <div
+                        id="prioUrgent"
+                        class="prioUrgentColor prioSvg"></div>
+                    </div>
+                    <div
+                      class="prio"
+                      id="prioMediumDiv"
+                      onclick="changePrio('prioMedium')">
+                      <p>Medium</p>
+                      <div
+                        id="prioMedium"
+                        class="prioMediumColor prioSvg"></div>
+                    </div>
+                    <div
+                      class="prio"
+                      id="prioLowDiv"
+                      onclick="changePrio('prioLow')">
+                      <p>Low</p>
+                      <div id="prioLow" class="prioLowColor prioSvg"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="inputSubContainerAddTask">
+                  <label for="category"
+                    ><div class="inputHeader">
+                      <p>Category</p>
+                      <p class="star">*</p>
+                    </div></label
                   >
-                    Cancel
-                    <img
-                      class="addContactCancelIcon"
-                      src="assets/icons/close.png"
-                      alt="Cancel"
-                    />
-                  </button>
-                  <button
-                    onclick="saveTask('${status}')"
-                    class="overlaySaveButton createContactButtonOverlay"
-                  >
-                    Create Task
-                    <img
-                      class="contactCheckIcon"
-                      src="assets/icons/check.png"
-                      alt="Check"
-                    />
-                  </button>
+                  <select
+                    required
+                    name="category"
+                    class="inputAddTask"
+                    id="addTaskInputCategory">
+                    <option value>Select a task category</option>
+                    <option value="userStory">Technical Task</option>
+                    <option value="TechnicalTask">User Story</option>
+                  </select>
                 </div>
-                </form>
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Subtasks</p>
+                  </div>
+                  <div class="center">
+                    <input
+                      id="addTaskInputTitle"
+                      type="text"
+                      class="inputAddTask"
+                      placeholder="Add new subtask" />
+                    <div class="addIcon"></div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="addTaskButtonContainer">
+              <div class="editOverlayButtonContainer">
+                <button
+                  onclick="closeAddTask()"
+                  class="overlayDeleteButton addTaskCancelButton">
+                  Cancel
+                  <img
+                    class="addContactCancelIcon"
+                    src="assets/icons/close.png"
+                    alt="Cancel" />
+                </button>
+                <button
+                  onclick="saveTask()"
+                  class="overlaySaveButton createContactButtonOverlay">
+                  Create Task
+                  <img
+                    class="contactCheckIcon"
+                    src="assets/icons/check.png"
+                    alt="Check" />
+                </button>
+              </div>
             </div>
+          </form>
+        </div>
     `;
 }
 

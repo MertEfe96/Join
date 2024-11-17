@@ -6,8 +6,15 @@ body {
 
 .editOverlayButtonContainer {
   display: flex;
+  justify-content: flex-end;
+  width: 95%;
   gap: 25px;
   padding-top: 18px;
+}
+
+.addTaskButtonContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .overlayDeleteButton {
@@ -240,6 +247,7 @@ option {
 .prio {
   border-radius: 10px;
   border: 1px solid rgb(191, 191, 191);
+  background-color: #fff;
   outline: none;
   font-size: 20px;
   display: flex;

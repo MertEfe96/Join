@@ -21,7 +21,7 @@
           <b>Add Task</b>
         </div>
         <div class="inputContainer">
-          <form action="" onsubmit="return false">
+          <form class="formAddTask" onsubmit="return false">
             <div class="addTaskSplit">
               <div class="addTaskPortion">
                 <div class="inputSubContainerAddTask">
@@ -141,25 +141,27 @@
                 </div>
               </div>
             </div>
-            <div class="editOverlayButtonContainer">
-              <button
-                onclick="closeAddTask()"
-                class="overlayDeleteButton addTaskCancelButton">
-                Cancel
-                <img
-                  class="addContactCancelIcon"
-                  src="assets/icons/close.png"
-                  alt="Cancel" />
-              </button>
-              <button
-                onclick="saveTask()"
-                class="overlaySaveButton createContactButtonOverlay">
-                Create Task
-                <img
-                  class="contactCheckIcon"
-                  src="assets/icons/check.png"
-                  alt="Check" />
-              </button>
+            <div class="addTaskButtonContainer">
+              <div class="editOverlayButtonContainer">
+                <button
+                  onclick="closeAddTask()"
+                  class="overlayDeleteButton addTaskCancelButton">
+                  Cancel
+                  <img
+                    class="addContactCancelIcon"
+                    src="assets/icons/close.png"
+                    alt="Cancel" />
+                </button>
+                <button
+                  onclick="saveTask()"
+                  class="overlaySaveButton createContactButtonOverlay">
+                  Create Task
+                  <img
+                    class="contactCheckIcon"
+                    src="assets/icons/check.png"
+                    alt="Check" />
+                </button>
+              </div>
             </div>
           </form>
         </div>
