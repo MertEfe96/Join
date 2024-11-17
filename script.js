@@ -3,7 +3,7 @@ const BASE_URL =
 
 function renderLogin() {
   let div = document.getElementById("loginContent");
-  div.innerHTML = loginTemplate();
+  div.innerHTML = signUpTemplate();
 }
 
 function closeLogin() {
