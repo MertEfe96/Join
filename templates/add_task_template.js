@@ -32,8 +32,8 @@ function templateAddTask(status) {
                 <div class="inputSubContainer">
                     <label for="category">Select task category:</label>
                     <select name="category" id="addTaskInputCategory">
-                      <option value="userStory">Technical Task</option>
-                      <option value="TechnicalTask">User Story</option>
+                      <option value="User Story">User Story</option>
+                      <option value="Technical Task">Technical Task</option>
                     </select>
                 </div>
                 <div class="editOverlayButtonContainer">
@@ -95,8 +95,8 @@ function templateAddTaskNav(status) {
                 <div class="inputSubContainer">
                     <label for="category">Select task category:</label>
                     <select name="category" id="addTaskInputCategory">
-                      <option value="userStory">Technical Task</option>
-                      <option value="TechnicalTask">User Story</option>
+                      <option value="userStory">User Story</option>
+                      <option value="TechnicalTask">Technical Task</option>
                     </select>
                 </div>
                 <div class="editOverlayButtonContainer">
