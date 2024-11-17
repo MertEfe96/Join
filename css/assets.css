@@ -224,3 +224,8 @@ header {
 .subHeadlineColor {
   color: #2a3647;
 }
+
+.urgentIcon {
+  width: 34.19px;
+  margin-bottom: 3px;
+}
