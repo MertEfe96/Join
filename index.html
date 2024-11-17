@@ -82,17 +82,30 @@
                     <p>Prio</p>
                   </div>
                   <div class="prioDiv">
-                    <div class="prio">
+                    <div
+                      class="prio"
+                      id="prioUrgentDiv"
+                      onclick="changePrio('prioUrgent')">
                       <p>Urgent</p>
-                      <img src="./assets/icons/urgent.svg" />
+                      <div
+                        id="prioUrgent"
+                        class="prioUrgentColor prioSvg"></div>
                     </div>
-                    <div class="prio">
+                    <div
+                      class="prio"
+                      id="prioMediumDiv"
+                      onclick="changePrio('prioMedium')">
                       <p>Medium</p>
-                      <img src="./assets/icons/medium.svg" alt="" />
+                      <div
+                        id="prioMedium"
+                        class="prioMediumColor prioSvg"></div>
                     </div>
-                    <div class="prio">
+                    <div
+                      class="prio"
+                      id="prioLowDiv"
+                      onclick="changePrio('prioLow')">
                       <p>Low</p>
-                      <img src="./assets/icons/low.svg" alt="" />
+                      <div id="prioLow" class="prioLowColor prioSvg"></div>
                     </div>
                   </div>
                 </div>

@@ -45,3 +45,25 @@ function renderContactsToAssign(dropdown, contacts) {
     dropdown.innerHTML += assigneContactTemplate(key, contact, index);
   });
 }
+
+function changePrio(prio) {
+  const prioritieDivs = ["prioUrgentDiv", "prioMediumDiv", "prioLowDiv"];
+  const prioritieIcons = ["prioUrgent", "prioMedium", "prioLow"];
+  let prioId = prioritieIcons.indexOf(prio);
+  prioritieIcons.forEach((prioritie, i) => {
+    document.getElementById(prioritie).classList.add(prioritie + "Color");
+    document.getElementById(prioritie).classList.remove(prioritie + "White");
+    document
+      .getElementById(prioritie + "Div")
+      .classList.remove(prioritie + "ColorDiv");
+  });
+  document
+    .getElementById(prioritieIcons[prioId])
+    .classList.add(prioritieIcons[prioId] + "White");
+  document
+    .getElementById(prioritieDivs[prioId])
+    .classList.add(prioritieIcons[prioId] + "ColorDiv");
+  document
+    .getElementById(prioritieIcons[prioId])
+    .classList.remove(prioritieIcons[prioId] + "Color");
+}

@@ -246,9 +246,57 @@ option {
   gap: 8px;
   width: 30%;
   justify-content: center;
+  align-items: center;
 }
 
-.selectedPrio {
-  color: red;
+.prio:hover {
+  cursor: pointer;
+}
+
+.prioSvg {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.prioUrgentColor {
+  background-image: url(./assets/icons/urgentColor.svg);
+}
+
+.prioUrgentColorDiv {
+  background-color: #ff3d00;
+  color: white;
+}
+
+.prioUrgentWhite {
+  background-image: url(./assets/icons/urgentWhite.svg);
+}
+
+.prioMediumColor {
+  background-image: url(./assets/icons/mediumColor.svg);
+}
+
+.prioMediumWhite {
+  background-image: url(./assets/icons/mediumWhite.svg);
+}
+
+.prioMediumColorDiv {
+  background-color: #ffa800;
+  color: white;
+}
+
+.prioLowColor {
+  background-image: url(./assets/icons/lowColor.svg);
+}
+
+.prioLowWhite {
+  background-image: url(./assets/icons/lowWhite.svg);
+}
+
+.prioLowColorDiv {
+  background-color: #7ae229;
+  color: white;
 }
 /* end of test */
