@@ -11,32 +11,37 @@ function closeLogin() {
   div.innerHTML = "";
 }
 
-function showDropDown() {
-  document.getElementById("myDropdown").classList.toggle("show");
+window.addEventListener("click", function (e) {
+  let dropdown = document.getElementById("dropdownContent");
+  let arrow = document.getElementById("fakeInputArrow");
+  switch (
+    (document.getElementById("dropdownContent").contains(e.target) ||
+      document.getElementById("assignedAddTaks").contains(e.target)) &&
+    dropdown.classList.contains("show")
+  ) {
+    case true:
+      break;
+
+    case false:
+      dropdown.classList.remove("show");
+      arrow.classList.remove("rotate");
+  }
+});
+
+async function pullContactsToAssign(dropdown) {
+  let response = await fetch(BASE_URL + ".json");
+  let data = await response.json();
+  let contacts = data.contacts;
+
+  if (contacts) {
+    renderContactsToAssign(dropdown, contacts);
+  }
 }
 
-function onClickListAssigneesEventListener() {
-  document
-    .getElementById("assignedAddTaks")
-    .addEventListener("mouseover", function () {
-      listAssignees(0, "edit");
-    });
-
-  document
-    .getElementById("assignedAddTaks")
-    .addEventListener("click", function (event) {
-      event.stopPropagation(); // Verhindert das Schließen der Liste beim Klicken
-    });
-
-  document
-    .getElementById("assignedAddTaks")
-    .addEventListener("click", function (event) {
-      let dropdown = document.getElementById("dropdown-content");
-      if (
-        !dropdown.contains(event.target) &&
-        event.target.id !== "assignedAddTaks"
-      ) {
-        dropdown.style.display = "none";
-      }
-    });
+function renderContactsToAssign(dropdown, contacts) {
+  dropdown.innerHTML = "";
+  const sortedContacts = sortContacts(contacts);
+  sortedContacts.forEach(([key, contact], index) => {
+    dropdown.innerHTML += assigneContactTemplate(key, contact, index);
+  });
 }

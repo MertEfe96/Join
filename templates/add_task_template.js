@@ -129,3 +129,17 @@ function templateAddTaskNav(status) {
             </div>
     `;
 }
+
+function assigneContactTemplate(key, contact, i) {
+  const initials = contact.name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+  return `
+  <div class="inDropdown" id="inDropdown${i}">
+  <div class="contactInitialsExtraSmall">${initials}</div>
+  <div class="contactName">${contact.name}</div>
+  <input type="checkbox" name="" id="${key}" />
+</div>`;
+}

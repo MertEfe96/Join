@@ -9,74 +9,124 @@
     <link rel="stylesheet" href="./css/site_style/login_signup.css" />
     <link rel="stylesheet" href="./css/site_style/board.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/site_style/board.css" />
     <script src="./script.js"></script>
+    <script src="./JavaScript/contacts.js"></script>
+    <script src="./templates/add_task_template.js"></script>
   </head>
   <body onload="setMinDate()">
     <div class="boardOverlay dasNervt" id="addTask">
       <div class="addTaskMain">
         <div class="headlineAddTaskWindow">
           <b>Add Task</b>
-          <img
-            class="contactCloseIcon"
-            src="assets/icons/close.png"
-            alt="Close" />
         </div>
         <div class="inputContainer">
           <form action="" onsubmit="return false">
             <div class="addTaskSplit">
               <div class="addTaskPortion">
-                <div class="inputSubContainer">
-                  Title*
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Title</p>
+                    <p class="star">*</p>
+                  </div>
                   <input
                     id="addTaskInputTitle"
                     type="text"
+                    class="inputAddTask"
                     placeholder="Enter a Title" />
                 </div>
-                <div class="inputSubContainer">
-                  Description
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Description</p>
+                  </div>
                   <textarea
                     name=""
+                    class="inputAddTask"
                     placeholder="Enter a Description"
                     id="addTaskInputDescription"></textarea>
                 </div>
-                <div class="inputSubContainer">
-                  Assigned to
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Assigned to</p>
+                  </div>
                   <label for="assigned" id="assignedAddTaks" class="imgInInput">
                     <input
                       type="text"
                       id="inputAssignContacts"
-                      class=""
+                      class="inputAddTask"
                       placeholder="Select contacts to assign"
                       oninput="filterContactsShown()" />
-                    <div
-                      style="transform: rotate(180deg)"
-                      id="fakeInputArrow"></div>
+                    <div class="" id="fakeInputArrow"></div>
                   </label>
-                  <div id="dropdown-content" class="hide show">
-                    TechnicalTask
+                  <div id="dropdownContent" class="dropdownContent hide"></div>
+                </div>
+              </div>
+              <div class="divieder"></div>
+              <div class="addTaskPortion">
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Due date</p>
+                    <p class="star">*</p>
+                  </div>
+                  <input
+                    type="text"
+                    onmouseenter="(this.type='date')"
+                    onblur="(this.type='text')"
+                    name="date"
+                    class="inputAddTask"
+                    placeholder="dd/mm/yyyy"
+                    id="addTaskInputDate" />
+                </div>
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Prio</p>
+                  </div>
+                  <div class="prioDiv">
+                    <div class="prio">
+                      <p>Urgent</p>
+                      <img src="./assets/icons/urgent.svg" />
+                    </div>
+                    <div class="prio">
+                      <p>Medium</p>
+                      <img src="./assets/icons/medium.svg" alt="" />
+                    </div>
+                    <div class="prio">
+                      <p>Low</p>
+                      <img src="./assets/icons/low.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="inputSubContainerAddTask">
+                  <label for="category"
+                    ><div class="inputHeader">
+                      <p>Category</p>
+                      <p class="star">*</p>
+                    </div></label
+                  >
+                  <select
+                    required
+                    name="category"
+                    class="inputAddTask"
+                    id="addTaskInputCategory">
+                    <option value>Select a task category</option>
+                    <option value="userStory">Technical Task</option>
+                    <option value="TechnicalTask">User Story</option>
+                  </select>
+                </div>
+                <div class="inputSubContainerAddTask">
+                  <div class="inputHeader">
+                    <p>Subtasks</p>
+                  </div>
+                  <div class="center">
+                    <input
+                      id="addTaskInputTitle"
+                      type="text"
+                      class="inputAddTask"
+                      placeholder="Add new subtask" />
+                    <div class="addIcon"></div>
                   </div>
                 </div>
               </div>
-              <div class="addTaskPortion"></div>
-            </div>
-
-            <div class="inputSubContainer">
-              <label for="category">Category*</label>
-              <select name="category" id="addTaskInputCategory">
-                <option value="" disabled selected hidden>
-                  Select a task category
-                </option>
-                <option value="userStory">Technical Task</option>
-                <option value="TechnicalTask">User Story</option>
-              </select>
-            </div>
-            <div class="inputSubContainer">
-              Due date*
-              <input
-                type="date"
-                name="date"
-                placeholder="dd/mm/yyyy"
-                id="addTaskInputDate" />
             </div>
             <div class="editOverlayButtonContainer">
               <button
@@ -109,5 +159,16 @@
 
       document.getElementsByName("date")[0].min = today;
     }
+    let assignedAddTaks = document.getElementById("assignedAddTaks");
+
+    assignedAddTaks.addEventListener("click", () => {
+      let dropdown = document.getElementById("dropdownContent");
+      let arrow = document.getElementById("fakeInputArrow");
+      dropdown.classList.toggle("show");
+      arrow.classList.toggle("rotate");
+      if (dropdown.classList.contains("show")) {
+        pullContactsToAssign(dropdown);
+      }
+    });
   </script>
 </html>
