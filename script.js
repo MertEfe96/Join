@@ -47,7 +47,6 @@ function renderContactsToAssign(dropdown, contacts) {
 }
 
 function changePrio(prio) {
-  const prioritieDivs = ["prioUrgentDiv", "prioMediumDiv", "prioLowDiv"];
   const prioritieIcons = ["prioUrgent", "prioMedium", "prioLow"];
   let prioId = prioritieIcons.indexOf(prio);
   prioritieIcons.forEach((prioritie, i) => {
@@ -61,7 +60,7 @@ function changePrio(prio) {
     .getElementById(prioritieIcons[prioId])
     .classList.add(prioritieIcons[prioId] + "White");
   document
-    .getElementById(prioritieDivs[prioId])
+    .getElementById(prioritieIcons[prioId] + "Div")
     .classList.add(prioritieIcons[prioId] + "ColorDiv");
   document
     .getElementById(prioritieIcons[prioId])

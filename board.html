@@ -62,7 +62,47 @@
         <a href="./privacy_policy.html" class="dropDownLink">Privacy Policy</a>
         <span class="dropDownLink">Log out</span>
       </div>
-      <div class="content"></div>
+      <div class="content">
+        <div class="headerBoard">
+        <div style="font-size: 48px"><b> Board </b></div>
+        <div class="searchBarTasks">
+          <div class="searchBarDiv">
+          <input
+            class="findTaskInput"
+            required
+            type="text"
+            placeholder="Find Task"
+            id="FindTask"
+          />
+          <img
+          src="./assets/icons/search.svg"
+          alt="email icon"
+          class="iconSearch" /></div>
+          <button class="AddTaskButton" onclick="addTask()">Add task +</button>
+        </div>
+      </div>
+
+      <div class="boardContent">
+        <div class="statusContainer">
+          <div class="statusHeadline"><b>To Do</b> <img onclick="addTask()" src="./assets/icons/plusbutton.png" /></div>
+          <div class="taskCard drag-area" id="ToDoCard" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div class="statusContainer">
+          <div class="statusHeadline"><b>In progress</b><img onclick="addTask('in-progress')" src="./assets/icons/plusbutton.png" /></div>
+          <div class="taskCard drag-area" id="InProgressCard" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div class="statusContainer">
+          <div class="statusHeadline"><b>Await feedback</b><img onclick="addTask('await-feedback')" src="./assets/icons/plusbutton.png" /></div>
+          <div class="taskCard drag-area" id="AwaitFeedbackCard" ondrop="moveTo('await-feedback')" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div class="statusContainer">
+          <div class="statusHeadline"><b>Done</b></div>
+          <div class="taskCard drag-area" id="DoneCard" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+        </div>
+      </div></div>
 
       <!--add Task start-->
       <div
@@ -152,46 +192,7 @@
       </div>
       <!--add Task end-->
 
-      <div class="headerBoard">
-        <div style="font-size: 48px"><b> Board </b></div>
-        <div class="searchBarTasks">
-          <div class="searchBarDiv">
-          <input
-            class="findTaskInput"
-            required
-            type="text"
-            placeholder="Find Task"
-            id="FindTask"
-          />
-          <img
-          src="./assets/icons/search.svg"
-          alt="email icon"
-          class="iconSearch" /></div>
-          <button class="AddTaskButton" onclick="addTask()">Add task +</button>
-        </div>
-      </div>
-
-      <div class="boardContent">
-        <div class="statusContainer">
-          <div class="statusHeadline"><b>To Do</b> <img onclick="addTask()" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="ToDoCard" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
-        </div>
-
-        <div class="statusContainer">
-          <div class="statusHeadline"><b>In progress</b><img onclick="addTask('in-progress')" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="InProgressCard" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)"></div>
-        </div>
-
-        <div class="statusContainer">
-          <div class="statusHeadline"><b>Await feedback</b><img onclick="addTask('await-feedback')" src="./assets/icons/plusbutton.png" /></div>
-          <div class="taskCard drag-area" id="AwaitFeedbackCard" ondrop="moveTo('await-feedback')" ondragover="allowDrop(event)"></div>
-        </div>
-
-        <div class="statusContainer">
-          <div class="statusHeadline"><b>Done</b></div>
-          <div class="taskCard drag-area" id="DoneCard" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
-        </div>
-      </div>
+      
     </div>
   </div>
   <div id="loginContent" class="loginContent"></div>
