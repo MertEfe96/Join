@@ -1,3 +1,5 @@
+let currentDraggedElement;
+
 /**
  * This function opens add-contact-form
  */
@@ -33,6 +35,10 @@ function closeAddTask() {
 
 /**
  * This function saves the tasks in the API
+ *
+ * @param {string} [status="to-do"] The status of the task (default is "to-do").
+ * @param {Object} [data=""] Optional task data; if not provided, it is constructed from input fields.
+ *
  */
 async function saveTask(status = "to-do", data = "") {
   let title = document.getElementById("addTaskInputTitle").value;
@@ -72,7 +78,7 @@ async function pullTasks() {
 }
 
 /**
- * This function renders tasks
+ * This function renders tasks and after sorting them according to their status
  *
  * @param {*} tasks this is the whole tasklist saved in the API,
  *                      given by the pullTasks() funtion
@@ -95,20 +101,22 @@ function renderGroupedTasks(tasks) {
     taskDiv.ondragstart = function (event) {
       startDragging(key);
     };
-    if (taskdetails.Status === "to-do") {
-      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
-      taskListToDo.appendChild(taskDiv);
-    } else if (taskdetails.Status === "in-progress") {
-      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
-      taskListInProgress.appendChild(taskDiv);
-    } else if (taskdetails.Status === "await-feedback") {
-      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
-      taskListAwaitFeedback.appendChild(taskDiv);
-    } else if (taskdetails.Status === "done") {
-      taskDiv.innerHTML = `<b>Category</b>: ${taskdetails.Category} <br> <b>Title</b>: ${taskdetails.Title} <br> <b>Description</b>: ${taskdetails.Description} <br> <br> <br>`;
-      taskListDone.appendChild(taskDiv);
-    }
+    let categoryClass =
+      taskdetails.Category === "Technical Task"
+        ? "technicalTaskColor"
+        : "userStoryColor";
+    sortTasks(
+      key,
+      taskdetails,
+      categoryClass,
+      taskDiv,
+      taskListToDo,
+      taskListInProgress,
+      taskListAwaitFeedback,
+      taskListDone
+    );
   });
+
   checkCardEmpty(
     taskListToDo,
     taskListInProgress,
@@ -117,15 +125,87 @@ function renderGroupedTasks(tasks) {
   );
 }
 
-let currentDraggedElement;
+/**
+ * This function sorts tasks according to their status
+ *
+ * @param {*} key this is the created key of the task when saved in the API,
+ *                      given by the pullTasks() funktion
+ * @param {*} taskdetails this is the whole information of the task when saved in the API
+ * @param {*} categoryClass this is the task category
+ * @param {*} taskDiv this is the created taskDiv
+ * @param {*} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ */
+function sortTasks(
+  key,
+  taskdetails,
+  categoryClass,
+  taskDiv,
+  taskListToDo,
+  taskListInProgress,
+  taskListAwaitFeedback,
+  taskListDone
+) {
+  if (taskdetails.Status === "to-do") {
+    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
+    taskListToDo.appendChild(taskDiv);
+  } else if (taskdetails.Status === "in-progress") {
+    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
+    taskListInProgress.appendChild(taskDiv);
+  } else if (taskdetails.Status === "await-feedback") {
+    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
+    taskListAwaitFeedback.appendChild(taskDiv);
+  } else if (taskdetails.Status === "done") {
+    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
+    taskListDone.appendChild(taskDiv);
+  }
+}
+
+/**
+ * This function returns the html structured TaskCards
+ *
+ * @param {*} key this the created key of the task when saved in the API,
+ *                      given by the pullTasks() funktion
+ * @param {*} taskdetails this is the whole information of the task when saved in the API
+ * @param {*} categoryClass this is the task category
+ */
+function renderTaskCard(key, taskdetails, categoryClass) {
+  return `
+<div id="categoryCard${key}" class="categoryCard ${categoryClass}">${taskdetails.Category}</div>
+<div class="titleCard">${taskdetails.Title}</div>
+<div class="descriptionCard">${taskdetails.Description}</div>
+<div id="subtasksCard${key}" class="subtasksCard"></div>
+<div class="bottomCard">
+  <div id="assignedToCard${key}"></div>
+  <div id="priorityCard${key}"></div>
+</div>`;
+}
+
+/**
+ * This function sets the identifier of the currently dragged task.
+ *
+ * @param {*} key This the created key of the task when saved in the API,
+ *                      given by the pullTasks() funktion
+ */
 function startDragging(key) {
   currentDraggedElement = key;
 }
 
+/**
+ * This function allows an element to be dropped into a drop target.
+ *
+ * @param {DragEvent} ev The drag event triggered when an element is dragged over a valid drop target.
+ *                       The event is used to prevent the default behavior, enabling the drop action.
+ */
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
+/**
+ * This function updates the status of the currently dragged task in the database.
+ *
+ * @param {string} status The new status to assign to the task (e.g., "to-do", "in-progress", etc.).
+ *
+ */
 async function moveTo(status) {
   let response = await fetch(
     BASE_URL + `tasks/${currentDraggedElement}/Status/.json`,
@@ -140,6 +220,14 @@ async function moveTo(status) {
   pullTasks();
 }
 
+/**
+ * This function checks if the given task lists are empty and updates their content accordingly.
+ *
+ * @param {HTMLElement} taskListToDo The DOM element representing the "To Do" task list.
+ * @param {HTMLElement} taskListInProgress The DOM element representing the "In Progress" task list.
+ * @param {HTMLElement} taskListAwaitFeedback The DOM element representing the "Awaiting Feedback" task list.
+ * @param {HTMLElement} taskListDone The DOM element representing the "Done" task list.
+ */
 function checkCardEmpty(
   taskListToDo,
   taskListInProgress,
@@ -152,6 +240,12 @@ function checkCardEmpty(
   updateCard(taskListAwaitFeedback, "No tasks awaiting feedback");
 }
 
+/**
+ * This function updates the visual state and content of a task list based on its emptiness.
+ *
+ * @param {HTMLElement} taskList The DOM element representing the task list to be updated.
+ * @param {string} emptyMessage The message to display if the task list is empty.
+ */
 function updateCard(taskList, emptyMessage) {
   if (taskList.children.length === 0) {
     taskList.classList.add("dragAreaEmpty");
