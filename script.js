@@ -11,20 +11,26 @@ function closeLogin() {
   div.innerHTML = "";
 }
 
-window.addEventListener("click", function (e) {
+document.body.addEventListener("click", function (e) {
   let dropdown = document.getElementById("dropdownContent");
   let arrow = document.getElementById("fakeInputArrow");
-  switch (
-    (document.getElementById("dropdownContent").contains(e.target) ||
-      document.getElementById("assignedAddTaks").contains(e.target)) &&
-    dropdown.classList.contains("show")
-  ) {
-    case true:
-      break;
-
-    case false:
+  let assignedAddTasks = document.getElementById("assignedAddTaks");
+  if (dropdown && arrow && assignedAddTasks) {
+    let isInsideDropdown = dropdown.contains(e.target);
+    let isInsideAssignedAddTasks = assignedAddTasks.contains(e.target);
+    if (
+      !isInsideDropdown &&
+      !isInsideAssignedAddTasks &&
+      dropdown.classList.contains("show")
+    ) {
       dropdown.classList.remove("show");
       arrow.classList.remove("rotate");
+    }
+    if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
+      dropdown.classList.add("show");
+      arrow.classList.add("rotate");
+      pullContactsToAssign(dropdown);
+    }
   }
 });
 
@@ -65,4 +71,22 @@ function changePrio(prio) {
   document
     .getElementById(prioritieIcons[prioId])
     .classList.remove(prioritieIcons[prioId] + "Color");
+}
+
+function setMinDate() {
+  const today = new Date().toISOString().slice(0, 10);
+
+  document.getElementsByName("date")[0].min = today;
+}
+
+async function pushTask() {}
+
+function setDataForTask() {
+  let title = document.getElementById("addTaskInputTitle").value;
+  let description = document.getElementById("addTaskInputDescription").value;
+  let assigned = document.getElementById("input").value;
+  let date = document.getElementById("addTaskInputTitle").value;
+  let prio = document.getElementById("addTaskInputTitle").value;
+  let category = document.getElementById("addTaskInputTitle").value;
+  let subtasks = document.getElementById("addTaskInputTitle").value;
 }

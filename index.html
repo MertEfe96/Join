@@ -72,6 +72,7 @@
                     type="text"
                     onmouseenter="(this.type='date')"
                     onblur="(this.type='text')"
+                    pattern="\d{2}\.\d{2}\.\d{4}"
                     name="date"
                     class="inputAddTask"
                     placeholder="dd/mm/yyyy"
@@ -171,19 +172,30 @@
   <script>
     function setMinDate() {
       const today = new Date().toISOString().slice(0, 10);
-
       document.getElementsByName("date")[0].min = today;
     }
-    let assignedAddTaks = document.getElementById("assignedAddTaks");
 
-    assignedAddTaks.addEventListener("click", () => {
-      let dropdown = document.getElementById("dropdownContent");
-      let arrow = document.getElementById("fakeInputArrow");
-      dropdown.classList.toggle("show");
-      arrow.classList.toggle("rotate");
-      if (dropdown.classList.contains("show")) {
-        pullContactsToAssign(dropdown);
-      }
-    });
+    // window.addEventListener("click", function (e) {
+    //   let dropdown = document.getElementById("dropdownContent");
+    //   let arrow = document.getElementById("fakeInputArrow");
+    //   let assignedAddTasks = document.getElementById("assignedAddTaks");
+    //   if (dropdown && arrow && assignedAddTasks) {
+    //     let isInsideDropdown = dropdown.contains(e.target);
+    //     let isInsideAssignedAddTasks = assignedAddTasks.contains(e.target);
+    //     if (
+    //       !isInsideDropdown &&
+    //       !isInsideAssignedAddTasks &&
+    //       dropdown.classList.contains("show")
+    //     ) {
+    //       dropdown.classList.remove("show");
+    //       arrow.classList.remove("rotate");
+    //     }
+    //     if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
+    //       dropdown.classList.add("show");
+    //       arrow.classList.add("rotate");
+    //       pullContactsToAssign(dropdown);
+    //     }
+    //   }
+    // });
   </script>
 </html>

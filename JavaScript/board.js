@@ -10,6 +10,7 @@ function addTask(status = "to-do") {
   setTimeout(() => addTaskMain.classList.add("show"), 10);
   setTimeout(() => addTask.classList.add("show"), 10);
   addTask.innerHTML = templateAddTask(status);
+  assignedAddTaks = document.getElementById("assignedAddTaks");
 }
 
 function addTaskNav() {
