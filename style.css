@@ -307,4 +307,14 @@ option {
   background-color: #7ae229;
   color: white;
 }
+
+#assignedContactsImgDiv {
+  display: flex;
+  padding-left: 8px;
+  width: calc(100% - 16px);
+}
+
+.addTaskInitals {
+  margin-left: -8px;
+}
 /* end of test */

@@ -65,6 +65,7 @@ function changePrio(prio) {
   document
     .getElementById(prioritieIcons[prioId])
     .classList.add(prioritieIcons[prioId] + "White");
+  document.getElementById(prioritieIcons[prioId]).classList.add("chosenPrio");
   document
     .getElementById(prioritieIcons[prioId] + "Div")
     .classList.add(prioritieIcons[prioId] + "ColorDiv");
@@ -77,16 +78,4 @@ function setMinDate() {
   const today = new Date().toISOString().slice(0, 10);
 
   document.getElementsByName("date")[0].min = today;
-}
-
-async function pushTask() {}
-
-function setDataForTask() {
-  let title = document.getElementById("addTaskInputTitle").value;
-  let description = document.getElementById("addTaskInputDescription").value;
-  let assigned = document.getElementById("input").value;
-  let date = document.getElementById("addTaskInputTitle").value;
-  let prio = document.getElementById("addTaskInputTitle").value;
-  let category = document.getElementById("addTaskInputTitle").value;
-  let subtasks = document.getElementById("addTaskInputTitle").value;
 }
