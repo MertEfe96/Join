@@ -250,3 +250,23 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.assignedToCard {
+  display: flex;
+  flex-direction: row;
+}
+
+.contactInitialsBoard {
+  margin-left: 24px;
+  font-size: 12px;
+  background-color: rgba(147, 39, 255, 1);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  color: #ffffff;
+  border: 2px solid white;
+  margin: -8px;
+}
