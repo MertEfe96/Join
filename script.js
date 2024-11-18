@@ -11,7 +11,7 @@ function closeLogin() {
   div.innerHTML = "";
 }
 
-document.body.addEventListener("click", function (e) {
+document.addEventListener("click", function (e) {
   let dropdown = document.getElementById("dropdownContent");
   let arrow = document.getElementById("fakeInputArrow");
   let assignedAddTasks = document.getElementById("assignedAddTaks");
