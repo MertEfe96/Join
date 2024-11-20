@@ -1,4 +1,4 @@
-function summaryBoardTemplate(count) {
+function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount) {
   return `
   <div class="upperRow">
     <div class="toDoDisplay">
@@ -6,7 +6,7 @@ function summaryBoardTemplate(count) {
         <img class="editIconSummary" src="assets/icons/editSummary.png" alt="Edit">
       </div>
       <div class="displayRightSection">
-        <div class="toDoDoneAmount">${count}</div>
+        <div class="toDoDoneAmount">${countToDo}</div>
         <div class="toDoDone">To-do</div>
       </div>
     </div>
@@ -15,7 +15,7 @@ function summaryBoardTemplate(count) {
         <img class="doneIconSummary" src="assets/icons/doneSummary.png" alt="Done">
       </div>
       <div class="displayRightSection">
-        <div class="toDoDoneAmount">1</div>
+        <div class="toDoDoneAmount">${countDone}</div>
         <div class="toDoDone">Done</div>
       </div>
     </div>
@@ -38,15 +38,15 @@ function summaryBoardTemplate(count) {
   </div>
   <div class="lowerRow">
     <div class="tasksBoardDisplay lowerRowSubContainer">
-      <div class="lowerRowAmount">5</div>
+      <div class="lowerRowAmount">${taskCount}</div>
       <div class="lowerRowType">Tasks in <br> Board</div>
     </div>
     <div class="tasksProgressDisplay lowerRowSubContainer">
-      <div class="lowerRowAmount">2</div>
+      <div class="lowerRowAmount">${countInProgress}</div>
       <div class="lowerRowType">Tasks in <br> Progress</div>
     </div>
     <div class="feedbackDisplay lowerRowSubContainer">
-      <div class="lowerRowAmount">2</div>
+      <div class="lowerRowAmount">${countAwaitFeedback}</div>
       <div class="lowerRowType">Awaiting <br> Feedback</div>
     </div>
   </div>

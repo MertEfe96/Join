@@ -149,7 +149,7 @@ function closeAddContact() {
 }
 
 /**
- * THis function empties input-value from add-contact-form
+ * This function empties input-value from add-contact-form
  */
 function emptyInputAddContact() {
   document.getElementById("addContactInputName").value = "";
