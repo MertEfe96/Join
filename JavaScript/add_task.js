@@ -47,10 +47,10 @@ function setDataForTask() {
     Category: category,
     Subtaks: subtasks,
   };
-  pushTask(data);
+  postTask(data);
 }
 
-async function pushTask(data, status = "to-do") {
+async function postTask(data, status = "to-do") {
   let response = await fetch(BASE_URL + "tasks/.json", {
     method: "POST",
     headers: {

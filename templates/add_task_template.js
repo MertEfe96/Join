@@ -2,6 +2,7 @@ function templateAddTask(status) {
   return `
     <div class="headlineAddTaskWindow">
           <b>Add Task</b>
+          <button onclick="closeAddTask()"><img src="./assets/icons/close.png" alt=""></button>
         </div>
         <div class="inputContainer">
           <form class="formAddTask" onsubmit="return false">
@@ -34,7 +35,7 @@ function templateAddTask(status) {
                   </div>
                   <label for="assigned" id="assignedAddTaks" class="imgInInput">
                     <input
-                    onfocus="openDropDownAssignContacts()"
+                    
                       type="text"
                       id="inputAssignContacts"
                       class="inputAddTask"
@@ -43,6 +44,7 @@ function templateAddTask(status) {
                     <div class="" id="fakeInputArrow"></div>
                   </label>
                   <div id="dropdownContent" class="dropdownContent hide"></div>
+                  <div id="assignedContactsImgDiv"></div>
                 </div>
               </div>
               <div class="divieder"></div>
@@ -116,12 +118,13 @@ function templateAddTask(status) {
                   </div>
                   <div class="center">
                     <input
-                      id="addTaskInputTitle"
+                      id="addTaskInputSubtask"
                       type="text"
                       class="inputAddTask"
                       placeholder="Add new subtask" />
-                    <div class="addIcon"></div>
+                    <div onclick="renderSubtasks()" class="addIcon"></div>
                   </div>
+                  <div id="subtasksList"></div>
                 </div>
               </div>
             </div>
@@ -137,7 +140,7 @@ function templateAddTask(status) {
                     alt="Cancel" />
                 </button>
                 <button
-                  onclick="saveTask()"
+                  onclick="setDataForTask()"
                   class="overlaySaveButton createContactButtonOverlay">
                   Create Task
                   <img
