@@ -1,4 +1,5 @@
 let assignedContacts = [];
+let subtasksArray = [];
 
 function renderAssignedContactsInAddTask() {
   let div = document.getElementById("assignedContactsImgDiv");
@@ -26,18 +27,35 @@ function renderSubtasks() {
   let subtask = document.getElementById("addTaskInputSubtask");
   let div = document.getElementById("subtasksList");
   div.innerHTML += subtaskTemplate(subtask.value);
+  subtasksArray.push(subtask.value);
 }
 
 function setDataForTask() {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
   let assigned = assignedContacts;
-  let date = document.getElementById("addTaskInputTitle").value;
+  let date = document.getElementById("addTaskInputDate").value;
   let prio = document.getElementsByClassName("chosenPrio")[0].id;
   let category = document.getElementById("addTaskInputCategory").value;
-  let subtasks = document.getElementById("addTaskInputTitle").value;
-  let data = {};
+  let subtasks = subtasksArray;
+  let data = {
+    Title: title,
+    Description: description,
+    AssignedTo: assigned,
+    DueDate: date,
+    Priority: prio,
+    Category: category,
+    Subtaks: subtasks,
+  };
   pushTask(data);
 }
 
-async function pushTask(data) {}
+async function pushTask(data, status = "to-do") {
+  let response = await fetch(BASE_URL + "tasks/.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}
