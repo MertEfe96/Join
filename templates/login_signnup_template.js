@@ -42,7 +42,7 @@ function loginTemplate() {
               <p>Remember me</p>
             </div>
             <div class="loginButtonDiv">
-              <button class="hover buttonLogin">Log in</button>
+              <button onclick="loginRequest()" class="hover buttonLogin">Log in</button>
               <span onclick="closeLogin()" class="hover buttonGuestLogin">Guest Log in</span>
             </div>
           </form>
@@ -142,7 +142,7 @@ function signUpTemplate() {
               </p>
             </div>
             <div class="loginButtonDiv">
-              <button class="hover buttonLogin">Sign up</button>
+              <button onclick="postSignUp()" class="hover buttonLogin">Sign up</button>
             </div>
           </form>
         </div>

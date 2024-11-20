@@ -46,6 +46,7 @@ async function saveTask(status = "to-do", data = "") {
   let description = document.getElementById("addTaskInputDescription").value;
   description.replace("<", ".");
   let category = document.getElementById("addTaskInputCategory").value;
+  let assignedTo = document.getElementById("inputAssignContacts").value;
   if (status == "") {
     status = "to-do";
   }
@@ -54,6 +55,7 @@ async function saveTask(status = "to-do", data = "") {
     Description: description,
     Category: category,
     Status: status,
+    AssignedTo: assignedTo,
   };
   let response = await fetch(BASE_URL + "tasks/.json", {
     method: "POST",
@@ -146,19 +148,17 @@ function sortTasks(
   taskListAwaitFeedback,
   taskListDone
 ) {
+  taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
   if (taskdetails.Status === "to-do") {
-    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     taskListToDo.appendChild(taskDiv);
   } else if (taskdetails.Status === "in-progress") {
-    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     taskListInProgress.appendChild(taskDiv);
   } else if (taskdetails.Status === "await-feedback") {
-    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     taskListAwaitFeedback.appendChild(taskDiv);
   } else if (taskdetails.Status === "done") {
-    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     taskListDone.appendChild(taskDiv);
   }
+  loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
 }
 
 /**
@@ -176,9 +176,38 @@ function renderTaskCard(key, taskdetails, categoryClass) {
 <div class="descriptionCard">${taskdetails.Description}</div>
 <div id="subtasksCard${key}" class="subtasksCard"></div>
 <div class="bottomCard">
-  <div id="assignedToCard${key}"></div>
+  <div class="assignedToCard" id="assignedToCard${key}"></div>
   <div id="priorityCard${key}"></div>
 </div>`;
+}
+async function loadAssignedContacts(key, assignedTo, taskDiv) {
+  const assignedToContainer = taskDiv.querySelector(`#assignedToCard${key}`);
+
+  let response = await fetch(BASE_URL + ".json");
+  let data = await response.json();
+
+  console.log("Type of assignedTo:", typeof assignedTo);
+  assignedTo = assignedTo.split(",").map((name) => name.trim());
+  assignedToContainer.innerHTML = "";
+
+  assignedTo.forEach((contactName) => {
+    let contactData = Object.values(data.contacts || {}).find(
+      (contact) => contact.name === contactName
+    );
+    let backgroundColor = contactData?.color || "#ccc";
+    const initials = contactName
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+
+    assignedToContainer.innerHTML += `
+      <div 
+        class="contactInitialsBoard" 
+        style="background-color: ${backgroundColor};">
+        ${initials}
+      </div>`;
+  });
 }
 
 /**

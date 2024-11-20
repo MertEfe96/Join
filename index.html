@@ -169,33 +169,4 @@
       </div>
     </div>
   </body>
-  <script>
-    function setMinDate() {
-      const today = new Date().toISOString().slice(0, 10);
-      document.getElementsByName("date")[0].min = today;
-    }
-
-    // window.addEventListener("click", function (e) {
-    //   let dropdown = document.getElementById("dropdownContent");
-    //   let arrow = document.getElementById("fakeInputArrow");
-    //   let assignedAddTasks = document.getElementById("assignedAddTaks");
-    //   if (dropdown && arrow && assignedAddTasks) {
-    //     let isInsideDropdown = dropdown.contains(e.target);
-    //     let isInsideAssignedAddTasks = assignedAddTasks.contains(e.target);
-    //     if (
-    //       !isInsideDropdown &&
-    //       !isInsideAssignedAddTasks &&
-    //       dropdown.classList.contains("show")
-    //     ) {
-    //       dropdown.classList.remove("show");
-    //       arrow.classList.remove("rotate");
-    //     }
-    //     if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
-    //       dropdown.classList.add("show");
-    //       arrow.classList.add("rotate");
-    //       pullContactsToAssign(dropdown);
-    //     }
-    //   }
-    // });
-  </script>
 </html>

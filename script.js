@@ -1,7 +1,7 @@
 const BASE_URL =
   "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function renderLogin() {
+function renderSignUp() {
   let div = document.getElementById("loginContent");
   div.innerHTML = signUpTemplate();
 }
@@ -10,6 +10,12 @@ function closeLogin() {
   let div = document.getElementById("loginContent");
   div.innerHTML = "";
 }
+
+function renderLogin(){
+  let div = document.getElementById("loginContent");
+  div.innerHTML = loginTemplate();
+}
+
 
 document.addEventListener("click", function (e) {
   let dropdown = document.getElementById("dropdownContent");
@@ -65,6 +71,7 @@ function changePrio(prio) {
   document
     .getElementById(prioritieIcons[prioId])
     .classList.add(prioritieIcons[prioId] + "White");
+  document.getElementById(prioritieIcons[prioId]).classList.add("chosenPrio");
   document
     .getElementById(prioritieIcons[prioId] + "Div")
     .classList.add(prioritieIcons[prioId] + "ColorDiv");
@@ -79,14 +86,53 @@ function setMinDate() {
   document.getElementsByName("date")[0].min = today;
 }
 
-async function pushTask() {}
+async function postSignUp(data = ""){
 
-function setDataForTask() {
-  let title = document.getElementById("addTaskInputTitle").value;
-  let description = document.getElementById("addTaskInputDescription").value;
-  let assigned = document.getElementById("input").value;
-  let date = document.getElementById("addTaskInputTitle").value;
-  let prio = document.getElementById("addTaskInputTitle").value;
-  let category = document.getElementById("addTaskInputTitle").value;
-  let subtasks = document.getElementById("addTaskInputTitle").value;
-}
+    let nameSignup = document.getElementById("nameSignUp").value;
+    let emailSignUp = document.getElementById("emailSignUp").value;
+    let passwordSignUp = document.getElementById("passwordSignUp").value;
+    let passwordConfirmSignUp = document.getElementById("passwordConfirmSignUp").value;
+    let userColor = AddColorToUser();
+    data = {name: nameSignup, email: emailSignUp, password: passwordSignUp, passwordconfirm: passwordConfirmSignUp, color: userColor};
+    await fetch(BASE_URL + "users/.json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    clearInputSignUp();
+    renderLogin();
+  }
+
+
+ async function loginRequest(){
+
+      let response = await fetch(BASE_URL + ".json");
+      let data = await response.json();
+      let users = data.users;
+      let emailLogin = document.getElementById("emailLogin").value;
+      let passwordLogin = document.getElementById("passwordLogin").value;
+    
+      for (let userId in users) {
+        if (users[userId].email === emailLogin && users[userId].password === passwordLogin) {
+            console.log("Erfolgreich Angemeldet");
+            clearInputLogin();
+            break;
+        }else{
+          console.log("Email oder Password ist Falsch !");
+        }
+    }
+  }
+
+  function clearInputSignUp(){
+      document.getElementById("nameSignUp").value = "";
+      document.getElementById("emailSignUp").value = "";
+      document.getElementById("passwordSignUp").value = "";
+      document.getElementById("passwordConfirmSignUp").value = "";
+    }
+
+    function clearInputLogin(){
+      document.getElementById("emailLogin").value = "";
+      document.getElementById("passwordLogin").value = "";
+    }

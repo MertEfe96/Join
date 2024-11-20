@@ -197,6 +197,7 @@ function templateAddTaskNav(status) {
                     <div class="" id="fakeInputArrow"></div>
                   </label>
                   <div id="dropdownContent" class="dropdownContent hide"></div>
+                  <div id="assignedContactsImgDiv"></div>
                 </div>
               </div>
               <div class="divieder"></div>
@@ -270,12 +271,13 @@ function templateAddTaskNav(status) {
                   </div>
                   <div class="center">
                     <input
-                      id="addTaskInputTitle"
+                      id="addTaskInputSubtask"
                       type="text"
                       class="inputAddTask"
                       placeholder="Add new subtask" />
-                    <div class="addIcon"></div>
+                    <div onclick="renderSubtasks()" class="addIcon"></div>
                   </div>
+                  <div id="subtasksList"></div>
                 </div>
               </div>
             </div>
@@ -313,11 +315,19 @@ function assigneContactTemplate(key, contact, i) {
     .join("")
     .toUpperCase();
   return `
-  <div class="inDropdown" id="inDropdown${i}">
+  <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', ${i}, '${initials}')">
   <div class="contactInitialsExtraSmall">${initials}</div>
   <div class="contactName">${contact.name}</div>
   <input type="checkbox" name="" id="${key}" />
 </div>`;
 }
 
-//  onfocus="openDropDownAssignContacts()"
+function assignedContactInitialsTemplate(initials) {
+  return `
+<div class="contactInitialsExtraSmall addTaskInitals">${initials}</div>
+`;
+}
+
+function subtaskTemplate(task) {
+  return `<div class="subtask">${task}</div>`;
+}
