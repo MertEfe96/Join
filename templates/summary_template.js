@@ -1,7 +1,7 @@
 function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount) {
   return `
   <div class="upperRow">
-    <div class="toDoDisplay">
+    <a href="./board.html" class="toDoDisplay">
       <div class="editIconContainer">
         <img class="editIconSummary" src="assets/icons/editSummary.png" alt="Edit">
       </div>
@@ -9,8 +9,8 @@ function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, co
         <div class="toDoDoneAmount">${countToDo}</div>
         <div class="toDoDone">To-do</div>
       </div>
-    </div>
-    <div class="doneDisplay">
+    </a>
+    <a href="./board.html" class="doneDisplay">
       <div class="editIconContainer">
         <img class="doneIconSummary" src="assets/icons/doneSummary.png" alt="Done">
       </div>
@@ -18,9 +18,9 @@ function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, co
         <div class="toDoDoneAmount">${countDone}</div>
         <div class="toDoDone">Done</div>
       </div>
-    </div>
+    </a>
   </div>
-  <div class="middleRow">
+  <a href="./board.html" class="middleRow">
     <div class="deadlineLeftSection">
       <div class="deadlineUrgencyStatusIcon">
         <img class="urgentIcon" src="assets/icons/urgentIcon.png" alt="Urgent">
@@ -35,20 +35,20 @@ function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, co
       <div class="deadlineDate">October 16, 2022</div>
       <div>Upcoming Deadline</div>
     </div>
-  </div>
+  </a>
   <div class="lowerRow">
-    <div class="tasksBoardDisplay lowerRowSubContainer">
+    <a href="./board.html" class="tasksBoardDisplay lowerRowSubContainer">
       <div class="lowerRowAmount">${taskCount}</div>
       <div class="lowerRowType">Tasks in <br> Board</div>
-    </div>
-    <div class="tasksProgressDisplay lowerRowSubContainer">
+    </a>
+    <a href="./board.html" class="tasksProgressDisplay lowerRowSubContainer">
       <div class="lowerRowAmount">${countInProgress}</div>
       <div class="lowerRowType">Tasks in <br> Progress</div>
-    </div>
-    <div class="feedbackDisplay lowerRowSubContainer">
+    </a>
+    <a href="./board.html" class="feedbackDisplay lowerRowSubContainer">
       <div class="lowerRowAmount">${countAwaitFeedback}</div>
       <div class="lowerRowType">Awaiting <br> Feedback</div>
-    </div>
+    </a>
   </div>
   `;
 }
