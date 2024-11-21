@@ -216,6 +216,16 @@ header {
   width: 24px;
 }
 
+.addTaskCancelIcon {
+  height: 24px;
+  width: 24px;
+  border-radius: 20px;
+}
+
+.addTaskCancelIcon:hover{
+  background-color:rgb(216, 216, 216) ;
+  cursor: pointer;
+}
 .marginSummary {
   margin-left: 96px;
   margin-top: 110px;

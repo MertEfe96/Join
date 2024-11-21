@@ -13,16 +13,27 @@ body {
 }
 
 .addTaskButtonContainer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-top: 7rem;
 }
 
+.textRequired{
+  display: flex;
+    width: 100%;
+    align-items: flex-end;
+}
 .overlayDeleteButton {
   border: 1px solid #2a3647;
   background-color: white;
   color: #2a3647;
   transition: 0.1s;
+  justify-content: center;
+  align-items: center;
   height: 55px;
+  display: flex;
   width: 113px;
   border-radius: 8px;
   font-size: 21px;
@@ -120,7 +131,7 @@ body {
   height: 24px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: -26px;
+  margin-left: -40px;
 }
 
 select:required:invalid {
@@ -137,7 +148,7 @@ option {
   height: 24px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: -26px;
+  margin-left: -40px;
 }
 
 .imgInInput {
@@ -220,6 +231,7 @@ option {
   font-size: 20px;
   padding: 13px 0px;
   width: 100%;
+  padding-right: 13px;
 }
 
 .inputAddTask::placeholder {
