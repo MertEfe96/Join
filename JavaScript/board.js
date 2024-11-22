@@ -41,29 +41,9 @@ function closeAddTask() {
  * @param {Object} [data=""] Optional task data; if not provided, it is constructed from input fields.
  *
  */
-async function saveTask(status = "to-do", data = "") {
-  let title = document.getElementById("addTaskInputTitle").value;
-  let description = document.getElementById("addTaskInputDescription").value;
-  description.replace("<", ".");
-  let category = document.getElementById("addTaskInputCategory").value;
-  let assignedTo = document.getElementById("inputAssignContacts").value;
-  if (status == "") {
-    status = "to-do";
-  }
-  data = {
-    Title: title,
-    Description: description,
-    Category: category,
-    Status: status,
-    AssignedTo: assignedTo,
-  };
-  let response = await fetch(BASE_URL + "tasks/.json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+
+async function saveTask(status = "to-do") {
+  setDataForTask(status);
   pullTasks();
   closeAddTask();
 }
@@ -159,6 +139,8 @@ function sortTasks(
     taskListDone.appendChild(taskDiv);
   }
   loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
+  loadPrio(key, taskdetails.Priority, taskDiv);
+  loadSubtasks(key, taskdetails.Subtasks, taskDiv);
 }
 
 /**
@@ -180,34 +162,75 @@ function renderTaskCard(key, taskdetails, categoryClass) {
   <div id="priorityCard${key}"></div>
 </div>`;
 }
+
 async function loadAssignedContacts(key, assignedTo, taskDiv) {
   const assignedToContainer = taskDiv.querySelector(`#assignedToCard${key}`);
-
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
 
   console.log("Type of assignedTo:", typeof assignedTo);
-  assignedTo = assignedTo.split(",").map((name) => name.trim());
+  console.log(assignedTo);
   assignedToContainer.innerHTML = "";
 
-  assignedTo.forEach((contactName) => {
-    let contactData = Object.values(data.contacts || {}).find(
-      (contact) => contact.name === contactName
-    );
-    let backgroundColor = contactData?.color || "#ccc";
-    const initials = contactName
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .toUpperCase();
+  for (let index = 0; index < assignedTo.length; index++) {
+    const element = assignedTo[index];
+    const assignedId = element.id;
 
-    assignedToContainer.innerHTML += `
+    if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
+      let contactName = data.contacts[assignedId].name;
+      let backgroundColor = data.contacts[assignedId].color || "#ccc";
+      const initials = contactName
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .toUpperCase();
+
+      assignedToContainer.innerHTML += `
       <div 
         class="contactInitialsBoard" 
         style="background-color: ${backgroundColor};">
         ${initials}
       </div>`;
-  });
+    }
+  }
+}
+
+function loadPrio(key, priority, taskDiv) {
+  const prioContainer = taskDiv.querySelector(`#priorityCard${key}`);
+  prioContainer.innerHTML = "";
+  if (priority === "prioUrgent") {
+    prioContainer.innerHTML = `<img src=./assets/icons/urgentColor.svg>`;
+  } else if (priority === "prioMedium") {
+    prioContainer.innerHTML = `<img src=./assets/icons/mediumColor.svg>`;
+  } else if (priority === "prioLow") {
+    prioContainer.innerHTML = `<img src=./assets/icons/lowColor.svg>`;
+  }
+}
+
+function loadSubtasks(key, subtasks, taskDiv) {
+  const subtasksContainer = taskDiv.querySelector(`#subtasksCard${key}`);
+  subtasksContainer.innerHTML = "";
+
+  console.log("Type of subtasks:", typeof subtasks);
+  console.log(subtasks);
+
+  if (Array.isArray(subtasks) && subtasks.length > 0) {
+    subtasksContainer.classList.remove("displayNone");
+    subtasksContainer.innerHTML = `
+    <div class="myProgress">
+      <div class="myBar" id="myBar${key}"></div>
+    </div>
+    <div class="subtasksCount"><div>0/2</div> <div> &nbsp;Subtasks</div></div>
+  `;
+    move(key);
+  } else {
+    subtasksContainer.classList.add("displayNone");
+  }
+}
+
+function move(key) {
+  var elem = document.getElementById(`myBar${key}`);
+  elem.style.width = "0%";
 }
 
 /**

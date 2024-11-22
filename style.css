@@ -15,6 +15,15 @@ body {
 .addTaskButtonContainer {
   display: flex;
   justify-content: center;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 7rem;
+}
+
+.textRequired {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
 }
 
 .overlayDeleteButton {
@@ -22,7 +31,10 @@ body {
   background-color: white;
   color: #2a3647;
   transition: 0.1s;
+  justify-content: center;
+  align-items: center;
   height: 55px;
+  display: flex;
   width: 113px;
   border-radius: 8px;
   font-size: 21px;
@@ -69,8 +81,7 @@ body {
 }
 
 .addContactCancelButton:hover img {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%)
-    hue-rotate(170deg) brightness(100%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
 }
 
 .createContactButtonOverlay {
@@ -120,7 +131,7 @@ body {
   height: 24px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: -26px;
+  margin-left: -40px;
 }
 
 select:required:invalid {
@@ -137,7 +148,7 @@ option {
   height: 24px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: -26px;
+  margin-left: -40px;
 }
 
 .imgInInput {
@@ -170,6 +181,7 @@ option {
 
 .inputSubContainerAddTask {
   width: 90%;
+  max-width: 440px;
   display: flex;
   gap: 8px;
   flex-direction: column;
@@ -220,6 +232,9 @@ option {
   font-size: 20px;
   padding: 13px 0px;
   width: 100%;
+  max-width: 440px;
+  padding-right: 13px;
+  box-sizing: border-box;
 }
 
 .inputAddTask::placeholder {
@@ -242,6 +257,7 @@ option {
 .prioDiv {
   display: flex;
   justify-content: space-between;
+  max-width: 440px;
 }
 
 .prio {
@@ -317,4 +333,9 @@ option {
 .addTaskInitals {
   margin-left: -8px;
 }
+
 /* end of test */
+
+.displayNone {
+  display: none;
+}

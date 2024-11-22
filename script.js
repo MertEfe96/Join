@@ -93,6 +93,25 @@ async function postSignUp(data = "") {
     "passwordConfirmSignUp"
   ).value;
   let userColor = AddColorToUser();
+  let signUpCheckbox = document.getElementById("signUpCheckbox").checked;
+
+  if (
+    !nameSignup ||
+    !emailSignUp ||
+    !passwordSignUp ||
+    !passwordConfirmSignUp
+  ) {
+    alert("Bitte füllen Sie alle Felder aus.");
+    return;
+  }
+  if (passwordSignUp !== passwordConfirmSignUp) {
+    alert("Passwörter stimmen nicht überein.");
+    return;
+  }
+  if (!signUpCheckbox) {
+    alert("Bitte stimmen Sie den Bedingungen zu.");
+    return;
+  }
   data = {
     name: nameSignup,
     email: emailSignUp,
@@ -131,7 +150,33 @@ async function loginRequest() {
     }
   }
 }
+async function loginRequest() {
+  let response = await fetch(BASE_URL + ".json");
+  let data = await response.json();
+  let users = data.users;
+  let emailLogin = document.getElementById("emailLogin").value;
+  let passwordLogin = document.getElementById("passwordLogin").value;
 
+  for (let userId in users) {
+    if (
+      users[userId].email === emailLogin &&
+      users[userId].password === passwordLogin
+    ) {
+      console.log("Erfolgreich Angemeldet");
+      clearInputLogin();
+      break;
+    } else {
+      console.log("Email oder Password ist Falsch !");
+    }
+  }
+}
+
+function clearInputSignUp() {
+  document.getElementById("nameSignUp").value = "";
+  document.getElementById("emailSignUp").value = "";
+  document.getElementById("passwordSignUp").value = "";
+  document.getElementById("passwordConfirmSignUp").value = "";
+}
 function clearInputSignUp() {
   document.getElementById("nameSignUp").value = "";
   document.getElementById("emailSignUp").value = "";
@@ -142,4 +187,14 @@ function clearInputSignUp() {
 function clearInputLogin() {
   document.getElementById("emailLogin").value = "";
   document.getElementById("passwordLogin").value = "";
+}
+
+function showPassword() {
+  let input = document.getElementById("passwordSignUp");
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+function showConfirmPassword() {
+  let input = document.getElementById("passwordConfirmSignUp");
+  input.type = input.type === "password" ? "text" : "password";
 }

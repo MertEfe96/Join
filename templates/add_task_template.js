@@ -1,8 +1,7 @@
 function templateAddTask(status) {
   return `
     <div class="headlineAddTaskWindow">
-          <b>Add Task</b>
-          <button onclick="closeAddTask()"><img src="./assets/icons/close.png" alt=""></button>
+          <b>Add Task</b><img class="addTaskCancelIcon" onclick="closeAddTask()" src="./assets/icons/close.png" alt="">
         </div>
         <div class="inputContainer">
           <form class="formAddTask" onsubmit="return false">
@@ -13,7 +12,7 @@ function templateAddTask(status) {
                     <p>Title</p>
                     <p class="star">*</p>
                   </div>
-                  <input
+                  <input required
                     id="addTaskInputTitle"
                     type="text"
                     class="inputAddTask"
@@ -54,7 +53,7 @@ function templateAddTask(status) {
                     <p>Due date</p>
                     <p class="star">*</p>
                   </div>
-                  <input
+                  <input required
                     type="text"
                     onmouseenter="(this.type='date')"
                     onblur="(this.type='text')"
@@ -116,7 +115,7 @@ function templateAddTask(status) {
                   <div class="inputHeader">
                     <p>Subtasks</p>
                   </div>
-                  <div class="center">
+                  <div class="centerCopy">
                     <input
                       id="addTaskInputSubtask"
                       type="text"
@@ -129,6 +128,10 @@ function templateAddTask(status) {
               </div>
             </div>
             <div class="addTaskButtonContainer">
+              <div class="textRequired">
+                <p class="star">*</p>
+                <p class="">This field is Required</p>
+              </div>
               <div class="editOverlayButtonContainer">
                 <button
                   onclick="closeAddTask()"
@@ -140,7 +143,7 @@ function templateAddTask(status) {
                     alt="Cancel" />
                 </button>
                 <button
-                  onclick="setDataForTask()"
+                  onclick="saveTask('${status}')"
                   class="overlaySaveButton createContactButtonOverlay">
                   Create Task
                   <img
@@ -169,7 +172,7 @@ function templateAddTaskNav(status) {
                     <p>Title</p>
                     <p class="star">*</p>
                   </div>
-                  <input
+                  <input required
                     id="addTaskInputTitle"
                     type="text"
                     class="inputAddTask"
@@ -210,7 +213,7 @@ function templateAddTaskNav(status) {
                     <p>Due date</p>
                     <p class="star">*</p>
                   </div>
-                  <input
+                  <input required
                     type="text"
                     onmouseenter="(this.type='date')"
                     onblur="(this.type='text')"
@@ -272,7 +275,7 @@ function templateAddTaskNav(status) {
                   <div class="inputHeader">
                     <p>Subtasks</p>
                   </div>
-                  <div class="center">
+                  <div class="centerCopy">
                     <input
                       id="addTaskInputSubtask"
                       type="text"
@@ -285,6 +288,10 @@ function templateAddTaskNav(status) {
               </div>
             </div>
             <div class="addTaskButtonContainer">
+            <div class="textRequired">
+                <p class="star">*</p>
+                <p class="">This field is Required</p>
+              </div>
               <div class="editOverlayButtonContainer">
                 <button
                   onclick="closeAddTask()"

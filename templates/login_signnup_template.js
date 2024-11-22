@@ -50,7 +50,7 @@ function loginTemplate() {
         </div>
         <div class="singUpLogin">
         <span class="singUpLoginSpan">Not a Join user?</span>
-        <button class="hover buttonSingUpLogin">Sign up</button>
+        <button onclick="renderSignUp()" class="hover buttonSingUpLogin">Sign up</button>
       </div>
     </div>
     `;
@@ -77,7 +77,7 @@ function signUpTemplate() {
           </div>
           <form class="loginForm" onsubmit="return false;">
             <div class="inputWrapper">
-              <input
+              <input required
                 id="nameSignUp"
                 class="inputLogin"
                 type="text"
@@ -91,7 +91,7 @@ function signUpTemplate() {
                 class="iconLogin" />
             </div>
             <div class="inputWrapper">
-              <input
+              <input required
                 id="emailSignUp"
                 class="inputLogin"
                 type="text"
@@ -105,7 +105,7 @@ function signUpTemplate() {
                 class="iconLogin" />
             </div>
             <div class="inputWrapper">
-              <input
+              <input required
                 id="passwordSignUp"
                 class="inputLogin"
                 type="password"
@@ -113,13 +113,13 @@ function signUpTemplate() {
                 autocomplete="password"
                 placeholder="Password"
                 required />
-              <img
+              <img onmouseenter="showPassword()"
                 src="./assets/icons/lock.svg"
                 alt="lock icon"
                 class="iconLogin" />
             </div>
             <div class="inputWrapper">
-              <input
+              <input required
                 id="passwordConfirmSignUp"
                 class="inputLogin"
                 type="password"
@@ -127,13 +127,13 @@ function signUpTemplate() {
                 autocomplete="password"
                 placeholder="Confirm Password"
                 required />
-              <img
+              <img onmouseenter="showConfirmPassword()"
                 src="./assets/icons/lock.svg"
                 alt="lock icon"
                 class="iconLogin" />
             </div>
             <div class="rememberDiv center textGrey">
-              <input class="hover" type="checkbox" name="" id="" />
+              <input required class="hover" type="checkbox" name="" id="signUpCheckbox" />
               <p>
                 I accept the
                 <a class="noTextDeco" href="./privacy_policy.html"

@@ -55,6 +55,8 @@
   background-color: white;
   border-radius: 30px;
   transform-origin: left top;
+  text-decoration: none;
+  color: black;
 }
 
 .middleRow:hover {
@@ -236,4 +238,14 @@
   font-size: 20px;
   color: #2A3647;
   text-align: center;
+}
+
+.lowerRow a {
+  text-decoration: none;
+  color: black;
+}
+
+.upperRow a {
+  text-decoration: none;
+  color: black;
 }
