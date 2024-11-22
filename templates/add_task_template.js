@@ -115,7 +115,7 @@ function templateAddTask(status) {
                   <div class="inputHeader">
                     <p>Subtasks</p>
                   </div>
-                  <div class="center">
+                  <div class="centerCopy">
                     <input
                       id="addTaskInputSubtask"
                       type="text"
@@ -275,7 +275,7 @@ function templateAddTaskNav(status) {
                   <div class="inputHeader">
                     <p>Subtasks</p>
                   </div>
-                  <div class="center">
+                  <div class="centerCopy">
                     <input
                       id="addTaskInputSubtask"
                       type="text"

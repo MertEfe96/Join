@@ -12,6 +12,11 @@ body {
   align-items: center;
 }
 
+.centerCopy {
+  display: flex;
+  align-items: center;
+}
+
 .textGrey {
   color: rgba(168, 168, 168, 1);
 }
@@ -217,13 +222,15 @@ header {
 }
 
 .addTaskCancelIcon {
-  height: 24px;
-  width: 24px;
-  border-radius: 20px;
+  height: 32px;
+  width: 32px;
+  border-radius: 99px;
+  padding: 4px;
+  transition: 0.1s;
 }
 
 .addTaskCancelIcon:hover{
-  background-color:rgb(216, 216, 216) ;
+  background-color: rgb(239, 239, 239);
   cursor: pointer;
 }
 .marginSummary {
