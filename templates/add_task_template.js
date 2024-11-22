@@ -143,7 +143,7 @@ function templateAddTask(status) {
                     alt="Cancel" />
                 </button>
                 <button
-                  onclick="setDataForTask()"
+                  onclick="saveTask('${status}')"
                   class="overlaySaveButton createContactButtonOverlay">
                   Create Task
                   <img

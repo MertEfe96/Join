@@ -11,7 +11,7 @@ function renderAssignedContactsInAddTask() {
 
 function assignContactToTask(key, i, ini) {
   checkBox = document.getElementById(key);
-  let obj = {id: key, initials: ini};
+  let obj = { id: key, initials: ini };
   if (checkBox.checked == true) {
     checkBox.checked = false;
     const pos = assignedContacts.map((e) => e.id).indexOf(key);
@@ -30,9 +30,10 @@ function renderSubtasks() {
   subtasksArray.push(subtask.value);
 }
 
-function setDataForTask() {
+function setDataForTask(status = "to-do") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
+  description = description.replace("<", ".");
   let assigned = assignedContacts;
   let date = document.getElementById("addTaskInputDate").value;
   let prio = document.getElementsByClassName("chosenPrio")[0].id;
@@ -45,12 +46,13 @@ function setDataForTask() {
     DueDate: date,
     Priority: prio,
     Category: category,
-    Subtaks: subtasks,
+    Subtasks: subtasks,
+    Status: status,
   };
   postTask(data);
 }
 
-async function postTask(data, status = "to-do") {
+async function postTask(data) {
   let response = await fetch(BASE_URL + "tasks/.json", {
     method: "POST",
     headers: {

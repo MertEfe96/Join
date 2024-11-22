@@ -13,18 +13,19 @@ body {
 }
 
 .addTaskButtonContainer {
-    display: flex;
-    justify-content: center;
-    padding-right: 24px;
-    padding-left: 24px;
-    padding-top: 7rem;
+  display: flex;
+  justify-content: center;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 7rem;
 }
 
-.textRequired{
+.textRequired {
   display: flex;
-    width: 100%;
-    align-items: flex-end;
+  width: 100%;
+  align-items: flex-end;
 }
+
 .overlayDeleteButton {
   border: 1px solid #2a3647;
   background-color: white;
@@ -80,8 +81,7 @@ body {
 }
 
 .addContactCancelButton:hover img {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%)
-    hue-rotate(170deg) brightness(100%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
 }
 
 .createContactButtonOverlay {
@@ -329,4 +329,9 @@ option {
 .addTaskInitals {
   margin-left: -8px;
 }
+
 /* end of test */
+
+.displayNone {
+  display: none;
+}
