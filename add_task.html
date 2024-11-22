@@ -57,7 +57,7 @@
     <div class="grow">
       <header>
         <div class="headline">Kanban Project Management Tool</div>
-        <div class="userIcon">ME</div>
+        <div class="userIcon" id="userIcon">ME</div>
       </header>
       <div id="myDropdown" class="dropdown-content">
         <a href="./legal_notice.html" class="dropDownLink">Legal Notice</a>
@@ -77,4 +77,15 @@
     </div>
     <div id="loginContent" class="loginContent"></div>
   </body>
+  <script>
+    let headerIcon = document.getElementById("userIcon");
+    let dropdownHeader = document.getElementById("myDropdown");
+    window.addEventListener("click", function (e) {
+      if (headerIcon.contains(e.target)) {
+        dropdownHeader.classList.add("show");
+      } else {
+        dropdownHeader.classList.remove("show");
+      }
+    });
+  </script>
 </html>

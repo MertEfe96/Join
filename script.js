@@ -198,3 +198,7 @@ function showConfirmPassword() {
   let input = document.getElementById("passwordConfirmSignUp");
   input.type = input.type === "password" ? "text" : "password";
 }
+
+function showDropDown() {
+  dropdownHeader.classList.toggle("show");
+}

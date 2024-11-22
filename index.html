@@ -169,4 +169,15 @@
       </div>
     </div>
   </body>
+  <script>
+    let headerIcon = document.getElementById("userIcon");
+    let dropdownHeader = document.getElementById("myDropdown");
+    window.addEventListener("click", function (e) {
+      if (headerIcon.contains(e.target)) {
+        dropdownHeader.classList.add("show");
+      } else {
+        dropdownHeader.classList.remove("show");
+      }
+    });
+  </script>
 </html>

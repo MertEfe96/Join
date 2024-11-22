@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./css/site_style/login_signup.css" />
-    <link rel="stylesheet" href="css/site_style/contacts.css">
-    <link rel="stylesheet" href="css/site_style/summary.css">
+    <link rel="stylesheet" href="css/site_style/contacts.css" />
+    <link rel="stylesheet" href="css/site_style/summary.css" />
     <script src="./templates/login_signnup_template.js"></script>
     <script src="JavaScript/summary.js"></script>
     <script src="templates/summary_template.js"></script>
@@ -55,7 +55,7 @@
     <div class="grow">
       <header>
         <div class="headline">Kanban Project Management Tool</div>
-        <div class="userIcon">ME</div>
+        <div class="userIcon" id="userIcon">ME</div>
       </header>
       <div id="myDropdown" class="dropdown-content">
         <a href="./legal_notice.html" class="dropDownLink">Legal Notice</a>
@@ -69,11 +69,21 @@
             <div class="contactsBlueLine"></div>
             <div class="subHeadlineColor">Key Metrics at a Glance</div>
           </div>
-          <div class="summaryBoardContainer" id="summaryBoardContainer">
-          </div>
+          <div class="summaryBoardContainer" id="summaryBoardContainer"></div>
         </div>
       </div>
     </div>
     <div id="loginContent" class="loginContent"></div>
   </body>
+  <script>
+    let headerIcon = document.getElementById("userIcon");
+    let dropdownHeader = document.getElementById("myDropdown");
+    window.addEventListener("click", function (e) {
+      if (headerIcon.contains(e.target)) {
+        dropdownHeader.classList.add("show");
+      } else {
+        dropdownHeader.classList.remove("show");
+      }
+    });
+  </script>
 </html>
