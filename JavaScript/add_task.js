@@ -24,10 +24,12 @@ function assignContactToTask(key, i, ini) {
 }
 
 function renderSubtasks() {
-  let subtask = document.getElementById("addTaskInputSubtask");
+  let subtask = document.getElementById("addTaskInputSubtask").value;
   let div = document.getElementById("subtasksList");
-  div.innerHTML += subtaskTemplate(subtask.value);
-  subtasksArray.push(subtask.value);
+  if (subtask) {
+    div.innerHTML += subtaskTemplate(subtask);
+    subtasksArray.push({ task: subtask, undone: true });
+  }
 }
 
 function setDataForTask(status = "to-do") {

@@ -13,6 +13,29 @@ function addTask(status = "to-do") {
   assignedAddTaks = document.getElementById("assignedAddTaks");
 }
 
+function taskCardLarge(key) {
+  const taskCardLargeMain = document.getElementById("taskCardLargeMain");
+  const taskCardLarge = document.getElementById("taskCardLarge");
+  taskCardLargeMain.style.display = "flex";
+  setTimeout(() => taskCardLargeMain.classList.add("show"), 10);
+  setTimeout(() => taskCardLarge.classList.add("show"), 10);
+  taskCardLarge.innerHTML = `${templateTaskCardLarge(key)}`;
+
+  const elements = taskCardLarge.querySelectorAll(".subtasksSmall");
+  elements.forEach((element) => {
+    element.style.display = "none";
+  });
+
+  const elem = taskCardLarge.querySelectorAll(
+    ".subtasksLarge, .dueDateCardLarge"
+  );
+  elem.forEach((element) => {
+    element.style.display = "flex";
+  });
+
+  renderSubtasksLargeView(key);
+}
+
 function addTaskNav() {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
@@ -81,9 +104,13 @@ function renderGroupedTasks(tasks) {
     let taskDiv = document.createElement("div");
     taskDiv.draggable = true;
     taskDiv.classList.add("singleTaskCard");
+    taskDiv.id = `singleTaskCard${key}`;
     taskDiv.ondragstart = function (event) {
       startDragging(key);
     };
+    taskDiv.addEventListener("click", (event) => {
+      taskCardLarge(key);
+    });
     let categoryClass =
       taskdetails.Category === "Technical Task"
         ? "technicalTaskColor"
@@ -156,6 +183,7 @@ function renderTaskCard(key, taskdetails, categoryClass) {
 <div id="categoryCard${key}" class="categoryCard ${categoryClass}">${taskdetails.Category}</div>
 <div class="titleCard">${taskdetails.Title}</div>
 <div class="descriptionCard">${taskdetails.Description}</div>
+<div class="dueDateCardLarge" id="dueDate${key}">${taskdetails.DueDate}</div>
 <div id="subtasksCard${key}" class="subtasksCard"></div>
 <div class="bottomCard">
   <div class="assignedToCard" id="assignedToCard${key}"></div>
@@ -207,7 +235,7 @@ function loadPrio(key, priority, taskDiv) {
   }
 }
 
-function loadSubtasks(key, subtasks, taskDiv) {
+async function loadSubtasks(key, subtasks, taskDiv) {
   const subtasksContainer = taskDiv.querySelector(`#subtasksCard${key}`);
   subtasksContainer.innerHTML = "";
 
@@ -217,20 +245,125 @@ function loadSubtasks(key, subtasks, taskDiv) {
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasksContainer.classList.remove("displayNone");
     subtasksContainer.innerHTML = `
+        <div class="subtasksSmall">
     <div class="myProgress">
       <div class="myBar" id="myBar${key}"></div>
+      </div>
+      <div class="subtasksCount"><div class="doneSubtasksCount" id="doneSubtasksCount${key}"></div> <div> &nbsp;Subtasks</div></div>
     </div>
-    <div class="subtasksCount"><div>0/2</div> <div> &nbsp;Subtasks</div></div>
   `;
-    move(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
   }
 }
 
-function move(key) {
-  var elem = document.getElementById(`myBar${key}`);
-  elem.style.width = "0%";
+async function move(key, doneCount, totalSubtasks) {
+  let doneSubtasksBar = document.getElementById(`myBar${key}`);
+  console.log(totalSubtasks);
+  console.log(doneCount);
+  if (doneCount > 0) {
+    let width = (100 / totalSubtasks) * doneCount;
+    doneSubtasksBar.style.width = `${width}%`;
+  } else {
+    doneSubtasksBar.style.width = "0%";
+  }
+}
+
+async function renderSubtasksLargeView(key) {
+  let subTasksLarge = document.getElementById(`subtasksToClickLarge${key}`);
+  subTasksLarge.innerHTML = "";
+  let response = await fetch(`${BASE_URL}tasks/${key}/Subtasks.json`);
+  let subtasks = await response.json();
+  for (let index = 0; index < subtasks.length; index++) {
+    const subtask = subtasks[index];
+    const div = document.createElement(`subtask${key}-${index}`);
+    div.classList.add("subtaskClickDiv");
+    div.innerHTML = `
+    <div id="subtaskClickButton${key}-${index}" class="subtaskClickButton" onclick="changeCheckbox('${key}', '${index}')"></div>
+    <div class="singleSubtaskClick">${subtask.task}</div>
+    `;
+    subTasksLarge.appendChild(div);
+    renderCheckButton(subtask, key, index);
+  }
+}
+
+function renderCheckButton(subtask, key, index) {
+  let checkButton = document.getElementById(
+    `subtaskClickButton${key}-${index}`
+  );
+  if (subtask.undone === true) {
+    checkButton.innerHTML = `
+    <img src=./assets/icons/uncheckedButton.png >
+    `;
+  } else {
+    checkButton.innerHTML = `
+    <img src=./assets/icons/checkedButton.png >
+    `;
+  }
+}
+
+async function changeCheckbox(key, index) {
+  try {
+    let response = await fetch(
+      `${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    let undone = await response.json();
+    undone = !undone;
+    await updateUndoneStatus(key, index, undone);
+
+    let updatedSubtasksResponse = await fetch(
+      `${BASE_URL}tasks/${key}/Subtasks.json`
+    );
+    let updatedSubtasks = await updatedSubtasksResponse.json();
+    let taskDiv = document.getElementById(`singleTaskCard${key}`);
+    await loadSubtasks(key, updatedSubtasks, taskDiv);
+    await renderSubtasksLargeView(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    move(key, doneCount, totalSubtasks);
+  } catch (error) {
+    console.error("Fehler beim Ändern des Subtask-Status:", error);
+  }
+}
+
+async function updateUndoneStatus(key, index, undone) {
+  const updateResponse = await fetch(
+    `${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(undone),
+    }
+  );
+  if (!updateResponse.ok) {
+    throw new Error(`HTTP error! Status: ${updateResponse.status}`);
+  }
+}
+
+async function renderDoneSubtasksCount(key) {
+  let doneSubtasksCountDiv = document.getElementById(`doneSubtasksCount${key}`);
+  let response = await fetch(`${BASE_URL}tasks/${key}/Subtasks.json`);
+  let subtasks = await response.json();
+  let totalSubtasks = subtasks.length;
+  doneCount = 0;
+  for (let index = 0; index < subtasks.length; index++) {
+    const subtaskDoneStatus = subtasks[index].undone;
+    if (subtaskDoneStatus === false) {
+      doneCount = doneCount + 1;
+    }
+  }
+  doneSubtasksCountDiv.innerHTML = `
+  <div> ${doneCount}/ </div>
+  <div> ${totalSubtasks} </div>
+  `;
+
+  return { doneCount, totalSubtasks };
 }
 
 /**
