@@ -14,9 +14,9 @@ function init() {
  * @param {number} countDone - The Number of tasks with "done" status
  * @param {number} taskCount - Total number of tasks
  */
-function renderAmountSummary(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount) {
+function renderAmountSummary(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent) {
   let summaryBoardContainer = document.getElementById('summaryBoardContainer');
-  summaryBoardContainer.innerHTML = summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount);
+  summaryBoardContainer.innerHTML = summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent);
 }
 
 /**
@@ -28,12 +28,14 @@ async function fetchAmounts(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let data = await response.json();
   filterStatus(data);
+  console.log(data);
+  
 }
 
 /**
- * Function filters status of tasks and count them
+ * Function filters status/priority of tasks and count them
  * 
- * @param {Object} data - An object containing task data, where each value has a "Status" property
+ * @param {Object} data - An object containing task data, where each value has a "Status" or "Priority" property
  */
 function filterStatus(data) {
   const asArray = Object.entries(data); 
@@ -41,11 +43,13 @@ function filterStatus(data) {
   const filteredInProgress = asArray.filter(([key, value]) => value.Status === "in-progress");
   const filteredAwaitFeedback = asArray.filter(([key, value]) => value.Status === "await-feedback");
   const filteredDone = asArray.filter(([key, value]) => value.Status === "done");
+  const filteredPrio = asArray.filter(([key, value]) => value.Priority === "prioUrgent");
 
   let countToDo = filteredToDo.length;
   let countInProgress = filteredInProgress.length;
   let countAwaitFeedback = filteredAwaitFeedback.length;
   let countDone = filteredDone.length;
   let taskCount = asArray.length;
-  renderAmountSummary(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount);
+  let prioUrgent = filteredPrio.length;
+  renderAmountSummary(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent);
 }

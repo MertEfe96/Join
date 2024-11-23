@@ -1,4 +1,4 @@
-function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount) {
+function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent) {
   return `
   <div class="upperRow">
     <a href="./board.html" class="toDoDisplay">
@@ -26,7 +26,7 @@ function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, co
         <img class="urgentIcon" src="assets/icons/urgentIcon.png" alt="Urgent">
       </div>
       <div class="amountStatusContainer">
-        <div class="deadlineAmount">1</div>
+        <div class="deadlineAmount">${prioUrgent}</div>
         <div class="urgencyStatus">Urgent</div>
       </div>
     </div>
