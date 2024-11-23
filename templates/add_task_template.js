@@ -326,7 +326,7 @@ function assigneContactTemplate(key, contact, i, color) {
     .toUpperCase();
   return `
   <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', '${initials}', '${color}')">
-  <div style="background-color=${color}" class="contactInitialsExtraSmall">${initials}</div>
+  <div style="background-color:${color}" class="contactInitialsExtraSmall">${initials}</div>
   <div class="contactName">${contact.name}</div>
   <input type="checkbox" name="" id="${key}" />
 </div>`;
@@ -334,7 +334,7 @@ function assigneContactTemplate(key, contact, i, color) {
 
 function assignedContactInitialsTemplate(initials, color) {
   return `
-<div style="background-color=${color}" class="contactInitialsExtraSmall addTaskInitals">${initials}</div>
+<div style="background-color:${color}" class="contactInitialsExtraSmall addTaskInitals">${initials}</div>
 `;
 }
 

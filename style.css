@@ -81,7 +81,8 @@ body {
 }
 
 .addContactCancelButton:hover img {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%)
+    hue-rotate(170deg) brightness(100%) contrast(90%);
 }
 
 .createContactButtonOverlay {
@@ -185,6 +186,7 @@ option {
   display: flex;
   gap: 8px;
   flex-direction: column;
+  position: relative;
 }
 
 .rotate {
@@ -194,9 +196,12 @@ option {
 .dropdownContent {
   flex-direction: column;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   width: 100%;
-  max-height: 300px;
+  max-height: 200px;
   overflow-x: auto;
+  position: absolute;
+  margin-top: 85px;
 }
 
 .inDropdown {
@@ -235,10 +240,12 @@ option {
   max-width: 440px;
   padding-right: 13px;
   box-sizing: border-box;
+  padding-inline-start: 16px;
+  font-family: Inter;
 }
 
 .inputAddTask::placeholder {
-  text-indent: 16px;
+  text-indent: 4px;
 }
 
 .inputHeader {

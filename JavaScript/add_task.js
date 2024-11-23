@@ -1,17 +1,17 @@
 let assignedContacts = [];
 let subtasksArray = [];
 
-function renderAssignedContactsInAddTask(color) {
+function renderAssignedContactsInAddTask() {
   let div = document.getElementById("assignedContactsImgDiv");
   div.innerHTML = "";
   assignedContacts.forEach((obj) => {
-    div.innerHTML += assignedContactInitialsTemplate(obj.initials, color);
+    div.innerHTML += assignedContactInitialsTemplate(obj.initials, obj.color);
   });
 }
 
-function assignContactToTask(key, ini, color) {
+function assignContactToTask(key, ini, c) {
   checkBox = document.getElementById(key);
-  let obj = {id: key, initials: ini};
+  let obj = {id: key, initials: ini, color: c};
   if (checkBox.checked == true) {
     checkBox.checked = false;
     const pos = assignedContacts.map((e) => e.id).indexOf(key);
@@ -20,7 +20,7 @@ function assignContactToTask(key, ini, color) {
     checkBox.checked = true;
     assignedContacts.push(obj);
   }
-  renderAssignedContactsInAddTask(color);
+  renderAssignedContactsInAddTask();
 }
 
 function renderSubtasks() {
@@ -63,3 +63,9 @@ async function postTask(data) {
     body: JSON.stringify(data),
   });
 }
+
+// if (contact.name === user.name && contact.mail === user.mail){
+//   push both
+// } else {
+//   push only contact
+// }

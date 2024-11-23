@@ -126,6 +126,7 @@
   padding: 24px;
   width: 100%;
   height: calc(100vh - 96px - 48px);
+  height: max-content;
 }
 
 .boardOverlay.show {
