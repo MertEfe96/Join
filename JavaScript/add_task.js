@@ -1,17 +1,17 @@
 let assignedContacts = [];
 let subtasksArray = [];
 
-function renderAssignedContactsInAddTask() {
+function renderAssignedContactsInAddTask(color) {
   let div = document.getElementById("assignedContactsImgDiv");
   div.innerHTML = "";
   assignedContacts.forEach((obj) => {
-    div.innerHTML += assignedContactInitialsTemplate(obj.initials);
+    div.innerHTML += assignedContactInitialsTemplate(obj.initials, color);
   });
 }
 
-function assignContactToTask(key, i, ini) {
+function assignContactToTask(key, ini, color) {
   checkBox = document.getElementById(key);
-  let obj = { id: key, initials: ini };
+  let obj = {id: key, initials: ini};
   if (checkBox.checked == true) {
     checkBox.checked = false;
     const pos = assignedContacts.map((e) => e.id).indexOf(key);
@@ -20,7 +20,7 @@ function assignContactToTask(key, i, ini) {
     checkBox.checked = true;
     assignedContacts.push(obj);
   }
-  renderAssignedContactsInAddTask();
+  renderAssignedContactsInAddTask(color);
 }
 
 function renderSubtasks() {
@@ -28,7 +28,7 @@ function renderSubtasks() {
   let div = document.getElementById("subtasksList");
   if (subtask) {
     div.innerHTML += subtaskTemplate(subtask);
-    subtasksArray.push({ task: subtask, undone: true });
+    subtasksArray.push({task: subtask, undone: true});
   }
 }
 

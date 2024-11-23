@@ -318,23 +318,23 @@ function templateAddTaskNav(status) {
     `;
 }
 
-function assigneContactTemplate(key, contact, i) {
+function assigneContactTemplate(key, contact, i, color) {
   const initials = contact.name
     .split(" ")
     .map((word) => word[0])
     .join("")
     .toUpperCase();
   return `
-  <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', ${i}, '${initials}')">
-  <div class="contactInitialsExtraSmall">${initials}</div>
+  <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', '${initials}', '${color}')">
+  <div style="background-color=${color}" class="contactInitialsExtraSmall">${initials}</div>
   <div class="contactName">${contact.name}</div>
   <input type="checkbox" name="" id="${key}" />
 </div>`;
 }
 
-function assignedContactInitialsTemplate(initials) {
+function assignedContactInitialsTemplate(initials, color) {
   return `
-<div class="contactInitialsExtraSmall addTaskInitals">${initials}</div>
+<div style="background-color=${color}" class="contactInitialsExtraSmall addTaskInitals">${initials}</div>
 `;
 }
 

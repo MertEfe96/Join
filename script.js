@@ -1,6 +1,8 @@
 const BASE_URL =
   "https://join-26d58-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let userLocal = [];
+
 function renderSignUp() {
   let div = document.getElementById("loginContent");
   div.innerHTML = signUpTemplate();
@@ -53,7 +55,12 @@ function renderContactsToAssign(dropdown, contacts) {
   dropdown.innerHTML = "";
   const sortedContacts = sortContacts(contacts);
   sortedContacts.forEach(([key, contact], index) => {
-    dropdown.innerHTML += assigneContactTemplate(key, contact, index);
+    dropdown.innerHTML += assigneContactTemplate(
+      key,
+      contact,
+      index,
+      contact.color
+    );
   });
 }
 
@@ -143,32 +150,20 @@ async function loginRequest() {
       users[userId].password === passwordLogin
     ) {
       console.log("Erfolgreich Angemeldet");
+      console.log(userId);
       clearInputLogin();
+      userLocal.push(users[userId], userId);
+      saveUserInLocal();
       break;
     } else {
       console.log("Email oder Password ist Falsch !");
     }
   }
 }
-async function loginRequest() {
-  let response = await fetch(BASE_URL + ".json");
-  let data = await response.json();
-  let users = data.users;
-  let emailLogin = document.getElementById("emailLogin").value;
-  let passwordLogin = document.getElementById("passwordLogin").value;
 
-  for (let userId in users) {
-    if (
-      users[userId].email === emailLogin &&
-      users[userId].password === passwordLogin
-    ) {
-      console.log("Erfolgreich Angemeldet");
-      clearInputLogin();
-      break;
-    } else {
-      console.log("Email oder Password ist Falsch !");
-    }
-  }
+function saveUserInLocal() {
+  let userArray = JSON.stringify(userLocal);
+  localStorage.setItem("user", userArray);
 }
 
 function clearInputSignUp() {
