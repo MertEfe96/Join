@@ -143,6 +143,7 @@ header {
   color: #29abe2;
   font-size: 22px;
   font-weight: 600;
+  user-select: none;
 }
 
 .userIcon:hover {

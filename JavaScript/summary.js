@@ -31,8 +31,6 @@ async function fetchAmounts(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let data = await response.json();
   filterStatus(data);
-  console.log(data);
-
 }
 
 /**
