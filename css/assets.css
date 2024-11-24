@@ -124,6 +124,13 @@ header {
   font-size: 20px;
 }
 
+.headerIconDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
 .userIcon {
   width: 52px;
   height: 52px;
@@ -140,6 +147,12 @@ header {
 
 .userIcon:hover {
   cursor: pointer;
+}
+
+.helpIcon {
+  background-image: url(../assets/icons/help.png);
+  width: 20px;
+  height: 20px;
 }
 
 .grow {
@@ -229,7 +242,7 @@ header {
   transition: 0.1s;
 }
 
-.addTaskCancelIcon:hover{
+.addTaskCancelIcon:hover {
   background-color: rgb(239, 239, 239);
   cursor: pointer;
 }

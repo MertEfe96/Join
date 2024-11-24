@@ -40,6 +40,7 @@ function addTaskNav() {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
   addTask.innerHTML = templateAddTaskNav();
+  renderUserIcon();
 }
 
 /**
@@ -81,6 +82,7 @@ async function pullTasks() {
   if (tasks) {
     renderGroupedTasks(tasks);
   }
+  renderUserIcon();
 }
 
 /**

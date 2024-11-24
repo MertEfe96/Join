@@ -43,7 +43,7 @@ function loginTemplate() {
             </div>
             <div class="loginButtonDiv">
               <button onclick="loginRequest()" class="hover buttonLogin">Log in</button>
-              <span onclick="closeLogin()" class="hover buttonGuestLogin">Guest Log in</span>
+              <span onclick="guestLogin()" class="hover buttonGuestLogin">Guest Log in</span>
             </div>
           </form>
         </div>

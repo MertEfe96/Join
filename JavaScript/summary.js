@@ -3,6 +3,7 @@
  */
 function init() {
   fetchAmounts("/tasks");
+    renderUserIcon();
 }
 
 /**

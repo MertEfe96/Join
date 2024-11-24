@@ -90,6 +90,7 @@ function setMinDate() {
   const today = new Date().toISOString().slice(0, 10);
 
   document.getElementsByName("date")[0].min = today;
+  renderUserIcon();
 }
 
 async function postSignUp(data = "") {
@@ -133,6 +134,12 @@ async function postSignUp(data = "") {
     },
     body: JSON.stringify(data),
   });
+  let contactData = {
+    name: nameSignup,
+    email: emailSignUp,
+    color: userColor,
+  };
+  await postContact(contactData);
   clearInputSignUp();
   renderLogin();
 }
@@ -150,28 +157,62 @@ async function loginRequest() {
       users[userId].password === passwordLogin
     ) {
       console.log("Erfolgreich Angemeldet");
-      console.log(userId);
       clearInputLogin();
-      userLocal.push(users[userId], userId);
-      saveUserInLocal();
-      break;
+      let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
+      saveUserInLocal(user);
+      window.location.href = "sumary.html";
     } else {
       console.log("Email oder Password ist Falsch !");
     }
   }
 }
 
-function saveUserInLocal() {
-  let userArray = JSON.stringify(userLocal);
-  localStorage.setItem("user", userArray);
+async function guestLogin() {
+  try {
+    let response = await fetch(BASE_URL + ".json");
+    let data = await response.json();
+    const guestUserId = "guest";
+    const guestUser = data.users[guestUserId];
+
+    if (guestUser) {
+      console.log("Guest Login erfolgreich!");
+
+      let user = {...guestUser, id: guestUserId};
+      saveUserInLocal(user);
+      renderUserIcon();
+      window.location.href = "sumary.html";
+    } else {
+      console.error("Gastbenutzer nicht gefunden!");
+    }
+  } catch (error) {
+    console.error("Fehler beim Gast-Login:", error);
+  }
 }
 
-function clearInputSignUp() {
-  document.getElementById("nameSignUp").value = "";
-  document.getElementById("emailSignUp").value = "";
-  document.getElementById("passwordSignUp").value = "";
-  document.getElementById("passwordConfirmSignUp").value = "";
+function logOut() {
+  renderLogin();
 }
+
+function saveUserInLocal(user) {
+  localStorage.setItem("user", JSON.stringify(user));
+}
+function getInitials(name) {
+  let parts = name.split(" ");
+  return parts.length > 1
+    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
+    : name[0].toUpperCase();
+}
+
+function renderUserIcon() {
+  let userIcon = document.getElementById("userIcon");
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.name) {
+    let initials = getInitials(user.name);
+    userIcon.innerHTML = initials;
+  }
+}
+
 function clearInputSignUp() {
   document.getElementById("nameSignUp").value = "";
   document.getElementById("emailSignUp").value = "";
@@ -196,4 +237,25 @@ function showConfirmPassword() {
 
 function showDropDown() {
   dropdownHeader.classList.toggle("show");
+}
+
+async function postContact(contactData) {
+  await fetch(BASE_URL + "contacts/.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
+}
+
+function openHelpDialog() {
+  let div = document.getElementById("helpDiv");
+  div.classList.toggle("showHelp");
+  div.innerHTML = renderHelpTemplate();
+}
+
+function closeHelpDialog() {
+  let div = document.getElementById("helpDiv");
+  div.classList.toggle("showHelp");
 }

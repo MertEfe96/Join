@@ -346,3 +346,84 @@ option {
 .displayNone {
   display: none;
 }
+
+/* help */
+
+.showHelp {
+  position: absolute;
+  width: calc(100% - 232px - 192px);
+  background-color: rgba(246, 247, 248, 1);
+  left: 232px;
+  top: 96px;
+  padding: 110px 96px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.helpHeadlineContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 27px;
+  height: 73px;
+  padding-bottom: 32px;
+}
+
+.helpHeadline {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.col_lb {
+  color: rgba(41, 171, 226, 1);
+}
+
+section p {
+  width: fit-content;
+  margin: 0;
+}
+
+section h2 {
+  width: fit-content;
+  margin: 0;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.helpTextDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.helpGuideList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.helpGuideDiv {
+  display: flex;
+  gap: 35px;
+}
+
+#arrowToCloseHelp {
+  background-image: url(./assets/icons/arrow-left-line.png);
+  width: 37px;
+  min-height: 37px;
+  position: fixed;
+  top: 225px;
+  right: 96px;
+}
+
+#arrowToCloseHelp:hover {
+  cursor: pointer;
+}
+
+/* help end */

@@ -188,6 +188,7 @@ async function pullContacts() {
   if (contacts) {
     renderGroupedContacts(contacts);
   }
+  renderUserIcon();
 }
 
 /**
