@@ -90,6 +90,7 @@ function setMinDate() {
   const today = new Date().toISOString().slice(0, 10);
 
   document.getElementsByName("date")[0].min = today;
+    renderUserIcon();
 }
 
 async function postSignUp(data = "") {
@@ -152,26 +153,65 @@ async function loginRequest() {
       console.log("Erfolgreich Angemeldet");
       console.log(userId);
       clearInputLogin();
-      userLocal.push(users[userId], userId);
-      saveUserInLocal();
-      break;
+      // userLocal.push(users[userId], userId);
+      let user = { ...users[userId], id: userId };
+      saveUserInLocal(user);
+      window.location.href = "sumary.html";
     } else {
       console.log("Email oder Password ist Falsch !");
     }
   }
 }
 
-function saveUserInLocal() {
-  let userArray = JSON.stringify(userLocal);
-  localStorage.setItem("user", userArray);
+async function guestLogin() {
+  try {
+    let response = await fetch(BASE_URL + ".json");
+    let data = await response.json();
+    const guestUserId = "guest";
+    const guestUser = data.users[guestUserId];
+
+    if (guestUser) {
+      console.log("Guest Login erfolgreich!");
+
+      let user = { ...guestUser, id: guestUserId };
+      saveUserInLocal(user);
+      renderUserIcon();
+      window.location.href = "sumary.html";
+    } else {
+      console.error("Gastbenutzer nicht gefunden!");
+    }
+  } catch (error) {
+    console.error("Fehler beim Gast-Login:", error);
+  }
 }
 
-function clearInputSignUp() {
-  document.getElementById("nameSignUp").value = "";
-  document.getElementById("emailSignUp").value = "";
-  document.getElementById("passwordSignUp").value = "";
-  document.getElementById("passwordConfirmSignUp").value = "";
+function logOut(){
+  renderLogin();
 }
+
+function saveUserInLocal(user) {
+  localStorage.setItem("user", JSON.stringify(user));
+}
+function getInitials(name) {
+  let parts = name.split(" ");
+  return parts.length > 1
+    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
+    : name[0].toUpperCase();
+}
+
+function renderUserIcon() {
+  let userIcon = document.getElementById("userIcon");
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.name) {
+    let initials = getInitials(user.name);
+    userIcon.innerHTML = initials;
+  }
+}
+
+
+
+
 function clearInputSignUp() {
   document.getElementById("nameSignUp").value = "";
   document.getElementById("emailSignUp").value = "";
