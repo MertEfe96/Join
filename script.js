@@ -127,7 +127,7 @@ async function postSignUp(data = "") {
     passwordconfirm: passwordConfirmSignUp,
     color: userColor,
   };
-    await fetch(BASE_URL + "users/.json", {
+  await fetch(BASE_URL + "users/.json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -158,7 +158,7 @@ async function loginRequest() {
     ) {
       console.log("Erfolgreich Angemeldet");
       clearInputLogin();
-      let user = { ...users[userId], id: userId }; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
+      let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
       saveUserInLocal(user);
       window.location.href = "sumary.html";
     } else {
@@ -177,7 +177,7 @@ async function guestLogin() {
     if (guestUser) {
       console.log("Guest Login erfolgreich!");
 
-      let user = { ...guestUser, id: guestUserId };
+      let user = {...guestUser, id: guestUserId};
       saveUserInLocal(user);
       renderUserIcon();
       window.location.href = "sumary.html";
@@ -247,4 +247,15 @@ async function postContact(contactData) {
     },
     body: JSON.stringify(contactData),
   });
+}
+
+function openHelpDialog() {
+  let div = document.getElementById("helpDiv");
+  div.classList.toggle("showHelp");
+  div.innerHTML = renderHelpTemplate();
+}
+
+function closeHelpDialog() {
+  let div = document.getElementById("helpDiv");
+  div.classList.toggle("showHelp");
 }
