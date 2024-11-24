@@ -127,13 +127,19 @@ async function postSignUp(data = "") {
     passwordconfirm: passwordConfirmSignUp,
     color: userColor,
   };
-  await fetch(BASE_URL + "users/.json", {
+    await fetch(BASE_URL + "users/.json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
+  let contactData = {
+    name: nameSignup,
+    email: emailSignUp,
+    color: userColor,
+  };
+  await postContact(contactData);
   clearInputSignUp();
   renderLogin();
 }
@@ -231,4 +237,14 @@ function showConfirmPassword() {
 
 function showDropDown() {
   dropdownHeader.classList.toggle("show");
+}
+
+async function postContact(contactData) {
+  await fetch(BASE_URL + "contacts/.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
 }
