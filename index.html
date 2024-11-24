@@ -33,7 +33,8 @@
                     id="addTaskInputTitle"
                     type="text"
                     class="inputAddTask"
-                    placeholder="Enter a Title" />
+                    placeholder="Enter a Title"
+                  />
                 </div>
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
@@ -43,7 +44,8 @@
                     name=""
                     class="inputAddTask"
                     placeholder="Enter a Description"
-                    id="addTaskInputDescription"></textarea>
+                    id="addTaskInputDescription"
+                  ></textarea>
                 </div>
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
@@ -55,7 +57,8 @@
                       id="inputAssignContacts"
                       class="inputAddTask"
                       placeholder="Select contacts to assign"
-                      oninput="filterContactsShown()" />
+                      oninput="filterContactsShown()"
+                    />
                     <div class="" id="fakeInputArrow"></div>
                   </label>
                   <div id="dropdownContent" class="dropdownContent hide"></div>
@@ -76,7 +79,8 @@
                     name="date"
                     class="inputAddTask"
                     placeholder="dd/mm/yyyy"
-                    id="addTaskInputDate" />
+                    id="addTaskInputDate"
+                  />
                 </div>
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
@@ -86,25 +90,30 @@
                     <div
                       class="prio"
                       id="prioUrgentDiv"
-                      onclick="changePrio('prioUrgent')">
+                      onclick="changePrio('prioUrgent')"
+                    >
                       <p>Urgent</p>
                       <div
                         id="prioUrgent"
-                        class="prioUrgentColor prioSvg"></div>
+                        class="prioUrgentColor prioSvg"
+                      ></div>
                     </div>
                     <div
                       class="prio"
                       id="prioMediumDiv"
-                      onclick="changePrio('prioMedium')">
+                      onclick="changePrio('prioMedium')"
+                    >
                       <p>Medium</p>
                       <div
                         id="prioMedium"
-                        class="prioMediumColor prioSvg"></div>
+                        class="prioMediumColor prioSvg"
+                      ></div>
                     </div>
                     <div
                       class="prio"
                       id="prioLowDiv"
-                      onclick="changePrio('prioLow')">
+                      onclick="changePrio('prioLow')"
+                    >
                       <p>Low</p>
                       <div id="prioLow" class="prioLowColor prioSvg"></div>
                     </div>
@@ -121,7 +130,8 @@
                     required
                     name="category"
                     class="inputAddTask"
-                    id="addTaskInputCategory">
+                    id="addTaskInputCategory"
+                  >
                     <option value>Select a task category</option>
                     <option value="userStory">Technical Task</option>
                     <option value="TechnicalTask">User Story</option>
@@ -136,7 +146,8 @@
                       id="addTaskInputTitle"
                       type="text"
                       class="inputAddTask"
-                      placeholder="Add new subtask" />
+                      placeholder="Add new subtask"
+                    />
                     <div class="addIcon"></div>
                   </div>
                 </div>
@@ -146,21 +157,25 @@
               <div class="editOverlayButtonContainer">
                 <button
                   onclick="closeAddTask()"
-                  class="overlayDeleteButton addTaskCancelButton">
+                  class="overlayDeleteButton addTaskCancelButton"
+                >
                   Cancel
                   <img
                     class="addContactCancelIcon"
                     src="assets/icons/close.png"
-                    alt="Cancel" />
+                    alt="Cancel"
+                  />
                 </button>
                 <button
                   onclick="saveTask()"
-                  class="overlaySaveButton createContactButtonOverlay">
+                  class="overlaySaveButton createContactButtonOverlay"
+                >
                   Create Task
                   <img
                     class="contactCheckIcon"
                     src="assets/icons/check.png"
-                    alt="Check" />
+                    alt="Check"
+                  />
                 </button>
               </div>
             </div>
@@ -174,7 +189,7 @@
     let dropdownHeader = document.getElementById("myDropdown");
     window.addEventListener("click", function (e) {
       if (headerIcon.contains(e.target)) {
-        dropdownHeader.classList.add("show");
+        dropdownHeader.classList.toggle("show");
       } else {
         dropdownHeader.classList.remove("show");
       }

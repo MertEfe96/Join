@@ -146,7 +146,7 @@
     let dropdownHeader = document.getElementById("myDropdown");
     window.addEventListener("click", function (e) {
       if (headerIcon.contains(e.target)) {
-        dropdownHeader.classList.add("show");
+        dropdownHeader.classList.toggle("show");
       } else {
         dropdownHeader.classList.remove("show");
       }

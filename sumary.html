@@ -16,7 +16,6 @@
     <script src="templates/summary_template.js"></script>
     <script src="script.js"></script>
     <script src="/JavaScript/contacts.js"></script>
-
   </head>
   <body onload="init()">
     <div class="filler"></div>
@@ -87,7 +86,7 @@
     let dropdownHeader = document.getElementById("myDropdown");
     window.addEventListener("click", function (e) {
       if (headerIcon.contains(e.target)) {
-        dropdownHeader.classList.add("show");
+        dropdownHeader.classList.toggle("show");
       } else {
         dropdownHeader.classList.remove("show");
       }
