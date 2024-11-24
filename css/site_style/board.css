@@ -338,7 +338,6 @@
   gap: 4px;
   font-size: 16px;
   font-weight: 400;
-  /* line-height: 10.2px; */
   color: rgba(0, 0, 0, 1);
 }
 
@@ -352,9 +351,12 @@
 .subtaskClickDiv {
   display: flex;
   flex-direction: row;
-  line-height: 19.2px;
   gap: 16px;
   padding: 6px 16px 6px 16px;
+}
+
+.singleSubtaskClick {
+  line-height: 19.2px;
 }
 
 .subtaskClickButton {
@@ -385,11 +387,103 @@
 }
 
 .taskCardLargeContent {
+  word-break: break-word;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 40px;
+  white-space: normal;
 }
 
 .dueDateCardLarge {
   display: none;
+  flex-direction: row;
+  font-size: 19px;
+  gap: 25px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.hideSmallView {
+  display: none;
+}
+
+.descriptionCardLarge {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.prioLargeViewRight {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.prioImgLargeView {
+  width: 17px;
+}
+
+.assignedToCardLarge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.headingsFontColor {
+  color: rgba(42, 54, 71, 1);
+}
+
+.assignedToLargeViewBottom {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.assignedToContainerLarge {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 8px;
+  padding: 7px 16px 7px 16px;
+}
+
+.assignedToContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.categoryCardLarge {
+  height: 27px;
+  border-radius: 8px;
+  padding: 4px 24px 4px 24px;
+  gap: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 27.6px;
+}
+
+.categoryCardLargeTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.closeButtonLargeView {
+  width: 24px;
+  height: 24px;
 }

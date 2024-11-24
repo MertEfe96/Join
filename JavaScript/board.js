@@ -10,9 +10,11 @@ function addTask(status = "to-do") {
   setTimeout(() => addTaskMain.classList.add("show"), 10);
   setTimeout(() => addTask.classList.add("show"), 10);
   addTask.innerHTML = templateAddTask(status);
-  assignedAddTaks = document.getElementById("assignedAddTaks");
 }
 
+/**
+ * This function opens large view of Task
+ */
 function taskCardLarge(key) {
   const taskCardLargeMain = document.getElementById("taskCardLargeMain");
   const taskCardLarge = document.getElementById("taskCardLarge");
@@ -20,20 +22,28 @@ function taskCardLarge(key) {
   setTimeout(() => taskCardLargeMain.classList.add("show"), 10);
   setTimeout(() => taskCardLarge.classList.add("show"), 10);
   taskCardLarge.innerHTML = `${templateTaskCardLarge(key)}`;
-
   const elements = taskCardLarge.querySelectorAll(".subtasksSmall");
   elements.forEach((element) => {
     element.style.display = "none";
   });
-
   const elem = taskCardLarge.querySelectorAll(
-    ".subtasksLarge, .dueDateCardLarge"
+    ".subtasksLarge, .dueDateCardLarge, .hideSmallView"
   );
   elem.forEach((element) => {
     element.style.display = "flex";
   });
 
+  const assignedToClass = taskCardLarge.querySelectorAll(
+    ".assignedToContainer"
+  );
+  assignedToClass.forEach((element) => {
+    element.classList.add("assignedToContainerLarge");
+    element.classList.remove("assignedToContainer");
+  });
   renderSubtasksLargeView(key);
+  let taskDiv = document.getElementById(`singleTaskCard${key}`);
+  let priority = taskDiv.querySelector(`#priorityCard${key}`).innerHTML;
+  renderPrioWord(priority, key);
 }
 
 function addTaskNav() {
@@ -59,11 +69,43 @@ function closeAddTask() {
 }
 
 /**
+ * This function closes large view of Task
+ */
+function closetaskCardLarge() {
+  const taskCardLargeMain = document.getElementById("taskCardLargeMain");
+  const taskCardLarge = document.getElementById("taskCardLarge");
+  taskCardLarge.classList.remove("show");
+  setTimeout(() => {
+    taskCardLargeMain.classList.remove("show");
+    setTimeout(() => {
+      taskCardLargeMain.style.display = "none";
+    }, 100);
+  }, 100);
+
+  const elements = taskCardLarge.querySelectorAll(".subtasksSmall");
+  elements.forEach((element) => {
+    element.style.display = "flex";
+  });
+  const elem = taskCardLarge.querySelectorAll(
+    ".subtasksLarge, .dueDateCardLarge, .hideSmallView"
+  );
+  elem.forEach((element) => {
+    element.style.display = "none";
+  });
+
+  const assignedToClass = taskCardLarge.querySelectorAll(
+    ".assignedToContainerLarge"
+  );
+  assignedToClass.forEach((element) => {
+    element.classList.add("assignedToContainer");
+    element.classList.remove("assignedToContainerLarge");
+  });
+}
+
+/**
  * This function saves the tasks in the API
  *
- * @param {string} [status="to-do"] The status of the task (default is "to-do").
- * @param {Object} [data=""] Optional task data; if not provided, it is constructed from input fields.
- *
+ * @param {string} [status="to-do"] The status of the task (default is "to-do"). *
  */
 
 async function saveTask(status = "to-do") {
@@ -102,7 +144,6 @@ function renderGroupedTasks(tasks) {
   taskListDone.innerHTML = "";
 
   Object.entries(tasks).forEach(([key, taskdetails]) => {
-    // wenn man Object.entries(tasks) aufruft, erhält man ein alle tasks beinhaltendes Array von Arrays mit zwei einrtägen[key,{Title:"..",Description:"..",...}]
     let taskDiv = document.createElement("div");
     taskDiv.draggable = true;
     taskDiv.classList.add("singleTaskCard");
@@ -183,8 +224,8 @@ function sortTasks(
 function renderTaskCard(key, taskdetails, categoryClass) {
   return `
 <div id="categoryCard${key}" class="categoryCard ${categoryClass}">${taskdetails.Category}</div>
-<div class="titleCard">${taskdetails.Title}</div>
-<div class="descriptionCard">${taskdetails.Description}</div>
+<div id="titleCard${key}" class="titleCard">${taskdetails.Title}</div>
+<div id="descriptionCard${key}" class="descriptionCard">${taskdetails.Description}</div>
 <div class="dueDateCardLarge" id="dueDate${key}">${taskdetails.DueDate}</div>
 <div id="subtasksCard${key}" class="subtasksCard"></div>
 <div class="bottomCard">
@@ -193,13 +234,21 @@ function renderTaskCard(key, taskdetails, categoryClass) {
 </div>`;
 }
 
+/**
+ * Loads and displays the assigned contacts for a specific task.
+ * It fetches the contact data from the API and iterates over the `assignedTo` array.
+ * For each contact, it checks if the contact exists in the fetched data and extracts the contact's name and color, generates the initials,
+ * and appends the formatted contact information to the task card's assigned contacts container.
+ *
+ * @param {string} key - The unique identifier of the task, used to select the corresponding container.
+ * @param {Array} assignedTo - An array of objects representing the assigned contacts, each containing an `id` and `initials`.
+ * @param {HTMLElement} taskDiv - The DOM element of the task card where the contacts will be displayed.
+ *
+ */
 async function loadAssignedContacts(key, assignedTo, taskDiv) {
   const assignedToContainer = taskDiv.querySelector(`#assignedToCard${key}`);
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
-
-  console.log("Type of assignedTo:", typeof assignedTo);
-  console.log(assignedTo);
   assignedToContainer.innerHTML = "";
 
   for (let index = 0; index < assignedTo.length; index++) {
@@ -216,15 +265,26 @@ async function loadAssignedContacts(key, assignedTo, taskDiv) {
         .toUpperCase();
 
       assignedToContainer.innerHTML += `
+            <div class="assignedToContainer">
       <div 
         class="contactInitialsBoard" 
         style="background-color: ${backgroundColor};">
         ${initials}
+      </div>
+      <div class="hideSmallView">${contactName}</div>
       </div>`;
     }
   }
 }
 
+/**
+ * Loads and displays the priority icon for a specific task.
+ *
+ * @param {string} key - The unique identifier of the task, used to select the corresponding priority container.
+ * @param {string} priority - The priority level of the task
+ * @param {HTMLElement} taskDiv - The DOM element of the task card where the priority icon will be displayed.
+ *
+ */
 function loadPrio(key, priority, taskDiv) {
   const prioContainer = taskDiv.querySelector(`#priorityCard${key}`);
   prioContainer.innerHTML = "";
@@ -237,13 +297,17 @@ function loadPrio(key, priority, taskDiv) {
   }
 }
 
+/**
+ * Loads and displays the subtasks for a specific task.
+ *
+ * @param {string} key - The unique identifier of the task.
+ * @param {Array} subtasks - An array of subtask objects.
+ * @param {HTMLElement} taskDiv - The task card element where subtasks will be displayed.
+ *
+ */
 async function loadSubtasks(key, subtasks, taskDiv) {
   const subtasksContainer = taskDiv.querySelector(`#subtasksCard${key}`);
   subtasksContainer.innerHTML = "";
-
-  console.log("Type of subtasks:", typeof subtasks);
-  console.log(subtasks);
-
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasksContainer.classList.remove("displayNone");
     subtasksContainer.innerHTML = `
@@ -261,6 +325,14 @@ async function loadSubtasks(key, subtasks, taskDiv) {
   }
 }
 
+/**
+ * Updates the width of the progress bar based on completed subtasks.
+ *
+ * @param {string} key - The unique identifier of the task.
+ * @param {number} doneCount - The number of completed subtasks.
+ * @param {number} totalSubtasks - The total number of subtasks.
+ *
+ */
 async function move(key, doneCount, totalSubtasks) {
   let doneSubtasksBar = document.getElementById(`myBar${key}`);
   console.log(totalSubtasks);
@@ -273,6 +345,12 @@ async function move(key, doneCount, totalSubtasks) {
   }
 }
 
+/**
+ * Loads and displays the subtasks in the large view for a specific task.
+ *
+ * @param {string} key - The unique identifier of the task.
+ *
+ */
 async function renderSubtasksLargeView(key) {
   let subTasksLarge = document.getElementById(`subtasksToClickLarge${key}`);
   subTasksLarge.innerHTML = "";
@@ -291,6 +369,13 @@ async function renderSubtasksLargeView(key) {
   }
 }
 
+/**
+ * Renders the check button image based on the subtask's completion status.
+ *
+ * @param {Object} subtask - The subtask object containing its properties.
+ * @param {string} key - The unique identifier of the task.
+ * @param {number} index - The index of the subtask within the task's subtasks array.
+ */
 function renderCheckButton(subtask, key, index) {
   let checkButton = document.getElementById(
     `subtaskClickButton${key}-${index}`
@@ -306,6 +391,14 @@ function renderCheckButton(subtask, key, index) {
   }
 }
 
+/**
+ * Toggles the completion status of a subtask.
+ *
+ * @async
+ * @param {string} key - The unique identifier of the task.
+ * @param {number} index - The index of the subtask within the task's subtasks array.
+ *
+ */
 async function changeCheckbox(key, index) {
   try {
     let response = await fetch(
@@ -332,6 +425,14 @@ async function changeCheckbox(key, index) {
   }
 }
 
+/**
+ * Updates the completion status of a specific subtask in the database.
+ *
+ * @async
+ * @param {string} key - The unique identifier of the task.
+ * @param {number} index - The index of the subtask within the task's subtasks array.
+ * @param {boolean} undone - The new completion status of the subtask.
+ */
 async function updateUndoneStatus(key, index, undone) {
   const updateResponse = await fetch(
     `${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`,
@@ -348,6 +449,12 @@ async function updateUndoneStatus(key, index, undone) {
   }
 }
 
+/**
+ * Counts and displays the number of completed subtasks for a task.
+ *
+ * @param {string} key - The unique identifier of the task.
+ * @returns {Promise<Object>} An object containing `doneCount` and `totalSubtasks`.
+ */
 async function renderDoneSubtasksCount(key) {
   let doneSubtasksCountDiv = document.getElementById(`doneSubtasksCount${key}`);
   let response = await fetch(`${BASE_URL}tasks/${key}/Subtasks.json`);
@@ -366,6 +473,24 @@ async function renderDoneSubtasksCount(key) {
   `;
 
   return { doneCount, totalSubtasks };
+}
+
+/**
+ * Displays the priority level text based on the priority icon.
+ *
+ * @param {string} priority - The HTML string of the priority icon.
+ * @param {string} key - The unique identifier of the task.
+ *
+ */
+function renderPrioWord(priority, key) {
+  let prioWordContainer = document.getElementById(`priorityCardLarge${key}`);
+  if (priority.includes("urgentColor.svg")) {
+    prioWordContainer.innerHTML = "Urgent";
+  } else if (priority.includes("mediumColor.svg")) {
+    prioWordContainer.innerHTML = "Medium";
+  } else if (priority.includes("lowColor.svg")) {
+    prioWordContainer.innerHTML = "Low";
+  }
 }
 
 /**
