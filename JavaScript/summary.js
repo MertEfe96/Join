@@ -60,10 +60,10 @@ function filterStatus(data) {
 }
 
 /**
- * Filters and sorts tasks with "prioUrgent" priority to determine the next due date.
+ * Filters and sorts tasks with "prioUrgent" priority to determine the next due date
  * 
- * @param {Array} filteredPrio - An array of tasks with "prioUrgent" priority, where each task is an entry as [key, value].
- * @returns {string} - The formatted next due date (e.g., "25 November 2024") or "Date not available" if no future date exists.
+ * @param {Array} filteredPrio - An array of tasks with "prioUrgent" priority
+ * @returns {string} - Formats date into a string
  */
 function sortDates(filteredPrio) {
   const currentDate = new Date();
