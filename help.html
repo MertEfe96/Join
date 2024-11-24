@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./css/assets.css" />
-    <link rel="stylesheet" href="./css/fonts.css" />
-    <script src="/script.js"></script>
+    <link rel="stylesheet" href="/css/assets.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/media.css" />
+    <link rel="stylesheet" href="/css/site_style/contacts.css" />
+    <link rel="stylesheet" href="/css/site_style/login_signup.css" />
+    <script src="/templates/login_signnup_template.js"></script>
+    <script src="/templates/help_template.js"></script>
+    <script src="/templates/contacts_template.js"></script>
+    <script src="script.js"></script>
     <script src="/JavaScript/contacts.js"></script>
+    <script src="/JavaScript/summary.js"></script>
+    <script src="/templates/summary_template.js"></script>
   </head>
   <body onload="renderUserIcon()">
     <div class="filler"></div>
@@ -182,4 +190,15 @@
       </div>
     </div>
   </body>
+  <script>
+    let headerIcon = document.getElementById("userIcon");
+    let dropdownHeader = document.getElementById("myDropdown");
+    window.addEventListener("click", function (e) {
+      if (headerIcon.contains(e.target)) {
+        dropdownHeader.classList.add("show");
+      } else {
+        dropdownHeader.classList.remove("show");
+      }
+    });
+  </script>
 </html>
