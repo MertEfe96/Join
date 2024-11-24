@@ -90,7 +90,7 @@ function setMinDate() {
   const today = new Date().toISOString().slice(0, 10);
 
   document.getElementsByName("date")[0].min = today;
-    renderUserIcon();
+  renderUserIcon();
 }
 
 async function postSignUp(data = "") {
@@ -151,10 +151,8 @@ async function loginRequest() {
       users[userId].password === passwordLogin
     ) {
       console.log("Erfolgreich Angemeldet");
-      console.log(userId);
       clearInputLogin();
-      // userLocal.push(users[userId], userId);
-      let user = { ...users[userId], id: userId };
+      let user = { ...users[userId], id: userId }; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
       saveUserInLocal(user);
       window.location.href = "sumary.html";
     } else {
@@ -185,7 +183,7 @@ async function guestLogin() {
   }
 }
 
-function logOut(){
+function logOut() {
   renderLogin();
 }
 
@@ -208,9 +206,6 @@ function renderUserIcon() {
     userIcon.innerHTML = initials;
   }
 }
-
-
-
 
 function clearInputSignUp() {
   document.getElementById("nameSignUp").value = "";
