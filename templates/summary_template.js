@@ -1,4 +1,4 @@
-function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent) {
+function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent, formattedDate) {
   return `
   <div class="upperRow">
     <a href="./board.html" class="toDoDisplay">
@@ -32,7 +32,7 @@ function summaryBoardTemplate(countToDo, countInProgress, countAwaitFeedback, co
     </div>
     <div class="seperatingLine"></div>
     <div class="deadlineRightSection">
-      <div class="deadlineDate">October 16, 2022</div>
+      <div class="deadlineDate">${formattedDate}</div>
       <div>Upcoming Deadline</div>
     </div>
   </a>
