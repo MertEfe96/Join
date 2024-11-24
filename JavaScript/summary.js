@@ -74,6 +74,6 @@ function sortDates(filteredPrio) {
   const nextDueDate = upcomingDates.length > 0 ? upcomingDates[0] : null;
 
   return nextDueDate
-    ? `${nextDueDate.getDate()} ${nextDueDate.toLocaleString('default', { month: 'long' })} ${nextDueDate.getFullYear()}`
+    ? `${nextDueDate.getDate()} ${nextDueDate.toLocaleString('default', { month: 'long' })}, ${nextDueDate.getFullYear()}`
     : "Date not available";
 }
