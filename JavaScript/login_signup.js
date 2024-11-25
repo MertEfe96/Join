@@ -80,17 +80,23 @@ async function loginRequest() {
   let users = data.users;
   let emailLogin = document.getElementById("emailLogin").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
-
+  let rememberCheck = document.getElementById("rememberCheck");
   for (let userId in users) {
     if (
       users[userId].email === emailLogin &&
       users[userId].password === passwordLogin
     ) {
+      if (rememberCheck.value === "on") {
+        let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
+        saveUserInLocal(user);
+      } else {
+        let user = {...users[userId], id: userId};
+        saveUserInSession(user);
+      }
       console.log("Erfolgreich Angemeldet");
       clearInputLogin();
-      let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
-      saveUserInLocal(user);
       window.location.href = "sumary.html";
+      userLocal = {...users[userId], id: userId};
     } else {
       console.log("Email oder Password ist Falsch !");
     }
@@ -108,8 +114,8 @@ async function guestLogin() {
       console.log("Guest Login erfolgreich!");
 
       let user = {...guestUser, id: guestUserId};
-      saveUserInLocal(user);
       renderUserIcon();
+      saveUserInSession(user);
       window.location.href = "sumary.html";
     } else {
       console.error("Gastbenutzer nicht gefunden!");
@@ -120,11 +126,17 @@ async function guestLogin() {
 }
 
 function logOut() {
+  localStorage.clear();
+  sessionStorage.clear();
   renderLogin();
 }
 
 function saveUserInLocal(user) {
   localStorage.setItem("user", JSON.stringify(user));
+}
+
+function saveUserInSession(user) {
+  sessionStorage.setItem("user", JSON.stringify(user));
 }
 
 function clearInputSignUp() {
@@ -147,4 +159,27 @@ function showPassword() {
 function showConfirmPassword() {
   let input = document.getElementById("passwordConfirmSignUp");
   input.type = input.type === "password" ? "text" : "password";
+}
+
+function renderUserIcon() {
+  let userIcon = document.getElementById("userIcon");
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.name) {
+    let initials = getInitials(user.name);
+    userIcon.innerHTML = initials;
+  } else {
+    user = JSON.parse(sessionStorage.getItem("user"));
+    if (user && user.name) {
+      let initials = getInitials(user.name);
+      userIcon.innerHTML = initials;
+    }
+  }
+}
+
+function getInitials(name) {
+  let parts = name.split(" ");
+  return parts.length > 1
+    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
+    : name[0].toUpperCase();
 }

@@ -38,7 +38,7 @@ function loginTemplate() {
                 class="iconLogin" />
             </div>
             <div class="rememberDiv">
-              <input class="hover" type="checkbox" name="" id="" />
+              <input class="hover" type="checkbox" name="" id="rememberCheck" />
               <p>Remember me</p>
             </div>
             <div class="loginButtonDiv">
