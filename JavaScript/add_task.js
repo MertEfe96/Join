@@ -64,8 +64,94 @@ async function postTask(data) {
   });
 }
 
-// if (contact.name === user.name && contact.mail === user.mail){
-//   push both
-// } else {
-//   push only contact
-// }
+document.addEventListener("click", function (e) {
+  let dropdown = document.getElementById("dropdownContent");
+  let arrow = document.getElementById("fakeInputArrow");
+  let assignedAddTasks = document.getElementById("assignedAddTaks");
+  if (dropdown && arrow && assignedAddTasks) {
+    let isInsideDropdown = dropdown.contains(e.target);
+    let isInsideAssignedAddTasks = assignedAddTasks.contains(e.target);
+    if (
+      !isInsideDropdown &&
+      !isInsideAssignedAddTasks &&
+      dropdown.classList.contains("show")
+    ) {
+      dropdown.classList.remove("show");
+      arrow.classList.remove("rotate");
+    }
+    if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
+      dropdown.classList.add("show");
+      arrow.classList.add("rotate");
+      pullContactsToAssign(dropdown);
+    }
+  }
+});
+
+async function pullContactsToAssign(dropdown) {
+  let response = await fetch(BASE_URL + ".json");
+  let data = await response.json();
+  let contacts = data.contacts;
+
+  if (contacts) {
+    renderContactsToAssign(dropdown, contacts);
+  }
+}
+
+function renderContactsToAssign(dropdown, contacts) {
+  dropdown.innerHTML = "";
+  const sortedContacts = sortContacts(contacts);
+  sortedContacts.forEach(([key, contact], index) => {
+    dropdown.innerHTML += assigneContactTemplate(
+      key,
+      contact,
+      index,
+      contact.color
+    );
+  });
+}
+
+function changePrio(prio) {
+  const prioritieIcons = ["prioUrgent", "prioMedium", "prioLow"];
+  let prioId = prioritieIcons.indexOf(prio);
+  prioritieIcons.forEach((prioritie, i) => {
+    document.getElementById(prioritie).classList.add(prioritie + "Color");
+    document.getElementById(prioritie).classList.remove(prioritie + "White");
+    document
+      .getElementById(prioritie + "Div")
+      .classList.remove(prioritie + "ColorDiv");
+  });
+  document
+    .getElementById(prioritieIcons[prioId])
+    .classList.add(prioritieIcons[prioId] + "White");
+  document.getElementById(prioritieIcons[prioId]).classList.add("chosenPrio");
+  document
+    .getElementById(prioritieIcons[prioId] + "Div")
+    .classList.add(prioritieIcons[prioId] + "ColorDiv");
+  document
+    .getElementById(prioritieIcons[prioId])
+    .classList.remove(prioritieIcons[prioId] + "Color");
+}
+
+function setMinDate() {
+  const today = new Date().toISOString().slice(0, 10);
+
+  document.getElementsByName("date")[0].min = today;
+  renderUserIcon();
+}
+
+function getInitials(name) {
+  let parts = name.split(" ");
+  return parts.length > 1
+    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
+    : name[0].toUpperCase();
+}
+
+function renderUserIcon() {
+  let userIcon = document.getElementById("userIcon");
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.name) {
+    let initials = getInitials(user.name);
+    userIcon.innerHTML = initials;
+  }
+}
