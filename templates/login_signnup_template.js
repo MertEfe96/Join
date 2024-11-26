@@ -71,10 +71,13 @@ function signUpTemplate() {
       <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
       <div class="loginField" id="loginField">
   <div class="loginBox">
+        <div class="singUpHeader">
+            <div onclick="renderLogin()" id="arrowToCloseSignUp"></div>
           <div class="headlineAndBorder">
             <h1 class="loginHeadline">Sign up</h1>
             <div class="border"></div>
           </div>
+        </div>
           <form class="loginForm" onsubmit="return false;">
             <div class="inputWrapper">
               <input required

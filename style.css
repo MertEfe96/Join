@@ -426,4 +426,14 @@ section {
   cursor: pointer;
 }
 
+#arrowToCloseSignUp {
+  background-image: url(./assets/icons/arrow-left-line.png);
+  width: 37px;
+  min-height: 37px;
+}
+
+#arrowToCloseSignUp:hover {
+  cursor: pointer;
+}
+
 /* help end */
