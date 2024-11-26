@@ -14,6 +14,7 @@
 
 select {
   -webkit-appearance: none;
+  appearance: none;
   background-image: url(/assets/icons/arrow_drop_down.png);
   background-repeat: no-repeat;
   background-position-x: 98%;
