@@ -1,0 +1,244 @@
+.dasNervt {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+#fakeInputArrow {
+  background-image: url(/assets/icons/arrow_drop_down.png);
+  min-width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: -40px;
+}
+
+select {
+  -webkit-appearance: none;
+  background-image: url(/assets/icons/arrow_drop_down.png);
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 50%;
+}
+
+option {
+  color: black;
+}
+
+.addIcon {
+  background-image: url(/assets/icons/add.svg);
+  min-width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: -40px;
+}
+
+.imgInInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.divieder {
+  background-color: rgb(209, 209, 209);
+  width: 1px;
+  min-height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.addTaskSplit {
+  display: flex;
+}
+
+.addTaskPortion {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.inputSubContainerAddTask {
+  width: 90%;
+  max-width: 440px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  position: relative;
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.dropdownContent {
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  max-height: 200px;
+  overflow-x: auto;
+  position: absolute;
+  margin-top: 85px;
+}
+
+.inDropdown {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  margin: 2px 0;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.checkboxAddTask:enabled:checked {
+  accent-color: rgb(42, 54, 71) !important;
+  color: white;
+}
+
+.inDropdown:hover {
+  background-color: rgb(238, 238, 238);
+  cursor: pointer;
+}
+
+.contactName {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.contactInitialsExtraSmall {
+  font-size: 12px;
+  background-color: rgba(147, 39, 255, 1);
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  color: #ffffff;
+  border: 2px solid white;
+}
+
+.inputAddTask {
+  border-radius: 10px;
+  border: 1px solid rgb(191, 191, 191);
+  outline: none;
+  font-size: 20px;
+  padding: 13px 0px;
+  width: 100%;
+  max-width: 440px;
+  padding-right: 13px;
+  box-sizing: border-box;
+  padding-inline-start: 16px;
+  font-family: Inter;
+}
+
+.inputAddTask::placeholder {
+  text-indent: 4px;
+}
+
+.inputHeader {
+  display: flex;
+}
+
+.inputHeader p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.star {
+  color: #ff8090;
+}
+
+.prioDiv {
+  display: flex;
+  justify-content: space-between;
+  max-width: 440px;
+}
+
+.prio {
+  border-radius: 10px;
+  border: 1px solid rgb(191, 191, 191);
+  background-color: #fff;
+  outline: none;
+  font-size: 20px;
+  display: flex;
+  gap: 8px;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.prio:hover {
+  cursor: pointer;
+}
+
+.prioSvg {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.prioUrgentColor {
+  background-image: url(/assets/icons/urgentColor.svg);
+}
+
+.prioUrgentColorDiv {
+  background-color: #ff3d00;
+  color: white;
+}
+
+.prioUrgentWhite {
+  background-image: url(/assets/icons/urgentWhite.svg);
+}
+
+.prioMediumColor {
+  background-image: url(/assets/icons/mediumColor.svg);
+}
+
+.prioMediumWhite {
+  background-image: url(/assets/icons/mediumWhite.svg);
+}
+
+.prioMediumColorDiv {
+  background-color: #ffa800;
+  color: white;
+}
+
+.prioLowColor {
+  background-image: url(/assets/icons/lowColor.svg);
+}
+
+.prioLowWhite {
+  background-image: url(/assets/icons/lowWhite.svg);
+}
+
+.prioLowColorDiv {
+  background-color: #7ae229;
+  color: white;
+}
+
+#assignedContactsImgDiv {
+  display: flex;
+  padding-left: 8px;
+  width: calc(100% - 16px);
+}
+
+.addTaskInitals {
+  margin-left: -8px;
+}
+
+.assignedContactInList {
+  background-color: rgb(42, 54, 71);
+  color: white;
+}
+
+.assignedContactInList:hover {
+  background-color: rgb(9, 25, 49) !important;
+}

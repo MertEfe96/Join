@@ -9,15 +9,18 @@ function renderAssignedContactsInAddTask() {
   });
 }
 
-function assignContactToTask(key, ini, c) {
+function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
   let obj = {id: key, initials: ini, color: c};
-  if (checkBox.checked == true) {
+  let div = document.getElementById("inDropdown" + i);
+  if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
+    div.classList.remove("assignedContactInList");
     const pos = assignedContacts.map((e) => e.id).indexOf(key);
     assignedContacts.splice(pos, 1);
   } else {
     checkBox.checked = true;
+    div.classList.add("assignedContactInList");
     assignedContacts.push(obj);
   }
   renderAssignedContactsInAddTask();
