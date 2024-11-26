@@ -138,20 +138,3 @@ function setMinDate() {
   document.getElementsByName("date")[0].min = today;
   renderUserIcon();
 }
-
-function getInitials(name) {
-  let parts = name.split(" ");
-  return parts.length > 1
-    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
-    : name[0].toUpperCase();
-}
-
-function renderUserIcon() {
-  let userIcon = document.getElementById("userIcon");
-  let user = JSON.parse(localStorage.getItem("user"));
-
-  if (user && user.name) {
-    let initials = getInitials(user.name);
-    userIcon.innerHTML = initials;
-  }
-}
