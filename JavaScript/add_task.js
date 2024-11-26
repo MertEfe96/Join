@@ -85,12 +85,12 @@ document.addEventListener("click", function (e) {
     if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
       dropdown.classList.add("show");
       arrow.classList.add("rotate");
-      pullContactsToAssign(dropdown);
     }
   }
 });
 
-async function pullContactsToAssign(dropdown) {
+async function pullContactsToAssign() {
+  let dropdown = document.getElementById("dropdownContent");
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
   let contacts = data.contacts;

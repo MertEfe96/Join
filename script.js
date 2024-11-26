@@ -19,6 +19,7 @@ function checkIfLogedIn() {
 
 function initAddTask() {
   addTaskNav();
+  pullContactsToAssign();
   checkIfLogedIn();
 }
 
