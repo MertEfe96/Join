@@ -35,7 +35,7 @@ function renderSubtasks() {
   }
 }
 
-function setDataForTask(status = "to-do") {
+async function setDataForTask(status = "to-do") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
   description = description.replace("<", ".");
@@ -54,7 +54,8 @@ function setDataForTask(status = "to-do") {
     Subtasks: subtasks,
     Status: status,
   };
-  postTask(data);
+  await postTask(data);
+  addTaskNav();
 }
 
 async function postTask(data) {

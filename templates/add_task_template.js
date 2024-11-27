@@ -77,13 +77,13 @@ function templateAddTask(status) {
                         class="prioUrgentColor prioSvg"></div>
                     </div>
                     <div
-                      class="prio"
+                      class="prio prioMediumColorDiv"
                       id="prioMediumDiv"
                       onclick="changePrio('prioMedium')">
                       <p>Medium</p>
                       <div
                         id="prioMedium"
-                        class="prioMediumColor prioSvg"></div>
+                        class="prioMediumWhite chosenPrio prioSvg"></div>
                     </div>
                     <div
                       class="prio"
@@ -237,13 +237,13 @@ function templateAddTaskNav(status) {
                         class="prioUrgentColor prioSvg"></div>
                     </div>
                     <div
-                      class="prio"
+                      class="prio prioMediumColorDiv"
                       id="prioMediumDiv"
                       onclick="changePrio('prioMedium')">
                       <p>Medium</p>
                       <div
                         id="prioMedium"
-                        class="prioMediumColor prioSvg"></div>
+                        class="prioMediumWhite chosenPrio prioSvg"></div>
                     </div>
                     <div
                       class="prio"

@@ -109,7 +109,16 @@ function sortDates(filteredPrio) {
 
   return nextDueDate
     ? `${nextDueDate.getDate()} ${nextDueDate.toLocaleString("default", {
-        month: "long",
-      })}, ${nextDueDate.getFullYear()}`
+      month: "long",
+    })}, ${nextDueDate.getFullYear()}`
     : "Date not available";
+}
+
+function summaryGreeting() {
+  let greetingSummary = document.getElementById('greetingSummary');
+  let userIcon = document.getElementById('userIcon');
+
+  if (userIcon.contains = 'G')
+
+  greetingSummary.innerHTML = `Good Morning`;
 }

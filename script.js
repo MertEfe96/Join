@@ -35,6 +35,7 @@ function initContacts() {
 
 function initSumary() {
   fetchAmounts("/tasks");
+  summaryGreeting();
   renderUserIcon();
   checkIfLogedIn();
 }
