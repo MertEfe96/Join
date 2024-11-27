@@ -77,18 +77,18 @@ async function getDataForEditTask(key) {
   fillInputsEditTask();
 }
 
-// function fillInputsEditTask(dataTask) {
-//   let title = document.getElementById("addTaskInputTitle").value;
-//   let description = document.getElementById("addTaskInputDescription").value;
-//   description = description.replace("<", ".");
-//   let assigned = assignedContacts;
-//   let date = document.getElementById("addTaskInputDate").value;
-//   /*let prio = document.getElementsByClassName("chosenPrio")[0].id;*/
-//   let category = document.getElementById("addTaskInputCategory").value;
-//   let subtasks = subtasksArray;
-//   title = dataTask.Title;
-//   description = dataTask.Description;
-// }
+function fillInputsEditTask(dataTask) {
+  let title = document.getElementById("addTaskInputTitle").value;
+  let description = document.getElementById("addTaskInputDescription").value;
+  description = description.replace("<", ".");
+  let assigned = assignedContacts;
+  let date = document.getElementById("addTaskInputDate").value;
+  /*let prio = document.getElementsByClassName("chosenPrio")[0].id;*/
+  let category = document.getElementById("addTaskInputCategory").value;
+  let subtasks = subtasksArray;
+  title = dataTask.Title;
+  /*description = dataTask.Description;*/
+}
 
 async function editTask(data, key) {
   let response = await fetch(BASE_URL + `tasks/${key}.json`, {
