@@ -51,6 +51,12 @@
   margin: 32px;
   overflow-x: auto;
   max-height: calc(100vh - 315px);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.boardContent::-webkit-scrollbar {
+  display: none;
 }
 
 .statusContainer {

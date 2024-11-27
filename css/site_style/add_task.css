@@ -84,6 +84,7 @@ option {
   overflow-x: auto;
   position: absolute;
   margin-top: 85px;
+  border-radius: 8px;
 }
 
 .inDropdown {
