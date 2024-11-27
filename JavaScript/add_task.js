@@ -87,7 +87,7 @@ function fillInputsEditTask(dataTask) {
   let category = document.getElementById("addTaskInputCategory").value;
   let subtasks = subtasksArray;
   title = dataTask.Title;
-  description = dataTask.Description;
+  /*description = dataTask.Description;*/
 }
 
 async function editTask(data, key) {
