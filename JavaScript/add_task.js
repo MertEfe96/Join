@@ -68,6 +68,38 @@ async function postTask(data) {
   });
 }
 
+async function getDataForEditTask(key) {
+  let response = await fetch(BASE_URL + `tasks/${key}.json`);
+  let dataTask = await response.json();
+
+  addTask();
+  closetaskCardLarge();
+  fillInputsEditTask();
+}
+
+function fillInputsEditTask(dataTask) {
+  let title = document.getElementById("addTaskInputTitle").value;
+  let description = document.getElementById("addTaskInputDescription").value;
+  description = description.replace("<", ".");
+  let assigned = assignedContacts;
+  let date = document.getElementById("addTaskInputDate").value;
+  /*let prio = document.getElementsByClassName("chosenPrio")[0].id;*/
+  let category = document.getElementById("addTaskInputCategory").value;
+  let subtasks = subtasksArray;
+  title = dataTask.Title;
+  /*description = dataTask.Description;*/
+}
+
+async function editTask(data, key) {
+  let response = await fetch(BASE_URL + `tasks/${key}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}
+
 document.addEventListener("click", function (e) {
   let dropdown = document.getElementById("dropdownContent");
   let arrow = document.getElementById("fakeInputArrow");
@@ -89,6 +121,17 @@ document.addEventListener("click", function (e) {
     }
   }
 });
+
+async function deleteTaskCardLarge(key) {
+  let response = await fetch(BASE_URL + `tasks/${key}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  closetaskCardLarge();
+  pullTasks();
+}
 
 async function pullContactsToAssign() {
   let dropdown = document.getElementById("dropdownContent");

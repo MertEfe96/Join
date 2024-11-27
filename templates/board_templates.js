@@ -25,9 +25,13 @@ function templateTaskCardLarge(key) {
           <div class="dueDateCardLarge"><div class="headingsFontColor">Priority:</div> <div class="prioLargeViewRight"> <div id="priorityCardLarge${key}"></div> <div class="prioImgLargeView">${priority}</div> </div></div>
           <div class="assignedToCardLarge"><div class="headingsFontColor">Assigned To:</div> <div class="assignedToLargeViewBottom">${assignedTo}</div></div>
           <div class="subtasksLarge">
-        <div class="headerSubtasks headingsFontColor">Subtasks</div>
-        <div id="subtasksToClickLarge${key}" class="subTasksToClickLarge"></div>    
-      </div>
+            <div class="headerSubtasks headingsFontColor">Subtasks</div>
+            <div id="subtasksToClickLarge${key}" class="subTasksToClickLarge"></div>    
+          </div>
+          <div class="bottomCardLarge">
+            <div> <img onclick="deleteTaskCardLarge('${key}')" class="deleteButtonLargeView" src=./assets/icons/deleteTask.png> Delete </div>
+            <div> <img onclick="getDataForEditTask('${key}')" class="deleteButtonLargeView" src=./assets/icons/editTask.png> Edit </div>
+          </div>
         </div>
       `;
 }
