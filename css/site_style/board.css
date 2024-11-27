@@ -494,3 +494,14 @@
   width: 24px;
   height: 24px;
 }
+
+.bottomCardLarge {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.deleteButtonLargeView {
+  cursor: pointer;
+}
