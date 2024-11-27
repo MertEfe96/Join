@@ -9,15 +9,18 @@ function renderAssignedContactsInAddTask() {
   });
 }
 
-function assignContactToTask(key, ini, c) {
+function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
   let obj = {id: key, initials: ini, color: c};
-  if (checkBox.checked == true) {
+  let div = document.getElementById("inDropdown" + i);
+  if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
+    div.classList.remove("assignedContactInList");
     const pos = assignedContacts.map((e) => e.id).indexOf(key);
     assignedContacts.splice(pos, 1);
   } else {
     checkBox.checked = true;
+    div.classList.add("assignedContactInList");
     assignedContacts.push(obj);
   }
   renderAssignedContactsInAddTask();
@@ -32,7 +35,7 @@ function renderSubtasks() {
   }
 }
 
-function setDataForTask(status = "to-do") {
+async function setDataForTask(status = "to-do") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
   description = description.replace("<", ".");
@@ -51,7 +54,8 @@ function setDataForTask(status = "to-do") {
     Subtasks: subtasks,
     Status: status,
   };
-  postTask(data);
+  await postTask(data);
+  addTaskNav();
 }
 
 async function postTask(data) {
@@ -82,12 +86,12 @@ document.addEventListener("click", function (e) {
     if (isInsideAssignedAddTasks && !dropdown.classList.contains("show")) {
       dropdown.classList.add("show");
       arrow.classList.add("rotate");
-      pullContactsToAssign(dropdown);
     }
   }
 });
 
-async function pullContactsToAssign(dropdown) {
+async function pullContactsToAssign() {
+  let dropdown = document.getElementById("dropdownContent");
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
   let contacts = data.contacts;

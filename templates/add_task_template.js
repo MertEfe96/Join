@@ -77,13 +77,13 @@ function templateAddTask(status) {
                         class="prioUrgentColor prioSvg"></div>
                     </div>
                     <div
-                      class="prio"
+                      class="prio prioMediumColorDiv"
                       id="prioMediumDiv"
                       onclick="changePrio('prioMedium')">
                       <p>Medium</p>
                       <div
                         id="prioMedium"
-                        class="prioMediumColor prioSvg"></div>
+                        class="prioMediumWhite chosenPrio prioSvg"></div>
                     </div>
                     <div
                       class="prio"
@@ -104,7 +104,7 @@ function templateAddTask(status) {
                   <select
                     required
                     name="category"
-                    class="inputAddTask"
+                    class="inputAddTask custom-select"
                     id="addTaskInputCategory">
                     <option value>Select a task category</option>
                     <option value="User Story">Technical Task</option>
@@ -237,13 +237,13 @@ function templateAddTaskNav(status) {
                         class="prioUrgentColor prioSvg"></div>
                     </div>
                     <div
-                      class="prio"
+                      class="prio prioMediumColorDiv"
                       id="prioMediumDiv"
                       onclick="changePrio('prioMedium')">
                       <p>Medium</p>
                       <div
                         id="prioMedium"
-                        class="prioMediumColor prioSvg"></div>
+                        class="prioMediumWhite chosenPrio prioSvg"></div>
                     </div>
                     <div
                       class="prio"
@@ -264,7 +264,7 @@ function templateAddTaskNav(status) {
                   <select
                     required
                     name="category"
-                    class="inputAddTask"
+                    class="inputAddTask custom-select"
                     id="addTaskInputCategory">
                     <option value>Select a task category</option>
                     <option value="User Story">Technical Task</option>
@@ -294,9 +294,9 @@ function templateAddTaskNav(status) {
               </div>
               <div class="editOverlayButtonContainer">
                 <button
-                  onclick="closeAddTask()"
+                  onclick="addTaskNav()"
                   class="overlayDeleteButton addTaskCancelButton">
-                  Cancel
+                  Clear
                   <img
                     class="addContactCancelIcon"
                     src="assets/icons/close.png"
@@ -325,10 +325,10 @@ function assigneContactTemplate(key, contact, i, color) {
     .join("")
     .toUpperCase();
   return `
-  <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', '${initials}', '${color}')">
+  <div class="inDropdown" id="inDropdown${i}" onclick="assignContactToTask('${key}', '${initials}', '${color}', '${i}')">
   <div style="background-color:${color}" class="contactInitialsExtraSmall">${initials}</div>
   <div class="contactName">${contact.name}</div>
-  <input type="checkbox" name="" id="${key}" />
+  <input class="checkboxAddTask" type="checkbox" name="" id="${key}" />
 </div>`;
 }
 
