@@ -14,6 +14,13 @@
   font-size: 47px;
   font-weight: 500;
   margin-left: 110px;
+  text-wrap: nowrap;
+}
+
+.userNameSummary {
+  font-size: 64px;
+  font-weight: 700;
+  color: #29ABE2;
 }
 
 .summaryBoardContainer {

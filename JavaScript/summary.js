@@ -116,9 +116,14 @@ function sortDates(filteredPrio) {
 
 function summaryGreeting() {
   let greetingSummary = document.getElementById('greetingSummary');
-  let userIcon = document.getElementById('userIcon');
 
-  if (userIcon.contains = 'G')
+  if (localStorage.getItem('user')) {
+    let userName = localStorage.getItem('user');
+    let userObject = JSON.parse(userName);
+    let entries = Object.entries(userObject); 
 
-  greetingSummary.innerHTML = `Good Morning`;
+    greetingSummary.innerHTML = `Good Morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+  } else {
+    greetingSummary.innerHTML = `Good Morning`;
+  }
 }
