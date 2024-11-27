@@ -122,8 +122,8 @@ function summaryGreeting() {
     let userObject = JSON.parse(userName);
     let entries = Object.entries(userObject); 
 
-    greetingSummary.innerHTML = `Good Morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+    greetingSummary.innerHTML = `Good morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
   } else {
-    greetingSummary.innerHTML = `Good Morning`;
+    greetingSummary.innerHTML = `Good morning`;
   }
 }
