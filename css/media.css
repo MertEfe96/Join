@@ -1,0 +1,94 @@
+@media (max-width: 1150px) {
+  .prio p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .prio p {
+    font-size: 20px;
+  }
+
+  .addTaskSplit {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .addTaskPortion {
+    width: 80%;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    flex-direction: column-reverse;
+  }
+  header {
+    max-width: 100%;
+  }
+  .logoMedia {
+    background-image: url(../assets/img/Capa\ 1.svg);
+    width: 58px;
+    height: 58px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 40px;
+  }
+  .headline {
+    display: none;
+  }
+  .helpLinkDropDown {
+    display: block;
+  }
+  .helpIcon {
+    display: none;
+  }
+  .grow {
+    max-width: 100%;
+  }
+  .navBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    flex-direction: row;
+    padding: 0;
+    z-index: 999;
+  }
+  .LogoNavImg {
+    display: none;
+  }
+  .widthFull {
+    flex-direction: row;
+  }
+  .navBarMenu {
+    flex-direction: row;
+    margin: 0;
+    justify-content: center;
+  }
+  .mobileNoShow {
+    display: none;
+  }
+  .menuLinkDiv {
+    width: 20%;
+    height: 60px;
+    border-radius: 8px;
+  }
+  .menuLink {
+    flex-direction: column;
+    margin: 0;
+  }
+  .filler {
+    height: 70px;
+  }
+  .addTaskPortion {
+    width: 100%;
+  }
+  .inputSubContainerAddTask {
+    max-width: 100%;
+  }
+  .inputAddTask {
+    max-width: 100%;
+  }
+}

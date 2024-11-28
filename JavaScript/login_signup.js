@@ -86,7 +86,7 @@ async function loginRequest() {
       users[userId].email === emailLogin &&
       users[userId].password === passwordLogin
     ) {
-      if (rememberCheck.value === "on") {
+      if (rememberCheck.checked) {
         let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
         saveUserInLocal(user);
       } else {

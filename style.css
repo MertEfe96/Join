@@ -120,6 +120,10 @@ body {
   background-color: rgb(47, 68, 99);
 }
 
+.helpLinkDropDown {
+  display: none;
+}
+
 /* test section for dropbox in Assigned to */
 
 /* end of test */

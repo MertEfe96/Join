@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/site_style/board.css">
     <link rel="stylesheet" href="./css/site_style/login_signup.css" />
     <link rel="stylesheet" href="./css/site_style/add_task.css">
+    <link rel="stylesheet" href="./css/media.css">
     <script src="./templates/login_signnup_template.js"></script>
     <script src="./templates/help_template.js"></script>
     <script src="./JavaScript/board.js"></script>
@@ -19,9 +20,9 @@
     <script src="./JavaScript/add_task.js"></script>
     <script src="./JavaScript/login_signup.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
   <body onload="initAddTask()">
     <div class="filler"></div>
@@ -55,13 +56,14 @@
           </div>
         </div>
       </div>
-      <div class="menuLinkDiv">
+      <div class="menuLinkDiv mobileNoShow">
         <a class="menuLink" href="./privacy_policy.html">Privacy Policy</a>
         <a class="menuLink" href="./legal_notice.html">Legal notice</a>
       </div>
     </nav>
     <div class="grow">
       <header>
+        <div class="logoMedia"></div>
         <div class="headline">Kanban Project Management Tool</div>
         <div class="headerIconDiv">
           <a class="helpIcon" href="./help.html"></a>
@@ -69,6 +71,7 @@
       </div>
       </header>
       <div id="myDropdown" class="dropdown-content">
+        <a class="dropDownLink helpLinkDropDown" href="./help.html">Help</a>
         <a href="./legal_notice.html" class="dropDownLink">Legal Notice</a>
         <a href="./privacy_policy.html" class="dropDownLink">Privacy Policy</a>
         <span onclick="logOut()" id="logOut" class="dropDownLink">Log out</span>
