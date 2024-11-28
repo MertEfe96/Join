@@ -114,16 +114,45 @@ function sortDates(filteredPrio) {
     : "Date not available";
 }
 
+/**
+ * Retrieves user-name from localstorage and determines the appropriate greeting by calling corresponding functions
+ */
 function summaryGreeting() {
-  let greetingSummary = document.getElementById('greetingSummary');
-
   if (localStorage.getItem('user')) {
     let userName = localStorage.getItem('user');
     let userObject = JSON.parse(userName);
     let entries = Object.entries(userObject); 
 
-    greetingSummary.innerHTML = `Good morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+    dayTime(entries);
   } else {
-    greetingSummary.innerHTML = `Good morning`;
+    dayTimeGuest();
+  }
+}
+
+function dayTime(entries) {
+  let greetingSummary = document.getElementById('greetingSummary');
+  let today = new Date();
+  let currentHr = today.getHours();
+  
+  if (currentHr < 12) {
+    greetingSummary.innerHTML = `Good morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+  } else if (currentHr < 18) {
+    greetingSummary.innerHTML = `Good afternoon, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+  } else {
+    greetingSummary.innerHTML = `Good evening, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
+  }
+}
+
+function dayTimeGuest() {
+  let greetingSummary = document.getElementById('greetingSummary');
+  let today = new Date();
+  let currentHr = today.getHours();
+  
+  if (currentHr < 12) {
+    greetingSummary.innerHTML = "Good morning";
+  } else if (currentHr < 18) {
+    greetingSummary.innerHTML = "Good afternoon";
+  } else {
+    greetingSummary.innerHTML = "Good evening";
   }
 }
