@@ -17,6 +17,10 @@
   .addTaskPortion {
     width: 80%;
   }
+
+  .textRequired {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -84,11 +88,30 @@
   }
   .addTaskPortion {
     width: 100%;
+    gap: 20px;
   }
   .inputSubContainerAddTask {
     max-width: 100%;
   }
   .inputAddTask {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .prio p {
+    font-size: 18px;
+  }
+
+  .headlineAddTaskWindow b {
+    font-size: 40px;
+  }
+
+  .addTaskSecDiv {
+    padding: 0;
+  }
+
+  .addTaskDiv {
+    padding: 0;
   }
 }

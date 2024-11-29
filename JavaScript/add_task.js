@@ -1,5 +1,6 @@
 let assignedContacts = [];
 let subtasksArray = [];
+let sortedContacts = [];
 
 function renderAssignedContactsInAddTask() {
   let div = document.getElementById("assignedContactsImgDiv");
@@ -81,16 +82,41 @@ async function getDataForEditTask(key) {
   fillInputsEditTask(dataTask);
 }
 
-function fillInputsEditTask(dataTask) {
+async function fillInputsEditTask(dataTask) {
   let title = document.getElementById("addTaskInputTitle");
   let description = document.getElementById("addTaskInputDescription");
-  let assigned = assignedContacts;
   let date = document.getElementById("addTaskInputDate");
-  /*let prio = document.getElementsByClassName("chosenPrio")[0].id;*/
   let category = document.getElementById("addTaskInputCategory");
-  let subtasks = subtasksArray;
+  date.value = dataTask.DueDate;
+  category.value = dataTask.Category;
+  subtasksArray = dataTask.Subtasks;
   title.value = dataTask.Title;
   description.value = dataTask.Description;
+  pullContactsToAssign();
+  renderEditInputs(dataTask.Priority);
+  let assigned = pullContactDetails(dataTask.AssignedTo);
+}
+
+async function pullContactDetails(assigned) {
+  assigned.forEach(async (contact) => {
+    const nameOfContact = await pullAssignedContact(contact.id);
+    const index = sortedContacts[0].findIndex(
+      (contact) => contact[1]?.name === nameOfContact
+    );
+    assignContactToTask(contact.id, contact.initials, contact.color, index);
+  });
+}
+
+async function pullAssignedContact(key) {
+  let response = await fetch(BASE_URL + "contacts/" + key + "/.json");
+  let responseToJson = await response.json();
+  return responseToJson.name;
+}
+
+function renderEditInputs(prio) {
+  changePrio(prio);
+  renderSubtasks();
+  renderAssignedContactsInAddTask();
 }
 
 async function editTask(data, key) {
@@ -149,8 +175,9 @@ async function pullContactsToAssign() {
 
 function renderContactsToAssign(dropdown, contacts) {
   dropdown.innerHTML = "";
-  const sortedContacts = sortContacts(contacts);
-  sortedContacts.forEach(([key, contact], index) => {
+  sortedContacts = [];
+  sortedContacts.push(sortContacts(contacts));
+  sortedContacts[0].forEach(([key, contact], index) => {
     dropdown.innerHTML += assigneContactTemplate(
       key,
       contact,

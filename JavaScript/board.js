@@ -60,6 +60,7 @@ function addTaskNav() {
 function closeAddTask() {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
+  assignedContacts = [];
   addTask.classList.remove("show");
   setTimeout(() => {
     addTaskMain.classList.remove("show");
