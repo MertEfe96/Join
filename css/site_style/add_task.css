@@ -248,3 +248,61 @@ option {
 .assignedContactInList:hover {
   background-color: rgb(9, 25, 49) !important;
 }
+
+.delIcon {
+  background-image: url(/assets/icons/delete.png);
+  height: 18px;
+  width: 16px;
+}
+
+.editIcon {
+  background-image: url(/assets/icons/edit.png);
+  height: 18px;
+  width: 18px;
+}
+
+.checkIcon {
+  background-image: url(/assets/icons/check.svg);
+  height: 16px;
+  width: 18px;
+}
+
+.subtaskIcon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.subtaskIcon:hover {
+  cursor: pointer;
+}
+
+.subtaskIconDiv {
+  display: none;
+  gap: 4px;
+}
+
+.subtaskDiv {
+  display: flex;
+  justify-content: space-between;
+  height: 27px;
+  margin: 8px none;
+}
+
+.editSubtaskDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ml--55 {
+  margin-left: -55px;
+}
+
+.inputAddTaskEdit {
+  border: none;
+  background-color: #fff;
+  border-bottom: solid 1px rgb(148, 213, 240);
+  width: 100%;
+  height: 24px;
+}

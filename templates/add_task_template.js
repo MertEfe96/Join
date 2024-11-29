@@ -339,5 +339,32 @@ function assignedContactInitialsTemplate(initials, color) {
 }
 
 function subtaskTemplate(task, i) {
-  return `<div id="subtask${i}" class="subtask">${task}</div>`;
+  return `
+  <div id="subtaskDiv${i}">
+  <div class="subtaskDiv" onmouseenter="showIconsAddTask(${i})" onmouseleave="showIconsAddTask(${i})">
+  <div id="subtask${i}" class="subtaskTask">${task}</div>
+  <div id="subtaskIcons${i}" class="subtaskIconDiv">
+    <div onclick="editSubtask(${i})" class="subtaskIcon editIcon"></div>
+    <div class="divieder"></div>
+    <div onclick="delSubtask(${i})" class="subtaskIcon delIcon"></div>
+  </div> 
+  </div>
+</div>`;
+}
+
+function subtaskEditTemplate(subtask, i) {
+  return `
+  <div class="editSubtaskDiv">
+    <input
+    id="addTaskInputSubtaskEdit${i}"
+    type="text"
+    class="inputAddTaskEdit"
+    value="${subtask}" />
+    <div class="subtaskIconDiv ml--55 show">
+      <div onclick="delSubtask(${i})" class="subtaskIcon delIcon"></div>
+      <div class="divieder"></div>
+      <div onclick="saveEditSubtask(${i})" class="subtaskIcon checkIcon"></div>
+    </div>
+  </div>
+  `;
 }

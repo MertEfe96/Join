@@ -27,15 +27,16 @@ function assignContactToTask(key, ini, c, i) {
 }
 
 function renderSubtasks() {
-  let subtask = document.getElementById("addTaskInputSubtask").value;
+  let subtask = document.getElementById("addTaskInputSubtask");
   let div = document.getElementById("subtasksList");
   div.innerHTML = "";
-  if (subtask) {
-    subtasksArray.push({task: subtask, undone: true});
+  if (subtask.value) {
+    subtasksArray.push({task: subtask.value, undone: true});
   }
   subtasksArray.forEach((task, index) => {
     div.innerHTML += subtaskTemplate(task.task, index);
   });
+  subtask.value = "";
 }
 
 async function setDataForTask(status = "to-do") {
@@ -77,20 +78,19 @@ async function getDataForEditTask(key) {
 
   addTask();
   closetaskCardLarge();
-  fillInputsEditTask();
+  fillInputsEditTask(dataTask);
 }
 
 function fillInputsEditTask(dataTask) {
-  let title = document.getElementById("addTaskInputTitle").value;
-  let description = document.getElementById("addTaskInputDescription").value;
-  description = description.replace("<", ".");
+  let title = document.getElementById("addTaskInputTitle");
+  let description = document.getElementById("addTaskInputDescription");
   let assigned = assignedContacts;
-  let date = document.getElementById("addTaskInputDate").value;
+  let date = document.getElementById("addTaskInputDate");
   /*let prio = document.getElementsByClassName("chosenPrio")[0].id;*/
-  let category = document.getElementById("addTaskInputCategory").value;
+  let category = document.getElementById("addTaskInputCategory");
   let subtasks = subtasksArray;
-  title = dataTask.Title;
-  /*description = dataTask.Description;*/
+  title.value = dataTask.Title;
+  description.value = dataTask.Description;
 }
 
 async function editTask(data, key) {
@@ -188,6 +188,25 @@ function setMinDate() {
   document.getElementsByName("date")[0].min = today;
   renderUserIcon();
 }
-function editSubtask() {
-  let task = document.getElementById;
+
+function showIconsAddTask(i) {
+  let div = document.getElementById("subtaskIcons" + i);
+  div.classList.toggle("show");
+}
+
+function editSubtask(i) {
+  let task = document.getElementById("subtaskDiv" + i);
+  let subtask = subtasksArray[i].task;
+  task.innerHTML = subtaskEditTemplate(subtask, i);
+}
+
+function delSubtask(i) {
+  subtasksArray.splice(i, 1);
+  renderSubtasks();
+}
+
+function saveEditSubtask(i) {
+  let editTask = document.getElementById("addTaskInputSubtaskEdit" + i);
+  subtasksArray[i].task = editTask.value;
+  renderSubtasks();
 }
