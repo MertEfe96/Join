@@ -247,9 +247,10 @@ header {
   background-color: rgb(239, 239, 239);
   cursor: pointer;
 }
+
 .marginSummary {
   margin-left: 96px;
-  margin-top: 110px;
+  margin-top: 100px;
 }
 
 .subHeadlineColor {

@@ -118,15 +118,19 @@ function sortDates(filteredPrio) {
  * Retrieves user-name from localstorage and determines the appropriate greeting by calling corresponding functions
  */
 function summaryGreeting() {
-  if (localStorage.getItem('user')) {
+  if (sessionStorage.getItem('user')) {
+    let userName = sessionStorage.getItem('user');
+    let userObject = JSON.parse(userName);
+    let entries = Object.entries(userObject); 
+    dayTime(entries);
+  } else if (localStorage.getItem('user')) {
     let userName = localStorage.getItem('user');
     let userObject = JSON.parse(userName);
     let entries = Object.entries(userObject); 
-
     dayTime(entries);
-  } else {
-    dayTimeGuest();
-  }
+  } // else {
+  //   dayTimeGuest();
+  // }
 }
 
 function dayTime(entries) {
