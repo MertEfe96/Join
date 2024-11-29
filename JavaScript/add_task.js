@@ -92,7 +92,7 @@ async function fillInputsEditTask(dataTask) {
   subtasksArray = dataTask.Subtasks;
   title.value = dataTask.Title;
   description.value = dataTask.Description;
-  pullContactsToAssign();
+  await pullContactsToAssign();
   renderEditInputs(dataTask.Priority);
   let assigned = pullContactDetails(dataTask.AssignedTo);
 }
