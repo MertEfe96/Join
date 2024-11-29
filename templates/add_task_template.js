@@ -338,6 +338,6 @@ function assignedContactInitialsTemplate(initials, color) {
 `;
 }
 
-function subtaskTemplate(task) {
-  return `<div class="subtask">${task}</div>`;
+function subtaskTemplate(task, i) {
+  return `<div id="subtask${i}" class="subtask">${task}</div>`;
 }

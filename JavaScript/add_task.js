@@ -29,10 +29,13 @@ function assignContactToTask(key, ini, c, i) {
 function renderSubtasks() {
   let subtask = document.getElementById("addTaskInputSubtask").value;
   let div = document.getElementById("subtasksList");
+  div.innerHTML = "";
   if (subtask) {
-    div.innerHTML += subtaskTemplate(subtask);
     subtasksArray.push({task: subtask, undone: true});
   }
+  subtasksArray.forEach((task, index) => {
+    div.innerHTML += subtaskTemplate(task.task, index);
+  });
 }
 
 async function setDataForTask(status = "to-do") {
@@ -184,4 +187,7 @@ function setMinDate() {
 
   document.getElementsByName("date")[0].min = today;
   renderUserIcon();
+}
+function editSubtask() {
+  let task = document.getElementById;
 }
