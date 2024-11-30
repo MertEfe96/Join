@@ -3,6 +3,7 @@ let currentDraggedElement;
 /**
  * This function opens add-contact-form
  */
+/*
 function addTask(status = "to-do") {
   const addTaskMain = document.getElementById("addTaskMain");
   const addTask = document.getElementById("addTask");
@@ -10,6 +11,34 @@ function addTask(status = "to-do") {
   setTimeout(() => addTaskMain.classList.add("show"), 10);
   setTimeout(() => addTask.classList.add("show"), 10);
   addTask.innerHTML = templateAddTask(status);
+  pullContactsToAssign();
+}
+  */
+
+/**
+ * This function opens add-contact-form
+ */
+
+function addTask(status = "to-do", editTask = false, key = "") {
+  const addTaskMain = document.getElementById("addTaskMain");
+  const addTask = document.getElementById("addTask");
+  addTaskMain.style.display = "flex";
+  setTimeout(() => addTaskMain.classList.add("show"), 10);
+  setTimeout(() => addTask.classList.add("show"), 10);
+
+  if (editTask === true) {
+    addTask.innerHTML = templateAddTask(status, key);
+    const elements = addTask.querySelectorAll(
+      ".overlaySaveButton, .overlayDeleteButton"
+    );
+    elements.forEach((element) => {
+      element.style.display = "none";
+    });
+    const elem = addTask.querySelector(".overlayEditButton");
+    elem.style.display = "flex";
+  } else {
+    addTask.innerHTML = templateAddTask(status);
+  }
   pullContactsToAssign();
 }
 
@@ -320,7 +349,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
       <div class="subtasksCount"><div class="doneSubtasksCount" id="doneSubtasksCount${key}"></div> <div> &nbsp;Subtasks</div></div>
     </div>
   `;
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -420,7 +449,7 @@ async function changeCheckbox(key, index) {
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -474,7 +503,7 @@ async function renderDoneSubtasksCount(key) {
   <div> ${totalSubtasks} </div>
   `;
 
-  return {doneCount, totalSubtasks};
+  return { doneCount, totalSubtasks };
 }
 
 /**

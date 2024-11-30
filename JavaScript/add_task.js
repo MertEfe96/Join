@@ -12,7 +12,7 @@ function renderAssignedContactsInAddTask() {
 
 function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
-  let obj = {id: key, initials: ini, color: c};
+  let obj = { id: key, initials: ini, color: c };
   let div = document.getElementById("inDropdown" + i);
   if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
@@ -32,7 +32,7 @@ function renderSubtasks() {
   let div = document.getElementById("subtasksList");
   div.innerHTML = "";
   if (subtask.value) {
-    subtasksArray.push({task: subtask.value, undone: true});
+    subtasksArray.push({ task: subtask.value, undone: true });
   }
   subtasksArray.forEach((task, index) => {
     div.innerHTML += subtaskTemplate(task.task, index);
@@ -40,7 +40,7 @@ function renderSubtasks() {
   subtask.value = "";
 }
 
-async function setDataForTask(status = "to-do") {
+async function setDataForTask(status = "to-do", editTask = false, key = "") {
   let title = document.getElementById("addTaskInputTitle").value;
   let description = document.getElementById("addTaskInputDescription").value;
   description = description.replace("<", ".");
@@ -59,8 +59,12 @@ async function setDataForTask(status = "to-do") {
     Subtasks: subtasks,
     Status: status,
   };
-  await postTask(data);
-  addTaskNav();
+  if (editTask === true) {
+    await editTaskInDatabase(key, data);
+  } else {
+    await postTask(data);
+    addTaskNav();
+  }
 }
 
 async function postTask(data) {
@@ -76,8 +80,8 @@ async function postTask(data) {
 async function getDataForEditTask(key) {
   let response = await fetch(BASE_URL + `tasks/${key}.json`);
   let dataTask = await response.json();
-
-  addTask();
+  let status = dataTask.Status;
+  addTask(status, true, key);
   closetaskCardLarge();
   fillInputsEditTask(dataTask);
 }
@@ -108,9 +112,9 @@ async function pullContactDetails(assigned) {
 }
 
 async function pullAssignedContact(key) {
-  let response = await fetch(BASE_URL + "contacts/" + key + "/.json");
+  let response = await fetch(BASE_URL + "contacts/" + key + "/name" + "/.json");
   let responseToJson = await response.json();
-  return responseToJson.name;
+  return responseToJson;
 }
 
 function renderEditInputs(prio) {
@@ -119,7 +123,16 @@ function renderEditInputs(prio) {
   renderAssignedContactsInAddTask();
 }
 
-async function editTask(data, key) {
+async function editTask(key) {
+  let response = await fetch(BASE_URL + "tasks/" + key + "/Status" + "/.json");
+  let status = await response.json();
+  await setDataForTask(status, true, key);
+  closeAddTask();
+  await pullTasks();
+  taskCardLarge(key);
+}
+
+async function editTaskInDatabase(key, data) {
   let response = await fetch(BASE_URL + `tasks/${key}.json`, {
     method: "PUT",
     headers: {

@@ -1,4 +1,4 @@
-function templateAddTask(status) {
+function templateAddTask(status, key) {
   return `
     <div class="headlineAddTaskWindow">
           <b>Add Task</b><img class="addTaskCancelIcon" onclick="closeAddTask()" src="./assets/icons/close.png" alt="">
@@ -146,6 +146,15 @@ function templateAddTask(status) {
                   onclick="saveTask('${status}')"
                   class="overlaySaveButton createContactButtonOverlay">
                   Create Task
+                  <img
+                    class="contactCheckIcon"
+                    src="assets/icons/check.png"
+                    alt="Check" />
+                </button>
+                 <button
+                  onclick="editTask('${key}')"
+                  class="overlayEditButton createContactButtonOverlay">
+                  Ok
                   <img
                     class="contactCheckIcon"
                     src="assets/icons/check.png"
