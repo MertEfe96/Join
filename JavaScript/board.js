@@ -3,21 +3,6 @@ let currentDraggedElement;
 /**
  * This function opens add-contact-form
  */
-/*
-function addTask(status = "to-do") {
-  const addTaskMain = document.getElementById("addTaskMain");
-  const addTask = document.getElementById("addTask");
-  addTaskMain.style.display = "flex";
-  setTimeout(() => addTaskMain.classList.add("show"), 10);
-  setTimeout(() => addTask.classList.add("show"), 10);
-  addTask.innerHTML = templateAddTask(status);
-  pullContactsToAssign();
-}
-  */
-
-/**
- * This function opens add-contact-form
- */
 
 function addTask(status = "to-do", editTask = false, key = "") {
   const addTaskMain = document.getElementById("addTaskMain");
@@ -74,6 +59,24 @@ function taskCardLarge(key) {
   let taskDiv = document.getElementById(`singleTaskCard${key}`);
   let priority = taskDiv.querySelector(`#priorityCard${key}`).innerHTML;
   renderPrioWord(priority, key);
+}
+
+function getTaskData(key) {
+  const taskDiv = document.getElementById(`singleTaskCard${key}`);
+  return {
+    category: taskDiv.querySelector(`#categoryCard${key}`).innerHTML,
+    title: taskDiv.querySelector(`#titleCard${key}`).innerHTML,
+    description: taskDiv.querySelector(`#descriptionCard${key}`).innerHTML,
+    assignedTo: taskDiv.querySelector(`#assignedToCard${key}`).innerHTML,
+    priority: taskDiv.querySelector(`#priorityCard${key}`).innerHTML,
+    subtasks: taskDiv.querySelector(`#subtasksCard${key}`).innerHTML,
+    dueDate: taskDiv.querySelector(`#dueDate${key}`).innerHTML,
+    categoryClass:
+      taskDiv.querySelector(`#categoryCard${key}`).innerHTML ===
+      "Technical Task"
+        ? "technicalTaskColor"
+        : "userStoryColor",
+  };
 }
 
 function addTaskNav() {
@@ -153,7 +156,7 @@ async function pullTasks() {
   let data = await response.json();
   let tasks = data.tasks;
   if (tasks) {
-    renderGroupedTasks(tasks);
+    await renderGroupedTasks(tasks);
   }
   renderUserIcon();
 }
@@ -164,7 +167,7 @@ async function pullTasks() {
  * @param {*} tasks this is the whole tasklist saved in the API,
  *                      given by the pullTasks() funtion
  */
-function renderGroupedTasks(tasks) {
+async function renderGroupedTasks(tasks) {
   let taskListToDo = document.getElementById("ToDoCard");
   let taskListInProgress = document.getElementById("InProgressCard");
   let taskListAwaitFeedback = document.getElementById("AwaitFeedbackCard");
@@ -174,7 +177,7 @@ function renderGroupedTasks(tasks) {
   taskListAwaitFeedback.innerHTML = "";
   taskListDone.innerHTML = "";
 
-  Object.entries(tasks).forEach(([key, taskdetails]) => {
+  let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = document.createElement("div");
     taskDiv.draggable = true;
     taskDiv.classList.add("singleTaskCard");
@@ -199,7 +202,12 @@ function renderGroupedTasks(tasks) {
       taskListAwaitFeedback,
       taskListDone
     );
+    await loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
+    loadPrio(key, taskdetails.Priority, taskDiv);
+    loadSubtasks(key, taskdetails.Subtasks, taskDiv);
   });
+
+  await Promise.all(renderPromises);
 
   checkCardEmpty(
     taskListToDo,
@@ -239,9 +247,6 @@ function sortTasks(
   } else if (taskdetails.Status === "done") {
     taskListDone.appendChild(taskDiv);
   }
-  loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
-  loadPrio(key, taskdetails.Priority, taskDiv);
-  loadSubtasks(key, taskdetails.Subtasks, taskDiv);
 }
 
 /**
