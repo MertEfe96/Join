@@ -10,11 +10,6 @@ function closeLogin() {
 
 function renderLogin() {
   let div = document.getElementById("loginContent");
-  div.innerHTML = loginTemplate();
-}
-
-function renderLogin() {
-  let div = document.getElementById("loginContent");
 
   div.innerHTML = `
     <div class="bgLogin">
