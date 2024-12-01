@@ -21,6 +21,7 @@ function initAddTask() {
   addTaskNav();
   pullContactsToAssign();
   checkIfLogedIn();
+  setMinDate();
 }
 
 function initBoard() {
