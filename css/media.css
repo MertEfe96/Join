@@ -96,6 +96,9 @@
   .inputAddTask {
     max-width: 100%;
   }
+  .drag-area {
+    height: auto;
+  }
 }
 
 @media (max-width: 900px) {
