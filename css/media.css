@@ -50,7 +50,7 @@
   }
   .grow {
     max-width: 100%;
-    overflow-y: none;
+    overflow-y: unset;
   }
   .navBar {
     position: fixed;
@@ -100,6 +100,15 @@
   .drag-area {
     height: auto;
   }
+  .taskCard {
+    overflow-x: scroll;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+  scrollbar-width: none;
+  }
+  .boardContent{
+    flex-direction: column;
 }
 
 @media (max-width: 900px) {
