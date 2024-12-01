@@ -5,17 +5,16 @@
  * @returns {string} The HTML string representing the large task card.
  */
 function templateTaskCardLarge(key) {
-  let taskDiv = document.getElementById(`singleTaskCard${key}`);
-  let category = taskDiv.querySelector(`#categoryCard${key}`).innerHTML;
-  let title = taskDiv.querySelector(`#titleCard${key}`).innerHTML;
-  let description = taskDiv.querySelector(`#descriptionCard${key}`).innerHTML;
-  let assignedTo = taskDiv.querySelector(`#assignedToCard${key}`).innerHTML;
-  let priority = taskDiv.querySelector(`#priorityCard${key}`).innerHTML;
-  let subtasks = taskDiv.querySelector(`#subtasksCard${key}`).innerHTML;
-  let dueDate = taskDiv.querySelector(`#dueDate${key}`).innerHTML;
-  let categoryClass =
-    category === "Technical Task" ? "technicalTaskColor" : "userStoryColor";
-
+  const {
+    category,
+    title,
+    description,
+    assignedTo,
+    priority,
+    subtasks,
+    dueDate,
+    categoryClass,
+  } = getTaskData(key);
   return `
         <div class="taskCardLargeContent">
           <div class="categoryCardLargeTop"> <div id="categoryCardLarge${key}" class="categoryCardLarge ${categoryClass}">${category}</div> <img onclick="closetaskCardLarge()" class="closeButtonLargeView" src=./assets/icons/close.png></div>

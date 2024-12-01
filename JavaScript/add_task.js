@@ -128,6 +128,7 @@ async function editTask(key) {
   let status = await response.json();
   await setDataForTask(status, true, key);
   closeAddTask();
+  closetaskCardLarge();
   await pullTasks();
   taskCardLarge(key);
 }
