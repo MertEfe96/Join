@@ -50,6 +50,7 @@
   }
   .grow {
     max-width: 100%;
+    overflow-y: none;
   }
   .navBar {
     position: fixed;
