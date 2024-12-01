@@ -14,20 +14,16 @@ function renderLogin() {
 }
 
 function renderLogin() {
-  // Setze die HTML-Struktur für den Login-Bereich
   let div = document.getElementById("loginContent");
 
-  // Zeige nur das animierte Logo zuerst
   div.innerHTML = `
     <div class="bgLogin">
       <img class="LogoNavImgLogin animateLogo" src="./assets/img/Capa 1.svg" />
     </div>
   `;
-
-  // Lade den Login-Inhalt nach der Animation
   setTimeout(() => {
     div.innerHTML = loginTemplate();
-  }, 1000); // 1 Sekunde Verzögerung
+  }, 1000);
 }
 
 async function postSignUp(data = "") {
