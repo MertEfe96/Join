@@ -1,12 +1,4 @@
 /**
- * Onload function that calls fetchAmounts to retrieve task data
- */
-// function init() {
-//   fetchAmounts("/tasks");
-//     renderUserIcon();
-// }
-
-/**
  * Passes task status variables to the template function for rendering
  *
  * @param {number} countToDo - The number of tasks with "to-do" status
@@ -52,7 +44,7 @@ async function fetchAmounts(path = "") {
 /**
  * Function filters status/priority of tasks and count them
  *
- * @param {Object} data - An object containing task data, where each value has a "Status", "Priority" property
+ * @param {object} data - An object containing task data, where each value has a "Status", "Priority" property
  */
 function filterStatus(data) {
   const asArray = Object.entries(data);
@@ -94,7 +86,7 @@ function filterStatus(data) {
 /**
  * Filters and sorts tasks with "prioUrgent" priority to determine the next due date
  *
- * @param {Array} filteredPrio - An array of tasks with "prioUrgent" priority
+ * @param {array} filteredPrio - An array of tasks with "prioUrgent" priority
  * @returns {string} - Formats date into a string
  */
 function sortDates(filteredPrio) {
@@ -111,33 +103,39 @@ function sortDates(filteredPrio) {
     ? `${nextDueDate.getDate()} ${nextDueDate.toLocaleString("default", {
       month: "long",
     })}, ${nextDueDate.getFullYear()}`
-    : "Date not available";
+    : "Out of date";
 }
 
 /**
- * Retrieves user-name from localstorage and determines the appropriate greeting by calling corresponding functions
+ * Retrieves user-name from local and session storage and determines the appropriate greeting by calling corresponding functions
  */
 function summaryGreeting() {
-  if (sessionStorage.getItem('user')) {
-    let userName = sessionStorage.getItem('user');
-    let userObject = JSON.parse(userName);
-    let entries = Object.entries(userObject); 
-    dayTime(entries);
-  } else if (localStorage.getItem('user')) {
+  if (localStorage.getItem('user')) {
     let userName = localStorage.getItem('user');
     let userObject = JSON.parse(userName);
-    let entries = Object.entries(userObject); 
+    let entries = Object.entries(userObject);
     dayTime(entries);
-  } // else {
-  //   dayTimeGuest();
-  // }
+  } else if (sessionStorage.getItem('user')) {
+    let userName = sessionStorage.getItem('user');
+    let userObject = JSON.parse(userName);
+    let entries = Object.entries(userObject);
+    dayTime(entries);
+    if (entries[1][1] == 'guest') {
+      dayTimeGuest();
+    }
+  }
 }
 
+/**
+ * Updates the greeting message based on the time of day
+ * 
+ * @param {array} entries - A nested array where `entries[2][1]` contains the user's name
+ */
 function dayTime(entries) {
   let greetingSummary = document.getElementById('greetingSummary');
   let today = new Date();
   let currentHr = today.getHours();
-  
+
   if (currentHr < 12) {
     greetingSummary.innerHTML = `Good morning, <br> <div class="userNameSummary">${entries[2][1]}</div>`;
   } else if (currentHr < 18) {
@@ -147,11 +145,14 @@ function dayTime(entries) {
   }
 }
 
+/**
+ * Updates the greeting message based on the time of day without user's name
+ */
 function dayTimeGuest() {
   let greetingSummary = document.getElementById('greetingSummary');
   let today = new Date();
   let currentHr = today.getHours();
-  
+
   if (currentHr < 12) {
     greetingSummary.innerHTML = "Good morning";
   } else if (currentHr < 18) {
