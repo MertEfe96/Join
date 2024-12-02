@@ -182,6 +182,7 @@
 }
 
 @media (max-width: 650px) {
+
   .toDoDisplay,
   .doneDisplay {
     width: 46%;
@@ -206,6 +207,7 @@
 }
 
 @media (max-width: 650px) {
+
   .toDoDisplay,
   .doneDisplay {
     width: 46%;
@@ -247,7 +249,6 @@
   }
 }
 
-<<<<<<< HEAD
 @media (max-width: 720px) {
   .taskCardLargeContent {
     gap: 16px;
@@ -319,22 +320,3 @@
     gap: 4px;
   }
 }
-=======
-@media (max-width: 1300px) {
-  .drag-area {
-    height: auto;
-  }
-
-  .taskCard {
-    overflow-x: scroll;
-    width: 100%;
-    flex-direction: row;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .boardContent {
-    flex-direction: column;
-  }
-}
->>>>>>> 3f3b5daf04a8943e8675ca56a331beb60b1d5ab5
