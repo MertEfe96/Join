@@ -1,3 +1,9 @@
+@media (max-width: 1300px) {
+  .greeting {
+    display: none;
+  }
+}
+
 @media (max-width: 1150px) {
   .prio p {
     font-size: 14px;
@@ -21,15 +27,44 @@
   .textRequired {
     display: none;
   }
+
+  .contactHeadlineContainer {
+    flex-direction: column;
+    height: fit-content;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 560px;
+    margin: 100px 16px 0px 16px;
+    flex: 1;
+  }
+
+  .contactsBlueLine {
+    display: none;
+  }
+
+  .contactsBlueLineVertical {
+    border: 3px solid #29abe2;
+    width: 90px;
+  }
+
+  .contentSubContainer {
+    width: 100%;
+  }
+
+  .summaryBoardMain {
+    margin: 24px 16px 24px 16px;
+  }
 }
 
 @media (max-width: 900px) {
   body {
     flex-direction: column-reverse;
   }
+
   header {
     max-width: 100%;
   }
+
   .logoMedia {
     background-image: url(../assets/img/Capa\ 1.svg);
     width: 58px;
@@ -39,19 +74,24 @@
     background-size: contain;
     margin-left: 40px;
   }
+
   .headline {
     display: none;
   }
+
   .helpLinkDropDown {
     display: block;
   }
+
   .helpIcon {
     display: none;
   }
+
   .grow {
     max-width: 100%;
     overflow-y: unset;
   }
+
   .navBar {
     position: fixed;
     bottom: 0;
@@ -61,57 +101,69 @@
     padding: 0;
     z-index: 999;
   }
+
   .LogoNavImg {
     display: none;
   }
+
   .widthFull {
     flex-direction: row;
   }
+
   .navBarMenu {
     flex-direction: row;
     margin: 0;
     justify-content: center;
   }
+
   .mobileNoShow {
     display: none;
   }
+
   .menuLinkDiv {
     width: 20%;
     height: 60px;
     border-radius: 8px;
   }
+
   .menuLink {
     flex-direction: column;
     margin: 0;
   }
+
   .filler {
     height: 70px;
   }
+
   .addTaskPortion {
     width: 100%;
     gap: 20px;
   }
+
   .inputSubContainerAddTask {
     max-width: 100%;
   }
+
   .inputAddTask {
     max-width: 100%;
   }
+
   .drag-area {
     height: auto;
   }
+
   .taskCard {
     overflow-x: scroll;
     width: 100%;
     flex-direction: row;
     -ms-overflow-style: none;
-  scrollbar-width: none;
+    scrollbar-width: none;
   }
-  .boardContent{
-    flex-direction: column;
-}
 
-@media (max-width: 900px) {
+  .boardContent {
+    flex-direction: column;
+  }
+
   .prio p {
     font-size: 18px;
   }
@@ -126,5 +178,29 @@
 
   .addTaskDiv {
     padding: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
   }
 }
