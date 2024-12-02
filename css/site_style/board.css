@@ -400,6 +400,7 @@
   justify-content: center;
   gap: 40px;
   white-space: normal;
+  flex: 1;
 }
 
 .dueDateCardLarge {
@@ -522,4 +523,21 @@
   font-size: 21px;
   font-family: Inter;
   cursor: pointer;
+}
+
+.plusButton {
+  width: 24px;
+  /* Setzen Sie die gewünschten Abmessungen */
+  height: 24px;
+  cursor: pointer;
+  background-image: url('../../assets/icons/plusbutton.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease;
+  padding: 3px;
+
+}
+
+.plusButton:hover {
+  background-image: url('../../assets/icons/plusButtonBlue.png');
 }

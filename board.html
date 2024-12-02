@@ -99,17 +99,17 @@
 
       <div class="boardContent">
         <div class="statusContainer">
-          <div class="statusHeadline"><b>To Do</b> <img onclick="addTask()" src="./assets/icons/plusbutton.png" /></div>
+          <div class="statusHeadline"><b>To Do</b> <div class="plusButton" onclick="addTask()"></div></div>
           <div class="taskCard drag-area" id="ToDoCard" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
         </div>
 
         <div class="statusContainer">
-          <div class="statusHeadline"><b>In progress</b><img onclick="addTask('in-progress')" src="./assets/icons/plusbutton.png" /></div>
+          <div class="statusHeadline"><b>In progress</b><div class="plusButton" onclick="addTask('in-progress')" ></div></div>
           <div class="taskCard drag-area" id="InProgressCard" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)"></div>
         </div>
 
         <div class="statusContainer">
-          <div class="statusHeadline"><b>Await feedback</b><img onclick="addTask('await-feedback')" src="./assets/icons/plusbutton.png" /></div>
+          <div class="statusHeadline"><b>Await feedback</b><div class="plusButton" onclick="addTask('await-feedback')" ></div></div>
           <div class="taskCard drag-area" id="AwaitFeedbackCard" ondrop="moveTo('await-feedback')" ondragover="allowDrop(event)"></div>
         </div>
 
