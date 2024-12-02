@@ -14,13 +14,15 @@ function addTask(status = "to-do", editTask = false, key = "") {
   if (editTask === true) {
     addTask.innerHTML = templateAddTask(status, key);
     const elements = addTask.querySelectorAll(
-      ".overlaySaveButton, .overlayDeleteButton"
+      ".overlaySaveButton, .overlayDeleteButton, .headlineAddTask"
     );
     elements.forEach((element) => {
       element.style.display = "none";
     });
     const elem = addTask.querySelector(".overlayEditButton");
     elem.style.display = "flex";
+    const headlineWindow = addTask.querySelector(".headlineAddTaskWindow");
+    headlineWindow.style.justifyContent = "flex-end";
   } else {
     addTask.innerHTML = templateAddTask(status);
   }
@@ -355,7 +357,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
       <div class="subtasksCount"><div class="doneSubtasksCount" id="doneSubtasksCount${key}"></div> <div> &nbsp;Subtasks</div></div>
     </div>
   `;
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -455,7 +457,7 @@ async function changeCheckbox(key, index) {
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -509,7 +511,7 @@ async function renderDoneSubtasksCount(key) {
   <div> ${totalSubtasks} </div>
   `;
 
-  return {doneCount, totalSubtasks};
+  return { doneCount, totalSubtasks };
 }
 
 /**

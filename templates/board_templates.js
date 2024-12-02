@@ -2,7 +2,6 @@
  * Generates the HTML structure for a large task card.
  *
  * @param {string} key - The unique identifier of the task.
- * @returns {string} The HTML string representing the large task card.
  */
 function templateTaskCardLarge(key) {
   const {
@@ -28,8 +27,9 @@ function templateTaskCardLarge(key) {
             <div id="subtasksToClickLarge${key}" class="subTasksToClickLarge"></div>    
           </div>
           <div class="bottomCardLarge">
-            <div> <img onclick="deleteTaskCardLarge('${key}')" class="deleteButtonLargeView" src=./assets/icons/deleteTask.png> Delete </div>
-            <div> <img onclick="getDataForEditTask('${key}')" class="deleteButtonLargeView" src=./assets/icons/editTask.png> Edit </div>
+            <div class="hoverEffectDeleteEditTask" onclick="deleteTaskCardLarge('${key}')"> <div class="deleteButtonLargeView"></div><div class="hoverBlue">Delete</div></div>
+            <div class="mobileNoShow">|</div>
+            <div class="hoverEffectDeleteEditTask" onclick="getDataForEditTask('${key}')"> <div class="editButtonLargeView"></div> <div class="hoverBlue">Edit</div> </div>
           </div>
         </div>
       `;

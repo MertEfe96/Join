@@ -1,7 +1,7 @@
 function templateAddTask(status, key) {
   return `
     <div class="headlineAddTaskWindow">
-          <b>Add Task</b><img class="addTaskCancelIcon" onclick="closeAddTask()" src="./assets/icons/close.png" alt="">
+          <b class="headlineAddTask">Add Task</b><img class="addTaskCancelIcon" onclick="closeAddTask()" src="./assets/icons/close.png" alt="">
         </div>
         <div class="inputContainer">
           <form class="formAddTask" onsubmit="return false">

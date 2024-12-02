@@ -150,3 +150,75 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 720px) {
+  .taskCardLargeContent {
+    gap: 16px;
+    max-width: 396px;
+  }
+
+  .taskCardLarge {
+    width: 396px;
+    padding: 32px 24px 32px 24px;
+    gap: 0;
+    margin: 16px;
+  }
+
+  .categoryCardLarge {
+    padding: 4px 16px 4px 16px;
+    font-size: 16px;
+    line-height: 0;
+  }
+
+  .titleCardLarge {
+    font-size: 36px;
+    line-height: 43.2px;
+    font-weight: 700;
+  }
+
+  .descriptionCardLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .dueDateCardLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .assignedToCardLarge {
+    font-size: 16px;
+  }
+
+  .subtasksLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .headerSubtasks {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .subtaskClickButton {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .taskCardLarge {
+    flex: 1;
+    width: 270px;
+    padding: 16px;
+    gap: 0;
+    margin: 16px;
+  }
+
+  .taskCardLargeContent {
+    max-height: 80%;
+  }
+
+  .subtaskClickDiv {
+    gap: 4px;
+  }
+}
