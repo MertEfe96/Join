@@ -180,3 +180,87 @@
     padding: 0;
   }
 }
+
+@media (max-width: 650px) {
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+}
+
+@media (max-width: 650px) {
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .drag-area {
+    height: auto;
+  }
+
+  .taskCard {
+    overflow-x: scroll;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .boardContent {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1300px) {
+  .drag-area {
+    height: auto;
+  }
+
+  .taskCard {
+    overflow-x: scroll;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .boardContent {
+    flex-direction: column;
+  }
+}
