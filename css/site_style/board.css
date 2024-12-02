@@ -525,6 +525,8 @@
   cursor: pointer;
 }
 
+.test {}
+
 .plusButton {
   width: 24px;
   /* Setzen Sie die gewünschten Abmessungen */
@@ -535,7 +537,6 @@
   background-repeat: no-repeat;
   transition: background-image 0.3s ease;
   padding: 3px;
-
 }
 
 .plusButton:hover {
