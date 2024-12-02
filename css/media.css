@@ -180,27 +180,3 @@
     padding: 0;
   }
 }
-
-@media (max-width: 650px) {
-  .toDoDisplay,
-  .doneDisplay {
-    width: 46%;
-    height: 110px;
-  }
-
-  .middleRow {
-    height: 110px;
-  }
-
-  .lowerRowSubContainer {
-    width: 30%;
-    height: 110px;
-  }
-
-  .summaryBoardContainer {
-    height: fit-content;
-    gap: 16px;
-    width: fit-content;
-    min-width: 1px;
-  }
-}
