@@ -22,6 +22,29 @@
   .boardContent {
     flex-direction: column;
   }
+
+  .subHeadlineColor {
+    display: none;
+  }
+
+  .contactsList {
+    min-width: 365px;
+  }
+
+  .contactMainName {
+    font-size: 32px;
+  }
+
+  .contactLetterHeader,
+  .contactCardSmall {
+    width: 300px;
+  }
+
+  .contactInicialLarge {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
 }
 
 @media (max-width: 1150px) {
