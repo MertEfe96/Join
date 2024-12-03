@@ -2,6 +2,26 @@
   .greeting {
     display: none;
   }
+
+  .drag-area {
+    height: auto;
+  }
+
+  .taskCard {
+    overflow-x: scroll;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .dragAreaEmpty {
+    width: calc(100% - 50px) !important;
+  }
+
+  .boardContent {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 1150px) {
@@ -33,6 +53,7 @@
     height: fit-content;
     align-items: flex-start;
     gap: 8px;
+    width: 100%;
     max-width: 560px;
     margin: 100px 16px 0px 16px;
     flex: 1;
@@ -49,10 +70,35 @@
 
   .contentSubContainer {
     width: 100%;
+    align-items: center;
   }
 
   .summaryBoardMain {
     margin: 24px 16px 24px 16px;
+  }
+
+  .headerBoard {
+    flex-direction: column;
+  }
+
+  .headerBoradMoblie {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .addTaskBoardMobile {
+    background-image: url(/assets/icons/plusAddTaskMobile.png);
+    width: 40px;
+    height: 40px;
+  }
+
+  .AddTaskButton {
+    display: none;
+  }
+
+  .findTaskInput,
+  .searchBarDiv {
+    width: 100%;
   }
 }
 
@@ -152,14 +198,6 @@
     height: auto;
   }
 
-  .taskCard {
-    overflow-x: scroll;
-    width: 100%;
-    flex-direction: row;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
   .boardContent {
     flex-direction: column;
   }
@@ -178,74 +216,6 @@
 
   .addTaskDiv {
     padding: 0;
-  }
-}
-
-@media (max-width: 650px) {
-
-  .toDoDisplay,
-  .doneDisplay {
-    width: 46%;
-    height: 110px;
-  }
-
-  .middleRow {
-    height: 110px;
-  }
-
-  .lowerRowSubContainer {
-    width: 30%;
-    height: 110px;
-  }
-
-  .summaryBoardContainer {
-    height: fit-content;
-    gap: 16px;
-    width: fit-content;
-    min-width: 1px;
-  }
-}
-
-@media (max-width: 650px) {
-
-  .toDoDisplay,
-  .doneDisplay {
-    width: 46%;
-    height: 110px;
-  }
-
-  .middleRow {
-    height: 110px;
-  }
-
-  .lowerRowSubContainer {
-    width: 30%;
-    height: 110px;
-  }
-
-  .summaryBoardContainer {
-    height: fit-content;
-    gap: 16px;
-    width: fit-content;
-    min-width: 1px;
-  }
-}
-
-@media (max-width: 1300px) {
-  .drag-area {
-    height: auto;
-  }
-
-  .taskCard {
-    overflow-x: scroll;
-    width: 100%;
-    flex-direction: row;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .boardContent {
-    flex-direction: column;
   }
 }
 
@@ -300,6 +270,111 @@
 
   .subtaskClickButton {
     padding: 6px;
+  }
+}
+
+@media (max-width: 650px) {
+  .userIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  header {
+    height: 80px;
+  }
+
+  .logoMedia {
+    width: 32px;
+    height: 39px;
+  }
+
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+    gap: 20px;
+    padding: 0 20px;
+    width: calc(100% - 40px);
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+
+  .contactHeadlineContainer {
+    max-width: 355px;
+  }
+
+  .editIconContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .doneIconSummary {
+    width: 18px;
+  }
+
+  .editIconSummary {
+    height: 18px;
+  }
+
+  .toDoDoneAmount,
+  .deadlineAmount,
+  .lowerRowAmount {
+    font-size: 47px;
+  }
+
+  .deadlineDate {
+    font-size: 16px;
+  }
+
+  .toDoDone,
+  .lowerRowType {
+    font-size: 14px;
+  }
+
+  .deadlineUrgencyStatusIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .urgentIcon {
+    width: 24px;
   }
 }
 
