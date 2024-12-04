@@ -342,7 +342,7 @@
 .subTasksToClickLarge {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
   font-size: 16px;
   font-weight: 400;
   color: rgba(0, 0, 0, 1);
@@ -360,15 +360,42 @@
   flex-direction: row;
   gap: 16px;
   padding: 6px 16px 6px 16px;
+  border-radius: 99px;
+  transition: 0.1s;
+  width: auto !important;
+  align-items: center;
+  max-width: 95%;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+
+.subtaskClickDiv:hover {
+  background-color: rgb(239, 239, 239);
+  cursor: pointer;
+}
+
+
+.subtaskClickDiv:hover .subtaskClickButton {
+  background-color: rgb(209, 209, 209);
 }
 
 .singleSubtaskClick {
-  line-height: 19.2px;
+  display: flex;
+  align-items: center !important;
+  width: auto !important;
 }
 
 .subtaskClickButton {
   height: 16px;
   width: 16px;
+  border-radius: 99px;
+  transition: 0.1s;
+  padding: px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .subtasksLarge {
@@ -400,6 +427,7 @@
   justify-content: center;
   gap: 40px;
   white-space: normal;
+  flex: 1;
 }
 
 .dueDateCardLarge {
@@ -481,7 +509,7 @@
   justify-content: center;
   font-size: 23px;
   font-weight: 400;
-  line-height: 27.6px;
+  /* line-height: 27.6px; */
 }
 
 .categoryCardLargeTop {
@@ -493,17 +521,77 @@
 .closeButtonLargeView {
   width: 24px;
   height: 24px;
+  border-radius: 99px;
+  padding: 4px;
+  transition: 0.1s;
+}
+
+.closeButtonLargeView:hover {
+  background-color: rgb(239, 239, 239);
+  cursor: pointer;
 }
 
 .bottomCardLarge {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(42, 54, 71, 1);
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .deleteButtonLargeView {
+  height: 18px;
+  width: 17px;
+  margin-right: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  background-image: url(../../assets/icons/deleteTask.png);
+}
+
+
+.editButtonLargeView {
+  height: 19px;
+  width: 19px;
+  margin-right: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  background-image: url(../../assets/icons/editTask.png);
+}
+
+.hoverEffectDeleteEditTask {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   cursor: pointer;
+}
+
+.hoverEffectDeleteEditTask:hover .deleteButtonLargeView {
+  background-image: url(../../assets/icons/deleteTaskBlue.png);
+}
+
+.hoverEffectDeleteEditTask:hover .editButtonLargeView {
+  padding: -2px;
+  background-image: url(../../assets/icons/editTaskBlue.png);
+}
+
+.hoverBlue {
+  color: rgba(42, 54, 71, 1);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.hoverEffectDeleteEditTask:hover .hoverBlue {
+  color: rgba(41, 171, 226, 1);
+  font-weight: 600;
 }
 
 .overlayEditButton {
@@ -522,4 +610,20 @@
   font-size: 21px;
   font-family: Inter;
   cursor: pointer;
+}
+
+.plusButton {
+  width: 24px;
+  /* Setzen Sie die gewünschten Abmessungen */
+  height: 24px;
+  cursor: pointer;
+  background-image: url('../../assets/icons/plusbutton.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease;
+  padding: 3px;
+}
+
+.plusButton:hover {
+  background-image: url('../../assets/icons/plusButtonBlue.png');
 }

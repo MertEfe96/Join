@@ -56,7 +56,7 @@ function closeContact() {
   );
 
   if (contactMainContainer) {
-    contactMainContainer.style.display = "none";
+    contactMainContainer.innerHTML = "";
   }
   if (labelContactCard) {
     labelContactCard.style.display = "none";

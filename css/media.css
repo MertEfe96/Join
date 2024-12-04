@@ -1,3 +1,52 @@
+@media (max-width: 1300px) {
+  .greeting {
+    display: none;
+  }
+
+  .drag-area {
+    height: auto;
+  }
+
+  .taskCard {
+    overflow-x: scroll;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .dragAreaEmpty {
+    width: calc(100% - 50px) !important;
+  }
+
+  .boardContent {
+    flex-direction: column;
+  }
+
+  .subHeadlineColor {
+    display: none;
+  }
+
+  .contactsList {
+    min-width: 365px;
+  }
+
+  .contactMainName {
+    font-size: 32px;
+  }
+
+  .contactLetterHeader,
+  .contactCardSmall {
+    width: 300px;
+  }
+
+  .contactInicialLarge {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+}
+
 @media (max-width: 1150px) {
   .prio p {
     font-size: 14px;
@@ -21,15 +70,70 @@
   .textRequired {
     display: none;
   }
+
+  .contactHeadlineContainer {
+    flex-direction: column;
+    height: fit-content;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    max-width: 560px;
+    margin: 100px 16px 0px 16px;
+    flex: 1;
+  }
+
+  .contactsBlueLine {
+    display: none;
+  }
+
+  .contactsBlueLineVertical {
+    border: 3px solid #29abe2;
+    width: 90px;
+  }
+
+  .contentSubContainer {
+    width: 100%;
+    align-items: center;
+  }
+
+  .summaryBoardMain {
+    margin: 24px 16px 24px 16px;
+  }
+
+  .headerBoard {
+    flex-direction: column;
+  }
+
+  .headerBoradMoblie {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .addTaskBoardMobile {
+    background-image: url(/assets/icons/plusAddTaskMobile.png);
+    width: 40px;
+    height: 40px;
+  }
+
+  .AddTaskButton {
+    display: none;
+  }
+
+  .findTaskInput,
+  .searchBarDiv {
+    width: 100%;
+  }
 }
 
 @media (max-width: 900px) {
   body {
     flex-direction: column-reverse;
   }
+
   header {
     max-width: 100%;
   }
+
   .logoMedia {
     background-image: url(../assets/img/Capa\ 1.svg);
     width: 58px;
@@ -39,19 +143,24 @@
     background-size: contain;
     margin-left: 40px;
   }
+
   .headline {
     display: none;
   }
+
   .helpLinkDropDown {
     display: block;
   }
+
   .helpIcon {
     display: none;
   }
+
   .grow {
     max-width: 100%;
     overflow-y: none;
   }
+
   .navBar {
     position: fixed;
     bottom: 0;
@@ -61,48 +170,61 @@
     padding: 0;
     z-index: 999;
   }
+
   .LogoNavImg {
     display: none;
   }
+
   .widthFull {
     flex-direction: row;
   }
+
   .navBarMenu {
     flex-direction: row;
     margin: 0;
     justify-content: center;
   }
+
   .mobileNoShow {
     display: none;
   }
+
   .menuLinkDiv {
     width: 20%;
     height: 60px;
     border-radius: 8px;
   }
+
   .menuLink {
     flex-direction: column;
     margin: 0;
   }
+
   .filler {
     height: 70px;
   }
+
   .addTaskPortion {
     width: 100%;
     gap: 20px;
   }
+
   .inputSubContainerAddTask {
     max-width: 100%;
   }
+
   .inputAddTask {
     max-width: 100%;
   }
+
   .drag-area {
     height: auto;
   }
-}
 
-@media (max-width: 900px) {
+  .boardContent {
+    flex-direction: column;
+  }
+
   .prio p {
     font-size: 18px;
   }
@@ -117,5 +239,258 @@
 
   .addTaskDiv {
     padding: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .taskCardLargeContent {
+    gap: 16px;
+    max-width: 396px;
+  }
+
+  .taskCardLarge {
+    width: 396px;
+    padding: 32px 24px 32px 24px;
+    gap: 0;
+    margin: 16px;
+  }
+
+  .categoryCardLarge {
+    padding: 4px 16px 4px 16px;
+    font-size: 16px;
+    line-height: 0;
+  }
+
+  .titleCardLarge {
+    font-size: 36px;
+    line-height: 43.2px;
+    font-weight: 700;
+  }
+
+  .descriptionCardLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .dueDateCardLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .assignedToCardLarge {
+    font-size: 16px;
+  }
+
+  .subtasksLarge {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .headerSubtasks {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .subtaskClickButton {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 650px) {
+  .userIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  header {
+    height: 80px;
+  }
+
+  .logoMedia {
+    width: 32px;
+    height: 39px;
+  }
+
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+
+  .toDoDisplay,
+  .doneDisplay {
+    width: 46%;
+    height: 110px;
+  }
+
+  .middleRow {
+    height: 110px;
+    gap: 20px;
+    padding: 0 20px;
+    width: calc(100% - 40px);
+  }
+
+  .lowerRowSubContainer {
+    width: 30%;
+    height: 110px;
+  }
+
+  .summaryBoardContainer {
+    height: fit-content;
+    gap: 16px;
+    width: fit-content;
+    min-width: 1px;
+  }
+
+  .contactHeadlineContainer {
+    max-width: 355px;
+  }
+
+  .editIconContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .doneIconSummary {
+    width: 18px;
+  }
+
+  .editIconSummary {
+    height: 18px;
+  }
+
+  .toDoDoneAmount,
+  .deadlineAmount,
+  .lowerRowAmount {
+    font-size: 47px;
+  }
+
+  .deadlineDate {
+    font-size: 16px;
+  }
+
+  .toDoDone,
+  .lowerRowType {
+    font-size: 14px;
+  }
+
+  .deadlineUrgencyStatusIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .urgentIcon {
+    width: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .taskCardLarge {
+    flex: 1;
+    width: 270px;
+    padding: 16px;
+    gap: 0;
+    margin: 16px;
+  }
+
+  .taskCardLargeContent {
+    max-height: 80%;
+  }
+
+  .subtaskClickDiv {
+    gap: 4px;
+  }
+}
+
+/* Contacts */
+@media (max-width: 768px) {
+  .contactOverlayEdit {
+    flex-direction: column;
+    width: 90%; /* Breiter auf kleineren Geräten */
+    max-width: none;
+  }
+
+  .addContactLeftSection {
+    width: 40%; /* Breite für größere Bildschirme */
+    padding: 30px; /* Mehr Padding für großzügigeres Layout */
+  }
+
+  .addContactRightSection {
+    width: 60%;
+    align-items: flex-start; /* Elemente linksbündig */
+    padding: 30px;
+  }
+
+  .inputContainer {
+    flex-direction: row; /* Eingabefelder horizontal anordnen */
+    gap: 20px; /* Größerer Abstand zwischen Feldern */
+    max-width: 600px; /* Größere maximale Breite */
+  }
+}
+
+
+@media (max-width: 480px) {
+  .addContactHeadline{
+    font-size: 47px;
+  }
+  .addContactSubHeadline{
+    font-size: 20px;
+  }
+  .contactOverlayEditMain {
+    position: unset;
+    max-height: 428px;
+  }
+  .addContactLeftSection {
+    width: 100%; /* Vollständige Breite für kleine Bildschirme */
+    padding: 10px; /* Weniger Padding für kompakteres Layout */
+    text-align: center; /* Text zentrieren */
+  }
+  .inputContainer {
+    gap: 10px;
+  }
+
+  .editOverlayButtonContainer {
+    gap: 10px;
+  }
+  .addContactRightSection {
+    width: 100%;
+    padding: 10px;
+    text-align: center; /* Text zentriert */
+    flex-direction: column;
+    align-items: center; /* Zentrierung der Elemente */
+    background-color: white;
+  }
+
+  .inputContainer {
+    flex-direction: column; /* Vertikale Anordnung der Felder */
+    gap: 15px; /* Abstand zwischen Feldern */
+    width: 100%; /* Volle Breite */
+    align-items: center; /* Zentrierung der Eingabefelder */
+    margin-top: 20px;
+  }
+  .personIconBg {
+    margin-right: 0; /* Kein rechter Abstand */
+    margin-top: 20px; /* Oberer Abstand von 20px */
+  }
+  .inputSubContainer{
+    max-width: 364px;
+    font-size: 14px; /* Schriftgröße leicht reduzieren */
   }
 }
