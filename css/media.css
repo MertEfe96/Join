@@ -418,3 +418,79 @@
     gap: 4px;
   }
 }
+
+/* Contacts */
+@media (max-width: 768px) {
+  .contactOverlayEdit {
+    flex-direction: column;
+    width: 90%; /* Breiter auf kleineren Geräten */
+    max-width: none;
+  }
+
+  .addContactLeftSection {
+    width: 40%; /* Breite für größere Bildschirme */
+    padding: 30px; /* Mehr Padding für großzügigeres Layout */
+  }
+
+  .addContactRightSection {
+    width: 60%;
+    align-items: flex-start; /* Elemente linksbündig */
+    padding: 30px;
+  }
+
+  .inputContainer {
+    flex-direction: row; /* Eingabefelder horizontal anordnen */
+    gap: 20px; /* Größerer Abstand zwischen Feldern */
+    max-width: 600px; /* Größere maximale Breite */
+  }
+}
+
+
+@media (max-width: 480px) {
+  .addContactHeadline{
+    font-size: 47px;
+  }
+  .addContactSubHeadline{
+    font-size: 20px;
+  }
+  .contactOverlayEditMain {
+    position: unset;
+    max-height: 428px;
+  }
+  .addContactLeftSection {
+    width: 100%; /* Vollständige Breite für kleine Bildschirme */
+    padding: 10px; /* Weniger Padding für kompakteres Layout */
+    text-align: center; /* Text zentrieren */
+  }
+  .inputContainer {
+    gap: 10px;
+  }
+
+  .editOverlayButtonContainer {
+    gap: 10px;
+  }
+  .addContactRightSection {
+    width: 100%;
+    padding: 10px;
+    text-align: center; /* Text zentriert */
+    flex-direction: column;
+    align-items: center; /* Zentrierung der Elemente */
+    background-color: white;
+  }
+
+  .inputContainer {
+    flex-direction: column; /* Vertikale Anordnung der Felder */
+    gap: 15px; /* Abstand zwischen Feldern */
+    width: 100%; /* Volle Breite */
+    align-items: center; /* Zentrierung der Eingabefelder */
+    margin-top: 20px;
+  }
+  .personIconBg {
+    margin-right: 0; /* Kein rechter Abstand */
+    margin-top: 20px; /* Oberer Abstand von 20px */
+  }
+  .inputSubContainer{
+    max-width: 364px;
+    font-size: 14px; /* Schriftgröße leicht reduzieren */
+  }
+}
