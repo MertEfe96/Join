@@ -16,7 +16,7 @@ function renderContactsSmallTemplate(key, contact, i) {
   `;
 }
 
-function renderContactLargeTemplate(key, name, mail, number, color) {
+function renderContactLargeTemplate(key, name, mail, color) {
   const initials = name
     .split(" ")
     .map((word) => word[0])
@@ -46,7 +46,7 @@ function renderContactLargeTemplate(key, name, mail, number, color) {
 </div>
 <div class="contactEmailPhoneContainer">
   <div class="contactEmailPhone">Phone</div>
-  <div>${number}</div>
+  <div id="phoneNumberContacts"></div>
 </div>
 `;
 }

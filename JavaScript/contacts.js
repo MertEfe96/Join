@@ -34,15 +34,30 @@ function AddColorToUser() {
 function openContact(key, name, mail, number, color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
-  contactMainContainer.style.display = "flex";
+  contactMainContainer.style.display = "flex"; 
   contactMainContainer.innerHTML = renderContactLargeTemplate(
     key,
     name,
     mail,
-    number,
     color
   );
+  console.log(number);
+  numberContact(number);
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
+}
+
+/**
+ * Updates the inner HTML of the phone number contact element with the provided number, if available
+ * 
+ * @param {number} number -- the phone number of the contact
+ */
+function numberContact(number) {
+  let phoneNumber = document.getElementById('phoneNumberContacts');
+  if (number == 'undefined') {
+    phoneNumber.innerHTML = "---";
+  } else {
+    phoneNumber.innerHTML = `${number}`;
+  }
 }
 
 /**
@@ -255,7 +270,7 @@ function renderLetterHeader(letter, container) {
 /**
  * function creates contact-card for each contact
  *
- * @param {*} inedx the index of the for-loop in the renderGroupedContacts()
+ * @param {*} index the index of the for-loop in the renderGroupedContacts()
  *              function. Used to get the correct div in which the icon it to be displayed
  * @param {*} contact this is the object given in the renderGroupedContacts()
  *              function wich houses the contact information
