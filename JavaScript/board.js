@@ -185,16 +185,44 @@ async function renderGroupedTasks(tasks, search) {
     taskDiv.draggable = true;
     taskDiv.classList.add("singleTaskCard");
     taskDiv.id = `singleTaskCard${key}`;
+
     taskDiv.ondragstart = function (event) {
       startDragging(key);
+
+      const dragImage = taskDiv.cloneNode(true);
+      dragImage.style.transform = "rotate(15deg)";
+      dragImage.style.position = "absolute";
+      dragImage.style.pointerEvents = "none";
+      dragImage.style.zIndex = "1000";
+      dragImage.style.width = `${taskDiv.offsetWidth}px`;
+      dragImage.style.height = `${taskDiv.offsetHeight}px`;
+
+      document.body.appendChild(dragImage);
+
+      const moveDragImage = (e) => {
+        dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
+        dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
+      };
+
+      document.addEventListener("dragover", moveDragImage);
+
+      taskDiv.addEventListener("dragend", () => {
+        document.body.removeChild(dragImage);
+        document.removeEventListener("dragover", moveDragImage);
+      });
+
+      event.dataTransfer.setDragImage(new Image(), 0, 0);
     };
+
     taskDiv.addEventListener("click", (event) => {
       taskCardLarge(key);
     });
+
     let categoryClass =
       taskdetails.Category === "Technical Task"
         ? "technicalTaskColor"
         : "userStoryColor";
+
     sortTasks(
       key,
       taskdetails,
@@ -206,13 +234,13 @@ async function renderGroupedTasks(tasks, search) {
       taskListDone,
       search
     );
+
     await loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
     loadPrio(key, taskdetails.Priority, taskDiv);
     loadSubtasks(key, taskdetails.Subtasks, taskDiv);
   });
 
   await Promise.all(renderPromises);
-
   checkCardEmpty(
     taskListToDo,
     taskListInProgress,
@@ -392,8 +420,6 @@ async function loadSubtasks(key, subtasks, taskDiv) {
  */
 async function move(key, doneCount, totalSubtasks) {
   let doneSubtasksBar = document.getElementById(`myBar${key}`);
-  console.log(totalSubtasks);
-  console.log(doneCount);
   if (doneCount > 0) {
     let width = (100 / totalSubtasks) * doneCount;
     doneSubtasksBar.style.width = `${width}%`;

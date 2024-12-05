@@ -34,7 +34,7 @@ function AddColorToUser() {
 function openContact(key, name, mail, number, color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const toggleCheckBox = document.getElementById("toggleContactCard");
-  contactMainContainer.style.display = "flex"; 
+  contactMainContainer.style.display = "flex";
   contactMainContainer.innerHTML = renderContactLargeTemplate(
     key,
     name,
@@ -47,13 +47,13 @@ function openContact(key, name, mail, number, color) {
 
 /**
  * Updates the inner HTML of the phone number contact element with the provided number, if available
- * 
+ *
  * @param {number} number -- the phone number of the contact
  */
 function numberContact(number) {
-  let phoneNumber = document.getElementById('phoneNumberContacts');
+  let phoneNumber = document.getElementById("phoneNumberContacts");
 
-  if (number == 'undefined') {
+  if (number == "undefined") {
     phoneNumber.innerHTML = "---";
   } else {
     phoneNumber.innerHTML = `${number}`;
@@ -62,14 +62,14 @@ function numberContact(number) {
 
 /**
  * Updates the value of an input and checks if the input value should left empty if number is not available
- * 
+ *
  * @param {object} contact - An object representing a contact, including properties for email, name, and phone number
  */
 function numberEdit(contact) {
   let number = document.getElementById("inputEditNumber").value;
-  let inputEditValue = document.getElementById('inputEditNumber');
+  let inputEditValue = document.getElementById("inputEditNumber");
 
-  if (number === 'undefined') {
+  if (number === "undefined") {
     inputEditValue.value = "";
   } else {
     inputEditValue.value = `${contact.number}`;
@@ -234,7 +234,6 @@ function renderGroupedContacts(contacts) {
   contactsList.innerHTML = "";
   const sortedContacts = sortContacts(contacts);
   let currentLetter = "";
-  console.log(sortedContacts);
 
   sortedContacts.forEach(([key, contact], index) => {
     const firstLetter = contact.name[0].toUpperCase();

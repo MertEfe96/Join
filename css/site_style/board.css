@@ -370,12 +370,10 @@
   word-break: break-all;
 }
 
-
 .subtaskClickDiv:hover {
   background-color: rgb(239, 239, 239);
   cursor: pointer;
 }
-
 
 .subtaskClickDiv:hover .subtaskClickButton {
   background-color: rgb(209, 209, 209);
@@ -555,7 +553,6 @@
   background-image: url(../../assets/icons/deleteTask.png);
 }
 
-
 .editButtonLargeView {
   height: 19px;
   width: 19px;
@@ -617,7 +614,7 @@
   /* Setzen Sie die gewünschten Abmessungen */
   height: 24px;
   cursor: pointer;
-  background-image: url('../../assets/icons/plusbutton.png');
+  background-image: url("../../assets/icons/plusbutton.png");
   background-size: cover;
   background-repeat: no-repeat;
   transition: background-image 0.3s ease;
@@ -625,5 +622,10 @@
 }
 
 .plusButton:hover {
-  background-image: url('../../assets/icons/plusButtonBlue.png');
+  background-image: url("../../assets/icons/plusButtonBlue.png");
+}
+
+.rotate {
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
 }

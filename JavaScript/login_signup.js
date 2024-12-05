@@ -101,12 +101,11 @@ async function loginRequest() {
         let user = {...users[userId], id: userId};
         saveUserInSession(user);
       }
-      console.log("Erfolgreich Angemeldet");
       clearInputLogin();
       window.location.href = "sumary.html";
       userLocal = {...users[userId], id: userId};
     } else {
-      console.log("Email oder Password ist Falsch !");
+      alert("Email oder Password ist Falsch !");
     }
   }
 }
@@ -119,8 +118,6 @@ async function guestLogin() {
     const guestUser = data.users[guestUserId];
 
     if (guestUser) {
-      console.log("Guest Login erfolgreich!");
-
       let user = {...guestUser, id: guestUserId};
       renderUserIcon();
       saveUserInSession(user);
