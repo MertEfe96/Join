@@ -102,11 +102,13 @@
 
   .headerBoard {
     flex-direction: column;
+    margin-top: 24px;
   }
 
   .headerBoradMoblie {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .addTaskBoardMobile {
@@ -158,7 +160,7 @@
 
   .grow {
     max-width: 100%;
-    overflow-y: none;
+    overflow-y: unset;
   }
 
   .navBar {
@@ -223,6 +225,8 @@
 
   .boardContent {
     flex-direction: column;
+    max-height: calc(100vh - 344px);
+    margin-bottom: 0;
   }
 
   .prio p {
@@ -445,12 +449,11 @@
   }
 }
 
-
 @media (max-width: 480px) {
-  .addContactHeadline{
+  .addContactHeadline {
     font-size: 47px;
   }
-  .addContactSubHeadline{
+  .addContactSubHeadline {
     font-size: 20px;
   }
   .contactOverlayEditMain {
@@ -489,7 +492,7 @@
     margin-right: 0; /* Kein rechter Abstand */
     margin-top: 20px; /* Oberer Abstand von 20px */
   }
-  .inputSubContainer{
+  .inputSubContainer {
     max-width: 364px;
     font-size: 14px; /* Schriftgröße leicht reduzieren */
   }
