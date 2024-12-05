@@ -248,6 +248,21 @@
 
   .showHelp {
     position: unset;
+    width: 100%;
+    padding: 40px;
+  }
+
+  .helpHeadline {
+    margin-bottom: 0;
+  }
+
+  .helpHeadlineContainer {
+    padding: 0;
+  }
+
+  #arrowToCloseHelp {
+    right: 4px;
+    top: 100px;
   }
 
   .contactHeadlineContainer {
