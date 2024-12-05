@@ -71,7 +71,7 @@ ${initials}
     <img class="contactInputIcon" src="assets/icons/mail.png" alt="Mail" />
   </div>
   <div class="inputSubContainer">
-    <input id="inputEditNumber" type="text" value="${contact.number}" />
+    <input id="inputEditNumber" type="text"/>
     <img class="contactInputIcon" src="assets/icons/call.png" alt="Call" />
   </div>
   <div class="editOverlayButtonContainer">
