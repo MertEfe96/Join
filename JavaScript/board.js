@@ -154,12 +154,12 @@ async function saveTask(status = "to-do") {
 /**
  * This function fetches the tasks saved in the API
  */
-async function pullTasks() {
+async function pullTasks(search = "") {
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
   let tasks = data.tasks;
   if (tasks) {
-    await renderGroupedTasks(tasks);
+    await renderGroupedTasks(tasks, search);
   }
   renderUserIcon();
 }
@@ -170,7 +170,7 @@ async function pullTasks() {
  * @param {*} tasks this is the whole tasklist saved in the API,
  *                      given by the pullTasks() funtion
  */
-async function renderGroupedTasks(tasks) {
+async function renderGroupedTasks(tasks, search) {
   let taskListToDo = document.getElementById("ToDoCard");
   let taskListInProgress = document.getElementById("InProgressCard");
   let taskListAwaitFeedback = document.getElementById("AwaitFeedbackCard");
@@ -203,7 +203,8 @@ async function renderGroupedTasks(tasks) {
       taskListToDo,
       taskListInProgress,
       taskListAwaitFeedback,
-      taskListDone
+      taskListDone,
+      search
     );
     await loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
     loadPrio(key, taskdetails.Priority, taskDiv);
@@ -229,6 +230,7 @@ async function renderGroupedTasks(tasks) {
  * @param {*} categoryClass this is the task category
  * @param {*} taskDiv this is the created taskDiv
  * @param {*} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ * @param {*} search this is the input.value of the searchbar give nfrom the eventlistener
  */
 function sortTasks(
   key,
@@ -238,19 +240,35 @@ function sortTasks(
   taskListToDo,
   taskListInProgress,
   taskListAwaitFeedback,
-  taskListDone
+  taskListDone,
+  search
 ) {
-  taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
-  if (taskdetails.Status === "to-do") {
-    taskListToDo.appendChild(taskDiv);
-  } else if (taskdetails.Status === "in-progress") {
-    taskListInProgress.appendChild(taskDiv);
-  } else if (taskdetails.Status === "await-feedback") {
-    taskListAwaitFeedback.appendChild(taskDiv);
-  } else if (taskdetails.Status === "done") {
-    taskListDone.appendChild(taskDiv);
+  const searchLowerCase = search.toLowerCase();
+
+  const matchesSearch =
+    !search ||
+    taskdetails.Title.toLowerCase().includes(searchLowerCase) ||
+    taskdetails.Description.toLowerCase().includes(searchLowerCase);
+
+  if (matchesSearch) {
+    taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
+
+    if (taskdetails.Status === "to-do") {
+      taskListToDo.appendChild(taskDiv);
+    } else if (taskdetails.Status === "in-progress") {
+      taskListInProgress.appendChild(taskDiv);
+    } else if (taskdetails.Status === "await-feedback") {
+      taskListAwaitFeedback.appendChild(taskDiv);
+    } else if (taskdetails.Status === "done") {
+      taskListDone.appendChild(taskDiv);
+    }
   }
 }
+
+const searchTaskInput = document.getElementById("findTask");
+searchTaskInput.addEventListener("input", (e) => {
+  pullTasks(e.target.value);
+});
 
 /**
  * This function returns the html structured TaskCards
@@ -357,7 +375,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
       <div class="subtasksCount"><div class="doneSubtasksCount" id="doneSubtasksCount${key}"></div> <div> &nbsp;Subtasks</div></div>
     </div>
   `;
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -457,7 +475,7 @@ async function changeCheckbox(key, index) {
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -511,7 +529,7 @@ async function renderDoneSubtasksCount(key) {
   <div> ${totalSubtasks} </div>
   `;
 
-  return { doneCount, totalSubtasks };
+  return {doneCount, totalSubtasks};
 }
 
 /**
