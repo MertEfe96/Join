@@ -1,4 +1,4 @@
-@media (max-width: 1300px) {
+@media (max-width: 1350px) {
   .greeting {
     display: none;
   }
@@ -134,6 +134,7 @@
 
   header {
     max-width: 100%;
+    margin-bottom: 8px;
   }
 
   .logoMedia {
@@ -243,6 +244,14 @@
 
   .addTaskDiv {
     padding: 0;
+  }
+
+  .showHelp {
+    position: unset;
+  }
+
+  .contactHeadlineContainer {
+    margin-top: 8px;
   }
 }
 
