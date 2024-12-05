@@ -2,6 +2,56 @@ let assignedContacts = [];
 let subtasksArray = [];
 let sortedContacts = [];
 
+/**
+ * This function opens add-contact-form
+ *
+ *  * @param {string} [status="to-do"] The status of the task (default is "to-do"). *
+ *  * @param {string} [editTask="false"] The editTask value of the task (default is "false"). *
+ *  * @param {string} [key=""]  The created key of the task when saved in the API, given by the pullTasks() funktion(default is ""). *
+ */
+
+function addTask(status = "to-do", editTask = false, key = "") {
+  const addTaskMain = document.getElementById("addTaskMain");
+  const addTask = document.getElementById("addTask");
+  addTaskMain.style.display = "flex";
+  setTimeout(() => addTaskMain.classList.add("show"), 10);
+  setTimeout(() => addTask.classList.add("show"), 10);
+
+  if (editTask === true) {
+    editTaskTemplateAdjustemt(status, key, addTask);
+  } else {
+    addTask.innerHTML = templateAddTask(status);
+  }
+  pullContactsToAssign();
+  setMinDate();
+}
+
+/**
+ * This function opens add-task-form in the add Task Navigation
+ */
+function addTaskNav() {
+  const addTaskMain = document.getElementById("addTaskMain");
+  const addTask = document.getElementById("addTask");
+  addTask.innerHTML = templateAddTaskNav();
+  renderUserIcon();
+}
+
+/**
+ * This function closes add-task-form
+ */
+function closeAddTask() {
+  const addTaskMain = document.getElementById("addTaskMain");
+  const addTask = document.getElementById("addTask");
+  assignedContacts = [];
+  addTask.classList.remove("show");
+  setTimeout(() => {
+    addTaskMain.classList.remove("show");
+    setTimeout(() => {
+      addTaskMain.style.display = "none";
+    }, 100);
+  }, 100);
+}
+
 function renderAssignedContactsInAddTask() {
   let div = document.getElementById("assignedContactsImgDiv");
   div.innerHTML = "";
@@ -12,7 +62,7 @@ function renderAssignedContactsInAddTask() {
 
 function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
-  let obj = {id: key, initials: ini, color: c};
+  let obj = { id: key, initials: ini, color: c };
   let div = document.getElementById("inDropdown" + i);
   if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
@@ -32,7 +82,7 @@ function renderSubtasks() {
   let div = document.getElementById("subtasksList");
   div.innerHTML = "";
   if (subtask.value) {
-    subtasksArray.push({task: subtask.value, undone: true});
+    subtasksArray.push({ task: subtask.value, undone: true });
   }
   subtasksArray.forEach((task, index) => {
     div.innerHTML += subtaskTemplate(task.task, index);

@@ -17,6 +17,7 @@
     <script defer src="./JavaScript/contacts.js"></script>
     <script defer src="./JavaScript/add_task.js"></script>
     <script defer src="JavaScript/board.js"></script>
+    <script defer src="JavaScript/boardTaskDetails.js"></script>
     <script defer src="script.js"></script>
     <script src="./JavaScript/login_signup.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -142,8 +143,9 @@
         class="boardOverlayMain"
         style="display: none"
         id="taskCardLargeMain"
+        onclick="closetaskCardLarge()"
       >
-      <div class="taskCardLarge" id="taskCardLarge"></div>
+      <div class="taskCardLarge" id="taskCardLarge" onclick="event.stopPropagation()"></div>
       </div>
       <!--open Large Card end-->
       
