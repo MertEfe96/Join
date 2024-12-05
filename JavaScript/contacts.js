@@ -41,7 +41,6 @@ function openContact(key, name, mail, number, color) {
     mail,
     color
   );
-  console.log(number);
   numberContact(number);
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
 }
@@ -53,10 +52,27 @@ function openContact(key, name, mail, number, color) {
  */
 function numberContact(number) {
   let phoneNumber = document.getElementById('phoneNumberContacts');
+
   if (number == 'undefined') {
     phoneNumber.innerHTML = "---";
   } else {
     phoneNumber.innerHTML = `${number}`;
+  }
+}
+
+/**
+ * Updates the value of an input and checks if the input value should left empty if number is not available
+ * 
+ * @param {object} contact - An object representing a contact, including properties for email, name, and phone number
+ */
+function numberEdit(contact) {
+  let number = document.getElementById("inputEditNumber").value;
+  let inputEditValue = document.getElementById('inputEditNumber');
+
+  if (number === 'undefined') {
+    inputEditValue.value = "";
+  } else {
+    inputEditValue.value = `${contact.number}`;
   }
 }
 
@@ -95,6 +111,7 @@ async function openEditContact(key) {
   let contact = await pullSingleContact(key);
   overlayEditRight.innerHTML = renderEditContactTemplate(contact, key);
   overlayMain.style.display = "flex";
+  numberEdit(contact);
   setTimeout(() => overlayMain.classList.add("show"), 10);
   setTimeout(() => overlayEdit.classList.add("show"), 10);
 }
