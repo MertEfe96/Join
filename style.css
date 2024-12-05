@@ -81,7 +81,8 @@ body {
 }
 
 .addContactCancelButton:hover img {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%)
+    hue-rotate(170deg) brightness(100%) contrast(90%);
 }
 
 .createContactButtonOverlay {
@@ -129,6 +130,14 @@ body {
 
 .displayNone {
   display: none;
+}
+
+.ppContent {
+  margin: 0 22px 22px 96px;
+}
+
+.ppContent h1 {
+  margin: 120px 22px 22px 0;
 }
 
 /* help */
