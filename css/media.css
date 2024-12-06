@@ -522,6 +522,43 @@
 .addPersonButton{
   display: none;
 }
+.userIcon{
+  margin-right: 50px;
+}
+.contactContainer{
+  display: none;
+}
+.contactLetterHeader, .contactCardSmall{
+  width: 352px;
+}
+.displayNone{
+  display: flex;
+}
+.addPersonIcon{
+  width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 1000;
+}
+.contactOverlayEdit{
+  top: 80px;
+}
+.paddingLogoOverlay{
+  display: none;
+}
+.addContactLeftSection{
+  height: 351px;
+  padding-bottom: 50px;
+  padding-top: 80px;
+}
+.personIconBg {
+  margin-right: 0;
+  margin-top: -60px;
+}
+}
+
 
 /*login-signup*/
 @media (max-width: 1010px) {
@@ -555,7 +592,7 @@
     width: 100%;
   }
 }
-
+/*Login*/
 @media (max-width: 600px) {
   .loginBox {
     padding-left: 16px;
@@ -595,26 +632,5 @@
   }
 }
 
-.userIcon{
-  margin-right: 50px;
-}
-.contactContainer{
-  display: none;
-}
-.contactLetterHeader, .contactCardSmall{
-  width: 352px;
-}
-.displayNone{
-  display: flex;
-}
-.addPersonIcon{
-  width: 56px;
-    height: 56px;
-    position: fixed;
-    bottom: 100px;
-    right: 50px;
-    z-index: 1000;
-}
-}
 
 
