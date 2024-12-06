@@ -269,7 +269,7 @@ header {
 
 .popup {
   position: absolute;
-  top: 50%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(42, 54, 71, 1);
@@ -281,4 +281,13 @@ header {
   gap: 20px;
   color: white;
   z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: top 0.5s ease-out;
+}
+
+.popup.slide {
+  top: 50%;
+  opacity: 1;
+  visibility: visible;
 }

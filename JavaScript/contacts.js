@@ -326,8 +326,11 @@ async function deleteContact(key) {
   let response = await fetch(BASE_URL + "contacts/" + key + "/.json", {
     method: "DELETE",
   });
-  pullContacts();
-  closeContact();
+  renderPopup("delContact");
+  const delay = setTimeout(() => {
+    pullContacts();
+    closeContact();
+  }, 1600);
 }
 
 /**

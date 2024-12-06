@@ -43,7 +43,7 @@ function initSumary() {
 
 function renderPopup(action) {
   const popupDiv = document.getElementById("popupDiv");
-  popupDiv.classList.remove("hide");
+  popupDiv.classList.add("slide");
   switch (action) {
     case "signup":
       popupDiv.innerHTML = `You Signed Up successfully`;
@@ -54,11 +54,14 @@ function renderPopup(action) {
     case "addContact":
       popupDiv.innerHTML = `Contact succesfully created `;
       break;
+    case "delContact":
+      popupDiv.innerHTML = `Contact succesfully deleted `;
+      break;
   }
   const delay = setTimeout(closePopup, 1500);
 }
 
 function closePopup() {
   const popupDiv = document.getElementById("popupDiv");
-  popupDiv.classList.add("hide");
+  popupDiv.classList.remove("slide");
 }
