@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+.hide {
+  display: none !important;
+}
+
 .noTextDeco {
   text-decoration: none;
 }
@@ -261,4 +265,20 @@ header {
 .urgentIcon {
   width: 34.19px;
   margin-bottom: 3px;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(42, 54, 71, 1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  color: white;
+  z-index: 9999;
 }

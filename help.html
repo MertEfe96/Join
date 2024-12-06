@@ -72,12 +72,13 @@
         </div>
       </header>
       <div id="myDropdown" class="dropdown-content">
+        <a class="dropDownLink helpLinkDropDown" href="./help.html">Help</a>
         <a href="./legal_notice.html" class="dropDownLink">Legal Notice</a>
         <a href="./privacy_policy.html" class="dropDownLink">Privacy Policy</a>
         <span onclick="logOut()" id="logOut" class="dropDownLink">Log out</span>
       </div>
       <div class="content">
-        <div id="helpDiv" class="hide showHelp">
+        <div id="helpDiv" class="showHelp">
           <div class="helpHeadlineContainer">
             <h1 class="helpHeadline">Help</h1>
           </div>
@@ -204,6 +205,7 @@
       </div>
     </div>
     <div id="loginContent" class="loginContent"></div>
+    <div id="popupDiv" class="popup hide"></div>
   </body>
   <script>
     let headerIcon = document.getElementById("userIcon");

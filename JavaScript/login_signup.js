@@ -68,8 +68,13 @@ async function postSignUp(data = "") {
     color: userColor,
   };
   await postContact(contactData);
-  clearInputSignUp();
-  renderLogin();
+  renderPopup("signup");
+  const delay = setTimeout(() => {
+    clearInputSignUp();
+    renderLogin();
+  }, 2000);
+  // clearInputSignUp();
+  // renderLogin();
 }
 
 async function postContact(contactData) {

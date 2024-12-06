@@ -46,10 +46,6 @@ option {
   min-height: 100%;
 }
 
-.hide {
-  display: none;
-}
-
 .addTaskSplit {
   display: flex;
 }

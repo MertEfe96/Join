@@ -40,3 +40,25 @@ function initSumary() {
   renderUserIcon();
   checkIfLogedIn();
 }
+
+function renderPopup(action) {
+  const popupDiv = document.getElementById("popupDiv");
+  popupDiv.classList.remove("hide");
+  switch (action) {
+    case "signup":
+      popupDiv.innerHTML = `You Signed Up successfully`;
+      break;
+    case "addTask":
+      popupDiv.innerHTML = `Task added to board <img src="/assets/icons/IconBoard.png" alt="" />`;
+      break;
+    case "addContact":
+      popupDiv.innerHTML = `Contact succesfully created `;
+      break;
+  }
+  const delay = setTimeout(closePopup, 1500);
+}
+
+function closePopup() {
+  const popupDiv = document.getElementById("popupDiv");
+  popupDiv.classList.add("hide");
+}

@@ -206,7 +206,10 @@ async function saveContact(data = "") {
     body: JSON.stringify(data),
   });
   pullContacts();
-  closeAddContact();
+  renderPopup("addContact");
+  const delay = setTimeout(() => {
+    closeAddContact();
+  }, 1600);
 }
 
 /**
