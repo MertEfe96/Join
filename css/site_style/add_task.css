@@ -307,3 +307,27 @@ option {
   width: 100%;
   height: 24px;
 }
+
+.deleteMessage {
+  position: fixed;
+  bottom: 60%;
+  left: 60%;
+  transform: translateX(-50%);
+  background-color: #2f3a49;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.deleteMessage.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}

@@ -115,6 +115,7 @@
     background-image: url(/assets/icons/plusAddTaskMobile.png);
     width: 40px;
     height: 40px;
+    cursor: pointer;
   }
 
   .AddTaskButton {
@@ -451,12 +452,12 @@
 @media (max-width: 768px) {
   .contactOverlayEdit {
     flex-direction: column;
-    width: 90%; 
+    width: 90%;
     max-width: none;
   }
 
   .addContactLeftSection {
-    width: 40%; 
+    width: 40%;
     padding: 30px;
   }
 
@@ -467,9 +468,9 @@
   }
 
   .inputContainer {
-    flex-direction: row; 
-    gap: 20px; 
-    max-width: 600px; 
+    flex-direction: row;
+    gap: 20px;
+    max-width: 600px;
   }
 }
 
@@ -477,17 +478,21 @@
   .addContactHeadline {
     font-size: 47px;
   }
+
   .addContactSubHeadline {
     font-size: 20px;
   }
+
   .contactOverlayEditMain {
     position: unset;
     max-height: 428px;
   }
+
   .addContactLeftSection {
     width: 100%;
     padding: 10px;
   }
+
   .inputContainer {
     gap: 10px;
   }
@@ -495,68 +500,82 @@
   .editOverlayButtonContainer {
     gap: 10px;
   }
+
   .addContactRightSection {
     width: 100%;
     padding: 10px;
-    text-align: center; 
+    text-align: center;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     background-color: white;
   }
 
   .inputContainer {
-    flex-direction: column; 
-    gap: 15px; 
-    width: 100%; 
-    align-items: center; 
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
     margin-top: 20px;
   }
+
   .personIconBg {
     margin-right: 0;
-    margin-top: 20px; 
+    margin-top: 20px;
   }
+
   .inputSubContainer {
     max-width: 364px;
-    font-size: 14px; 
+    font-size: 14px;
   }
-.addPersonButton{
-  display: none;
-}
-.userIcon{
-  margin-right: 50px;
-}
-.contactContainer{
-  display: none;
-}
-.contactLetterHeader, .contactCardSmall{
-  width: 352px;
-}
-.displayNone{
-  display: flex;
-}
-.addPersonIcon{
-  width: 56px;
+
+  .addPersonButton {
+    display: none;
+  }
+
+  .userIcon {
+    margin-right: 50px;
+  }
+
+  .contactContainer {
+    display: none;
+  }
+
+  .contactLetterHeader,
+  .contactCardSmall {
+    width: 352px;
+  }
+
+  .displayNone {
+    display: flex;
+  }
+
+  .addPersonIcon {
+    width: 56px;
     height: 56px;
     position: fixed;
     bottom: 100px;
     right: 50px;
     z-index: 1000;
-}
-.contactOverlayEdit{
-  top: 80px;
-}
-.paddingLogoOverlay{
-  display: none;
-}
-.addContactLeftSection{
-  height: 351px;
-  padding-bottom: 50px;
-  padding-top: 80px;
-}
-.personIconBg {
-  margin-right: 0;
-  margin-top: -60px;
-}
+  }
+
+  .contactOverlayEdit {
+    top: 80px;
+  }
+
+  .paddingLogoOverlay {
+    display: none;
+  }
+
+  .addContactLeftSection {
+    height: 351px;
+    padding-bottom: 50px;
+    padding-top: 80px;
+  }
+
+  .personIconBg {
+    margin-right: 0;
+    margin-top: -60px;
+  }
 }
 
 
@@ -568,6 +587,7 @@
     top: 37px;
     left: 38px;
   }
+
   .loginBox {
     margin: 16px;
     padding-left: 0;
@@ -575,23 +595,29 @@
     max-width: 652px;
     width: 100%;
   }
+
   .bgLogin {
     overflow-y: hidden;
   }
+
   .loginForm {
     max-width: 422px;
     width: 100%;
   }
+
   .inputWrapper {
     width: 100%;
   }
+
   .inputLogin {
     width: 100%;
   }
+
   .loginField {
     width: 100%;
   }
 }
+
 /*Login*/
 @media (max-width: 600px) {
   .loginBox {
@@ -600,37 +626,41 @@
     padding-top: 40px;
     padding-bottom: 20px;
   }
+
   .bgLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
+
   .singUpLogin {
     position: relative;
     top: auto;
     bottom: 50px;
     right: auto;
   }
+
   .loginButtonDiv {
     display: flex;
     flex-direction: column;
     gap: 21px;
   }
+
   .buttonLogin {
     width: 100%;
   }
+
   .loginForm {
     gap: 32px;
   }
+
   .loginHeadline {
     font-size: 47px;
   }
+
   .rememberDiv p {
     margin-top: 8px;
     margin-bottom: 8px;
   }
 }
-
-
-

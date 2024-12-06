@@ -127,9 +127,9 @@ function adjustElements(taskCardLarge) {
  */
 
 async function saveTask(status = "to-do") {
-  setDataForTask(status);
-  pullTasks();
+  await setDataForTask(status);
   closeAddTask();
+  await pullTasks();
 }
 
 /**
@@ -243,9 +243,15 @@ function setupDragEvents(taskDiv, key) {
     taskDiv.addEventListener("dragend", () => {
       document.body.removeChild(dragImage);
       document.removeEventListener("dragover", moveDragImage);
+      removeAllPlaceholders();
     });
 
+    const currentListId = taskDiv.closest(".taskCard").id;
+    addNeighborPlaceholders(currentListId);
     event.dataTransfer.setDragImage(new Image(), 0, 0);
+  };
+  taskDiv.ondragover = function (event) {
+    event.preventDefault();
   };
 }
 

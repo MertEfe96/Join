@@ -31,6 +31,7 @@ body {
   width: 24px;
   border-left: solid 1px rgba(209, 209, 209, 1);
   padding-left: 16px;
+  cursor: pointer;
 }
 
 .navBar {

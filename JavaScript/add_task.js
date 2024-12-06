@@ -224,6 +224,20 @@ async function deleteTaskCardLarge(key) {
   });
   closetaskCardLarge();
   pullTasks();
+  showDeleteMessage("Task deleted");
+}
+
+function showDeleteMessage(message) {
+  const deleteMessage = document.createElement("div");
+  deleteMessage.className = "deleteMessage";
+  deleteMessage.innerText = message;
+
+  document.body.appendChild(deleteMessage);
+
+  setTimeout(() => {
+    deleteMessage.classList.add("fade-out");
+    setTimeout(() => deleteMessage.remove(), 500);
+  }, 3000);
 }
 
 async function pullContactsToAssign() {

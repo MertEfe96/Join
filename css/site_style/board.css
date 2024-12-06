@@ -632,3 +632,12 @@
   transform: rotate(5deg);
   transition: transform 0.2s ease;
 }
+
+.placeholderDragField {
+  border: 1px dashed rgba(168, 168, 168, 1);
+  background-color: rgb(246, 247, 248);
+  height: auto;
+  min-height: 233px;
+  width: 252px;
+  border-radius: 24px;
+}
