@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: row;
   position: absolute;
+  z-index: 999;
 }
 
 .imgDiv {
@@ -165,19 +166,20 @@
   background-color: rgba(42, 54, 71, 1);
   border-radius: 8px;
   padding: 15px 16px;
+  border-style: none;
 }
 
-.singUpHeader{
+.singUpHeader {
   display: flex;
-    gap: 5rem;
-    justify-content: flex-start;
-    width: 100%;
-    align-items: center;
+  gap: 5rem;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
 }
 
 .animateLogo {
   animation: moveToCorner 1s ease-in-out forwards;
-  animation-iteration-count: 1; 
+  animation-iteration-count: 1;
 }
 
 @keyframes moveToCorner {
@@ -187,6 +189,7 @@
     transform: translate(-50%, -50%);
     width: 274px;
   }
+  
   100% {
     top: 64px;
     left: 64px;
