@@ -451,25 +451,25 @@
 @media (max-width: 768px) {
   .contactOverlayEdit {
     flex-direction: column;
-    width: 90%; /* Breiter auf kleineren Geräten */
+    width: 90%; 
     max-width: none;
   }
 
   .addContactLeftSection {
-    width: 40%; /* Breite für größere Bildschirme */
-    padding: 30px; /* Mehr Padding für großzügigeres Layout */
+    width: 40%; 
+    padding: 30px;
   }
 
   .addContactRightSection {
     width: 60%;
-    align-items: flex-start; /* Elemente linksbündig */
+    align-items: flex-start;
     padding: 30px;
   }
 
   .inputContainer {
-    flex-direction: row; /* Eingabefelder horizontal anordnen */
-    gap: 20px; /* Größerer Abstand zwischen Feldern */
-    max-width: 600px; /* Größere maximale Breite */
+    flex-direction: row; 
+    gap: 20px; 
+    max-width: 600px; 
   }
 }
 
@@ -485,9 +485,8 @@
     max-height: 428px;
   }
   .addContactLeftSection {
-    width: 100%; /* Vollständige Breite für kleine Bildschirme */
-    padding: 10px; /* Weniger Padding für kompakteres Layout */
-    text-align: center; /* Text zentrieren */
+    width: 100%;
+    padding: 10px;
   }
   .inputContainer {
     gap: 10px;
@@ -499,27 +498,29 @@
   .addContactRightSection {
     width: 100%;
     padding: 10px;
-    text-align: center; /* Text zentriert */
+    text-align: center; 
     flex-direction: column;
-    align-items: center; /* Zentrierung der Elemente */
+    align-items: center; 
     background-color: white;
   }
 
   .inputContainer {
-    flex-direction: column; /* Vertikale Anordnung der Felder */
-    gap: 15px; /* Abstand zwischen Feldern */
-    width: 100%; /* Volle Breite */
-    align-items: center; /* Zentrierung der Eingabefelder */
+    flex-direction: column; 
+    gap: 15px; 
+    width: 100%; 
+    align-items: center; 
     margin-top: 20px;
   }
   .personIconBg {
-    margin-right: 0; /* Kein rechter Abstand */
-    margin-top: 20px; /* Oberer Abstand von 20px */
+    margin-right: 0;
+    margin-top: 20px; 
   }
   .inputSubContainer {
     max-width: 364px;
-    font-size: 14px; /* Schriftgröße leicht reduzieren */
+    font-size: 14px; 
   }
+.addPersonButton{
+  display: none;
 }
 
 /*login-signup*/
@@ -593,3 +594,27 @@
     margin-bottom: 8px;
   }
 }
+=======
+.userIcon{
+  margin-right: 50px;
+}
+.contactContainer{
+  display: none;
+}
+.contactLetterHeader, .contactCardSmall{
+  width: 352px;
+}
+.displayNone{
+  display: flex;
+}
+.addPersonIcon{
+  width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 1000;
+}
+}
+
+
