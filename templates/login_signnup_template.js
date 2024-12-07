@@ -1,6 +1,12 @@
 function loginTemplate() {
   return `
   <div class="bgLogin">
+        <div class="loginLegalContainer">
+          <div class="loginLegalSubContainer">
+            <a href="./privacy_policy.html">Privacy Policy</a>
+            <a href="./legal_notice.html">Legal notice</a>
+          </div>
+        </div>
       <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
       <div class="loginField" id="loginField">
     <div class="loginBox">
@@ -69,11 +75,17 @@ function signUpButtonTemplate() {
 function signUpTemplate() {
   return `
   <div class="bgLogin">
+        <div class="loginLegalContainer">
+          <div class="loginLegalSubContainer">
+            <a href="./privacy_policy.html">Privacy Policy</a>
+            <a href="./legal_notice.html">Legal notice</a>
+          </div>
+        </div>
       <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
       <div class="loginField" id="loginField">
   <div class="loginBox">
         <div class="singUpHeader">
-            <div onclick="renderLogin()" id="arrowToCloseSignUp"></div>
+          <div onclick="renderLogin()" id="arrowToCloseSignUp"></div>
           <div class="headlineAndBorder">
             <h1 class="loginHeadline">Sign up</h1>
             <div class="border"></div>
@@ -146,7 +158,7 @@ function signUpTemplate() {
               </p>
             </div>
             <div class="loginButtonDiv">
-              <button onclick="postSignUp()" class="hover buttonLogin">Sign up</button>
+              <button onclick="postSignUp()" class="hover buttonSignIn">Sign up</button>
             </div>
           </form>
         </div>

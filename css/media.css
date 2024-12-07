@@ -627,7 +627,7 @@
     margin: 16px;
     padding-left: 0;
     padding-right: 0;
-    max-width: 652px;
+    max-width: 598px;
     width: 100%;
   }
 
@@ -651,6 +651,10 @@
   .loginField {
     width: 100%;
   }
+
+  #arrowToCloseSignUp {
+    left: 48px;
+  }
 }
 
 /*Login*/
@@ -659,7 +663,7 @@
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 32px;
   }
 
   .bgLogin {
@@ -672,7 +676,7 @@
   .singUpLogin {
     position: relative;
     top: auto;
-    bottom: 50px;
+    bottom: 88px;
     right: auto;
   }
 
@@ -680,10 +684,6 @@
     display: flex;
     flex-direction: column;
     gap: 21px;
-  }
-
-  .buttonLogin {
-    width: 100%;
   }
 
   .loginForm {
@@ -697,5 +697,27 @@
   .rememberDiv p {
     margin-top: 8px;
     margin-bottom: 8px;
+    text-wrap: nowrap;
+  }
+
+  .buttonLogin {
+    width: 100%;
+    height: 51px;
+  }
+
+  .buttonSignIn {
+    width: 180px;
+    height: 51px;
+  }
+
+  .buttonGuestLogin {
+    height: 49px;
+  }
+}
+
+/*SignUp*/
+@media (max-width: 482px) {
+  #arrowToCloseSignUp {
+    left: 0px;
   }
 }
