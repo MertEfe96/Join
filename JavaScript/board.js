@@ -141,6 +141,19 @@ async function pullTasks(search = "") {
   let tasks = data.tasks;
   if (tasks) {
     await renderGroupedTasks(tasks, search);
+  } else {
+    const {
+      taskListToDo,
+      taskListInProgress,
+      taskListAwaitFeedback,
+      taskListDone,
+    } = initializeTaskLists();
+    await checkTasklistEmpty(
+      taskListToDo,
+      taskListInProgress,
+      taskListAwaitFeedback,
+      taskListDone
+    );
   }
   renderUserIcon();
 }

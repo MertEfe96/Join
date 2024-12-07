@@ -85,7 +85,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasksContainer.classList.remove("displayNone");
     subtasksContainer.innerHTML = htmlsubtaskSmallView(key);
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -201,7 +201,7 @@ async function changeCheckbox(key, index) {
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
+    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -266,7 +266,7 @@ async function renderDoneSubtasksCount(key) {
     }
   }
   doneSubtasksCountDiv.innerHTML = htmlSubtaskCount(doneCount, totalSubtasks);
-  return {doneCount, totalSubtasks};
+  return { doneCount, totalSubtasks };
 }
 
 /**
@@ -305,7 +305,7 @@ function renderPrioWord(priority, key) {
  * @param {HTMLElement} taskListAwaitFeedback The DOM element representing the "Awaiting Feedback" task list.
  * @param {HTMLElement} taskListDone The DOM element representing the "Done" task list.
  */
-function checkTasklistEmpty(
+async function checkTasklistEmpty(
   taskListToDo,
   taskListInProgress,
   taskListAwaitFeedback,
