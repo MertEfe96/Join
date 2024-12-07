@@ -11,8 +11,30 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   position: absolute;
-  z-index: 999;
+  z-index: 10000;
+}
+
+.loginLegalContainer {
+  position: absolute;
+  bottom: 30px;
+}
+
+.loginLegalSubContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.loginLegalSubContainer a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #A8A8A8;
+}
+
+#arrowToCloseSignUp {
+  position: absolute;
+  left: -40px;
 }
 
 .imgDiv {
@@ -44,7 +66,7 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  padding: 48px 115px;
+  padding: 48px 88px;
 }
 
 .LogoNavImgLogin {
@@ -76,7 +98,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   flex-direction: column;
 }
 
@@ -126,6 +148,18 @@
   color: White;
   font-size: 21px;
   font-weight: 700;
+  border-style: none;
+}
+
+.buttonSignIn {
+  width: 126px;
+  height: 55px;
+  border-radius: 8px;
+  background-color: rgba(42, 54, 71, 1);
+  color: White;
+  font-size: 21px;
+  font-weight: 700;
+  border-style: none;
 }
 
 .hover:hover {
@@ -134,7 +168,7 @@
 
 .buttonGuestLogin {
   width: 177px;
-  height: 48px;
+  height: 46px;
   border-radius: 8px;
   background-color: #fff;
   font-size: 21px;
@@ -167,14 +201,16 @@
   border-radius: 8px;
   padding: 15px 16px;
   border-style: none;
+  width: 104px;
 }
 
 .singUpHeader {
   display: flex;
   gap: 5rem;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   align-items: center;
+  position: relative;
 }
 
 .animateLogo {
