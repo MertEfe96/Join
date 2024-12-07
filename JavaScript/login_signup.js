@@ -72,9 +72,7 @@ async function postSignUp(data = "") {
   const delay = setTimeout(() => {
     clearInputSignUp();
     renderLogin();
-  }, 2000);
-  // clearInputSignUp();
-  // renderLogin();
+  }, 1600);
 }
 
 async function postContact(contactData) {

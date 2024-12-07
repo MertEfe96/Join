@@ -277,7 +277,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   gap: 20px;
   color: white;
   z-index: 9999;
@@ -290,4 +289,5 @@ header {
   top: 50%;
   opacity: 1;
   visibility: visible;
+  padding: 20px;
 }

@@ -296,6 +296,9 @@
   .contactHeadlineContainer {
     margin-top: 8px;
   }
+  .contactsList1 {
+    height: calc(100vh - 184px);
+  }
 }
 
 @media (max-width: 720px) {
