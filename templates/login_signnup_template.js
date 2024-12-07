@@ -33,6 +33,7 @@ function loginTemplate() {
                 placeholder="Password"
                 required />
               <img
+                onmouseenter="showPasswordLogin()"
                 src="./assets/icons/lock.svg"
                 alt="lock icon"
                 class="iconLogin" />

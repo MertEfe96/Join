@@ -16,6 +16,12 @@ let userColorsArray = [
   "#FFBB2B",
 ];
 
+/**
+ * This Function is used to give every Contact a color out of the userColorsArray
+ *
+ * @returns The color given to the Contact
+ */
+
 function AddColorToUser() {
   let randomNumber = Math.floor(Math.random() * 15);
   let userColor = userColorsArray[randomNumber];
@@ -125,7 +131,7 @@ async function editContact(key, color) {
   let name = document.getElementById("inputEditName").value;
   let mail = document.getElementById("inputEditMail").value;
   let phone = document.getElementById("inputEditNumber").value;
-  data = { name: name, email: mail, number: phone };
+  data = {name: name, email: mail, number: phone};
   let response = await fetch(BASE_URL + "contacts/" + key + ".json", {
     method: "PUT",
     header: {
@@ -197,7 +203,7 @@ async function saveContact(data = "") {
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
   let userColor = AddColorToUser();
-  data = { name: name, email: mail, number: phone, color: userColor };
+  data = {name: name, email: mail, number: phone, color: userColor};
   let response = await fetch(BASE_URL + "contacts/.json", {
     method: "POST",
     headers: {
@@ -207,9 +213,7 @@ async function saveContact(data = "") {
   });
   pullContacts();
   renderPopup("addContact");
-  const delay = setTimeout(() => {
-    closeAddContact();
-  }, 1600);
+  closeAddContact();
 }
 
 /**
@@ -328,10 +332,8 @@ async function deleteContact(key) {
   });
   deleteAssignedToKey2(key);
   renderPopup("delContact");
-  const delay = setTimeout(() => {
-    pullContacts();
-    closeContact();
-  }, 1600);
+  pullContacts();
+  closeContact();
 }
 
 /**

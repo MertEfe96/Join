@@ -164,6 +164,11 @@ function showPassword() {
   input.type = input.type === "password" ? "text" : "password";
 }
 
+function showPasswordLogin() {
+  let input = document.getElementById("passwordLogin");
+  input.type = input.type === "password" ? "text" : "password";
+}
+
 function showConfirmPassword() {
   let input = document.getElementById("passwordConfirmSignUp");
   input.type = input.type === "password" ? "text" : "password";

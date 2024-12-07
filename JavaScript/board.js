@@ -217,17 +217,18 @@ function createTaskDiv(key) {
 }
 
 /**
- * This function sets up drag events on every task card
+ * This function sets up drag events on every task card and shows a drag-effect
  */
 function setupDragEvents(taskDiv, key) {
   taskDiv.ondragstart = function (event) {
     startDragging(key);
 
     const dragImage = taskDiv.cloneNode(true);
-    dragImage.style.transform = "rotate(15deg)";
+    dragImage.style.transform = "rotate(10deg)";
     dragImage.style.position = "absolute";
     dragImage.style.pointerEvents = "none";
     dragImage.style.zIndex = "1000";
+    dragImage.style.opacity = "0.7";
     dragImage.style.width = `${taskDiv.offsetWidth}px`;
     dragImage.style.height = `${taskDiv.offsetHeight}px`;
 
