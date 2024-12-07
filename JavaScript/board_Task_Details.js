@@ -19,21 +19,32 @@ async function loadAssignedContacts(key, assignedTo, taskDiv) {
       const assignedId = element.id;
 
       if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
-        let contactName = data.contacts[assignedId].name;
-        let backgroundColor = data.contacts[assignedId].color || "#ccc";
-        const initials = contactName
-          .split(" ")
-          .map((word) => word[0])
-          .join("")
-          .toUpperCase();
-        assignedToContainer.innerHTML += htmlAssignedContacts(
-          backgroundColor,
-          initials,
-          contactName
-        );
+        const contact = data.contacts[assignedId];
+        renderAssignedContact(contact, assignedToContainer); // Aufruf der neuen Funktion
       }
     }
   }
+}
+
+/**
+ * Processes and renders a single contact into the container.
+ * @param {Object} contact The contact object (contains name, color, etc.).
+ * @param {HTMLElement} container The container where the contact will be rendered.
+ */
+function renderAssignedContact(contact, container) {
+  const contactName = contact.name;
+  const backgroundColor = contact.color || "#ccc";
+  const initials = contactName
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+
+  container.innerHTML += htmlAssignedContacts(
+    backgroundColor,
+    initials,
+    contactName
+  );
 }
 
 /**
