@@ -125,7 +125,7 @@ async function editContact(key, color) {
   let name = document.getElementById("inputEditName").value;
   let mail = document.getElementById("inputEditMail").value;
   let phone = document.getElementById("inputEditNumber").value;
-  data = {name: name, email: mail, number: phone};
+  data = { name: name, email: mail, number: phone };
   let response = await fetch(BASE_URL + "contacts/" + key + ".json", {
     method: "PUT",
     header: {
@@ -197,7 +197,7 @@ async function saveContact(data = "") {
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
   let userColor = AddColorToUser();
-  data = {name: name, email: mail, number: phone, color: userColor};
+  data = { name: name, email: mail, number: phone, color: userColor };
   let response = await fetch(BASE_URL + "contacts/.json", {
     method: "POST",
     headers: {
@@ -326,11 +326,38 @@ async function deleteContact(key) {
   let response = await fetch(BASE_URL + "contacts/" + key + "/.json", {
     method: "DELETE",
   });
+  deleteAssignedToKey2(key);
   renderPopup("delContact");
   const delay = setTimeout(() => {
     pullContacts();
     closeContact();
   }, 1600);
+}
+
+/**
+ * This function deletes contact from assigneTo in tasks in the API
+ *
+ * @param {*} key2 the key is the ID of the contact in the API
+ */
+async function deleteAssignedToKey2(key2) {
+  let response = await fetch(BASE_URL + "tasks/.json");
+  let tasks = await response.json();
+  if (!tasks) {
+    return;
+  }
+  for (const [taskKey, taskDetails] of Object.entries(tasks)) {
+    if (taskDetails.AssignedTo && Array.isArray(taskDetails.AssignedTo)) {
+      for (let i = 0; i < taskDetails.AssignedTo.length; i++) {
+        const assignedTo = taskDetails.AssignedTo[i];
+        if (assignedTo.id === key2) {
+          const deletePath = `tasks/${taskKey}/AssignedTo/${i}`;
+          await fetch(BASE_URL + deletePath + ".json", {
+            method: "DELETE",
+          });
+        }
+      }
+    }
+  }
 }
 
 /**
