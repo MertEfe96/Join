@@ -50,6 +50,8 @@ function closeAddTask() {
       addTaskMain.style.display = "none";
     }, 100);
   }, 100);
+  let overlay = document.getElementById("addTask");
+  overlay.classList.remove("w600");
 }
 
 function renderAssignedContactsInAddTask() {
@@ -116,6 +118,7 @@ async function setDataForTask(status = "to-do", editTask = false, key = "") {
     renderPopup("addTask");
     const delay = setTimeout(() => {
       addTaskNav();
+      subtasksArray = [];
     }, 1600);
   }
 }
@@ -135,8 +138,19 @@ async function getDataForEditTask(key) {
   let dataTask = await response.json();
   let status = dataTask.Status;
   addTask(status, true, key);
+  changeWindowToMobile();
   closetaskCardLarge();
   fillInputsEditTask(dataTask);
+}
+
+function changeWindowToMobile() {
+  let div = document.getElementById("addTaskSplit");
+  let overlay = document.getElementById("addTask");
+  let portion = document.querySelectorAll(".addTaskPortion").forEach((e) => {
+    e.classList.add("portionMobile");
+  });
+  div.classList.add("editMobile");
+  overlay.classList.add("w600");
 }
 
 async function fillInputsEditTask(dataTask) {
@@ -227,20 +241,7 @@ async function deleteTaskCardLarge(key) {
   });
   closetaskCardLarge();
   pullTasks();
-  showDeleteMessage("Task deleted");
-}
-
-function showDeleteMessage(message) {
-  const deleteMessage = document.createElement("div");
-  deleteMessage.className = "deleteMessage";
-  deleteMessage.innerText = message;
-
-  document.body.appendChild(deleteMessage);
-
-  setTimeout(() => {
-    deleteMessage.classList.add("fade-out");
-    setTimeout(() => deleteMessage.remove(), 500);
-  }, 3000);
+  renderPopup("delTask");
 }
 
 async function pullContactsToAssign() {

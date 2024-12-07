@@ -13,23 +13,25 @@ async function loadAssignedContacts(key, assignedTo, taskDiv) {
   let data = await response.json();
   assignedToContainer.innerHTML = "";
 
-  for (let index = 0; index < assignedTo.length; index++) {
-    const element = assignedTo[index];
-    const assignedId = element.id;
+  if (assignedTo) {
+    for (let index = 0; index < assignedTo.length; index++) {
+      const element = assignedTo[index];
+      const assignedId = element.id;
 
-    if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
-      let contactName = data.contacts[assignedId].name;
-      let backgroundColor = data.contacts[assignedId].color || "#ccc";
-      const initials = contactName
-        .split(" ")
-        .map((word) => word[0])
-        .join("")
-        .toUpperCase();
-      assignedToContainer.innerHTML += htmlAssignedContacts(
-        backgroundColor,
-        initials,
-        contactName
-      );
+      if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
+        let contactName = data.contacts[assignedId].name;
+        let backgroundColor = data.contacts[assignedId].color || "#ccc";
+        const initials = contactName
+          .split(" ")
+          .map((word) => word[0])
+          .join("")
+          .toUpperCase();
+        assignedToContainer.innerHTML += htmlAssignedContacts(
+          backgroundColor,
+          initials,
+          contactName
+        );
+      }
     }
   }
 }
@@ -83,7 +85,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasksContainer.classList.remove("displayNone");
     subtasksContainer.innerHTML = htmlsubtaskSmallView(key);
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -136,14 +138,16 @@ async function renderSubtasksLargeView(key) {
   subTasksLarge.innerHTML = "";
   let response = await fetch(`${BASE_URL}tasks/${key}/Subtasks.json`);
   let subtasks = await response.json();
-  for (let index = 0; index < subtasks.length; index++) {
-    const subtask = subtasks[index];
-    const div = document.createElement(`subtask${key}-${index}`);
-    div.classList.add("subtaskClickDiv");
-    let subtaskTask = subtask.task;
-    div.innerHTML = htmlSubtasksLargeView(key, index, subtaskTask);
-    subTasksLarge.appendChild(div);
-    renderCheckButton(subtask, key, index);
+  if (subtasks) {
+    for (let index = 0; index < subtasks.length; index++) {
+      const subtask = subtasks[index];
+      const div = document.createElement(`subtask${key}-${index}`);
+      div.classList.add("subtaskClickDiv");
+      let subtaskTask = subtask.task;
+      div.innerHTML = htmlSubtasksLargeView(key, index, subtaskTask);
+      subTasksLarge.appendChild(div);
+      renderCheckButton(subtask, key, index);
+    }
   }
 }
 
@@ -197,7 +201,7 @@ async function changeCheckbox(key, index) {
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -262,7 +266,7 @@ async function renderDoneSubtasksCount(key) {
     }
   }
   doneSubtasksCountDiv.innerHTML = htmlSubtaskCount(doneCount, totalSubtasks);
-  return { doneCount, totalSubtasks };
+  return {doneCount, totalSubtasks};
 }
 
 /**

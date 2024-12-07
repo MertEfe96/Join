@@ -52,11 +52,13 @@ function renderPopup(action) {
       popupDiv.innerHTML = `Task added to board <img src="/assets/icons/IconBoard.png" alt="" />`;
       break;
     case "addContact":
-      popupDiv.innerHTML = `Contact succesfully created `;
+      popupDiv.innerHTML = `Contact succesfully created`;
       break;
     case "delContact":
-      popupDiv.innerHTML = `Contact succesfully deleted `;
+      popupDiv.innerHTML = `Contact succesfully deleted`;
       break;
+    case "delTask":
+      popupDiv.innerHTML = `Task deleted`;
   }
   const delay = setTimeout(closePopup, 1500);
 }

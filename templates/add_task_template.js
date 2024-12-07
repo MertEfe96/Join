@@ -3,10 +3,10 @@ function templateAddTask(status, key) {
     <div class="headlineAddTaskWindow">
           <b class="headlineAddTask">Add Task</b><img class="addTaskCancelIcon" onclick="closeAddTask()" src="./assets/icons/close.png" alt="">
         </div>
-        <div class="inputContainer">
+        <div class="inputContainerTask">
           <form class="formAddTask" onsubmit="return false">
-            <div class="addTaskSplit">
-              <div class="addTaskPortion">
+            <div id="addTaskSplit" class="addTaskSplit">
+              <div id="addTaskPortion" class="addTaskPortion">
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
                     <p>Title</p>
@@ -47,7 +47,7 @@ function templateAddTask(status, key) {
                 </div>
               </div>
               <div class="divieder"></div>
-              <div class="addTaskPortion">
+              <div id="addTaskPortion" class="addTaskPortion">
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
                     <p>Due date</p>
@@ -172,10 +172,10 @@ function templateAddTaskNav(status) {
     <div class="headlineAddTaskWindow">
           <b>Add Task</b>
         </div>
-        <div class="inputContainer">
+        <div class="inputContainerTask">
           <form class="formAddTask" onsubmit="return false">
-            <div class="addTaskSplit">
-              <div class="addTaskPortion">
+            <div id="addTaskSplit" class="addTaskSplit">
+              <div id="addTaskPortion" class="addTaskPortion">
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
                     <p>Title</p>
@@ -216,7 +216,7 @@ function templateAddTaskNav(status) {
                 </div>
               </div>
               <div class="divieder"></div>
-              <div class="addTaskPortion">
+              <div id="addTaskPortion" class="addTaskPortion">
                 <div class="inputSubContainerAddTask">
                   <div class="inputHeader">
                     <p>Due date</p>
