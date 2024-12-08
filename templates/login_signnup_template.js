@@ -37,7 +37,6 @@ function loginTemplate() {
                 name="password"
                 autocomplete="password"
                 placeholder="Password"
-                oninvalid="this.setCustomValidity('Email oder Passwort ist Falsch!')"
                 required />
               <img
                 onmouseenter="showPasswordLogin()"
@@ -143,6 +142,7 @@ function signUpTemplate() {
                 name="password"
                 autocomplete="password"
                 placeholder="Confirm Password"
+                oninput="validate_pw2(this)"
                 required />
               <img onmouseenter="showConfirmPassword()"
                 src="./assets/icons/lock.svg"
