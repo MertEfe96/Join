@@ -298,6 +298,7 @@
   .contactHeadlineContainer {
     margin-top: 8px;
   }
+
   .contactsList1 {
     height: calc(100vh - 184px);
   }
@@ -514,14 +515,15 @@
   .addContactHeadline {
     font-size: 47px;
   }
-    
-  }
-  .editOverlayButtonContainer{
+
+  .editOverlayButtonContainer {
     justify-content: center;
   }
-  .addContactCancelButton{
+
+  .addContactCancelButton {
     display: none;
   }
+
   .addContactSubHeadline {
     font-size: 20px;
   }
