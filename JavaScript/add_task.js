@@ -64,7 +64,7 @@ function renderAssignedContactsInAddTask() {
 
 function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
-  let obj = {id: key, initials: ini, color: c};
+  let obj = { id: key, initials: ini, color: c };
   let div = document.getElementById("inDropdown" + i);
   if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
@@ -84,7 +84,7 @@ function renderSubtasks() {
   let div = document.getElementById("subtasksList");
   div.innerHTML = "";
   if (subtask.value) {
-    subtasksArray.push({task: subtask.value, undone: true});
+    subtasksArray.push({ task: subtask.value, undone: true });
   }
   subtasksArray.forEach((task, index) => {
     div.innerHTML += subtaskTemplate(task.task, index);

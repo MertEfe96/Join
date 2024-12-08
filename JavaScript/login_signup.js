@@ -24,11 +24,10 @@ function renderLogin() {
 
 function hideScrollbarLogin() {
   let bodyId = document.body;
-  let loginContent = document.getElementById('loginContent');
-  if (loginContent = '') {
-
+  let loginContent = document.getElementById("loginContent");
+  if ((loginContent = "")) {
   } else {
-    bodyId.style.overflowY = 'hidden';
+    bodyId.style.overflowY = "hidden";
   }
 }
 
@@ -103,23 +102,33 @@ async function loginRequest() {
   let emailLogin = document.getElementById("emailLogin").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
   let rememberCheck = document.getElementById("rememberCheck");
+
+  let validUser = false;
   for (let userId in users) {
     if (
       users[userId].email === emailLogin &&
       users[userId].password === passwordLogin
     ) {
+      validUser = true;
       if (rememberCheck.checked) {
-        let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
+        let user = { ...users[userId], id: userId };
         saveUserInLocal(user);
       } else {
-        let user = {...users[userId], id: userId};
+        let user = { ...users[userId], id: userId };
         saveUserInSession(user);
       }
       clearInputLogin();
       window.location.href = "sumary.html";
-      userLocal = {...users[userId], id: userId};
-    } else {
+      break;
     }
+  }
+  if (!validUser) {
+    const passwordInput = document.getElementById("passwordLogin");
+    passwordInput.setCustomValidity("Email oder Passwort ist Falsch!");
+    passwordInput.reportValidity();
+    passwordInput.addEventListener("input", function () {
+      passwordInput.setCustomValidity("");
+    });
   }
 }
 
@@ -131,7 +140,7 @@ async function guestLogin() {
     const guestUser = data.users[guestUserId];
 
     if (guestUser) {
-      let user = {...guestUser, id: guestUserId};
+      let user = { ...guestUser, id: guestUserId };
       renderUserIcon();
       saveUserInSession(user);
       window.location.href = "sumary.html";

@@ -225,41 +225,24 @@ function createTaskDiv(key) {
   taskDiv.draggable = true;
   taskDiv.classList.add("singleTaskCard");
   taskDiv.id = `singleTaskCard${key}`;
-
   return taskDiv;
 }
 
 /**
  * This function sets up drag events on every task card and shows a drag-effect
+ * @param {HTMLElement} taskDiv - The task element being set up for drag events.
+ * @param {string} key - The unique key for the task.
  */
 function setupDragEvents(taskDiv, key) {
   taskDiv.ondragstart = function (event) {
     startDragging(key);
-
-    const dragImage = taskDiv.cloneNode(true);
-    dragImage.style.transform = "rotate(10deg)";
-    dragImage.style.position = "absolute";
-    dragImage.style.pointerEvents = "none";
-    dragImage.style.zIndex = "1000";
-    dragImage.style.opacity = "0.7";
-    dragImage.style.width = `${taskDiv.offsetWidth}px`;
-    dragImage.style.height = `${taskDiv.offsetHeight}px`;
-
-    document.body.appendChild(dragImage);
-
-    const moveDragImage = (e) => {
-      dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
-      dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
-    };
-
+    const { dragImage, moveDragImage } = createDragImage(taskDiv);
     document.addEventListener("dragover", moveDragImage);
-
     taskDiv.addEventListener("dragend", () => {
       document.body.removeChild(dragImage);
       document.removeEventListener("dragover", moveDragImage);
       removeAllPlaceholders();
     });
-
     const currentListId = taskDiv.closest(".taskCard").id;
     addNeighborPlaceholders(currentListId);
     event.dataTransfer.setDragImage(new Image(), 0, 0);
@@ -270,7 +253,39 @@ function setupDragEvents(taskDiv, key) {
 }
 
 /**
+ * Creates and handles the drag image during the drag operation.
+ * @param {HTMLElement} taskDiv - The task element being dragged.
+ * @returns {Object} An object containing the dragImage element and the moveDragImage function.
+ */
+function createDragImage(taskDiv) {
+  const dragImage = taskDiv.cloneNode(true);
+  dragImage.style.transform = "rotate(10deg)";
+  dragImage.style.position = "absolute";
+  dragImage.style.pointerEvents = "none";
+  dragImage.style.zIndex = "1000";
+  dragImage.style.opacity = "0.7";
+  dragImage.style.width = `${taskDiv.offsetWidth}px`;
+  dragImage.style.height = `${taskDiv.offsetHeight}px`;
+
+  document.body.appendChild(dragImage);
+
+  const moveDragImage = (e) => {
+    dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
+    dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
+  };
+
+  return { dragImage, moveDragImage };
+}
+
+/**
  * This function sets up the detailed informations on every task card
+ *
+ * @param {HTML Element} taskDiv this is the created taskDiv
+ * @param {string} key this is the created key of the task when saved in the API, given by the pullTasks() function
+ * @param {object} taskdetails this is the whole information of the task when saved in the API
+ * @param {string} categoryClass this is the task category
+ * @param {HTML Element} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ * @param {string} search this is the input.value of the searchbar given from the eventlistener
  */
 async function setupTaskDetails(
   taskDiv,
@@ -307,13 +322,13 @@ async function setupTaskDetails(
 /**
  * This function sorts tasks according to their status
  *
- * @param {*} key this is the created key of the task when saved in the API,
+ * @param {string} key this is the created key of the task when saved in the API,
  *                      given by the pullTasks() funktion
- * @param {*} taskdetails this is the whole information of the task when saved in the API
- * @param {*} categoryClass this is the task category
- * @param {*} taskDiv this is the created taskDiv
- * @param {*} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
- * @param {*} search this is the input.value of the searchbar give nfrom the eventlistener
+ * @param {object} taskdetails this is the whole information of the task when saved in the API
+ * @param {string} categoryClass this is the task category
+ * @param {HTML Element} taskDiv this is the created taskDiv
+ * @param {HTML Element} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ * @param {string} search this is the input.value of the searchbar given from the eventlistener
  */
 function sortTasks(
   key,
@@ -331,7 +346,6 @@ function sortTasks(
     !search ||
     taskdetails.Title.toLowerCase().includes(searchLowerCase) ||
     taskdetails.Description.toLowerCase().includes(searchLowerCase);
-
   if (matchesSearch) {
     taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     if (taskdetails.Status === "to-do") {
@@ -353,10 +367,11 @@ searchTaskInput.addEventListener("input", (e) => {
 /**
  * This function returns the html structured TaskCards
  *
- * @param {*} key this the created key of the task when saved in the API,
+ * @param {string} key this the created key of the task when saved in the API,
  *                      given by the pullTasks() funktion
- * @param {*} taskdetails this is the whole information of the task when saved in the API
- * @param {*} categoryClass this is the task category
+ * @param {Objec} taskdetails this is the whole information of the task when saved in the API
+ * @param {string} categoryClass this is the task category
+ * @returns {string} The HTML string representing the task card.
  */
 function renderTaskCard(key, taskdetails, categoryClass) {
   return `
