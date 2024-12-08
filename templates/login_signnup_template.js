@@ -85,7 +85,7 @@ function signUpTemplate() {
       <div class="loginField" id="loginField">
   <div class="loginBox">
         <div class="singUpHeader">
-          <div onclick="renderLogin()" id="arrowToCloseSignUp"></div>
+          <img class="signupArrow" src="./assets/icons/loginArrow.png" onclick="renderLogin()">
           <div class="headlineAndBorder">
             <h1 class="loginHeadline">Sign up</h1>
             <div class="border"></div>

@@ -21,7 +21,6 @@ let userColorsArray = [
  *
  * @returns The color given to the Contact
  */
-
 function AddColorToUser() {
   let randomNumber = Math.floor(Math.random() * 15);
   let userColor = userColorsArray[randomNumber];
@@ -88,9 +87,7 @@ function numberEdit(contact) {
 function closeContact() {
   let contactMainContainer = document.getElementById("contactMainContainer");
   let labelContactCard = document.getElementById("labelContactCard");
-  let contactOverlayEditMain = document.getElementById(
-    "contactOverlayEditMain"
-  );
+  let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
 
   if (contactMainContainer) {
     contactMainContainer.innerHTML = "";
