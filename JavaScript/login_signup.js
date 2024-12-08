@@ -19,6 +19,17 @@ function renderLogin() {
   setTimeout(() => {
     div.innerHTML = loginTemplate();
   }, 1000);
+  hideScrollbarLogin();
+}
+
+function hideScrollbarLogin() {
+  let bodyId = document.body;
+  let loginContent = document.getElementById('loginContent');
+  if (loginContent = '') {
+
+  } else {
+    bodyId.style.overflowY = 'hidden';
+  }
 }
 
 async function postSignUp(data = "") {

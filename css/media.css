@@ -298,6 +298,7 @@
   .contactHeadlineContainer {
     margin-top: 8px;
   }
+
   .contactsList1 {
     height: calc(100vh - 184px);
   }
@@ -510,9 +511,17 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .addContactHeadline {
     font-size: 47px;
+  }
+
+  .editOverlayButtonContainer {
+    justify-content: center;
+  }
+
+  .addContactCancelButton {
+    display: none;
   }
 
   .addContactSubHeadline {
@@ -521,7 +530,7 @@
 
   .contactOverlayEditMain {
     position: unset;
-    max-height: 428px;
+    opacity: unset;
   }
 
   .addContactLeftSection {
@@ -592,6 +601,9 @@
 
   .contactOverlayEdit {
     top: 80px;
+    width: 100%;
+    position: absolute;
+    height: 630px;
   }
 
   .paddingLogoOverlay {
@@ -616,6 +628,21 @@
 
 /*login-signup*/
 @media (max-width: 1010px) {
+  @keyframes moveToCorner {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 274px;
+    }
+
+    100% {
+      top: 37px;
+      left: 38px;
+      transform: translate(0, 0);
+    }
+  }
+
   .LogoNavImgLogin {
     height: 78px;
     width: 64px;
