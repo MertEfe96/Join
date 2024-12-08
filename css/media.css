@@ -510,18 +510,25 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .addContactHeadline {
     font-size: 47px;
   }
-
+    
+  }
+  .editOverlayButtonContainer{
+    justify-content: center;
+  }
+  .addContactCancelButton{
+    display: none;
+  }
   .addContactSubHeadline {
     font-size: 20px;
   }
 
   .contactOverlayEditMain {
     position: unset;
-    max-height: 428px;
+    opacity: unset;
   }
 
   .addContactLeftSection {
@@ -592,6 +599,9 @@
 
   .contactOverlayEdit {
     top: 80px;
+    width: 100%;
+    position: absolute;
+    height: 630px;
   }
 
   .paddingLogoOverlay {
@@ -623,7 +633,7 @@
       transform: translate(-50%, -50%);
       width: 274px;
     }
-    
+
     100% {
       top: 37px;
       left: 38px;
