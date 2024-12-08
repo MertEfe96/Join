@@ -171,9 +171,7 @@ async function fillInputsEditTask(dataTask) {
 async function pullContactDetails(assigned) {
   assigned.forEach(async (contact) => {
     const nameOfContact = await pullAssignedContact(contact.id);
-    const index = sortedContacts[0].findIndex(
-      (contact) => contact[1]?.name === nameOfContact
-    );
+    const index = sortedContacts[0].findIndex((contact) => contact[1]?.name === nameOfContact);
     assignContactToTask(contact.id, contact.initials, contact.color, index);
   });
 }
@@ -217,11 +215,7 @@ document.addEventListener("click", function (e) {
   if (dropdown && arrow && assignedAddTasks) {
     let isInsideDropdown = dropdown.contains(e.target);
     let isInsideAssignedAddTasks = assignedAddTasks.contains(e.target);
-    if (
-      !isInsideDropdown &&
-      !isInsideAssignedAddTasks &&
-      dropdown.classList.contains("show")
-    ) {
+    if (!isInsideDropdown && !isInsideAssignedAddTasks && dropdown.classList.contains("show")) {
       dropdown.classList.remove("show");
       arrow.classList.remove("rotate");
     }
@@ -260,12 +254,7 @@ function renderContactsToAssign(dropdown, contacts) {
   sortedContacts = [];
   sortedContacts.push(sortContacts(contacts));
   sortedContacts[0].forEach(([key, contact], index) => {
-    dropdown.innerHTML += assigneContactTemplate(
-      key,
-      contact,
-      index,
-      contact.color
-    );
+    dropdown.innerHTML += assigneContactTemplate(key, contact, index, contact.color);
   });
 }
 
@@ -276,20 +265,12 @@ function changePrio(prio) {
     document.getElementById(prioritie).classList.add(prioritie + "Color");
     document.getElementById(prioritie).classList.remove(prioritie + "White");
     document.getElementById(prioritie).classList.remove("chosenPrio");
-    document
-      .getElementById(prioritie + "Div")
-      .classList.remove(prioritie + "ColorDiv");
+    document.getElementById(prioritie + "Div").classList.remove(prioritie + "ColorDiv");
   });
-  document
-    .getElementById(prioritieIcons[prioId])
-    .classList.add(prioritieIcons[prioId] + "White");
+  document.getElementById(prioritieIcons[prioId]).classList.add(prioritieIcons[prioId] + "White");
   document.getElementById(prioritieIcons[prioId]).classList.add("chosenPrio");
-  document
-    .getElementById(prioritieIcons[prioId] + "Div")
-    .classList.add(prioritieIcons[prioId] + "ColorDiv");
-  document
-    .getElementById(prioritieIcons[prioId])
-    .classList.remove(prioritieIcons[prioId] + "Color");
+  document.getElementById(prioritieIcons[prioId] + "Div").classList.add(prioritieIcons[prioId] + "ColorDiv");
+  document.getElementById(prioritieIcons[prioId]).classList.remove(prioritieIcons[prioId] + "Color");
 }
 
 function setMinDate() {

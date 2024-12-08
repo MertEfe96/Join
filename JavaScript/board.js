@@ -7,9 +7,7 @@ let currentDraggedElement;
 
 function editTaskTemplateAdjustemt(status, key, addTask) {
   addTask.innerHTML = templateAddTask(status, key);
-  const elements = addTask.querySelectorAll(
-    ".overlaySaveButton, .overlayDeleteButton, .headlineAddTask"
-  );
+  const elements = addTask.querySelectorAll(".overlaySaveButton, .overlayDeleteButton, .headlineAddTask");
   elements.forEach((element) => {
     element.style.display = "none";
   });
@@ -44,15 +42,11 @@ function adjustLargeView(taskCardLarge) {
   elements.forEach((element) => {
     element.style.display = "none";
   });
-  const elem = taskCardLarge.querySelectorAll(
-    ".subtasksLarge, .dueDateCardLarge, .hideSmallView"
-  );
+  const elem = taskCardLarge.querySelectorAll(".subtasksLarge, .dueDateCardLarge, .hideSmallView");
   elem.forEach((element) => {
     element.style.display = "flex";
   });
-  const assignedToClass = taskCardLarge.querySelectorAll(
-    ".assignedToContainer"
-  );
+  const assignedToClass = taskCardLarge.querySelectorAll(".assignedToContainer");
   assignedToClass.forEach((element) => {
     element.classList.add("assignedToContainerLarge");
     element.classList.remove("assignedToContainer");
@@ -73,8 +67,7 @@ function getTaskData(key) {
     subtasks: taskDiv.querySelector(`#subtasksCard${key}`).innerHTML,
     dueDate: taskDiv.querySelector(`#dueDate${key}`).innerHTML,
     categoryClass:
-      taskDiv.querySelector(`#categoryCard${key}`).innerHTML ===
-      "Technical Task"
+      taskDiv.querySelector(`#categoryCard${key}`).innerHTML === "Technical Task"
         ? "technicalTaskColor"
         : "userStoryColor",
   };
@@ -105,15 +98,11 @@ function adjustElements(taskCardLarge) {
   elements.forEach((element) => {
     element.style.display = "flex";
   });
-  const elem = taskCardLarge.querySelectorAll(
-    ".subtasksLarge, .dueDateCardLarge, .hideSmallView"
-  );
+  const elem = taskCardLarge.querySelectorAll(".subtasksLarge, .dueDateCardLarge, .hideSmallView");
   elem.forEach((element) => {
     element.style.display = "none";
   });
-  const assignedToClass = taskCardLarge.querySelectorAll(
-    ".assignedToContainerLarge"
-  );
+  const assignedToClass = taskCardLarge.querySelectorAll(".assignedToContainerLarge");
   assignedToClass.forEach((element) => {
     element.classList.add("assignedToContainer");
     element.classList.remove("assignedToContainerLarge");
@@ -142,18 +131,8 @@ async function pullTasks(search = "") {
   if (tasks) {
     await renderGroupedTasks(tasks, search);
   } else {
-    const {
-      taskListToDo,
-      taskListInProgress,
-      taskListAwaitFeedback,
-      taskListDone,
-    } = initializeTaskLists();
-    await checkTasklistEmpty(
-      taskListToDo,
-      taskListInProgress,
-      taskListAwaitFeedback,
-      taskListDone
-    );
+    const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
+    await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
   }
   renderUserIcon();
 }
@@ -165,12 +144,7 @@ async function pullTasks(search = "") {
  *                      given by the pullTasks() funtion
  */
 async function renderGroupedTasks(tasks, search) {
-  const {
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone,
-  } = initializeTaskLists();
+  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = createTaskDiv(key);
     setupDragEvents(taskDiv, key);
@@ -189,12 +163,7 @@ async function renderGroupedTasks(tasks, search) {
     loadSubtasks(key, taskdetails.Subtasks, taskDiv);
   });
   await Promise.all(renderPromises);
-  checkTasklistEmpty(
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone
-  );
+  checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
 }
 
 /**
@@ -286,10 +255,7 @@ async function setupTaskDetails(
     taskCardLarge(key);
   });
 
-  let categoryClass =
-    taskdetails.Category === "Technical Task"
-      ? "technicalTaskColor"
-      : "userStoryColor";
+  let categoryClass = taskdetails.Category === "Technical Task" ? "technicalTaskColor" : "userStoryColor";
 
   sortTasks(
     key,

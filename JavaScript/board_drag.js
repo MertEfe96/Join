@@ -24,30 +24,17 @@ function allowDrop(ev) {
  *
  */
 async function moveTo(status) {
-  let response = await fetch(
-    BASE_URL + `tasks/${currentDraggedElement}/Status/.json`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(status),
-    }
-  );
+  let response = await fetch(BASE_URL + `tasks/${currentDraggedElement}/Status/.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(status),
+  });
   pullTasks();
   removeAllPlaceholders();
-  const {
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone,
-  } = initializeTaskLists();
-  checkTasklistEmpty(
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone
-  );
+  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
+  checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
 }
 
 /**

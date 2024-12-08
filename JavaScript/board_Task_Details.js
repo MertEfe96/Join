@@ -40,11 +40,7 @@ function renderAssignedContact(contact, container) {
     .join("")
     .toUpperCase();
 
-  container.innerHTML += htmlAssignedContacts(
-    backgroundColor,
-    initials,
-    contactName
-  );
+  container.innerHTML += htmlAssignedContacts(backgroundColor, initials, contactName);
 }
 
 /**
@@ -96,7 +92,7 @@ async function loadSubtasks(key, subtasks, taskDiv) {
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasksContainer.classList.remove("displayNone");
     subtasksContainer.innerHTML = htmlsubtaskSmallView(key);
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } else {
     subtasksContainer.classList.add("displayNone");
@@ -180,9 +176,7 @@ function htmlSubtasksLargeView(key, index, subtaskTask) {
  * @param {number} index - The index of the subtask within the task's subtasks array.
  */
 function renderCheckButton(subtask, key, index) {
-  let checkButton = document.getElementById(
-    `subtaskClickButton${key}-${index}`
-  );
+  let checkButton = document.getElementById(`subtaskClickButton${key}-${index}`);
   if (subtask.undone === true) {
     checkButton.innerHTML = `
       <img src=./assets/icons/uncheckedButton.png >
@@ -205,14 +199,12 @@ function renderCheckButton(subtask, key, index) {
 async function changeCheckbox(key, index) {
   try {
     await toggleUndoneStatus(key, index);
-    let updatedSubtasksResponse = await fetch(
-      `${BASE_URL}tasks/${key}/Subtasks.json`
-    );
+    let updatedSubtasksResponse = await fetch(`${BASE_URL}tasks/${key}/Subtasks.json`);
     let updatedSubtasks = await updatedSubtasksResponse.json();
     let taskDiv = document.getElementById(`singleTaskCard${key}`);
     await loadSubtasks(key, updatedSubtasks, taskDiv);
     await renderSubtasksLargeView(key);
-    const { doneCount, totalSubtasks } = await renderDoneSubtasksCount(key);
+    const {doneCount, totalSubtasks} = await renderDoneSubtasksCount(key);
     move(key, doneCount, totalSubtasks);
   } catch (error) {
     console.error("Fehler beim Ändern des Subtask-Status:", error);
@@ -223,9 +215,7 @@ async function changeCheckbox(key, index) {
  * Toggles the completion status of a subtask.
  */
 async function toggleUndoneStatus(key, index) {
-  let response = await fetch(
-    `${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`
-  );
+  let response = await fetch(`${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
@@ -243,16 +233,13 @@ async function toggleUndoneStatus(key, index) {
  * @param {boolean} undone - The new completion status of the subtask.
  */
 async function updateUndoneStatus(key, index, undone) {
-  const updateResponse = await fetch(
-    `${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(undone),
-    }
-  );
+  const updateResponse = await fetch(`${BASE_URL}tasks/${key}/Subtasks/${index}/undone.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(undone),
+  });
   if (!updateResponse.ok) {
     throw new Error(`HTTP error! Status: ${updateResponse.status}`);
   }
@@ -277,7 +264,7 @@ async function renderDoneSubtasksCount(key) {
     }
   }
   doneSubtasksCountDiv.innerHTML = htmlSubtaskCount(doneCount, totalSubtasks);
-  return { doneCount, totalSubtasks };
+  return {doneCount, totalSubtasks};
 }
 
 /**
@@ -316,12 +303,7 @@ function renderPrioWord(priority, key) {
  * @param {HTMLElement} taskListAwaitFeedback The DOM element representing the "Awaiting Feedback" task list.
  * @param {HTMLElement} taskListDone The DOM element representing the "Done" task list.
  */
-async function checkTasklistEmpty(
-  taskListToDo,
-  taskListInProgress,
-  taskListAwaitFeedback,
-  taskListDone
-) {
+async function checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone) {
   updateCard(taskListDone, "No tasks done");
   updateCard(taskListInProgress, "No tasks in progress");
   updateCard(taskListToDo, "No tasks to do");

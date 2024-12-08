@@ -39,14 +39,11 @@ function AddColorToUser() {
  */
 function openContact(key, name, mail, number, color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
+  const contactOverDiv = document.getElementById("contactOverDiv");
   const toggleCheckBox = document.getElementById("toggleContactCard");
   contactMainContainer.style.display = "flex";
-  contactMainContainer.innerHTML = renderContactLargeTemplate(
-    key,
-    name,
-    mail,
-    color
-  );
+  contactOverDiv.classList.toggle("contactMobile");
+  contactMainContainer.innerHTML = renderContactLargeTemplate(key, name, mail, color);
   numberContact(number);
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
 }
@@ -88,9 +85,7 @@ function numberEdit(contact) {
 function closeContact() {
   let contactMainContainer = document.getElementById("contactMainContainer");
   let labelContactCard = document.getElementById("labelContactCard");
-  let contactOverlayEditMain = document.getElementById(
-    "contactOverlayEditMain"
-  );
+  let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
 
   if (contactMainContainer) {
     contactMainContainer.innerHTML = "";
@@ -111,9 +106,7 @@ function closeContact() {
 async function openEditContact(key) {
   const overlayMain = document.getElementById("contactOverlayEditMain");
   const overlayEdit = document.getElementById("contactOverlayEdit");
-  const overlayEditRight = document.getElementById(
-    "contactOverlayRightSection"
-  );
+  const overlayEditRight = document.getElementById("contactOverlayRightSection");
   let contact = await pullSingleContact(key);
   overlayEditRight.innerHTML = renderEditContactTemplate(contact, key);
   overlayMain.style.display = "flex";
@@ -261,9 +254,7 @@ function renderGroupedContacts(contacts) {
  * @returns an array of arrays with the soreted names
  */
 function sortContacts(contacts) {
-  return Object.entries(contacts).sort((a, b) =>
-    a[1].name.localeCompare(b[1].name)
-  );
+  return Object.entries(contacts).sort((a, b) => a[1].name.localeCompare(b[1].name));
 }
 
 /**
@@ -379,4 +370,27 @@ function setIcon(i, contact) {
     .toUpperCase();
   let iconDiv = document.getElementById(`contactInitialsSmall${i}`);
   iconDiv.innerHTML = initials;
+}
+
+function validateForm() {
+  const nameInput = document.getElementById("addContactInputName");
+  const mailInput = document.getElementById("addContactInputMail");
+
+  if (!nameInput.value.trim()) {
+    alert("Name is required.");
+    return false;
+  }
+
+  if (!mailInput.value.trim()) {
+    alert("Email is required.");
+    return false;
+  }
+
+  return true;
+}
+
+function returnToList() {
+  closeContact();
+  const contactOverDiv = document.getElementById("contactOverDiv");
+  contactOverDiv.classList.toggle("contactMobile");
 }

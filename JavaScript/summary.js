@@ -48,21 +48,11 @@ async function fetchAmounts(path = "") {
  */
 function filterStatus(data) {
   const asArray = Object.entries(data);
-  const filteredToDo = asArray.filter(
-    ([key, value]) => value.Status === "to-do"
-  );
-  const filteredInProgress = asArray.filter(
-    ([key, value]) => value.Status === "in-progress"
-  );
-  const filteredAwaitFeedback = asArray.filter(
-    ([key, value]) => value.Status === "await-feedback"
-  );
-  const filteredDone = asArray.filter(
-    ([key, value]) => value.Status === "done"
-  );
-  const filteredPrio = asArray.filter(
-    ([key, value]) => value.Priority === "prioUrgent"
-  );
+  const filteredToDo = asArray.filter(([key, value]) => value.Status === "to-do");
+  const filteredInProgress = asArray.filter(([key, value]) => value.Status === "in-progress");
+  const filteredAwaitFeedback = asArray.filter(([key, value]) => value.Status === "await-feedback");
+  const filteredDone = asArray.filter(([key, value]) => value.Status === "done");
+  const filteredPrio = asArray.filter(([key, value]) => value.Priority === "prioUrgent");
 
   let formattedDate = sortDates(filteredPrio);
 
@@ -72,15 +62,7 @@ function filterStatus(data) {
   const countDone = filteredDone.length;
   const taskCount = asArray.length;
   const prioUrgent = filteredPrio.length;
-  renderAmountSummary(
-    countToDo,
-    countInProgress,
-    countAwaitFeedback,
-    countDone,
-    taskCount,
-    prioUrgent,
-    formattedDate
-  );
+  renderAmountSummary(countToDo, countInProgress, countAwaitFeedback, countDone, taskCount, prioUrgent, formattedDate);
 }
 
 /**
@@ -101,8 +83,8 @@ function sortDates(filteredPrio) {
 
   return nextDueDate
     ? `${nextDueDate.getDate()} ${nextDueDate.toLocaleString("default", {
-      month: "long",
-    })}, ${nextDueDate.getFullYear()}`
+        month: "long",
+      })}, ${nextDueDate.getFullYear()}`
     : "Out of date";
 }
 
@@ -110,17 +92,17 @@ function sortDates(filteredPrio) {
  * Retrieves user-name from local and session storage and determines the appropriate greeting by calling corresponding functions
  */
 function summaryGreeting() {
-  if (localStorage.getItem('user')) {
-    let userName = localStorage.getItem('user');
+  if (localStorage.getItem("user")) {
+    let userName = localStorage.getItem("user");
     let userObject = JSON.parse(userName);
     let entries = Object.entries(userObject);
     dayTime(entries);
-  } else if (sessionStorage.getItem('user')) {
-    let userName = sessionStorage.getItem('user');
+  } else if (sessionStorage.getItem("user")) {
+    let userName = sessionStorage.getItem("user");
     let userObject = JSON.parse(userName);
     let entries = Object.entries(userObject);
     dayTime(entries);
-    if (entries[1][1] == 'guest') {
+    if (entries[1][1] == "guest") {
       dayTimeGuest();
     }
   }
@@ -128,11 +110,11 @@ function summaryGreeting() {
 
 /**
  * Updates the greeting message based on the time of day
- * 
+ *
  * @param {array} entries - A nested array where `entries[2][1]` contains the user's name
  */
 function dayTime(entries) {
-  let greetingSummary = document.getElementById('greetingSummary');
+  let greetingSummary = document.getElementById("greetingSummary");
   let today = new Date();
   let currentHr = today.getHours();
 
@@ -149,7 +131,7 @@ function dayTime(entries) {
  * Updates the greeting message based on the time of day without user's name
  */
 function dayTimeGuest() {
-  let greetingSummary = document.getElementById('greetingSummary');
+  let greetingSummary = document.getElementById("greetingSummary");
   let today = new Date();
   let currentHr = today.getHours();
 

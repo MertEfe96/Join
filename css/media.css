@@ -45,6 +45,20 @@
     height: 80px;
     font-size: 32px;
   }
+
+  .contactOverlayEdit {
+    width: 1040px;
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  .contactOverlayLeftSection {
+    padding: 0 32px;
+  }
+
+  .contactOverlayRightSection {
+    gap: 32px;
+  }
 }
 
 @media (max-width: 1150px) {
@@ -78,9 +92,29 @@
     width: 180px;
     min-width: 180px;
   }
+
+  .inputSubContainer {
+    width: 350px;
+  }
+
+  .contactOverlayEdit {
+    width: 970px;
+  }
 }
 
 @media (max-width: 1000px) {
+  .inputSubContainer {
+    width: 300px;
+  }
+
+  .contactOverlayLeftSection {
+    font-size: 40px;
+  }
+
+  .contactOverlayEdit {
+    width: 850px;
+  }
+
   .prio p {
     font-size: 20px;
   }
@@ -155,9 +189,34 @@
   .searchBarDiv {
     width: 100%;
   }
+
+  .contactContainer {
+    margin: 60px 32px;
+  }
+
+  .contactInicialsContainer {
+    gap: 16px;
+  }
+
+  .contactMainName {
+    text-wrap: wrap;
+  }
 }
 
 @media (max-width: 900px) {
+  .inputSubContainer {
+    width: 300px;
+  }
+
+  .contactOverlayLeftSection {
+    display: none;
+  }
+
+  .contactOverlayEdit {
+    width: 500px;
+    justify-content: center;
+  }
+
   body {
     flex-direction: column-reverse;
   }
@@ -300,7 +359,57 @@
   }
 
   .contactsList1 {
-    height: calc(100vh - 184px);
+    height: calc(100vh - 175px);
+  }
+}
+
+@media (max-width: 750px) {
+  .contactContainer {
+    display: none;
+  }
+
+  .contactsList1 {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .contactsList {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .contactLetterHeader {
+    width: 90%;
+  }
+
+  .w100 {
+    width: 100%;
+  }
+
+  .contactMobile {
+    position: absolute;
+    display: block;
+    z-index: 999;
+    background-color: #f6f7f8;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    margin: 0;
+    padding: 60px;
+  }
+
+  .contactHeadlineContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .returnToList {
+    background-image: url(/assets/icons/arrow-left-line.png);
+    width: 40px;
+    height: 40px;
+    background-size: contain;
   }
 }
 
@@ -483,7 +592,7 @@
 
 /* Contacts */
 @media (max-width: 768px) {
-  .contactOverlayEdit {
+  /* .contactOverlayEdit {
     flex-direction: column;
     width: 90%;
     max-width: none;
@@ -504,7 +613,7 @@
     flex-direction: row;
     gap: 20px;
     max-width: 600px;
-  }
+  } */
 
   .w600 {
     width: 460px !important;
@@ -686,6 +795,18 @@
 
 /*Login*/
 @media (max-width: 600px) {
+  .contactInicialLarge {
+    display: none;
+  }
+
+  .contactOverlayEdit {
+    width: 350px;
+  }
+
+  .contactOverlayRightSection {
+    margin: 0;
+  }
+
   .loginBox {
     padding-left: 16px;
     padding-right: 16px;

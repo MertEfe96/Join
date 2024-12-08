@@ -24,11 +24,10 @@ function renderLogin() {
 
 function hideScrollbarLogin() {
   let bodyId = document.body;
-  let loginContent = document.getElementById('loginContent');
-  if (loginContent = '') {
-
+  let loginContent = document.getElementById("loginContent");
+  if ((loginContent = "")) {
   } else {
-    bodyId.style.overflowY = 'hidden';
+    bodyId.style.overflowY = "hidden";
   }
 }
 
@@ -36,18 +35,11 @@ async function postSignUp(data = "") {
   let nameSignup = document.getElementById("nameSignUp").value;
   let emailSignUp = document.getElementById("emailSignUp").value;
   let passwordSignUp = document.getElementById("passwordSignUp").value;
-  let passwordConfirmSignUp = document.getElementById(
-    "passwordConfirmSignUp"
-  ).value;
+  let passwordConfirmSignUp = document.getElementById("passwordConfirmSignUp").value;
   let userColor = AddColorToUser();
   let signUpCheckbox = document.getElementById("signUpCheckbox").checked;
 
-  if (
-    !nameSignup ||
-    !emailSignUp ||
-    !passwordSignUp ||
-    !passwordConfirmSignUp
-  ) {
+  if (!nameSignup || !emailSignUp || !passwordSignUp || !passwordConfirmSignUp) {
     alert("Bitte füllen Sie alle Felder aus.");
     return;
   }
@@ -104,10 +96,7 @@ async function loginRequest() {
   let passwordLogin = document.getElementById("passwordLogin").value;
   let rememberCheck = document.getElementById("rememberCheck");
   for (let userId in users) {
-    if (
-      users[userId].email === emailLogin &&
-      users[userId].password === passwordLogin
-    ) {
+    if (users[userId].email === emailLogin && users[userId].password === passwordLogin) {
       if (rememberCheck.checked) {
         let user = {...users[userId], id: userId}; //Spread-Syntax, kopiert den Objekt fügt danach extra die ID hinzu
         saveUserInLocal(user);
@@ -203,7 +192,5 @@ function renderUserIcon() {
 
 function getInitials(name) {
   let parts = name.split(" ");
-  return parts.length > 1
-    ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
-    : name[0].toUpperCase();
+  return parts.length > 1 ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase() : name[0].toUpperCase();
 }
