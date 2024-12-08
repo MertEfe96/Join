@@ -24,13 +24,21 @@
 
 .loginLegalSubContainer {
   display: flex;
-  gap: 30px;
+  gap: 24px;
 }
 
 .loginLegalSubContainer a {
+  display: flex;
+  justify-content: center;
   cursor: pointer;
   text-decoration: none;
   color: #A8A8A8;
+  width: 110px;
+}
+
+.loginLegalSubContainer a:hover {
+  color: #29abe2;
+  font-weight: bold;
 }
 
 #arrowToCloseSignUp {
