@@ -2,9 +2,11 @@ let currentDraggedElement;
 
 /**
  * This function adjusts add-contact-form for the edit Task Window
- *  * @param {*} addTask The DOM Element in which the addTask Window will be shown
+ *
+ * @param {string} status - The status of the task (e.g., "to-do", "in-progress", "done")
+ * @param {string} key - The unique key of the task being edited
+ * @param {HTMLElement} addTask - The DOM element where the addTask window template will be rendered
  */
-
 function editTaskTemplateAdjustemt(status, key, addTask) {
   addTask.innerHTML = templateAddTask(status, key);
   const elements = addTask.querySelectorAll(".overlaySaveButton, .overlayDeleteButton, .headlineAddTask");
@@ -19,6 +21,8 @@ function editTaskTemplateAdjustemt(status, key, addTask) {
 
 /**
  * This function opens large view of Task
+ *
+ * @param {string} key - The unique key of the task being viewed in large mode
  */
 function taskCardLarge(key) {
   const taskCardLargeMain = document.getElementById("taskCardLargeMain");
@@ -33,9 +37,11 @@ function taskCardLarge(key) {
   let priority = taskDiv.querySelector(`#priorityCard${key}`).innerHTML;
   renderPrioWord(priority, key);
 }
+
 /**
- * This function adjusts the large view Template
- *  * @param {*} taskCardLarge The DOM Element in which the large Task Card View will be shown
+ * This function adjusts the large view template
+ *
+ * @param {HTMLElement} taskCardLarge - The DOM Element in which the large Task Card View will be shown
  */
 function adjustLargeView(taskCardLarge) {
   const elements = taskCardLarge.querySelectorAll(".subtasksSmall");
@@ -54,7 +60,9 @@ function adjustLargeView(taskCardLarge) {
 }
 
 /**
- * This function returns the Task Infos from each single Task Card for the large view
+ * This function returns the task infos from each single Task Card for the large view
+ *
+ * @param {string} key - The unique key of the task
  */
 function getTaskData(key) {
   const taskDiv = document.getElementById(`singleTaskCard${key}`);
@@ -66,10 +74,7 @@ function getTaskData(key) {
     priority: taskDiv.querySelector(`#priorityCard${key}`).innerHTML,
     subtasks: taskDiv.querySelector(`#subtasksCard${key}`).innerHTML,
     dueDate: taskDiv.querySelector(`#dueDate${key}`).innerHTML,
-    categoryClass:
-      taskDiv.querySelector(`#categoryCard${key}`).innerHTML === "Technical Task"
-        ? "technicalTaskColor"
-        : "userStoryColor",
+    categoryClass: taskDiv.querySelector(`#categoryCard${key}`).innerHTML === "Technical Task" ? "technicalTaskColor" : "userStoryColor",
   };
 }
 
@@ -92,6 +97,8 @@ function closetaskCardLarge() {
 
 /**
  * This function adjusts classlists from elements when closing the large view of the task
+ *
+ *  * @param {HTMLElement} taskCardLarge - The main container of the large task view that contains the elements to be adjusted.
  */
 function adjustElements(taskCardLarge) {
   const elements = taskCardLarge.querySelectorAll(".subtasksSmall");
@@ -112,9 +119,8 @@ function adjustElements(taskCardLarge) {
 /**
  * This function saves the tasks in the API
  *
- * @param {string} [status="to-do"] The status of the task (default is "to-do"). *
+ * @param {string} [status="to-do"] - The status of the task (default is "to-do")
  */
-
 async function saveTask(status = "to-do") {
   await setDataForTask(status);
   closeAddTask();
@@ -123,6 +129,8 @@ async function saveTask(status = "to-do") {
 
 /**
  * This function fetches the tasks saved in the API
+ *
+ *  * @param {string} search - This is the input.value of the searchbar given from the eventlistener (default is "")
  */
 async function pullTasks(search = "") {
   let response = await fetch(BASE_URL + ".json");
@@ -133,6 +141,8 @@ async function pullTasks(search = "") {
   } else {
     const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
     await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
+    const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
+    await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
   }
   renderUserIcon();
 }
@@ -140,24 +150,16 @@ async function pullTasks(search = "") {
 /**
  * This function renders tasks and sorts them according to their status
  *
- * @param {*} tasks this is the whole tasklist saved in the API,
- *                      given by the pullTasks() funtion
+ * @param {object} tasks - This is the whole tasklist saved in the API, given by the pullTasks() function
+ * @param {string} search - This is the input.value of the searchbar given from the eventlistener
  */
 async function renderGroupedTasks(tasks, search) {
+  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = createTaskDiv(key);
     setupDragEvents(taskDiv, key);
-    await setupTaskDetails(
-      taskDiv,
-      key,
-      taskdetails,
-      taskListToDo,
-      taskListInProgress,
-      taskListAwaitFeedback,
-      taskListDone,
-      search
-    );
+    await setupTaskDetails(taskDiv, key, taskdetails, taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone, search);
     await loadAssignedContacts(key, taskdetails.AssignedTo, taskDiv);
     loadPrio(key, taskdetails.Priority, taskDiv);
     loadSubtasks(key, taskdetails.Subtasks, taskDiv);
@@ -188,47 +190,33 @@ function initializeTaskLists() {
 
 /**
  * This function creates the container for every task card
+ *
+ * @param {string} key - The unique key for the task
  */
 function createTaskDiv(key) {
   let taskDiv = document.createElement("div");
   taskDiv.draggable = true;
   taskDiv.classList.add("singleTaskCard");
   taskDiv.id = `singleTaskCard${key}`;
-
   return taskDiv;
 }
 
 /**
  * This function sets up drag events on every task card and shows a drag-effect
+ *
+ * @param {HTMLElement} taskDiv - The task element being set up for drag events.
+ * @param {string} key - The unique key for the task.
  */
 function setupDragEvents(taskDiv, key) {
   taskDiv.ondragstart = function (event) {
     startDragging(key);
-
-    const dragImage = taskDiv.cloneNode(true);
-    dragImage.style.transform = "rotate(10deg)";
-    dragImage.style.position = "absolute";
-    dragImage.style.pointerEvents = "none";
-    dragImage.style.zIndex = "1000";
-    dragImage.style.opacity = "0.7";
-    dragImage.style.width = `${taskDiv.offsetWidth}px`;
-    dragImage.style.height = `${taskDiv.offsetHeight}px`;
-
-    document.body.appendChild(dragImage);
-
-    const moveDragImage = (e) => {
-      dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
-      dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
-    };
-
+    const {dragImage, moveDragImage} = createDragImage(taskDiv);
     document.addEventListener("dragover", moveDragImage);
-
     taskDiv.addEventListener("dragend", () => {
       document.body.removeChild(dragImage);
       document.removeEventListener("dragover", moveDragImage);
       removeAllPlaceholders();
     });
-
     const currentListId = taskDiv.closest(".taskCard").id;
     addNeighborPlaceholders(currentListId);
     event.dataTransfer.setDragImage(new Image(), 0, 0);
@@ -239,65 +227,59 @@ function setupDragEvents(taskDiv, key) {
 }
 
 /**
- * This function sets up the detailed informations on every task card
+ * Creates and handles the drag image during the drag operation.
+ *
+ * @param {HTMLElement} taskDiv - The task element being dragged.
+ * @returns {Object} - An object containing the dragImage element and the moveDragImage function.
  */
-async function setupTaskDetails(
-  taskDiv,
-  key,
-  taskdetails,
-  taskListToDo,
-  taskListInProgress,
-  taskListAwaitFeedback,
-  taskListDone,
-  search
-) {
+function createDragImage(taskDiv) {
+  const dragImage = taskDiv.cloneNode(true);
+  dragImage.style.transform = "rotate(10deg)";
+  dragImage.style.position = "absolute";
+  dragImage.style.pointerEvents = "none";
+  dragImage.style.zIndex = "1000";
+  dragImage.style.opacity = "0.7";
+  dragImage.style.width = `${taskDiv.offsetWidth}px`;
+  dragImage.style.height = `${taskDiv.offsetHeight}px`;
+  document.body.appendChild(dragImage);
+  const moveDragImage = (e) => {
+    dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
+    dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
+  };
+  return {dragImage, moveDragImage};
+}
+
+/**
+ * This function sets up the detailed informations on every task card
+ *
+ * @param {HTML Element} taskDiv - The created taskDiv
+ * @param {string} key - The created key of the task when saved in the API, given by the pullTasks() function
+ * @param {object} taskdetails - The whole information of the task when saved in the API
+ * @param {string} categoryClass - The task category
+ * @param {HTML Element} taskList - All four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ * @param {string} search - The input.value of the searchbar given from the eventlistener
+ */
+async function setupTaskDetails(taskDiv, key, taskdetails, taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone, search) {
   taskDiv.addEventListener("click", (event) => {
     taskCardLarge(key);
   });
-
   let categoryClass = taskdetails.Category === "Technical Task" ? "technicalTaskColor" : "userStoryColor";
-
-  sortTasks(
-    key,
-    taskdetails,
-    categoryClass,
-    taskDiv,
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone,
-    search
-  );
+  sortTasks(key, taskdetails, categoryClass, taskDiv, taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone, search);
 }
 
 /**
  * This function sorts tasks according to their status
  *
- * @param {*} key this is the created key of the task when saved in the API,
- *                      given by the pullTasks() funktion
- * @param {*} taskdetails this is the whole information of the task when saved in the API
- * @param {*} categoryClass this is the task category
- * @param {*} taskDiv this is the created taskDiv
- * @param {*} taskList these are all four taskLists (ToDo, InProgress, AwaitFeedback, Done)
- * @param {*} search this is the input.value of the searchbar give nfrom the eventlistener
+ * @param {string} key - The created key of the task when saved in the API
+ * @param {object} taskdetails - The whole information of the task when saved in the API
+ * @param {string} categoryClass - The task category
+ * @param {HTML Element} taskDiv - The created taskDiv
+ * @param {HTML Element} taskList - All four taskLists (ToDo, InProgress, AwaitFeedback, Done)
+ * @param {string} search - The input.value of the searchbar given from the eventlistener
  */
-function sortTasks(
-  key,
-  taskdetails,
-  categoryClass,
-  taskDiv,
-  taskListToDo,
-  taskListInProgress,
-  taskListAwaitFeedback,
-  taskListDone,
-  search
-) {
+function sortTasks(key, taskdetails, categoryClass, taskDiv, taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone, search) {
   const searchLowerCase = search.toLowerCase();
-  const matchesSearch =
-    !search ||
-    taskdetails.Title.toLowerCase().includes(searchLowerCase) ||
-    taskdetails.Description.toLowerCase().includes(searchLowerCase);
-
+  const matchesSearch = !search || taskdetails.Title.toLowerCase().includes(searchLowerCase) || taskdetails.Description.toLowerCase().includes(searchLowerCase);
   if (matchesSearch) {
     taskDiv.innerHTML = renderTaskCard(key, taskdetails, categoryClass);
     if (taskdetails.Status === "to-do") {
@@ -310,29 +292,4 @@ function sortTasks(
       taskListDone.appendChild(taskDiv);
     }
   }
-}
-const searchTaskInput = document.getElementById("findTask");
-searchTaskInput.addEventListener("input", (e) => {
-  pullTasks(e.target.value);
-});
-
-/**
- * This function returns the html structured TaskCards
- *
- * @param {*} key this the created key of the task when saved in the API,
- *                      given by the pullTasks() funktion
- * @param {*} taskdetails this is the whole information of the task when saved in the API
- * @param {*} categoryClass this is the task category
- */
-function renderTaskCard(key, taskdetails, categoryClass) {
-  return `
-<div id="categoryCard${key}" class="categoryCard ${categoryClass}">${taskdetails.Category}</div>
-<div id="titleCard${key}" class="titleCard">${taskdetails.Title}</div>
-<div id="descriptionCard${key}" class="descriptionCard">${taskdetails.Description}</div>
-<div class="dueDateCardLarge" id="dueDate${key}">${taskdetails.DueDate}</div>
-<div id="subtasksCard${key}" class="subtasksCard"></div>
-<div class="bottomCard">
-  <div class="assignedToCard" id="assignedToCard${key}"></div>
-  <div id="priorityCard${key}"></div>
-</div>`;
 }

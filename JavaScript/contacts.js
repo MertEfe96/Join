@@ -21,7 +21,6 @@ let userColorsArray = [
  *
  * @returns The color given to the Contact
  */
-
 function AddColorToUser() {
   let randomNumber = Math.floor(Math.random() * 15);
   let userColor = userColorsArray[randomNumber];
