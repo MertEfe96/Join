@@ -141,8 +141,6 @@ async function pullTasks(search = "") {
   } else {
     const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
     await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
-    const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
-    await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
   }
   renderUserIcon();
 }
@@ -154,7 +152,6 @@ async function pullTasks(search = "") {
  * @param {string} search - This is the input.value of the searchbar given from the eventlistener
  */
 async function renderGroupedTasks(tasks, search) {
-  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = createTaskDiv(key);
