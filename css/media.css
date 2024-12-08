@@ -679,8 +679,8 @@
     width: 100%;
   }
 
-  #arrowToCloseSignUp {
-    left: 48px;
+  .signupArrow {
+    left: 54px;
   }
 }
 
@@ -744,7 +744,7 @@
 
 /*SignUp*/
 @media (max-width: 482px) {
-  #arrowToCloseSignUp {
+  .signupArrow {
     left: 0px;
   }
 }
