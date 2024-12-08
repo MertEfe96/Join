@@ -119,7 +119,7 @@ async function loginRequest() {
       window.location.href = "sumary.html";
       userLocal = {...users[userId], id: userId};
     } else {
-      console.log("Email oder Password ist Falsch !");
+      
     }
   }
 }
