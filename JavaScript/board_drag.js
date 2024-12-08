@@ -1,7 +1,7 @@
 /**
  * This function sets the identifier of the currently dragged task.
  *
- * @param {*} key This the created key of the task when saved in the API, given by the pullTasks() funktion
+ * @param {string} key - The created key of the task when saved in the API
  */
 function startDragging(key) {
   currentDraggedElement = key;
@@ -11,7 +11,7 @@ function startDragging(key) {
  * This function allows an element to be dropped into a drop target.
  *
  * @param {DragEvent} ev The drag event triggered when an element is dragged over a valid drop target.
- *                       The event is used to prevent the default behavior, enabling the drop action.
+ * The event is used to prevent the default behavior, enabling the drop action.
  */
 function allowDrop(ev) {
   ev.preventDefault();
@@ -20,38 +20,27 @@ function allowDrop(ev) {
 /**
  * This function updates the status of the currently dragged task in the database.
  *
- * @param {string} status The new status to assign to the task (e.g., "to-do", "in-progress", etc.).
- *
+ * @param {string} status - The new status to assign to the task
  */
 async function moveTo(status) {
-  let response = await fetch(
-    BASE_URL + `tasks/${currentDraggedElement}/Status/.json`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(status),
-    }
-  );
+  let response = await fetch(BASE_URL + `tasks/${currentDraggedElement}/Status/.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(status),
+  });
   pullTasks();
   removeAllPlaceholders();
-  const {
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone,
-  } = initializeTaskLists();
-  checkTasklistEmpty(
-    taskListToDo,
-    taskListInProgress,
-    taskListAwaitFeedback,
-    taskListDone
-  );
+  const { taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone } = initializeTaskLists();
+  checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
 }
 
 /**
  * Adds placeholders to neighboring task lists based on the dragged list
+ *
+ * @param {string} currentListId - The ID of the list from which an item is being dragged.
+ * This is used to determine the neighboring lists where placeholders will be added.
  */
 function addNeighborPlaceholders(currentListId) {
   const neighborLists = getNeighborLists(currentListId);
@@ -82,6 +71,8 @@ function removeAllPlaceholders() {
 
 /**
  * Determines neighboring lists based on the current list
+ *
+ * @param {string} currentListId - The ID of the list from which an item is being dragged
  */
 function getNeighborLists(currentListId) {
   switch (currentListId) {

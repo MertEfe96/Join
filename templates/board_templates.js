@@ -1,19 +1,5 @@
-/**
- * Generates the HTML structure for a large task card.
- *
- * @param {string} key - The unique identifier of the task.
- */
 function templateTaskCardLarge(key) {
-  const {
-    category,
-    title,
-    description,
-    assignedTo,
-    priority,
-    subtasks,
-    dueDate,
-    categoryClass,
-  } = getTaskData(key);
+  const { category, title, description, assignedTo, priority, dueDate, categoryClass } = getTaskData(key);
   return `
         <div class="taskCardLargeContent">
           <div class="categoryCardLargeTop"> <div id="categoryCardLarge${key}" class="categoryCardLarge ${categoryClass}">${category}</div> <img onclick="closetaskCardLarge()" class="closeButtonLargeView" src=./assets/icons/close.png></div>
@@ -33,4 +19,57 @@ function templateTaskCardLarge(key) {
           </div>
         </div>
       `;
+}
+
+function renderTaskCard(key, taskdetails, categoryClass) {
+  return `
+<div id="categoryCard${key}" class="categoryCard ${categoryClass}">${taskdetails.Category}</div>
+<div id="titleCard${key}" class="titleCard">${taskdetails.Title}</div>
+<div id="descriptionCard${key}" class="descriptionCard">${taskdetails.Description}</div>
+<div class="dueDateCardLarge" id="dueDate${key}">${taskdetails.DueDate}</div>
+<div id="subtasksCard${key}" class="subtasksCard"></div>
+<div class="bottomCard">
+  <div class="assignedToCard" id="assignedToCard${key}"></div>
+  <div id="priorityCard${key}"></div>
+</div>`;
+}
+
+function htmlAssignedContacts(backgroundColor, initials, contactName) {
+  return `
+            <div class="assignedToContainer">
+              <div class="contactInitialsBoard" style="background-color: ${backgroundColor};">
+                ${initials}
+              </div>
+              <div class="hideSmallView">
+                ${contactName}
+              </div>
+            </div>`;
+}
+
+function htmlsubtaskSmallView(key) {
+  return `
+          <div class="subtasksSmall">
+            <div class="myProgress">
+              <div class="myBar" id="myBar${key}"></div>
+            </div>
+            <div class="subtasksCount">
+              <div class="doneSubtasksCount" id="doneSubtasksCount${key}"></div>
+              <div> &nbsp;Subtasks</div>
+            </div>
+          </div>
+    `;
+}
+
+function htmlSubtasksLargeView(key, index, subtaskTask) {
+  return `
+    <div id="subtaskClickButton${key}-${index}" class="subtaskClickButton" onclick="changeCheckbox('${key}', '${index}')"></div>
+    <div class="singleSubtaskClick">${subtaskTask}</div>
+    `;
+}
+
+function htmlSubtaskCount(doneCount, totalSubtasks) {
+  return `
+            <div> ${doneCount}/ </div>
+            <div> ${totalSubtasks} </div>
+           `;
 }
