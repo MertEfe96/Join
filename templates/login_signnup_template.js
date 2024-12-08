@@ -37,7 +37,6 @@ function loginTemplate() {
                 name="password"
                 autocomplete="password"
                 placeholder="Password"
-                oninvalid="this.setCustomValidity('Email oder Passwort ist Falsch!')"
                 required />
               <img
                 onmouseenter="showPasswordLogin()"
