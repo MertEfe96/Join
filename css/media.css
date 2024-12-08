@@ -687,7 +687,7 @@
   }
 
   .loginForm {
-    gap: 32px;
+    gap: 16px;
   }
 
   .loginHeadline {
@@ -719,5 +719,15 @@
 @media (max-width: 482px) {
   #arrowToCloseSignUp {
     left: 0px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .addTaskSecDiv {
+    max-width: 1625px;
+  }
+
+  .addTaskDiv {
+    justify-content: flex-start;
   }
 }
