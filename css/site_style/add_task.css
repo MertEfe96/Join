@@ -43,6 +43,29 @@ option {
 
 .addTaskSplit {
   display: flex;
+  overflow-y: auto;
+  max-height: 550px;
+}
+
+.addTaskSplit::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.addTaskSplit::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 7px;
+}
+
+.addTaskSplit::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 7px;
+  border: 4px solid #f6f7f8;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .addTaskSplit {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }
 
 .addTaskPortion {
@@ -240,19 +263,19 @@ option {
 }
 
 .delIcon {
-  background-image: url(../assets/icons/delete.png);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/delete.png);
   height: 18px;
   width: 16px;
 }
 
 .editIcon {
-  background-image: url(../assets/icons/edit.png);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/edit.png);
   height: 18px;
   width: 18px;
 }
 
 .checkIcon {
-  background-image: url(../assets/icons/check.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/check.svg);
   height: 16px;
   width: 18px;
 }
