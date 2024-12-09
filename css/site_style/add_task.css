@@ -1,10 +1,5 @@
-.dasNervt {
-  transform: none !important;
-  opacity: 1 !important;
-}
-
 #fakeInputArrow {
-  background-image: url(/assets/icons/arrow_drop_down.png);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/arrow_drop_down.png);
   min-width: 24px;
   height: 24px;
   background-repeat: no-repeat;
@@ -15,7 +10,7 @@
 select {
   -webkit-appearance: none;
   appearance: none;
-  background-image: url(/assets/icons/arrow_drop_down.png);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/arrow_drop_down.png);
   background-repeat: no-repeat;
   background-position-x: 98%;
   background-position-y: 50%;
@@ -26,7 +21,7 @@ option {
 }
 
 .addIcon {
-  background-image: url(/assets/icons/add.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/add.svg);
   min-width: 24px;
   height: 24px;
   background-repeat: no-repeat;
@@ -175,9 +170,7 @@ option {
 
 .prio:hover {
   cursor: pointer;
-  box-shadow: 0px 0px 22.6px rgba(0, 0, 0, 0.08),
-    0px 0px 62.6px rgba(0, 0, 0, 0.115), 0px 0px 150.7px rgba(0, 0, 0, 0.15),
-    0px 0px 500px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 0px 22.6px rgba(0, 0, 0, 0.08), 0px 0px 62.6px rgba(0, 0, 0, 0.115), 0px 0px 150.7px rgba(0, 0, 0, 0.15), 0px 0px 500px rgba(0, 0, 0, 0.23);
 }
 
 .prioSvg {
@@ -189,7 +182,7 @@ option {
 }
 
 .prioUrgentColor {
-  background-image: url(/assets/icons/urgentColor.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/urgentColor.svg);
 }
 
 .prioUrgentColorDiv {
@@ -198,15 +191,15 @@ option {
 }
 
 .prioUrgentWhite {
-  background-image: url(/assets/icons/urgentWhite.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/urgentWhite.svg);
 }
 
 .prioMediumColor {
-  background-image: url(/assets/icons/mediumColor.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/mediumColor.svg);
 }
 
 .prioMediumWhite {
-  background-image: url(/assets/icons/mediumWhite.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/mediumWhite.svg);
 }
 
 .prioMediumColorDiv {
@@ -215,11 +208,11 @@ option {
 }
 
 .prioLowColor {
-  background-image: url(/assets/icons/lowColor.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/lowColor.svg);
 }
 
 .prioLowWhite {
-  background-image: url(/assets/icons/lowWhite.svg);
+  background-image: url(https://join-390.developerakademie.net/Join/assets/icons/lowWhite.svg);
 }
 
 .prioLowColorDiv {
@@ -247,19 +240,19 @@ option {
 }
 
 .delIcon {
-  background-image: url(/assets/icons/delete.png);
+  background-image: url(../assets/icons/delete.png);
   height: 18px;
   width: 16px;
 }
 
 .editIcon {
-  background-image: url(/assets/icons/edit.png);
+  background-image: url(../assets/icons/edit.png);
   height: 18px;
   width: 18px;
 }
 
 .checkIcon {
-  background-image: url(/assets/icons/check.svg);
+  background-image: url(../assets/icons/check.svg);
   height: 16px;
   width: 18px;
 }
