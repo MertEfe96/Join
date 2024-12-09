@@ -92,8 +92,9 @@
 
           <!--add Contact start-->
           <div class="contactOverlayEditMain" style="display: none" id="addContactMain" onclick="closeAddContact()">
-            <div class="contactOverlayEdit" id="addContact" onclick="event.stopPropagation()">
+            <div class="contactOverlayEdit mobileAddContact" id="addContact" onclick="event.stopPropagation()">
               <div class="addContactLeftSection">
+                <img class="contactCloseIcon mobileShow" src="assets/icons/close_white.png" alt="Close" onclick="closeAddContact()" />
                 <img class="overlayLogo paddingLogoOverlay" src="assets/img/Capa 2.png" alt="Join logo" />
                 <div class="addContactHeadlineContainer">
                   <div class="addContactHeadline">Add contact</div>
@@ -102,7 +103,6 @@
                 </div>
               </div>
               <div class="addContactRightSection">
-                <img class="contactCloseIcon" src="assets/icons/close.png" alt="Close" onclick="closeAddContact()" />
                 <div class="personIconBg">
                   <img class="addContactPersonIcon" src="assets/icons/personWhite.png" alt="Contact logo" />
                 </div>
@@ -132,6 +132,7 @@
                     </div>
                   </form>
                 </div>
+                <img class="contactCloseIcon mobileNoShow" src="assets/icons/close.png" alt="Close" onclick="closeAddContact()" />
               </div>
             </div>
           </div>

@@ -115,6 +115,32 @@
     width: 850px;
   }
 
+  .contactInputIcon {
+    right: 20px;
+  }
+
+  #addContactInputName,
+  #addContactInputMail,
+  #addContactInputPhone {
+    width: 80%;
+  }
+
+  .personIconBg {
+    margin-right: 32px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .addContactCancelButton {
+    width: 100px;
+    font-size: 18px;
+  }
+
+  .createContactButtonOverlay {
+    width: 190px;
+    font-size: 18px;
+  }
+
   .prio p {
     font-size: 20px;
   }
@@ -122,8 +148,12 @@
   .addTaskSplit {
     flex-direction: column;
     align-items: center;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 390px);
     overflow-y: scroll;
+  }
+
+  .addTaskButtonContainer {
+    padding-top: 0;
   }
 
   .addTaskPortion {
@@ -204,6 +234,10 @@
 }
 
 @media (max-width: 900px) {
+  .mobileShow {
+    display: block;
+  }
+
   .inputSubContainer {
     width: 300px;
   }
@@ -214,7 +248,61 @@
 
   .contactOverlayEdit {
     width: 500px;
+    height: 800px;
+    gap: 0;
+  }
+
+  .mobileAddContact {
+    flex-direction: column;
+  }
+
+  .paddingLogoOverlay {
+    display: none;
+  }
+
+  .addContactLeftSection {
+    height: 45%;
+    padding-left: 24px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 30px;
     justify-content: center;
+  }
+
+  .addContactHeadline {
+    font-size: 56px;
+  }
+
+  .addContactSubHeadline {
+    font-size: 24px;
+  }
+
+  .addContactRightSection {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    margin-right: 0;
+  }
+
+  .inputContainer {
+    margin: 0 40px;
+    align-items: center;
+  }
+
+  .personIconBg {
+    margin: -40px 0 0 0;
+  }
+
+  .editOverlayButtonContainer {
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .addContactCancelButton {
+    display: none;
+  }
+
+  .createContactButtonOverlay {
+    font-size: 21px;
   }
 
   body {
@@ -278,7 +366,7 @@
   }
 
   .mobileNoShow {
-    display: none;
+    display: none !important;
   }
 
   .menuLinkDiv {
@@ -570,6 +658,14 @@
   .urgentIcon {
     width: 24px;
   }
+
+  .legalContent {
+    margin: 30px 32px;
+  }
+
+  h1 {
+    margin-left: 32px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -588,39 +684,21 @@
   .subtaskClickDiv {
     gap: 4px;
   }
-}
 
-/* Contacts */
-@media (max-width: 768px) {
-  /* .contactOverlayEdit {
-    flex-direction: column;
-    width: 90%;
-    max-width: none;
+  .menuLink {
+    font-size: 12px;
   }
 
-  .addContactLeftSection {
-    width: 40%;
-    padding: 30px;
+  .navIcon {
+    height: 20px;
+    width: 20px;
   }
 
-  .addContactRightSection {
-    width: 60%;
-    align-items: flex-start;
-    padding: 30px;
+  .menuLinkDiv {
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
-
-  .inputContainer {
-    flex-direction: row;
-    gap: 20px;
-    max-width: 600px;
-  } */
-
-  .w600 {
-    width: 460px !important;
-  }
-}
-
-@media (max-width: 400px) {
   .addContactHeadline {
     font-size: 47px;
   }
@@ -635,37 +713,6 @@
 
   .addContactSubHeadline {
     font-size: 20px;
-  }
-
-  .contactOverlayEditMain {
-    position: unset;
-    opacity: unset;
-  }
-
-  .addContactLeftSection {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .editOverlayButtonContainer {
-    gap: 10px;
-  }
-
-  .addContactRightSection {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-  }
-
-  .inputContainer {
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    align-items: center;
-    margin-top: 20px;
   }
 
   .personIconBg {
@@ -684,10 +731,6 @@
 
   .userIcon {
     margin-right: 50px;
-  }
-
-  .contactContainer {
-    display: none;
   }
 
   .contactLetterHeader,
@@ -727,7 +770,7 @@
 
   .personIconBg {
     margin-right: 0;
-    margin-top: -60px;
+    margin-top: -43px;
   }
 
   .w600 {
@@ -735,7 +778,36 @@
   }
 }
 
-/*login-signup*/
+/* Contacts */
+@media (max-width: 768px) {
+  /* .contactOverlayEdit {
+    flex-direction: column;
+    width: 90%;
+    max-width: none;
+  }
+
+  .addContactLeftSection {
+    width: 40%;
+    padding: 30px;
+  }
+
+  .addContactRightSection {
+    width: 60%;
+    align-items: flex-start;
+    padding: 30px;
+  }
+
+  .inputContainer {
+    flex-direction: row;
+    gap: 20px;
+    max-width: 600px;
+  } */
+
+  .w600 {
+    width: 460px !important;
+  }
+}
+
 @media (max-width: 1010px) {
   @keyframes moveToCorner {
     0% {
@@ -793,18 +865,26 @@
   }
 }
 
-/*Login*/
 @media (max-width: 600px) {
   .contactInicialLarge {
     display: none;
   }
 
   .contactOverlayEdit {
-    width: 350px;
+    width: 80%;
+    height: 80vh;
   }
 
   .contactOverlayRightSection {
     margin: 0;
+  }
+
+  .addContactSubHeadline {
+    display: none;
+  }
+
+  .inputContainer input {
+    width: 80%;
   }
 
   .loginBox {
