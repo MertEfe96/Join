@@ -1,20 +1,4 @@
-let userColorsArray = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#1FD7C1",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
+let userColorsArray = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 
 /**
  * This Function is used to give every Contact a color out of the userColorsArray
@@ -44,6 +28,7 @@ function openContact(key, name, mail, number, color) {
   contactOverDiv.classList.toggle("contactMobile");
   contactMainContainer.innerHTML = renderContactLargeTemplate(key, name, mail, color);
   numberContact(number);
+  optionsButton(key, color);
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
 }
 
@@ -110,6 +95,7 @@ async function openEditContact(key) {
   overlayEditRight.innerHTML = renderEditContactTemplate(contact, key);
   overlayMain.style.display = "flex";
   numberEdit(contact);
+  toggleOptions();
   setTimeout(() => overlayMain.classList.add("show"), 10);
   setTimeout(() => overlayEdit.classList.add("show"), 10);
 }
@@ -143,6 +129,7 @@ function closeContactEdit() {
   const overlayEdit = document.getElementById("contactOverlayEdit");
   const overlayMain = document.getElementById("contactOverlayEditMain");
   overlayEdit.classList.remove("show");
+  toggleOptions();
   setTimeout(() => {
     overlayMain.classList.remove("show");
     setTimeout(() => {
@@ -390,6 +377,30 @@ function validateForm() {
 
 function returnToList() {
   closeContact();
+  optionsButton();
   const contactOverDiv = document.getElementById("contactOverDiv");
   contactOverDiv.classList.toggle("contactMobile");
+}
+
+function optionsButton(key, color) {
+  let button = document.getElementById("mobileButton");
+  if (button.classList.contains("optionsMobile")) {
+    button.setAttribute("onclick", "addContact()");
+  } else {
+    button.setAttribute("onclick", `showOptions("${key}", "${color}")`);
+  }
+  button.classList.toggle("addPersonIcon");
+  button.classList.toggle("optionsMobile");
+}
+
+function showOptions(key, color) {
+  let div = document.getElementById("dropdownOptions");
+  div.innerHTML = optionsTemplate(key, color);
+}
+
+function toggleOptions() {
+  let div = document.getElementById("dropdownOptions");
+  let mobileButton = document.getElementById("mobileButton");
+  div.classList.toggle("hide");
+  mobileButton.classList.toggle("hide");
 }

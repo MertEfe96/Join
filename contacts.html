@@ -79,9 +79,8 @@
         <span onclick="logOut()" id="logOut" class="dropDownLink">Log out</span>
       </div>
       <div class="content">
-        <div class="displayNone">
-          <img onclick="addContact()" class="addPersonIcon" src="/assets/icons/persdonAddM.svg" alt="" />
-        </div>
+        <div onclick="addContact()" class="displayNone addPersonIcon" id="mobileButton"></div>
+        <div class="dropdownOptions displayNone" id="dropdownOptions"></div>
         <div class="contactsList1">
           <div class="center w100">
             <button class="addPersonButton" onclick="addContact()">
@@ -172,6 +171,8 @@
     <div id="popupDiv" class="popup"></div>
   </body>
   <script>
+    let dropdownOptions = document.getElementById("dropdownOptions");
+    let mobileButton = document.getElementById("mobileButton");
     let headerIcon = document.getElementById("userIcon");
     let dropdownHeader = document.getElementById("myDropdown");
     window.addEventListener("click", function (e) {
@@ -179,6 +180,14 @@
         dropdownHeader.classList.toggle("show");
       } else {
         dropdownHeader.classList.remove("show");
+      }
+    });
+
+    window.addEventListener("click", function (e) {
+      if (!dropdownOptions.contains(e.target) && !mobileButton.contains(e.target)) {
+        dropdownOptions.innerHTML = "";
+      } else if (dropdownOptions.contains(e.target)) {
+        dropdownOptions.innerHTML = "";
       }
     });
   </script>

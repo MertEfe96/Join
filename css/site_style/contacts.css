@@ -240,8 +240,7 @@
 }
 
 .editDeleteSubContainer:hover img {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%)
-    hue-rotate(170deg) brightness(100%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(700%) hue-rotate(170deg) brightness(100%) contrast(90%);
 }
 
 .contactInfo {
@@ -263,6 +262,7 @@
 .editIconContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 33px;
 }
 
@@ -411,4 +411,19 @@
   display: flex;
   margin-right: 56px;
   position: relative;
+}
+
+.dropdownOptions {
+  display: flex;
+  position: absolute;
+  bottom: 160px;
+  right: 90px;
+  z-index: 9999;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px;
+  gap: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }

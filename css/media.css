@@ -160,10 +160,6 @@
     width: 80%;
   }
 
-  .textRequired {
-    display: none;
-  }
-
   .contactHeadlineContainer {
     flex-direction: column;
     height: fit-content;
@@ -175,7 +171,9 @@
     flex: 1;
   }
 
-  .contactsBlueLine {
+  .contactsBlueLine,
+  .AddTaskButton,
+  .textRequired {
     display: none;
   }
 
@@ -211,10 +209,6 @@
     cursor: pointer;
   }
 
-  .AddTaskButton {
-    display: none;
-  }
-
   .findTaskInput,
   .searchBarDiv {
     width: 100%;
@@ -243,13 +237,39 @@
   }
 
   .contactOverlayLeftSection {
+    height: 45%;
+    width: calc(100% - 24px);
+    padding: 0;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 0;
+    align-items: flex-start;
+    padding-left: 24px;
+    flex-direction: column;
+  }
+
+  .lineLogoContainer {
+    position: unset;
+  }
+
+  .overlayLogo,
+  .contactCloseIcon {
     display: none;
+  }
+
+  .contactOverlayRightSection {
+    flex-direction: column;
+    margin-right: 0;
+  }
+
+  .marginTopContact {
+    margin-top: -43px;
   }
 
   .contactOverlayEdit {
     width: 500px;
     height: 800px;
     gap: 0;
+    flex-direction: column;
   }
 
   .mobileAddContact {
@@ -479,10 +499,11 @@
     display: block;
     z-index: 999;
     background-color: #f6f7f8;
-    top: 0;
+    top: 85px;
     left: 0;
     right: 0;
-    height: 100vh;
+    bottom: 70px;
+    height: calc(100vh - 275px);
     margin: 0;
     padding: 60px;
   }
@@ -635,6 +656,10 @@
     height: 18px;
   }
 
+  .editDeleteContainer {
+    display: none;
+  }
+
   .toDoDoneAmount,
   .deadlineAmount,
   .lowerRowAmount {
@@ -665,6 +690,44 @@
 
   h1 {
     margin-left: 32px;
+  }
+
+  .addPersonButton {
+    display: none;
+  }
+
+  .displayNone {
+    display: flex;
+  }
+
+  .addPersonIcon {
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 1000;
+    background-image: url(../assets/icons/personAdd.png);
+    background-color: #2a3647;
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 46px;
+  }
+
+  .optionsMobile {
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 1000;
+    background-image: url(../assets/icons/more_vert.png);
+    background-color: #2a3647;
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 46px;
   }
 }
 
@@ -725,10 +788,6 @@
     font-size: 14px;
   }
 
-  .addPersonButton {
-    display: none;
-  }
-
   .userIcon {
     margin-right: 50px;
   }
@@ -736,19 +795,6 @@
   .contactLetterHeader,
   .contactCardSmall {
     width: 352px;
-  }
-
-  .displayNone {
-    display: flex;
-  }
-
-  .addPersonIcon {
-    width: 56px;
-    height: 56px;
-    position: fixed;
-    bottom: 100px;
-    right: 50px;
-    z-index: 1000;
   }
 
   .contactOverlayEdit {
@@ -778,31 +824,7 @@
   }
 }
 
-/* Contacts */
 @media (max-width: 768px) {
-  /* .contactOverlayEdit {
-    flex-direction: column;
-    width: 90%;
-    max-width: none;
-  }
-
-  .addContactLeftSection {
-    width: 40%;
-    padding: 30px;
-  }
-
-  .addContactRightSection {
-    width: 60%;
-    align-items: flex-start;
-    padding: 30px;
-  }
-
-  .inputContainer {
-    flex-direction: row;
-    gap: 20px;
-    max-width: 600px;
-  } */
-
   .w600 {
     width: 460px !important;
   }
@@ -866,10 +888,6 @@
 }
 
 @media (max-width: 600px) {
-  .contactInicialLarge {
-    display: none;
-  }
-
   .contactOverlayEdit {
     width: 80%;
     height: 80vh;

@@ -83,3 +83,16 @@ ${initials}
   </div>
 </div>`;
 }
+
+function optionsTemplate(key, color) {
+  return `
+  <div class="editDeleteSubContainer" onclick="openEditContact('${key}', '${color}')">
+        <img class="delteEditIcon" src="assets/icons/edit.png" alt="Edit" />
+        <div class="editIconContainer">Edit</div>
+      </div>
+<div class="editDeleteSubContainer" onclick="deleteContact('${key}')">
+        <img class="delteEditIcon" src="assets/icons/delete.png" alt="Delete" />
+        <div class="deleteIconContainer">Delete</div>
+      </div>
+`;
+}
