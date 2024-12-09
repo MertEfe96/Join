@@ -139,7 +139,7 @@ async function pullTasks(search = "") {
   if (tasks) {
     await renderGroupedTasks(tasks, search);
   } else {
-    const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
+    const { taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone } = initializeTaskLists();
     await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
   }
   renderUserIcon();
@@ -152,7 +152,7 @@ async function pullTasks(search = "") {
  * @param {string} search - This is the input.value of the searchbar given from the eventlistener
  */
 async function renderGroupedTasks(tasks, search) {
-  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
+  const { taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone } = initializeTaskLists();
   let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = createTaskDiv(key);
     setupDragEvents(taskDiv, key);
@@ -207,15 +207,17 @@ function createTaskDiv(key) {
 function setupDragEvents(taskDiv, key) {
   taskDiv.ondragstart = function (event) {
     startDragging(key);
-    const {dragImage, moveDragImage} = createDragImage(taskDiv);
+    const { dragImage, moveDragImage } = createDragImage(taskDiv);
     document.addEventListener("dragover", moveDragImage);
     taskDiv.addEventListener("dragend", () => {
       document.body.removeChild(dragImage);
       document.removeEventListener("dragover", moveDragImage);
       removeAllPlaceholders();
     });
-    const currentListId = taskDiv.closest(".taskCard").id;
-    addNeighborPlaceholders(currentListId);
+    if (window.matchMedia("(min-width: 1300px)").matches) {
+      const currentListId = taskDiv.closest(".taskCard").id;
+      addNeighborPlaceholders(currentListId);
+    }
     event.dataTransfer.setDragImage(new Image(), 0, 0);
   };
   taskDiv.ondragover = function (event) {
@@ -243,7 +245,7 @@ function createDragImage(taskDiv) {
     dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
     dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
   };
-  return {dragImage, moveDragImage};
+  return { dragImage, moveDragImage };
 }
 
 /**
