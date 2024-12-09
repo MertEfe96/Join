@@ -130,11 +130,10 @@
 .addTaskSecDiv {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
   padding: 24px;
   width: 100%;
-  height: calc(100vh - 96px - 48px);
-  height: max-content;
+  height: calc(100vh - 96px - 80px);
 }
 
 .boardOverlay.show {
