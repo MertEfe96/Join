@@ -32,6 +32,12 @@
   cursor: pointer;
 }
 
+.AddTaskButton:hover {
+  background-color: rgb(41, 171, 226);
+  border: none;
+  transition: 0.1s;
+}
+
 .findTaskInput {
   border-radius: 10px;
   width: 312px;
