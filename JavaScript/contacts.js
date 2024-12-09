@@ -95,7 +95,7 @@ async function openEditContact(key) {
   overlayEditRight.innerHTML = renderEditContactTemplate(contact, key);
   overlayMain.style.display = "flex";
   numberEdit(contact);
-  toggleOptions();
+  toggleOptions("mobileButton", "dropdownOptions");
   setTimeout(() => overlayMain.classList.add("show"), 10);
   setTimeout(() => overlayEdit.classList.add("show"), 10);
 }
@@ -129,7 +129,7 @@ function closeContactEdit() {
   const overlayEdit = document.getElementById("contactOverlayEdit");
   const overlayMain = document.getElementById("contactOverlayEditMain");
   overlayEdit.classList.remove("show");
-  toggleOptions();
+  toggleOptions("mobileButton", "dropdownOptions");
   setTimeout(() => {
     overlayMain.classList.remove("show");
     setTimeout(() => {
@@ -145,6 +145,7 @@ function addContact() {
   const addContactMain = document.getElementById("addContactMain");
   const addContact = document.getElementById("addContact");
   addContactMain.style.display = "flex";
+  toggleOptions("mobileButton");
   setTimeout(() => addContactMain.classList.add("show"), 10);
   setTimeout(() => addContact.classList.add("show"), 10);
 }
@@ -163,6 +164,7 @@ function closeAddContact() {
     }, 100);
   }, 100);
   emptyInputAddContact();
+  toggleOptions("mobileButton");
 }
 
 /**
@@ -178,7 +180,6 @@ function emptyInputAddContact() {
  * This function saves the contact in the API
  */
 async function saveContact(data = "") {
-  event.preventDefault();
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
@@ -359,23 +360,6 @@ function setIcon(i, contact) {
   iconDiv.innerHTML = initials;
 }
 
-function validateForm() {
-  const nameInput = document.getElementById("addContactInputName");
-  const mailInput = document.getElementById("addContactInputMail");
-
-  if (!nameInput.value.trim()) {
-    alert("Name is required.");
-    return false;
-  }
-
-  if (!mailInput.value.trim()) {
-    alert("Email is required.");
-    return false;
-  }
-
-  return true;
-}
-
 function returnToList() {
   closeContact();
   optionsButton();
@@ -392,16 +376,20 @@ function optionsButton(key, color) {
   }
   button.classList.toggle("addPersonIcon");
   button.classList.toggle("optionsMobile");
+  button.classList.toggle("displayNone");
 }
 
 function showOptions(key, color) {
   let div = document.getElementById("dropdownOptions");
   div.innerHTML = optionsTemplate(key, color);
+  div.style.padding = "10px";
 }
 
-function toggleOptions() {
-  let div = document.getElementById("dropdownOptions");
-  let mobileButton = document.getElementById("mobileButton");
-  div.classList.toggle("hide");
+function toggleOptions(button, options) {
+  let div = document.getElementById(options);
+  let mobileButton = document.getElementById(button);
   mobileButton.classList.toggle("hide");
+  if (div) {
+    div.classList.toggle("hide");
+  }
 }

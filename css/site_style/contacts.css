@@ -421,9 +421,9 @@
   z-index: 9999;
   flex-direction: column;
   background-color: #fff;
-  padding: 10px;
   gap: 10px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
+  visibility: hidden;
 }

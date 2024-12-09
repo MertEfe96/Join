@@ -186,8 +186,10 @@
     window.addEventListener("click", function (e) {
       if (!dropdownOptions.contains(e.target) && !mobileButton.contains(e.target)) {
         dropdownOptions.innerHTML = "";
+        dropdownOptions.style.padding = "0";
       } else if (dropdownOptions.contains(e.target)) {
         dropdownOptions.innerHTML = "";
+        dropdownOptions.style.padding = "0";
       }
     });
   </script>

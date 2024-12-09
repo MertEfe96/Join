@@ -229,7 +229,7 @@
 
 @media (max-width: 900px) {
   .mobileShow {
-    display: block;
+    display: block !important;
   }
 
   .inputSubContainer {
@@ -519,6 +519,7 @@
     width: 40px;
     height: 40px;
     background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
@@ -696,10 +697,6 @@
     display: none;
   }
 
-  .displayNone {
-    display: flex;
-  }
-
   .addPersonIcon {
     width: 56px;
     height: 56px;
@@ -713,6 +710,7 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 46px;
+    display: block;
   }
 
   .optionsMobile {
@@ -728,6 +726,10 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 46px;
+  }
+
+  .dropdownOptions {
+    visibility: visible;
   }
 }
 
@@ -783,8 +785,13 @@
     margin-top: 20px;
   }
 
+  .inputContainer {
+    max-width: 250px;
+    margin: 0 0 16px 0;
+  }
+
   .inputSubContainer {
-    max-width: 364px;
+    max-width: 245px;
     font-size: 14px;
   }
 
@@ -794,7 +801,12 @@
 
   .contactLetterHeader,
   .contactCardSmall {
-    width: 352px;
+    width: 275px;
+    gap: 20px;
+  }
+
+  .contactsList {
+    min-width: 300px;
   }
 
   .contactOverlayEdit {
@@ -965,6 +977,28 @@
 @media (max-width: 482px) {
   .signupArrow {
     left: 0px;
+  }
+
+  .ContactHeadline {
+    font-size: 40px;
+  }
+
+  .contactMainName {
+    font-size: 24px;
+  }
+
+  .contactInicialLarge {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .contactHeadlineContainer {
+    margin: 0;
+  }
+
+  .contactMobile {
+    padding: 60px 30px;
   }
 }
 
