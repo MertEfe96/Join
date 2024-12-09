@@ -178,6 +178,7 @@ function emptyInputAddContact() {
  * This function saves the contact in the API
  */
 async function saveContact(data = "") {
+  event.preventDefault();
   let name = document.getElementById("addContactInputName").value;
   let mail = document.getElementById("addContactInputMail").value;
   let phone = document.getElementById("addContactInputPhone").value;
