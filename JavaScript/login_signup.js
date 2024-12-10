@@ -57,17 +57,23 @@ async function postSignUp(data = "") {
   let passwordConfirmSignUp = document.getElementById("passwordConfirmSignUp").value;
   let userColor = AddColorToUser();
   let signUpCheckbox = document.getElementById("signUpCheckbox").checked;
+  let emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  if (passwordSignUp.length < 4) {
+    return false;
+  }
+  if (!emailForm.test(emailSignUp)) {
+    invalidEmail();
+    return false;
+  }
   if (!nameSignup || !emailSignUp || !passwordSignUp || !passwordConfirmSignUp) {
-    alert("Bitte füllen Sie alle Felder aus.");
     return;
   }
   if (passwordSignUp !== passwordConfirmSignUp) {
-    alert("Passwörter stimmen nicht überein.");
-    return;
+    passwordsNotMatching();
+    return false;
   }
   if (!signUpCheckbox) {
-    alert("Bitte stimmen Sie den Bedingungen zu.");
     return;
   }
   data = {
@@ -95,6 +101,30 @@ async function postSignUp(data = "") {
     clearInputSignUp();
     renderLogin();
   }, 1600);
+}
+
+/**
+ * If two passwords at sign-up are not matching, this function sets an error message on the password confirmation input field
+ */
+function passwordsNotMatching() {
+  const passwordInput = document.getElementById("passwordConfirmSignUp");
+  passwordInput.setCustomValidity("Die Passwörter stimmen nicht überein!");
+  passwordInput.reportValidity();
+  passwordInput.addEventListener("input", function () {
+    passwordInput.setCustomValidity("");
+  });
+}
+
+/**
+ * If the email is invalid at sign-up, this function sets an error message on the email input field
+ */
+function invalidEmail() {
+  const passwordInput = document.getElementById("emailSignUp");
+  passwordInput.setCustomValidity("Ungültige E-Mail-Adresse!");
+  passwordInput.reportValidity();
+  passwordInput.addEventListener("input", function () {
+    passwordInput.setCustomValidity("");
+  });
 }
 
 /**
@@ -129,10 +159,10 @@ async function loginRequest() {
     if (users[userId].email === emailLogin && users[userId].password === passwordLogin) {
       validUser = true;
       if (rememberCheck.checked) {
-        let user = {...users[userId], id: userId};
+        let user = { ...users[userId], id: userId };
         saveUserInLocal(user);
       } else {
-        let user = {...users[userId], id: userId};
+        let user = { ...users[userId], id: userId };
         saveUserInSession(user);
       }
       clearInputLogin();
@@ -162,7 +192,7 @@ async function guestLogin() {
     const guestUser = data.users[guestUserId];
 
     if (guestUser) {
-      let user = {...guestUser, id: guestUserId};
+      let user = { ...guestUser, id: guestUserId };
       renderUserIcon();
       saveUserInSession(user);
       window.location.href = "summary.html";

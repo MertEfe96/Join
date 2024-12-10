@@ -904,6 +904,16 @@
   .signupArrow {
     left: 54px;
   }
+
+  .ppContentLogin {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .legalContentLogin {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -978,6 +988,16 @@
   .buttonGuestLogin {
     height: 49px;
   }
+
+  .ppContentLogin {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .legalContentLogin {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }
 
 /*SignUp*/
@@ -1013,6 +1033,24 @@
 
   .contactMobile {
     padding: 60px 30px;
+  }
+
+  .ppContentLogin {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .legalContentLogin {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .ppContentLogin h1 {
+    font-size: 44px;
+  }
+
+  .legalNoticeLoginHeadline {
+    font-size: 44px;
   }
 }
 

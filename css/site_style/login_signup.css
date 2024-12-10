@@ -268,6 +268,37 @@
   animation-iteration-count: 1;
 }
 
+.ppContentLogin {
+  margin: 0 96px 22px 96px;
+}
+
+.ppContentLogin h1 {
+  margin-left: 0;
+}
+
+.ppContentLogin a {
+  overflow-wrap: break-word;
+}
+
+.legalContentLogin {
+  margin-top: 30px;
+  margin-left: 96px;
+  margin-right: 96px;
+}
+
+.legalNoticeLoginHeadline {
+  margin-top: 120px;
+  margin-bottom: 40px;
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.goBackLogin {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
 @keyframes moveToCorner {
   0% {
     top: 50%;

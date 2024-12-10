@@ -3,8 +3,8 @@ function loginTemplate() {
   <div class="bgLogin">
         <div class="loginLegalContainer">
           <div class="loginLegalSubContainer">
-            <a href="./privacy_policy.html">Privacy Policy</a>
-            <a href="./legal_notice.html">Legal notice</a>
+            <a href="./privacy_policy_login.html">Privacy Policy</a>
+            <a href="./legal_notice_login.html">Legal notice</a>
           </div>
         </div>
       <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
@@ -77,8 +77,8 @@ function signUpTemplate() {
   <div class="bgLogin">
         <div class="loginLegalContainer">
           <div class="loginLegalSubContainer">
-            <a href="./privacy_policy.html">Privacy Policy</a>
-            <a href="./legal_notice.html">Legal notice</a>
+            <a href="./privacy_policy_login.html">Privacy Policy</a>
+            <a href="./legal_notice_login.html">Legal notice</a>
           </div>
         </div>
       <img class="LogoNavImgLogin" src="./assets/img/Capa 1.svg" />
@@ -110,7 +110,7 @@ function signUpTemplate() {
               <input required
                 id="emailSignUp"
                 class="inputLogin"
-                type="text"
+                type="email"
                 name="email"
                 autocomplete="email"
                 placeholder="Email"
@@ -128,6 +128,8 @@ function signUpTemplate() {
                 name="password"
                 autocomplete="password"
                 placeholder="Password"
+                minlength="4" 
+                maxlength="14"
                 required />
               <img onmouseenter="showPassword()"
                 src="./assets/icons/lock.svg"
@@ -142,7 +144,7 @@ function signUpTemplate() {
                 name="password"
                 autocomplete="password"
                 placeholder="Confirm Password"
-                oninput="validate_pw2(this)"
+                maxlength="14"
                 required />
               <img onmouseenter="showConfirmPassword()"
                 src="./assets/icons/lock.svg"
