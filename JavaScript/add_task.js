@@ -32,6 +32,7 @@ function addTaskNav() {
   const addTask = document.getElementById("addTask");
   addTask.innerHTML = templateAddTaskNav();
   renderUserIcon();
+  subtasksArray = [];
 }
 
 /**
@@ -73,7 +74,7 @@ function renderAssignedContactsInAddTask() {
  */
 function assignContactToTask(key, ini, c, i) {
   checkBox = document.getElementById(key);
-  let obj = { id: key, initials: ini, color: c };
+  let obj = {id: key, initials: ini, color: c};
   let div = document.getElementById("inDropdown" + i);
   if (div.classList.contains("assignedContactInList")) {
     checkBox.checked = false;
@@ -96,7 +97,7 @@ function renderSubtasks() {
   let div = document.getElementById("subtasksList");
   div.innerHTML = "";
   if (subtask.value) {
-    subtasksArray.push({ task: subtask.value, undone: true });
+    subtasksArray.push({task: subtask.value, undone: true});
   }
   subtasksArray.forEach((task, index) => {
     div.innerHTML += subtaskTemplate(task.task, index);
@@ -120,8 +121,9 @@ async function setDataForTask(status = "to-do", editTask = false, key = "") {
   let prio = document.getElementsByClassName("chosenPrio")[0].id;
   let category = document.getElementById("addTaskInputCategory").value;
   let subtasks = subtasksArray;
-  let data = { Title: title, Description: description, AssignedTo: assigned, DueDate: date, Priority: prio, Category: category, Subtasks: subtasks, Status: status };
+  let data = {Title: title, Description: description, AssignedTo: assigned, DueDate: date, Priority: prio, Category: category, Subtasks: subtasks, Status: status};
   await handleTaskSaving(editTask, key, data);
+  location.replace("https://join-390.developerakademie.net/Join/board.html");
 }
 
 /**

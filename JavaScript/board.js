@@ -8,7 +8,7 @@ let currentDraggedElement;
  * @param {HTMLElement} addTask - The DOM element where the addTask window template will be rendered
  */
 function editTaskTemplateAdjustemt(status, key, addTask) {
-  addTask.innerHTML = templateAddTask(status, key);
+  addTask.innerHTML = templateEditTask(status, key);
   const elements = addTask.querySelectorAll(".overlaySaveButton, .overlayDeleteButton, .headlineAddTask");
   elements.forEach((element) => {
     element.style.display = "none";
@@ -139,7 +139,7 @@ async function pullTasks(search = "") {
   if (tasks) {
     await renderGroupedTasks(tasks, search);
   } else {
-    const { taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone } = initializeTaskLists();
+    const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
     await checkTasklistEmpty(taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone);
   }
   renderUserIcon();
@@ -152,7 +152,7 @@ async function pullTasks(search = "") {
  * @param {string} search - This is the input.value of the searchbar given from the eventlistener
  */
 async function renderGroupedTasks(tasks, search) {
-  const { taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone } = initializeTaskLists();
+  const {taskListToDo, taskListInProgress, taskListAwaitFeedback, taskListDone} = initializeTaskLists();
   let renderPromises = Object.entries(tasks).map(async ([key, taskdetails]) => {
     let taskDiv = createTaskDiv(key);
     setupDragEvents(taskDiv, key);
@@ -207,7 +207,7 @@ function createTaskDiv(key) {
 function setupDragEvents(taskDiv, key) {
   taskDiv.ondragstart = function (event) {
     startDragging(key);
-    const { dragImage, moveDragImage } = createDragImage(taskDiv);
+    const {dragImage, moveDragImage} = createDragImage(taskDiv);
     document.addEventListener("dragover", moveDragImage);
     taskDiv.addEventListener("dragend", () => {
       document.body.removeChild(dragImage);
@@ -245,7 +245,7 @@ function createDragImage(taskDiv) {
     dragImage.style.left = `${e.pageX - taskDiv.offsetWidth / 2}px`;
     dragImage.style.top = `${e.pageY - taskDiv.offsetHeight / 2}px`;
   };
-  return { dragImage, moveDragImage };
+  return {dragImage, moveDragImage};
 }
 
 /**

@@ -24,6 +24,8 @@ function openContact(key, name, mail, number, color) {
   const contactMainContainer = document.getElementById("contactMainContainer");
   const contactOverDiv = document.getElementById("contactOverDiv");
   const toggleCheckBox = document.getElementById("toggleContactCard");
+  const smallCard = document.getElementById(key);
+  smallCard.classList.toggle("aktiveCardSmall");
   contactMainContainer.style.display = "flex";
   contactOverDiv.classList.toggle("contactMobile");
   contactMainContainer.innerHTML = renderContactLargeTemplate(key, name, mail, color);
@@ -66,10 +68,12 @@ function numberEdit(contact) {
 /**
  * This function closes contact-details and contact-card
  */
-function closeContact() {
+function closeContact(key) {
   let contactMainContainer = document.getElementById("contactMainContainer");
   let labelContactCard = document.getElementById("labelContactCard");
   let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
+  const smallCard = document.getElementById(key);
+  smallCard.classList.toggle("aktiveCardSmall");
 
   if (contactMainContainer) {
     contactMainContainer.innerHTML = "";
@@ -361,7 +365,8 @@ function setIcon(i, contact) {
 }
 
 function returnToList() {
-  closeContact();
+  key = document.querySelector(".aktiveCardSmall").id;
+  closeContact(key);
   optionsButton();
   const contactOverDiv = document.getElementById("contactOverDiv");
   contactOverDiv.classList.toggle("contactMobile");

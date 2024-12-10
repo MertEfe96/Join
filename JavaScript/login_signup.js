@@ -136,7 +136,7 @@ async function loginRequest() {
         saveUserInSession(user);
       }
       clearInputLogin();
-      window.location.href = "sumary.html";
+      window.location.href = "summary.html";
       break;
     }
   }
@@ -165,7 +165,7 @@ async function guestLogin() {
       let user = {...guestUser, id: guestUserId};
       renderUserIcon();
       saveUserInSession(user);
-      window.location.href = "sumary.html";
+      window.location.href = "summary.html";
     } else {
       console.error("Gastbenutzer nicht gefunden!");
     }

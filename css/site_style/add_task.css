@@ -43,8 +43,6 @@ option {
 
 .addTaskSplit {
   display: flex;
-  overflow-y: auto;
-  max-height: 550px;
 }
 
 .addTaskSplit::-webkit-scrollbar {
@@ -302,6 +300,32 @@ option {
   margin: 8px none;
 }
 
+#subtasksList {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+#subtasksList::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+#subtasksList::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 7px;
+}
+
+#subtasksList::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 7px;
+  border: 4px solid #f6f7f8;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  #subtasksList {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
 .editSubtaskDiv {
   width: 100%;
   display: flex;
@@ -342,4 +366,9 @@ option {
 .deleteMessage.fade-out {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+}
+
+.editSplit {
+  overflow-y: auto;
+  max-height: 550px;
 }

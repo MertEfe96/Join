@@ -115,6 +115,10 @@
   cursor: pointer;
 }
 
+.aktiveCardSmall {
+  background: linear-gradient(to top, #ededed, #f8f8f8);
+}
+
 .firstLetterName {
   padding: 24px 40px;
   font-size: 20px;

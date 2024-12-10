@@ -468,6 +468,8 @@
 
   .contactHeadlineContainer {
     margin-top: 8px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .contactsList1 {
@@ -513,7 +515,7 @@
   }
 
   .returnToList {
-    background-image: url(/assets/icons/arrow-left-line.png);
+    background-image: url(../assets/icons/arrow-left-line.png);
     width: 40px;
     height: 40px;
     background-size: contain;
@@ -842,6 +844,9 @@
   .w600 {
     width: 460px !important;
   }
+  .subHeadlineColor {
+    display: none;
+  }
 }
 
 @media (max-width: 1010px) {
@@ -998,12 +1003,12 @@
   .contactHeadlineContainer {
     margin: 24px auto 0 16px;
     width: 285px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
   .subHeadlineColor {
-    display: block;
+    display: none;
   }
 
   .contactMobile {
