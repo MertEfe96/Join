@@ -845,6 +845,10 @@
   .prio p {
     font-size: 13px;
   }
+
+  .LogoNavImgLogin {
+    top: 100px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -958,7 +962,7 @@
   .singUpLogin {
     position: relative;
     top: auto;
-    bottom: 88px;
+    bottom: 60px;
     right: auto;
   }
 
