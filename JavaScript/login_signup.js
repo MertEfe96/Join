@@ -51,17 +51,14 @@ function hideScrollbarLogin() {
  * @param {*} data - Optional user data object to post to the server
  */
 async function postSignUp(data = "") {
-  const getInputValue = (id) => document.getElementById(id).value;
-  const isCheckboxChecked = (id) => document.getElementById(id).checked;
-  const nameSignup = getInputValue("nameSignUp");
-  const emailSignUp = getInputValue("emailSignUp");
-  const passwordSignUp = getInputValue("passwordSignUp");
-  const passwordConfirmSignUp = getInputValue("passwordConfirmSignUp");
-  const userColor = AddColorToUser();
-  const signUpCheckbox = isCheckboxChecked("signUpCheckbox");
+  const formValues = getFormValues();
+  const { nameSignup, emailSignUp, passwordSignUp, passwordConfirmSignUp, signUpCheckbox } = formValues;
+
   if (!validateSignUpInputs(nameSignup, emailSignUp, passwordSignUp, passwordConfirmSignUp, signUpCheckbox)) {
     return false;
   }
+
+  const userColor = AddColorToUser();
   data = {
     name: nameSignup,
     email: emailSignUp,
@@ -69,17 +66,39 @@ async function postSignUp(data = "") {
     passwordconfirm: passwordConfirmSignUp,
     color: userColor,
   };
-  await fetch(`${BASE_URL}users/.json`, {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data),
-  });
-  await postContact({name: nameSignup, email: emailSignUp, color: userColor});
+
+  await fetchContact(data);
+  await postContact({ name: nameSignup, email: emailSignUp, color: userColor });
+  handleSignUpSuccess();
+}
+
+function getFormValues() {
+  const getInputValue = (id) => document.getElementById(id).value;
+  const isCheckboxChecked = (id) => document.getElementById(id).checked;
+
+  return {
+    nameSignup: getInputValue("nameSignUp"),
+    emailSignUp: getInputValue("emailSignUp"),
+    passwordSignUp: getInputValue("passwordSignUp"),
+    passwordConfirmSignUp: getInputValue("passwordConfirmSignUp"),
+    signUpCheckbox: isCheckboxChecked("signUpCheckbox"),
+  };
+}
+
+function handleSignUpSuccess() {
   renderPopup("signup");
   setTimeout(() => {
     clearInputSignUp();
     renderLogin();
   }, 1600);
+}
+
+async function fetchContact(data) {
+  await fetch(`${BASE_URL}users/.json`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data),
+  });
 }
 
 /**
