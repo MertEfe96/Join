@@ -51,30 +51,16 @@ function hideScrollbarLogin() {
  * @param {*} data - Optional user data object to post to the server
  */
 async function postSignUp(data = "") {
-  let nameSignup = document.getElementById("nameSignUp").value;
-  let emailSignUp = document.getElementById("emailSignUp").value;
-  let passwordSignUp = document.getElementById("passwordSignUp").value;
-  let passwordConfirmSignUp = document.getElementById("passwordConfirmSignUp").value;
-  let userColor = AddColorToUser();
-  let signUpCheckbox = document.getElementById("signUpCheckbox").checked;
-  let emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (passwordSignUp.length < 4) {
+  const getInputValue = (id) => document.getElementById(id).value;
+  const isCheckboxChecked = (id) => document.getElementById(id).checked;
+  const nameSignup = getInputValue("nameSignUp");
+  const emailSignUp = getInputValue("emailSignUp");
+  const passwordSignUp = getInputValue("passwordSignUp");
+  const passwordConfirmSignUp = getInputValue("passwordConfirmSignUp");
+  const userColor = AddColorToUser();
+  const signUpCheckbox = isCheckboxChecked("signUpCheckbox");
+  if (!validateSignUpInputs(nameSignup, emailSignUp, passwordSignUp, passwordConfirmSignUp, signUpCheckbox)) {
     return false;
-  }
-  if (!emailForm.test(emailSignUp)) {
-    invalidEmail();
-    return false;
-  }
-  if (!nameSignup || !emailSignUp || !passwordSignUp || !passwordConfirmSignUp) {
-    return;
-  }
-  if (passwordSignUp !== passwordConfirmSignUp) {
-    passwordsNotMatching();
-    return false;
-  }
-  if (!signUpCheckbox) {
-    return;
   }
   data = {
     name: nameSignup,
@@ -83,24 +69,44 @@ async function postSignUp(data = "") {
     passwordconfirm: passwordConfirmSignUp,
     color: userColor,
   };
-  await fetch(BASE_URL + "users/.json", {
+  await fetch(`${BASE_URL}users/.json`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data),
   });
-  let contactData = {
-    name: nameSignup,
-    email: emailSignUp,
-    color: userColor,
-  };
-  await postContact(contactData);
+  await postContact({name: nameSignup, email: emailSignUp, color: userColor});
   renderPopup("signup");
-  const delay = setTimeout(() => {
+  setTimeout(() => {
     clearInputSignUp();
     renderLogin();
   }, 1600);
+}
+
+/**
+ * This funktion validates the inputs given in the signup process
+ * @param {string} name
+ * @param {email} email
+ * @param {password} password
+ * @param {password} passwordConfirm
+ * @param {checkbox} checkbox
+ * @returns validation
+ */
+function validateSignUpInputs(name, email, password, passwordConfirm, checkbox) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name || !email || !password || !passwordConfirm) return false;
+  if (!emailRegex.test(email)) {
+    invalidEmail();
+    return false;
+  }
+  if (password.length < 4) return false;
+  if (password !== passwordConfirm) {
+    passwordsNotMatching();
+    return false;
+  }
+  if (!checkbox) return false;
+
+  return true;
 }
 
 /**
@@ -153,23 +159,7 @@ async function loginRequest() {
   let emailLogin = document.getElementById("emailLogin").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
   let rememberCheck = document.getElementById("rememberCheck");
-
-  let validUser = false;
-  for (let userId in users) {
-    if (users[userId].email === emailLogin && users[userId].password === passwordLogin) {
-      validUser = true;
-      if (rememberCheck.checked) {
-        let user = { ...users[userId], id: userId };
-        saveUserInLocal(user);
-      } else {
-        let user = { ...users[userId], id: userId };
-        saveUserInSession(user);
-      }
-      clearInputLogin();
-      window.location.href = "summary.html";
-      break;
-    }
-  }
+  let validUser = checkIfValidLogin(users, emailLogin, passwordLogin, rememberCheck);
   if (!validUser) {
     const passwordInput = document.getElementById("passwordLogin");
     passwordInput.setCustomValidity("Email oder Passwort ist Falsch!");
@@ -178,6 +168,34 @@ async function loginRequest() {
       passwordInput.setCustomValidity("");
     });
   }
+}
+
+/**
+ * This function is used to check if the login request is valid
+ * @param {object} users
+ * @param {email} emailLogin
+ * @param {password} passwordLogin
+ * @param {password} rememberCheck
+ * @returns the validation of the user
+ */
+function checkIfValidLogin(users, emailLogin, passwordLogin, rememberCheck) {
+  let validUser = false;
+  for (let userId in users) {
+    if (users[userId].email === emailLogin && users[userId].password === passwordLogin) {
+      validUser = true;
+      if (rememberCheck.checked) {
+        let user = {...users[userId], id: userId};
+        saveUserInLocal(user);
+      } else {
+        let user = {...users[userId], id: userId};
+        saveUserInSession(user);
+      }
+      clearInputLogin();
+      window.location.href = "summary.html";
+      break;
+    }
+  }
+  return validUser;
 }
 
 /**
@@ -192,7 +210,7 @@ async function guestLogin() {
     const guestUser = data.users[guestUserId];
 
     if (guestUser) {
-      let user = { ...guestUser, id: guestUserId };
+      let user = {...guestUser, id: guestUserId};
       renderUserIcon();
       saveUserInSession(user);
       window.location.href = "summary.html";

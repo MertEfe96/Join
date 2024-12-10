@@ -25,13 +25,25 @@ function openContact(key, name, mail, number, color) {
   const contactOverDiv = document.getElementById("contactOverDiv");
   const toggleCheckBox = document.getElementById("toggleContactCard");
   const smallCard = document.getElementById(key);
-  smallCard.classList.toggle("aktiveCardSmall");
+  activeStateOfContact(smallCard);
   contactMainContainer.style.display = "flex";
   contactOverDiv.classList.toggle("contactMobile");
   contactMainContainer.innerHTML = renderContactLargeTemplate(key, name, mail, color);
   numberContact(number);
   optionsButton(key, color);
   setTimeout(() => contactMainContainer.classList.add("show"), 10);
+}
+
+/**
+ * This function is used to display the active state of a contact
+ * @param {Element} smallCard
+ */
+function activeStateOfContact(smallCard) {
+  const activeElements = document.querySelectorAll(".aktiveCardSmall");
+  activeElements.forEach((element) => {
+    element.classList.remove("aktiveCardSmall");
+  });
+  smallCard.classList.toggle("aktiveCardSmall");
 }
 
 /**
@@ -73,8 +85,9 @@ function closeContact(key) {
   let labelContactCard = document.getElementById("labelContactCard");
   let contactOverlayEditMain = document.getElementById("contactOverlayEditMain");
   const smallCard = document.getElementById(key);
-  smallCard.classList.toggle("aktiveCardSmall");
-
+  if (smallCard) {
+    smallCard.classList.toggle("aktiveCardSmall");
+  }
   if (contactMainContainer) {
     contactMainContainer.innerHTML = "";
   }
@@ -113,17 +126,21 @@ async function editContact(key, color) {
   let name = document.getElementById("inputEditName").value;
   let mail = document.getElementById("inputEditMail").value;
   let phone = document.getElementById("inputEditNumber").value;
-  data = {name: name, email: mail, number: phone};
-  let response = await fetch(BASE_URL + "contacts/" + key + ".json", {
-    method: "PUT",
-    header: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  pullContacts();
-  openContact(key, name, mail, phone, color);
-  closeContactEdit();
+  if (name.length < 1) {
+    return false;
+  } else {
+    data = {name: name, email: mail, number: phone};
+    let response = await fetch(BASE_URL + "contacts/" + key + ".json", {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    pullContacts();
+    openContact(key, name, mail, phone, color);
+    closeContactEdit();
+  }
 }
 
 /**
@@ -334,11 +351,13 @@ async function deleteAssignedToKey2(key2) {
     if (taskDetails.AssignedTo && Array.isArray(taskDetails.AssignedTo)) {
       for (let i = 0; i < taskDetails.AssignedTo.length; i++) {
         const assignedTo = taskDetails.AssignedTo[i];
-        if (assignedTo.id === key2) {
-          const deletePath = `tasks/${taskKey}/AssignedTo/${i}`;
-          await fetch(BASE_URL + deletePath + ".json", {
-            method: "DELETE",
-          });
+        if (assignedTo) {
+          if (assignedTo.id === key2) {
+            const deletePath = `tasks/${taskKey}/AssignedTo/${i}`;
+            await fetch(BASE_URL + deletePath + ".json", {
+              method: "DELETE",
+            });
+          }
         }
       }
     }
@@ -364,6 +383,10 @@ function setIcon(i, contact) {
   iconDiv.innerHTML = initials;
 }
 
+/**
+ * This funktion is used in the mobile version of the site to close the
+ * larg view of contacts and return to the contact list
+ */
 function returnToList() {
   key = document.querySelector(".aktiveCardSmall").id;
   closeContact(key);
@@ -372,6 +395,11 @@ function returnToList() {
   contactOverDiv.classList.toggle("contactMobile");
 }
 
+/**
+ *
+ * @param {string} key the key is the ID of the contact in the API
+ * @param {string} color
+ */
 function optionsButton(key, color) {
   let button = document.getElementById("mobileButton");
   if (button.classList.contains("optionsMobile")) {
@@ -384,12 +412,22 @@ function optionsButton(key, color) {
   button.classList.toggle("displayNone");
 }
 
+/**
+ * This function is used to display the options menu
+ * @param {string} key the key is the ID of the contact in the API
+ * @param {string} color
+ */
 function showOptions(key, color) {
   let div = document.getElementById("dropdownOptions");
   div.innerHTML = optionsTemplate(key, color);
   div.style.padding = "10px";
 }
 
+/**
+ * this funktion is used to toggle the visibility of the options menu
+ * @param {string} button id of the button
+ * @param {string} options id of the options menu
+ */
 function toggleOptions(button, options) {
   let div = document.getElementById(options);
   let mobileButton = document.getElementById(button);

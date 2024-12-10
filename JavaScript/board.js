@@ -24,14 +24,14 @@ function editTaskTemplateAdjustemt(status, key, addTask) {
  *
  * @param {string} key - The unique key of the task being viewed in large mode
  */
-function taskCardLarge(key) {
+async function taskCardLarge(key) {
   const taskCardLargeMain = document.getElementById("taskCardLargeMain");
   const taskCardLarge = document.getElementById("taskCardLarge");
   taskCardLargeMain.style.display = "flex";
   setTimeout(() => taskCardLargeMain.classList.add("show"), 10);
   setTimeout(() => taskCardLarge.classList.add("show"), 10);
   taskCardLarge.innerHTML = `${templateTaskCardLarge(key)}`;
-  adjustLargeView(taskCardLarge);
+  await adjustLargeView(taskCardLarge, key);
   renderSubtasksLargeView(key);
   let taskDiv = document.getElementById(`singleTaskCard${key}`);
   let priority = taskDiv.querySelector(`#priorityCard${key}`).innerHTML;
@@ -56,7 +56,10 @@ function adjustLargeView(taskCardLarge) {
   assignedToClass.forEach((element) => {
     element.classList.add("assignedToContainerLarge");
     element.classList.remove("assignedToContainer");
+    element.classList.remove("dontShowAtAll");
   });
+  const counter = taskCardLarge.querySelector(".contactRemainingCount");
+  counter.classList.add("dontShowAtAll");
 }
 
 /**

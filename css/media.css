@@ -232,6 +232,10 @@
 }
 
 @media (max-width: 900px) {
+  .ppContent {
+    margin: 0 22px 22px 22px;
+  }
+
   .mobileShow {
     display: block !important;
   }
@@ -810,7 +814,6 @@
   }
 
   .contactOverlayEdit {
-    top: 80px;
     width: 100%;
     position: absolute;
     height: 630px;
@@ -823,7 +826,11 @@
   .addContactLeftSection {
     height: 351px;
     padding-bottom: 50px;
-    padding-top: 80px;
+    padding-top: 10px;
+  }
+
+  .addContactRightSection {
+    gap: 4px;
   }
 
   .personIconBg {
@@ -919,7 +926,7 @@
 @media (max-width: 600px) {
   .contactOverlayEdit {
     width: 80%;
-    height: 80vh;
+    height: 85vh;
   }
 
   .contactOverlayRightSection {
@@ -1002,6 +1009,14 @@
 
 /*SignUp*/
 @media (max-width: 482px) {
+  .ppContent p {
+    font-size: 14px;
+  }
+
+  .ppContent ul {
+    padding-left: 8px;
+  }
+
   .signupArrow {
     left: 0px;
   }

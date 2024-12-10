@@ -9,38 +9,74 @@ async function loadAssignedContacts(key, assignedTo, taskDiv) {
   const assignedToContainer = taskDiv.querySelector(`#assignedToCard${key}`);
   let response = await fetch(BASE_URL + ".json");
   let data = await response.json();
-  if (assignedToContainer) {
+  if (assignedTo && assignedToContainer) {
     assignedToContainer.innerHTML = "";
-  }
-  if (assignedTo) {
+    assignedToContainer.dataset.totalContacts = assignedTo.length;
+    let visibleContactsCount = 0;
     for (let index = 0; index < assignedTo.length; index++) {
-      const element = assignedTo[index];
-      const assignedId = element.id;
-      if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
-        const contact = data.contacts[assignedId];
-        renderAssignedContact(contact, assignedToContainer);
+      renderContacts(data, assignedTo, assignedToContainer, index);
+    }
+    if (assignedTo.length > 4) {
+      counterContacts(assignedTo, assignedToContainer);
+    }
+  }
+}
+
+/**
+ * This function renders the contacts and hides everyone after the 4th
+ * @param {object} data
+ * @param {Array} assignedTo
+ * @param {element} assignedToContainer
+ * @param {number} index
+ */
+function renderContacts(data, assignedTo, assignedToContainer, index) {
+  const element = assignedTo[index];
+  if (element && element.id) {
+    const assignedId = element.id;
+    if (data.contacts && data.contacts.hasOwnProperty(assignedId)) {
+      const contact = data.contacts[assignedId];
+      renderAssignedContact(contact, assignedToContainer);
+      if (index >= 4) {
+        const contactDiv = assignedToContainer.lastElementChild;
+        contactDiv.classList.add("dontShowAtAll");
       }
     }
   }
 }
 
 /**
- * Processes and renders a single contact into the container
- *
+ * This function creates the counter for the assigned contacts
+ * @param {Array} assignedTo
+ * @param {element} assignedToContainer
+ */
+function counterContacts(assignedTo, assignedToContainer) {
+  const remainingCount = assignedTo.length - 4;
+  let existingCounter = assignedToContainer.querySelector(".contactRemainingCount");
+  if (!existingCounter) {
+    existingCounter = document.createElement("div");
+    existingCounter.classList.add("contactRemainingCount");
+    existingCounter.classList.add("contactInitialsBoard");
+    assignedToContainer.appendChild(existingCounter);
+  }
+  existingCounter.textContent = `+${remainingCount}`;
+}
+
+/**
+ * Processes and renders a single contact into the container up to a max of 4.
+ * After the 4th a counter will be rendert
  * @param {Object} contact - The contact object (contains name, color, etc.)
  * @param {HTMLElement} container - The container where the contact will be rendered
  */
 function renderAssignedContact(contact, container) {
-  if (container) {
-    const contactName = contact.name;
-    const backgroundColor = contact.color || "#ccc";
-    const initials = contactName
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .toUpperCase();
-    container.innerHTML += htmlAssignedContacts(backgroundColor, initials, contactName);
-  }
+  if (!container || !contact || !contact.name) return;
+  const contactName = contact.name;
+  const backgroundColor = contact.color || "#ccc";
+  const initials = contactName
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+  container.innerHTML += htmlAssignedContacts(backgroundColor, initials, contactName);
 }
 
 /**

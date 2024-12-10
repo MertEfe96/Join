@@ -61,27 +61,28 @@ function renderEditContactTemplate(contact, key) {
 <div class="contactInitialsSmall contactInicialLarge marginTopContact">
 ${initials}
 </div>
-<div class="inputContainer">
-  <div class="inputSubContainer">
-    <input id="inputEditName" type="text" value="${contact.name}" />
-    <img class="contactInputIcon" src="assets/icons/person.png" alt="Person" />
-  </div>
-  <div class="inputSubContainer">
-    <input id="inputEditMail" type="text" value="${contact.email}" />
-    <img class="contactInputIcon" src="assets/icons/mail.png" alt="Mail" />
-  </div>
-  <div class="inputSubContainer">
-    <input id="inputEditNumber" type="text" value="${contact.number}"/>
-    <img class="contactInputIcon" src="assets/icons/call.png" alt="Call" />
-  </div>
-  <div class="editOverlayButtonContainer">
-    <button class="overlayDeleteButton" onclick="deleteContact('${key}')">Delete</button>
-    <button class="overlaySaveButton" onclick="editContact('${key}')">
-      Save
-      <img class="contactCheckIcon" src="assets/icons/check.png" alt="Check" />
-    </button>
-  </div>
-</div>`;
+    <form class="inputContainer" onsubmit="editContact('${key}'); return false">
+        <div class="inputSubContainer">
+            <input required id="inputEditName" type="text" value="${contact.name}" />
+            <img class="contactInputIcon" src="assets/icons/person.png" alt="Person" />
+        </div>
+        <div class="inputSubContainer">
+            <input id="inputEditMail" type="text" value="${contact.email}" />
+            <img class="contactInputIcon" src="assets/icons/mail.png" alt="Mail" />
+        </div>
+        <div class="inputSubContainer">
+            <input id="inputEditNumber" type="text" value="${contact.number}"/>
+            <img class="contactInputIcon" src="assets/icons/call.png" alt="Call" />
+        </div>
+        <div class="editOverlayButtonContainer">
+            <button type="button" class="overlayDeleteButton" onclick="deleteContact('${key}')">Delete</button>
+            <button type="submit" class="overlaySaveButton">
+            Save
+            <img class="contactCheckIcon" src="assets/icons/check.png" alt="Check" />
+            </button>
+        </div>
+    </form>
+`;
 }
 
 function optionsTemplate(key, color) {

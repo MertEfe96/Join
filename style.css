@@ -232,4 +232,12 @@ section {
   cursor: pointer;
 }
 
-/* help end */
+.contactRemainingCount {
+  background-color: lightgreen !important;
+  font-size: 16px !important;
+  color: black !important;
+}
+
+.dontShowAtAll {
+  display: none;
+}

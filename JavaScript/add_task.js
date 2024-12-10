@@ -56,12 +56,28 @@ function closeAddTask() {
 /**
  * Renders the assigned contacts in the "Add Task" form.
  */
+// function renderAssignedContactsInAddTask() {
+//   let div = document.getElementById("assignedContactsImgDiv");
+//   div.innerHTML = "";
+//   assignedContacts.forEach((obj) => {
+//     div.innerHTML += assignedContactInitialsTemplate(obj.initials, obj.color);
+//   });
+// }
 function renderAssignedContactsInAddTask() {
-  let div = document.getElementById("assignedContactsImgDiv");
+  const div = document.getElementById("assignedContactsImgDiv");
   div.innerHTML = "";
-  assignedContacts.forEach((obj) => {
-    div.innerHTML += assignedContactInitialsTemplate(obj.initials, obj.color);
-  });
+  const maxVisible = 4;
+  const visibleContacts = assignedContacts.slice(0, maxVisible);
+  const remainingCount = assignedContacts.length - maxVisible;
+  const content = visibleContacts.map((obj) => assignedContactInitialsTemplate(obj.initials, obj.color)).join("");
+  div.innerHTML = content;
+  if (remainingCount > 0) {
+    div.innerHTML += `
+      <div class="contactRemainingCount contactInitialsExtraSmall addTaskInitals">
+        +${remainingCount}
+      </div>
+    `;
+  }
 }
 
 /**
@@ -99,9 +115,11 @@ function renderSubtasks() {
   if (subtask.value) {
     subtasksArray.push({task: subtask.value, undone: true});
   }
-  subtasksArray.forEach((task, index) => {
-    div.innerHTML += subtaskTemplate(task.task, index);
-  });
+  if (subtasksArray) {
+    subtasksArray.forEach((task, index) => {
+      div.innerHTML += subtaskTemplate(task.task, index);
+    });
+  }
   subtask.value = "";
 }
 

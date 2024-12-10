@@ -1,5 +1,5 @@
 function templateTaskCardLarge(key) {
-  const { category, title, description, assignedTo, priority, dueDate, categoryClass } = getTaskData(key);
+  const {category, title, description, assignedTo, priority, dueDate, categoryClass} = getTaskData(key);
   return `
         <div class="taskCardLargeContent">
           <div class="categoryCardLargeTop"> <div id="categoryCardLarge${key}" class="categoryCardLarge ${categoryClass}">${category}</div> <img onclick="closetaskCardLarge()" class="closeButtonLargeView" src=./assets/icons/close.png></div>
@@ -7,7 +7,7 @@ function templateTaskCardLarge(key) {
           <div class="descriptionCardLarge">${description}</div>
           <div class="dueDateCardLarge"><div class="headingsFontColor">Due Date:</div> <div>${dueDate}</div></div>
           <div class="dueDateCardLarge"><div class="headingsFontColor">Priority:</div> <div class="prioLargeViewRight"> <div id="priorityCardLarge${key}"></div> <div class="prioImgLargeView">${priority}</div> </div></div>
-          <div class="assignedToCardLarge"><div class="headingsFontColor">Assigned To:</div> <div class="assignedToLargeViewBottom">${assignedTo}</div></div>
+          <div class="assignedToCardLarge"><div class="headingsFontColor">Assigned To:</div> <div class="assignedToLargeViewBottom" id="assignedToLargeViewBottom">${assignedTo}</div></div>
           <div class="subtasksLarge">
             <div class="headerSubtasks headingsFontColor">Subtasks</div>
             <div id="subtasksToClickLarge${key}" class="subTasksToClickLarge"></div>    
